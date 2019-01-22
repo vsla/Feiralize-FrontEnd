@@ -1,0 +1,3 @@
+rootProject.name = 'feiralize'
+
+include ':app'
