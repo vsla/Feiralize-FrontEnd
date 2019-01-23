@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image,TouchableHighlight, Text } from 'react-native';
+import { View, Image,TouchableHighlight, Text, Alert } from 'react-native';
 import HeaderLogin from '../components/HeaderLogin'
 
 class Login extends Component {
@@ -10,7 +10,8 @@ class Login extends Component {
                 <View style={style.inputContainer}>
                     <View style={style.authLoginContainer}>
                         <TouchableHighlight
-                            style={style.faceButton}>
+                            style={style.faceButton}
+                            onPress={() => Alert.alert("Não implementado!")}>
                             <View>
                                 <Image
                                     source={require(

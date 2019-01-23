@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, TextInput,Image } from 'react-native';
-import ItemListHeader from '../components/ItemListHeader';
 import ItemList from "../components/ItemList";
+import ListaProdutoTabNav from "../routes/ListaProdutoNav";
 
 class ListaProduto extends Component {
     render() {
         return (
             <View style={style.viewStyle}>
-                <View style={{flex:2}}>
+                <View style={{flex:0.2}}>
                     <View style={style.inputStyle}>
                         <TextInput style={style.textStyle}
                             placeholder="Buscar Item !!"
@@ -18,11 +18,8 @@ class ListaProduto extends Component {
                             style={style.imageStyle}
                         />
                     </View>
-                    <ItemListHeader />
                 </View>
-                <View style={{flex:7}}>
-                    <ItemList/>
-                </View>
+                <ListaProdutoTabNav/>
             </View>
         );
     }
@@ -36,7 +33,7 @@ const style = {
     inputStyle: {
         flex:2,
         flexDirection: 'row',
-        backgroundColor: '#ec7416',
+        backgroundColor: 'darkorange',
         justifyContent: 'flex-end',
         alignItems: 'flex-start',
         height: 85,
