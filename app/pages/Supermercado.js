@@ -5,12 +5,9 @@ export default class Supermercado extends Component {
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <View style={{ flex: 1, alignItems: "center", justifyContent:"center"}}>
-                    <Text>SUPERMERCADOS</Text>
-                </View>
+            <View style={{ flex: 1, alignItems: "center", justifyContent:"center"}}>
+                <Text>Supermercado</Text>
             </View>
-            
         )
     }
 }

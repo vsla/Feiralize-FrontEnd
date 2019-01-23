@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
 
-class DropMarca extends Component {
+export default class DropMarca extends Component {
 	constructor(){
 		super();
 		this.state={
@@ -13,6 +13,7 @@ class DropMarca extends Component {
     return (
         <View style={styles.container}>
             <Picker
+                hideIcon={true}
                 style={{width:'100%', color: 'grey'}}
                 selectedValue={this.state.PickerValue1}
                 onValueChange={(itemValue,itemIndex) => this.setState({PickerValue1:itemValue})}
@@ -30,17 +31,6 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'whitesmoke',
     width: '55%',
-    height: '15%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-});
-
-const quantidade = StyleSheet.create({
-  container: {
-    backgroundColor: 'whitesmoke',
-    width: '25%',
     height: '15%',
     justifyContent: 'center',
     alignItems: 'center',
