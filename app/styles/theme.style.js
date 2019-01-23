@@ -1,3 +1,3 @@
 export default {
-    BG_color: '#ec7416'
+    BG_color: 'darkorange'
 }
