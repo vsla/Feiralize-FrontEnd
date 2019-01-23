@@ -17,7 +17,7 @@ export default class App extends React.Component {
   render() {
     return (
       // The app start calling InitialRoute in routes
-      <InitialRoute/>
+      <InitialRoute persistenceKey={"NavigationState"}/>
     );
    }
 }
