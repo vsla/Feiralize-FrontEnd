@@ -11,13 +11,12 @@ export default class App extends React.Component {
       projectId: "authentication-2fd09",
       storageBucket: "authentication-2fd09.appspot.com",
       messagingSenderId: "518915834703"
-    }
-    )
+    })
   }
   render() {
     return (
       // The app start calling InitialRoute in routes
-      <InitialRoute persistenceKey={"NavigationState"}/>
+      <InitialRoute/>
     );
    }
 }
