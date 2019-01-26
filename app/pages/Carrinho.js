@@ -1,10 +1,14 @@
+//ESSE É O APP
 import React, { Component } from "react";
 import { View, TouchableHighlight, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation' 
 import Supermercado from './Supermercado'
 import DropMarca from '../components/DropDownMarca'
 import DropQuatidade from '../components/DropDownMarca'
-
+import ShoppingCart from '../pages/ShoppingCart'
+import CartScreen from '../containers/CartScreen'
+import {Provider} from 'react-redux'
+import store from '../store'
 class carrinho extends Component {
     render() {
         return (
@@ -36,9 +40,19 @@ export default carrinho;
 class ListaDeProdutos extends Component {
     render() {
         return (
-            <View style={StyleSheet.container}>
-                <Text>LISTA</Text>
-            </View>
+            <Provider store={store}>
+                <CartScreen/>
+            </Provider>
+        );
+    }
+}
+
+class Tentativa extends Component {
+    render() {
+        return (
+            <Provider store={store}>
+                <ShoppingCart/>
+            </Provider>
         );
     }
 }
@@ -49,7 +63,7 @@ const AppTabNavigator = createMaterialTopTabNavigator({
             tabBarLabel:'LISTA',
         }    
     },
-    Mercados: { screen: Supermercado,
+    Mercados: { screen: Tentativa,
         navigationOptions:{
             tabBarLabel:'COMPRAR',
         }    
