@@ -1,29 +1,11 @@
 import React, { Component } from 'react'
 import { createMaterialTopTabNavigator } from 'react-navigation'
 import ItemList from "../components/ItemList";
+import data from "../assets/data/products.json"
 
 const ListaProdutoTabNav = createMaterialTopTabNavigator(
-    {
-        Mercearia: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'Mercearia',
-            }
-        },
-        Mercados: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'Mercados',
-            }
-        },
-        Frios: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'Frios',
-            }
-        },
-    }, {
-        initialRouteName: 'Mercearia',
+    get_categories(data, ItemList)
+    , {
         tabBarOptions: {
             activeTintColor: 'white',
             inactiveTintColor: 'transparent',
@@ -39,3 +21,18 @@ const ListaProdutoTabNav = createMaterialTopTabNavigator(
 )
 
 export default ListaProdutoTabNav;
+
+function get_categories(item, itemList) {
+    var categories = [... new Set(item.map((item) => item.type))];
+    
+    var route = {};
+    for (var category in categories){
+        route[categories[category]] = {
+            screen: itemList,
+            navigationOptions: {
+                tabBarLabel: categories[category],
+            }
+        }
+    };
+    return route;
+}
