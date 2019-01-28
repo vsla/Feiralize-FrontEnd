@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, ImageBackground, TouchableOpacity } from 'react-native'; 
 
-class itemCard extends Component {
+class ItemCard extends Component {
     constructor(props){
         super(props);
         this.state={
@@ -28,7 +28,7 @@ class itemCard extends Component {
         );
     }
 };
-export default itemCard;
+export default ItemCard;
 
 const style = {
     containerStyle:{
