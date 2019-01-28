@@ -8,7 +8,6 @@ import {createStackNavigator} from 'react-navigation'
 import HomeScreen from '../containers/HomeScreen'
 import ElectronicsScreen from '../containers/ElectronicsScreen'
 import BooksScreen from '../containers/BooksScreen'
-import ShoppingCartIcon from '../containers/ShoppingCartIcon'
 import CartScreen from '../containers/CartScreen'
 class ShoppingCart extends Component {
     render() {
@@ -27,9 +26,6 @@ const AppStackNavigator = createStackNavigator({
 },{
     navigationOptions:{
         headerTitle:'Shopping App',
-        headerRight:(
-            <ShoppingCartIcon/>
-        )
     }
 }
 )
