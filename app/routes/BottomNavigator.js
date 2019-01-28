@@ -4,6 +4,8 @@ import ShoppingRoute from './ShoppingRoute';
 import Perfil from '../pages/Perfil';
 import Inicio from '../pages/Inicio';
 import Historico from '../pages/Historico';
+import ReuseIcon from '../components/ReuseIcon';
+
 
 const BottomNavigator = createBottomTabNavigator(
     /**
@@ -15,37 +17,49 @@ const BottomNavigator = createBottomTabNavigator(
             screen: Inicio,
             navigationOptions: () => ({
                 title: "Início",
-                
+                tabBarIcon: () => {
+                    return (
+                        <ReuseIcon name={'home'} size={25} color={'black'} />
+                    )
+                }     
             }),    
         },
         ShoppingRoute: {
             screen: ShoppingRoute,
             navigationOptions:() => ({
-                title:"Shopping"
+                title:"Shopping",
+                tabBarIcon: () => {
+                    return (
+                        <ReuseIcon name={'cart'} size={25} color={'black'} />
+                    )
+                }     
             }),           
         },
-        historico: {
+        Historico: {
             screen: Historico,
             navigationOptions: () => ({
                 title: "Histórico",
-                
+                tabBarIcon: () => {
+                    return (
+                        <ReuseIcon name={'timer'} size={25} color={'black'} />
+                    )
+                }  
             }),    
         },
-        perfil: {
+        Perfil: {
             screen:Perfil,
             navigationOptions: () => ({
-                title: "Perfil"
+                title: "Perfil",
+                tabBarIcon: () => {
+                    return (
+                        <ReuseIcon name={'person'} size={25} color={'black'} />
+                    )
+                }     
             }),    
         },
     },
     {
-        initialRouteName: "Inicio",
-        tabBarOptions: {
-            showIcon: true,
-            style:{
-                
-            }
-        },
+        
     }
 )
 export default BottomNavigator;
