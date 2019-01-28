@@ -38,7 +38,7 @@ class ItemList extends Component {
                 numColumns={2}
                 keyExtractor={item => item.title}
                 renderItem={({item}) =>
-                    <itemCard data={item}  />}
+                    <ItemCard data={item}  />}
             />
         );
     }
