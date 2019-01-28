@@ -9,6 +9,7 @@ const ListaProdutoTabNav = createMaterialTopTabNavigator(
         tabBarOptions: {
             activeTintColor: 'white',
             inactiveTintColor: 'transparent',
+            scrollEnabled: true,
             style: {
                 backgroundColor: 'darkorange'
             },
@@ -26,11 +27,11 @@ function get_categories(item, itemList) {
     var categories = [... new Set(item.map((item) => item.type))];
     
     var route = {};
-    for (var category in categories){
-        route[categories[category]] = {
-            screen: itemList,
+    for (var index in categories){
+        route[categories[index]] = {
+            screen: ItemList,
             navigationOptions: {
-                tabBarLabel: categories[category],
+                tabBarLabel: categories[index],
             }
         }
     };

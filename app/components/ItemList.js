@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import ItemDetail from './ItemDetail';
+import ItemCard from './ItemCard';
+import data from '../assets/data/products.json'
 
 class ItemList extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             isLoading: true,
@@ -16,7 +17,7 @@ class ItemList extends Component {
         axios.get('http://rallycoding.herokuapp.com/api/music_albums')
             .then(response => 
                 this.setState({ 
-                    food: response.data,
+                    food: data,
                     isLoading: false
                 })
             );
@@ -37,7 +38,7 @@ class ItemList extends Component {
                 numColumns={2}
                 keyExtractor={item => item.title}
                 renderItem={({item}) =>
-                        <ItemDetail key={item.title} data={item} />}
+                    <itemCard data={item}  />}
             />
         );
     }
