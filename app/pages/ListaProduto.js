@@ -7,7 +7,7 @@ class ListaProduto extends Component {
     render() {
         return (
             <View style={style.viewStyle}>
-                <View style={{flex:0.2}}>
+                <View style={{flex:0.15}}>
                     <View style={style.inputStyle}>
                         <TextInput style={style.textStyle}
                             placeholder="Buscar Item !!"
