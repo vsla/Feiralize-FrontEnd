@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
-import { Text, TouchableHighlight, View, Image } from 'react-native';
-
+import { Text, TouchableOpacity, View, Image, StyleSheet, Platform } from 'react-native';
+import ReuseIcon  from "./ReuseIcon";
 class PerfilButton extends Component {
   render() {
     return (
-      <TouchableHighlight>
+      <TouchableOpacity
+        onPress={this.props.onPress}
+        style={style.buttonContainer}
+      >
         <View style={style.viewContainer}>
-          <Image
-            source={this.props.imagePath}
-            style={style.Image}
+          <ReuseIcon
+            name={this.props.name}
+            color={this.props.color}
+            size={28}
           />
-          <Text>{this.props.text}</Text>        
+          <Text style={this.props.textStyle}
+          >{this.props.text}</Text>        
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
   }
 }
 export default PerfilButton;
 const style = {
-  viewContainer:{
-    flexDirection:'row'
+  buttonContainer:{
+    margin: 10,
   },
-  image:{
-    width:50,
-    height:50
-  }
+  viewContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+  },
 }
