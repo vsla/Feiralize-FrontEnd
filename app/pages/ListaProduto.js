@@ -9,14 +9,10 @@ class ListaProduto extends Component {
     render() {
         return (
             <View style={style.viewStyle}>
-<<<<<<< HEAD
                 <Provider store={store}>
                     <ShoppingCart/>
                 </Provider> 
                 <View style={{flex:0.2}}>
-=======
-                <View style={{flex:0.15}}>
->>>>>>> 2db963f6eaab394ebd02501dcad3095eeeafd761
                     <View style={style.inputStyle}>
                         <TextInput style={style.textStyle}
                             placeholder="Buscar Item !!"
