@@ -5,7 +5,6 @@ import { createMaterialTopTabNavigator } from 'react-navigation'
 import Supermercado from './Supermercado'
 import DropMarca from '../components/DropDownMarca'
 import DropQuatidade from '../components/DropDownMarca'
-import ShoppingCart from '../pages/ShoppingCart'
 import CartScreen from '../containers/CartScreen'
 import {Provider} from 'react-redux'
 import store from '../store'
@@ -47,15 +46,6 @@ class ListaDeProdutos extends Component {
     }
 }
 
-class Tentativa extends Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <ShoppingCart/>
-            </Provider>
-        );
-    }
-}
 
 const AppTabNavigator = createMaterialTopTabNavigator({
     Produtos: { screen: ListaDeProdutos,
@@ -63,7 +53,7 @@ const AppTabNavigator = createMaterialTopTabNavigator({
             tabBarLabel:'LISTA',
         }    
     },
-    Mercados: { screen: Tentativa,
+    Mercados: { screen: Supermercado,
         navigationOptions:{
             tabBarLabel:'COMPRAR',
         }    

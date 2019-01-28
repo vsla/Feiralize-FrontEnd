@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Text, View, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import itemCard from './itemCard';
+import ItemCard from './ItemCard';
 import data from '../assets/data/products.json'
 
 class ItemList extends Component {
@@ -38,7 +38,7 @@ class ItemList extends Component {
                 numColumns={2}
                 keyExtractor={item => item.title}
                 renderItem={({item}) =>
-                    <itemCard data={item}  />}
+                    <ItemCard data={item}  />}
             />
         );
     }

@@ -41,7 +41,10 @@ const BottomNavigator = createBottomTabNavigator(
     {
         initialRouteName: "Inicio",
         tabBarOptions: {
-            showIcon: true
+            showIcon: true,
+            style:{
+                
+            }
         },
     }
 )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TouchableHighlight, View, Image } from 'react-native';
+import { Text, TouchableHighlight, View, Image, StyleSheet } from 'react-native';
 
 class PerfilButton extends Component {
   render() {
@@ -8,9 +8,10 @@ class PerfilButton extends Component {
         <View style={style.viewContainer}>
           <Image
             source={this.props.imagePath}
-            style={style.Image}
+            style={style.image}
           />
-          <Text>{this.props.text}</Text>        
+          <Text style={this.props.textStyle}
+          >{this.props.text}</Text>        
         </View>
       </TouchableHighlight>
     );
@@ -19,10 +20,14 @@ class PerfilButton extends Component {
 export default PerfilButton;
 const style = {
   viewContainer:{
-    flexDirection:'row'
+    flexDirection:'row',
+    marginBottom:10,
+    alignItems:'center',
   },
   image:{
-    width:50,
-    height:50
-  }
+    width:30,
+    height:30,
+    margin:5,
+  },
+  
 }
