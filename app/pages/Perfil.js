@@ -9,7 +9,7 @@ export default class Perfil extends Component{
         return(
             <View style={{ flex: 1}}>
                 <View style={style.OrangeContainer}>
-                    <View style={{marginHorizontal:30, marginBottom:10, marginTop:20}}>
+                    <View style={{marginHorizontal:35, marginBottom:10, marginTop:20}}>
                         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'flex-start'}}>
                             <Image
                                 source={{ uri: 'https://bit.ly/2WqraTd'}}
@@ -17,9 +17,10 @@ export default class Perfil extends Component{
                             />
                             <PerfilButton
                                 text='Sair'
-                                imagePath={require('../assets/Icones/Home.png')}
+                                name = 'log-out'
+                                color='white'
                                 onPress={() => Alert.alert("Não implementado")}
-                                textStyle={style.whiteText}
+                                textStyle={{color: 'white',marginLeft: 8,fontSize: 18,}}
                             />
                         </View>
                         <View>
@@ -30,49 +31,56 @@ export default class Perfil extends Component{
                         </View>
                     </View>
                     
-                    <View style={{marginHorizontal:30, marginBottom:10, marginTop:20}}>
-                        <PerfilButton 
-                            text='Cartões' 
-                            imagePath={require('../assets/Icones/Home.png')}
-                            onPress ={() => Alert.alert("Não implementado")}
+                    <View style={{marginHorizontal:35, marginBottom:10, marginTop:20}}>
+                        <PerfilButton
+                            text='Cartões'
+                            name='wallet'
+                            color='white'
+                            onPress={() => Alert.alert("Não implementado")}
                             textStyle={style.whiteText}
                         />
                         <PerfilButton
                             text='Dados Pessoais'
-                            imagePath={require('../assets/Icones/Home.png')}
+                            name='lock'
+                            color='white'
                             onPress={() => Alert.alert("Não implementado")}
                             textStyle={style.whiteText}
                         />
                         <PerfilButton
                             text='Endereço de entrega'
-                            imagePath={require('../assets/Icones/Home.png')}
+                            name='pin'
+                            color='white'
                             onPress={() => Alert.alert("Não implementado")}
                             textStyle={style.whiteText}
                         />
                         <PerfilButton
                             text='Configurações'
-                            imagePath={require('../assets/Icones/Home.png')}
+                            name='cog'
+                            color='white'
                             onPress={() => Alert.alert("Não implementado")}
                             textStyle={style.whiteText}
                         />
                     </View>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center', marginHorizontal:30}}>
+                <View style={{ flex: 1, justifyContent: 'center', marginHorizontal:30, }}>
                     <PerfilButton
                         text='Ajuda'
-                        imagePath={require('../assets/Icones/Home.png')}
+                        name='help-circle-outline'
+                        color={themeStyle.BG_color}
                         onPress={() => Alert.alert("Não implementado")}
                         textStyle={style.orangeText}
                     />
                     <PerfilButton
                         text='Fale Conosco'
-                        imagePath={require('../assets/Icones/Home.png')}
+                        name='chatboxes'
+                        color={themeStyle.BG_color}
                         onPress={() => Alert.alert("Não implementado")}
                         textStyle={style.orangeText}
                     />
                     <PerfilButton
                         text='Sobre'
-                        imagePath={require('../assets/Icones/Home.png')}
+                        name='information-circle-outline'
+                        color={themeStyle.BG_color}
                         onPress={() => Alert.alert("Não implementado")}
                         textStyle={style.orangeText}
                     />
@@ -106,12 +114,12 @@ const style = StyleSheet.create({
     },
     whiteText: {
         color: 'white',
-        marginLeft: 10,
+        marginLeft: 20,
         fontSize:18,
     },
     orangeText:{
         color: themeStyle.BG_color,
-        marginLeft: 10,
+        marginLeft: 20,
         fontSize: 18,
     }
 })

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InitialRoute from './app/routes/InitialRoute';
 import firebase from 'firebase';
 
-export default class App extends React.Component {
+class App extends React.Component {
   componentWillMount() {
     firebase.initializeApp({
       apiKey: "AIzaSyCnVkAQB2YitsCh2m9Rs2LbjGCdyhE5cEI",
@@ -20,3 +20,4 @@ export default class App extends React.Component {
     );
    }
 }
+export default App;

@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, Image, StyleSheet } from 'react-native';
-
+import { Text, TouchableOpacity, View, Image, StyleSheet, Platform } from 'react-native';
+import ReuseIcon  from "./ReuseIcon";
 class PerfilButton extends Component {
   render() {
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
+        style={style.buttonContainer}
       >
         <View style={style.viewContainer}>
-          <Image
-            source={this.props.imagePath}
-            style={style.image}
+          <ReuseIcon
+            name={this.props.name}
+            color={this.props.color}
+            size={28}
           />
           <Text style={this.props.textStyle}
           >{this.props.text}</Text>        
@@ -21,15 +23,11 @@ class PerfilButton extends Component {
 }
 export default PerfilButton;
 const style = {
+  buttonContainer:{
+    margin: 10,
+  },
   viewContainer:{
     flexDirection:'row',
-    marginBottom:10,
     alignItems:'center',
   },
-  image:{
-    width:30,
-    height:30,
-    margin:5,
-  },
-  
 }
