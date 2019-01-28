@@ -9,7 +9,7 @@ export default class Perfil extends Component{
         return(
             <View style={{ flex: 1}}>
                 <View style={style.OrangeContainer}>
-                    <View style={{marginHorizontal:30, marginVertical:15}}>
+                    <View style={{marginHorizontal:30, marginBottom:10, marginTop:20}}>
                         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'flex-start'}}>
                             <Image
                                 source={{ uri: 'https://bit.ly/2WqraTd'}}
@@ -89,8 +89,8 @@ const style = StyleSheet.create({
         justifyContent: 'center',
     },
     perfilImage:{
-        height:100,
-        width:100,
+        height:75,
+        width:75,
         borderRadius: 100,
         borderWidth: 1,
         marginBottom:10
@@ -98,10 +98,11 @@ const style = StyleSheet.create({
     nameStyle:{
         color:'white',
         fontWeight:'bold',
-        fontSize:20
+        fontSize:27
     },
     emailStyle:{
-        color:'white'
+        color:'white',
+        fontSize:12
     },
     whiteText: {
         color: 'white',

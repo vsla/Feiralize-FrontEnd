@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Text, TouchableHighlight, View, Image, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, View, Image, StyleSheet } from 'react-native';
 
 class PerfilButton extends Component {
   render() {
     return (
-      <TouchableHighlight>
+      <TouchableOpacity
+        onPress={this.props.onPress}
+      >
         <View style={style.viewContainer}>
           <Image
             source={this.props.imagePath}
@@ -13,7 +15,7 @@ class PerfilButton extends Component {
           <Text style={this.props.textStyle}
           >{this.props.text}</Text>        
         </View>
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
   }
 }
