@@ -5,19 +5,18 @@ import { ScrollView, Text, View, FlatList, ActivityIndicator } from 'react-nativ
 import axios from 'axios';
 import ItemCard from './ItemCard';
 import data from '../assets/data/products.json'
-import { Provider, connect } from 'react-redux'
+import { connect } from 'react-redux'
 import CartScreen from '../pages/CartScreen'
-import store from '../store'
 
 class ItemList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoading: true,
-            food: null,
+            isLoading: false,
+            food: data,
         }
     }
-
+    /*
     componentWillMount = () => {
         axios.get('http://rallycoding.herokuapp.com/api/music_albums')
             .then(response => 
@@ -27,19 +26,12 @@ class ItemList extends Component {
                 })
             );
     }
+    */
     render() {
-        return (
-            <Provider store={store}>
-                <CartScreen/>
-            </Provider>
-        );
-    }
-
-    render() {
-        if (this.isLoading){
+        if (this.state.isLoading){
             return(
                 <View style={{flex:1, justifyContent:'center',alignItems:'center'}}>
-                    <ActivityIndicator/>
+                    <ActivityIndicator color='black'/>
                 </View>
             )
         }
@@ -50,9 +42,10 @@ class ItemList extends Component {
                 numColumns={2}
                 keyExtractor={item => item.title}
                 renderItem={({item}) =>
-                    <ItemCard data={item}  onPress={this.props.addItemToCart}/>}
+                    <ItemCard data={item} onPress ={(item) => this.props.addItemToCart(item)}/>}
             />
         );
+        
     }
 }
 
@@ -61,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
         addItemToCart: (data) => dispatch({ type: 'ADD_TO_CART', payload: data })
     }
 }
-export default connect(null, mapDispatchToProps)(ItemList);
+export default connect(null, mapDispatchToProps)(ItemList); 
 
 const style = {
     textStyle: {

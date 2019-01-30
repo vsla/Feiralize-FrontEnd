@@ -36,7 +36,7 @@ class Products extends Component {
           <FlatList 
           data={products} 
           renderItem={({item}) => <Product item={item} addItemsToCart={this.addItemsToCart} product={item}/>}
-          keyExtractor ={(item) => item.id}
+          keyExtractor ={(item) => item.id}z
           ItemSeparatorComponent= {()=> <View style={{height:0.5, backgroundColor:'#34495e90'}}/> }/>
         </View>
       </View>

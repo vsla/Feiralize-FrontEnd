@@ -1,41 +1,25 @@
 //PRODUCTS
 import React, { Component } from 'react';
-import { View, Text, ImageBackground, TouchableOpacity } from 'react-native'; 
+import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 
 class ItemCard extends Component {
-    constructor(props){
-        super(props);
-        this.state={
-            filename: '' ,
-        }
-    }
-    renderItemCard = (data) => {
-        console.log(data)
-        return data.map((item, index) => {
-            return (
-                <View style={style.containerStyle}>
-                    <TouchableOpacity onPress={() => this.props.onPress(item)}
-                    >
-                        <ImageBackground
-                            style = {style.imageStyle}
-                            source={require('../assets/data/images/0.jpg')}
-                        >
-                        </ImageBackground>
-                    </TouchableOpacity>
-                    <View style={style.textContainer}>
-                        <Text >
-                            {this.props.data.title}
-                        </Text>
-                    </View>
-                </View>
-            );
-        })
-    }
-
-    render() {
+     render() {
         return (
-            <View>
-                {this.renderItemCard(this.props.data)}
+            <View style={style.containerStyle}>
+                <TouchableOpacity 
+                    onPress={this.props.onPress}
+                >
+                    <ImageBackground
+                        style={style.imageStyle}
+                        source={require('../assets/data/images/0.jpg')}
+                    >
+                    </ImageBackground>
+                </TouchableOpacity>
+                <View style={style.textContainer}>
+                    <Text >
+                        {this.props.data.title}
+                    </Text>
+                </View>
             </View>
         );
     }

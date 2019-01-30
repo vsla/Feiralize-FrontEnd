@@ -7,7 +7,7 @@ import DropMarca from '../components/DropDownMarca'
 import DropQuatidade from '../components/DropDownMarca'
 import CartScreen from './CartScreen'
 import {Provider} from 'react-redux'
-import store from '../store'
+import store from '../redux'
 class carrinho extends Component {
     render() {
         return (
@@ -36,19 +36,8 @@ class carrinho extends Component {
 }
 export default carrinho;
 
-class ListaDeProdutos extends Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <CartScreen/>
-            </Provider>
-        );
-    }
-}
-
-
 const AppTabNavigator = createMaterialTopTabNavigator({
-    Produtos: { screen: ListaDeProdutos,
+    Produtos: { screen: CartScreen ,
         navigationOptions:{
             tabBarLabel:'LISTA',
         }    
@@ -59,7 +48,6 @@ const AppTabNavigator = createMaterialTopTabNavigator({
         }    
     }
 },{
-    initialRouteName: 'Produtos',
     tabBarOptions: {
         activeTintColor: 'white',
         inactiveTintColor: 'transparent',
