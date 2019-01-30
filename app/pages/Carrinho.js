@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from 'react-navigation'
 import Supermercado from './Supermercado'
 import DropMarca from '../components/DropDownMarca'
 import DropQuatidade from '../components/DropDownMarca'
-import CartScreen from '../containers/CartScreen'
+import CartScreen from './CartScreen'
 import {Provider} from 'react-redux'
 import store from '../store'
 class carrinho extends Component {

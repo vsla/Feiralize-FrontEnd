@@ -1,3 +1,4 @@
+//PRODUCTS
 import React, { Component } from 'react';
 import { View, Text, ImageBackground, TouchableOpacity } from 'react-native'; 
 
@@ -8,26 +9,37 @@ class ItemCard extends Component {
             filename: '' ,
         }
     }
-    render(){
-        return (
-            <View style={style.containerStyle}>
-                <TouchableOpacity
-                >
-                    <ImageBackground
-                        style = {style.imageStyle}
-                        source={require('../assets/data/images/0.jpg')}
+    renderItemCard = (data) => {
+        console.log(data)
+        return data.map((item, index) => {
+            return (
+                <View style={style.containerStyle}>
+                    <TouchableOpacity onPress={() => this.props.onPress(item)}
                     >
-                    </ImageBackground>
-                </TouchableOpacity>
-                <View style={style.textContainer}>
-                    <Text >
-                        {this.props.data.title}
-                    </Text>
+                        <ImageBackground
+                            style = {style.imageStyle}
+                            source={require('../assets/data/images/0.jpg')}
+                        >
+                        </ImageBackground>
+                    </TouchableOpacity>
+                    <View style={style.textContainer}>
+                        <Text >
+                            {this.props.data.title}
+                        </Text>
+                    </View>
                 </View>
+            );
+        })
+    }
+
+    render() {
+        return (
+            <View>
+                {this.renderItemCard(this.props.data)}
             </View>
         );
     }
-};
+}
 export default ItemCard;
 
 const style = {

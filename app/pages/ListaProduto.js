@@ -1,21 +1,15 @@
 import React, { Component } from "react";
 import { View, Text, TextInput,Image } from 'react-native';
-import ItemList from "../components/ItemList";
-import ListaProdutoTabNav from "../routes/ListaProdutoNav";
-import {Provider} from 'react-redux'
-import ShoppingCart from '../pages/ShoppingCart'
+import ListaProdutoTabNav from '../routes/ListaProdutoNav'
 
 class ListaProduto extends Component {
     render() {
         return (
             <View style={style.viewStyle}>
-                <Provider store={store}>
-                    <ShoppingCart/>
-                </Provider> 
                 <View style={{flex:0.2}}>
                     <View style={style.inputStyle}>
                         <TextInput style={style.textStyle}
-                            placeholder="Buscar Item !!"
+                            placeholder="Buscar item"
                             placeholderTextColor='white'
                         />
                         < Image

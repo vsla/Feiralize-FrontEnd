@@ -1,8 +1,13 @@
+//BOOKsSCREEN
+
 import React, { Component } from 'react';
 import { ScrollView, Text, View, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import ItemCard from './ItemCard';
 import data from '../assets/data/products.json'
+import { Provider, connect } from 'react-redux'
+import CartScreen from '../pages/CartScreen'
+import store from '../store'
 
 class ItemList extends Component {
     constructor(props) {
@@ -22,7 +27,14 @@ class ItemList extends Component {
                 })
             );
     }
-    
+    render() {
+        return (
+            <Provider store={store}>
+                <CartScreen/>
+            </Provider>
+        );
+    }
+
     render() {
         if (this.isLoading){
             return(
@@ -38,12 +50,18 @@ class ItemList extends Component {
                 numColumns={2}
                 keyExtractor={item => item.title}
                 renderItem={({item}) =>
-                    <ItemCard data={item}  />}
+                    <ItemCard data={item}  onPress={this.props.addItemToCart}/>}
             />
         );
     }
-};
-export default ItemList;
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addItemToCart: (data) => dispatch({ type: 'ADD_TO_CART', payload: data })
+    }
+}
+export default connect(null, mapDispatchToProps)(ItemList);
 
 const style = {
     textStyle: {
