@@ -7,7 +7,7 @@ class ItemCard extends Component {
         return (
             <View style={style.containerStyle}>
                 <TouchableOpacity 
-                    onPress={this.props.onPress}
+                    onPress={() => this.props.onPress(this.props.data)}
                 >
                     <ImageBackground
                         style={style.imageStyle}

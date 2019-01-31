@@ -1,13 +1,13 @@
 //BOOKsSCREEN
 
 import React, { Component } from 'react';
-import { ScrollView, Text, View, FlatList, ActivityIndicator } from 'react-native';
+import { ScrollView, Text, View, FlatList, ActivityIndicator, Alert } from 'react-native';
 import axios from 'axios';
 import ItemCard from './ItemCard';
 import data from '../assets/data/products.json'
 import { connect } from 'react-redux'
 import CartScreen from '../pages/CartScreen'
-
+import * as actions from "../redux/actions/action";
 class ItemList extends Component {
     constructor(props) {
         super(props);
@@ -35,6 +35,7 @@ class ItemList extends Component {
                 </View>
             )
         }
+        console.log(this.props.add_to_cart)
         return (
             <FlatList
                 data={this.state.food}
@@ -42,19 +43,14 @@ class ItemList extends Component {
                 numColumns={2}
                 keyExtractor={item => item.title}
                 renderItem={({item}) =>
-                    <ItemCard data={item} onPress ={(item) => this.props.addItemToCart(item)}/>}
+                    <ItemCard data={item} onPress = {(item) => this.props.add_to_cart(item)}/>}
             />
         );
         
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addItemToCart: (data) => dispatch({ type: 'ADD_TO_CART', payload: data })
-    }
-}
-export default connect(null, mapDispatchToProps)(ItemList); 
+export default connect(null, actions)(ItemList); 
 
 const style = {
     textStyle: {

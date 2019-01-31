@@ -8,9 +8,17 @@ import { connect } from 'react-redux'
 import ItemCard from '../components/ItemCard'
 
 class CartScreen extends Component {
+
     render() {
         return (
-            <Text>{this.props.cart}</Text>
+            < View >
+                <FlatList
+                    data={this.props.cart}
+                    keyExtractor={item => item.key}
+                    renderItem={( {item} ) =>
+                        <Text style={{ margin: 10 }}>{item.title}</Text>}
+                />
+            </View >
         )
     };
 }
