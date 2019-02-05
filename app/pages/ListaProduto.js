@@ -1,20 +1,29 @@
 import React, { Component } from "react";
-import { View, Text, TextInput,Image } from 'react-native';
+import { View, Text, TextInput,Image, TouchableHighlight } from 'react-native';
 import ListaProdutoTabNav from '../routes/ListaProdutoNav'
+import ReuseIcon from "../components/ReuseIcon";
 
 class ListaProduto extends Component {
     render() {
         return (
             <View style={style.viewStyle}>
-                <View style={{flex:0.2}}>
+                < View style = {style.headerStyle} >
+                    < TouchableHighlight style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate('Carrinho')}>
+                        <ReuseIcon
+                            name="arrow-back"
+                            color='white'
+                            size={30}
+                        />
+                    </TouchableHighlight>
                     <View style={style.inputStyle}>
                         <TextInput style={style.textStyle}
                             placeholder="Buscar item"
                             placeholderTextColor='white'
                         />
-                        < Image
-                            source={require('../assets/Icones/lupa1.png')}
-                            style={style.imageStyle}
+                        < ReuseIcon
+                        name = "search"
+                        color = 'white'
+                        size = {30}
                         />
                     </View>
                 </View>
@@ -29,24 +38,23 @@ const style = {
         flex: 1,
         backgroundColor: 'white',
     },
+    headerStyle:{
+        flex: 0.18, 
+        flexDirection: "row", 
+        backgroundColor: 'darkorange', 
+        justifyContent: "space-between", 
+        alignItems: 'center',
+    },
     inputStyle: {
         flex:2,
         flexDirection: 'row',
-        backgroundColor: 'darkorange',
         justifyContent: 'flex-end',
-        alignItems: 'flex-start',
-        height: 85,
+        alignItems: 'center',
+        marginRight:20
     },
     textStyle: {
-        fontSize: 18,
+        fontSize: 20,
         color: 'white',
         marginRight: 10,
-        paddingTop: 30,
-    },
-    imageStyle: {
-        width: 30,
-        height: 30,
-        marginRight: 20,
-        marginTop: 25,
     }
 }

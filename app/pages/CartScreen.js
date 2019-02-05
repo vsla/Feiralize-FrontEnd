@@ -1,14 +1,10 @@
 import React, { Component } from "react";
-import {
-    View,
-    Text,
-    FlatList
-} from "react-native";
+import { View, Text, FlatList} from "react-native";
 import { connect } from 'react-redux'
 import ItemCard from '../components/ItemCard'
+import CartCard from '../components/CartCard';
 
 class CartScreen extends Component {
-
     render() {
         return (
             < View >
@@ -16,7 +12,7 @@ class CartScreen extends Component {
                     data={this.props.cart}
                     keyExtractor={item => item.key}
                     renderItem={( {item} ) =>
-                        <Text style={{ margin: 10 }}>{item.title}</Text>}
+                        <CartCard title={item.title}/>}
                 />
             </View >
         )

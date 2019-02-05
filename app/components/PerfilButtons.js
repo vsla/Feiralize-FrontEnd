@@ -12,7 +12,7 @@ class PerfilButton extends Component {
           <ReuseIcon
             name={this.props.name}
             color={this.props.color}
-            size={28}
+            size={26}
           />
           <Text style={this.props.textStyle}
           >{this.props.text}</Text>        

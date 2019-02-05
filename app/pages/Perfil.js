@@ -9,7 +9,7 @@ export default class Perfil extends Component{
         return(
             <View style={{ flex: 1}}>
                 <View style={style.OrangeContainer}>
-                    <View style={{marginHorizontal:35, marginBottom:10, marginTop:20}}>
+                    <View style={{marginHorizontal:35,}}>
                         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'flex-start'}}>
                             <Image
                                 source={{ uri: 'https://bit.ly/2WqraTd'}}
@@ -30,8 +30,7 @@ export default class Perfil extends Component{
                             >ChiuGatinho@gmail.com</Text>
                         </View>
                     </View>
-                    
-                    <View style={{marginHorizontal:35, marginBottom:10, marginTop:20}}>
+                    <View style={{marginHorizontal:35,}}>
                         <PerfilButton
                             text='Cartões'
                             name='wallet'
@@ -94,7 +93,7 @@ const style = StyleSheet.create({
     OrangeContainer:{
         flex: 2.2, 
         backgroundColor: themeStyle.BG_color, 
-        justifyContent: 'center',
+        justifyContent: 'space-around',
     },
     perfilImage:{
         height:75,
