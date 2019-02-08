@@ -10,7 +10,7 @@ class CartScreen extends Component {
             < View >
                 <FlatList
                     data={this.props.cart}
-                    keyExtractor={item => item.key}
+                    keyExtractor={item => item.title}
                     renderItem={( {item} ) =>
                         <CartCard title={item.title}/>}
                 />
