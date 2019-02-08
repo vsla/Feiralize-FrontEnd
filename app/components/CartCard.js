@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import ReuseIcon from './ReuseIcon';
 import Picker from './Picker';
 
-
 export default class CartCard extends Component{
     render(){
         return(
@@ -35,5 +34,6 @@ const style = StyleSheet.create({
     },
     text: {
         marginHorizontal:10,
+        fontSize:12,
     },
 })

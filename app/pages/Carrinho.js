@@ -3,8 +3,6 @@ import React, { Component } from "react";
 import { View, TouchableHighlight, Text, StyleSheet, SafeAreaView } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation' 
 import Supermercado from './Supermercado'
-import DropMarca from '../components/DropDownMarca'
-import DropQuatidade from '../components/DropDownMarca'
 import CartScreen from './CartScreen'
 import {Provider} from 'react-redux'
 import store from '../redux'

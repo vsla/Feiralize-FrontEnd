@@ -6,6 +6,7 @@ import data from "../assets/data/products.json"
 const ListaProdutoTabNav = createMaterialTopTabNavigator(
     get_categories(data, ItemList)
     , {
+        lazy: true,
         tabBarOptions: {
             activeTintColor: 'white',
             inactiveTintColor: 'transparent',
