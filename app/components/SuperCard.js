@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, TouchableHighlight, Text, Alert } from 'react-native';
+import { View, Image, TouchableOpacity, Text, Alert } from 'react-native';
 
 
 class Login extends Component {
@@ -64,7 +64,7 @@ class Login extends Component {
                     marginBottom: 4.7,
                     justifyContent: 'space-between'
                     }}>
-                    <TouchableHighlight
+                    <TouchableOpacity
                         backgroundColor='slategray'
                         onPress={() => Alert.alert("Não implementado!")}>
                         <Text style={{
@@ -74,7 +74,7 @@ class Login extends Component {
                         }}>
                                 Detalhar preços
                         </Text>
-                    </TouchableHighlight>    
+                    </TouchableOpacity>    
                     <Text style={{
                         color: 'slategray',
                         fontSize: 12,
@@ -82,12 +82,12 @@ class Login extends Component {
                 </View>                              
 
                 <View style={style.BuyButton}>
-                    <TouchableHighlight
-                        onPress={() => Alert.alert("Não implementado!")}>
+                    <TouchableOpacity
+                        onPress={() =>this.props.screenProps.navigate("Pagamento")}>
                         <Text style={style.Texto}>
                                 COMPRAR
                         </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             </View>
         );

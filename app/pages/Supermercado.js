@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, FlatList } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity } from 'react-native';
 import SuperCard from '../components/SuperCard'
 import { connect } from 'react-redux'
 
@@ -8,12 +8,13 @@ class Supermercado extends Component {
         super(props);
         this.state = {
             Supermercados:null
-        }
+        };
+        console.log(this.props.screenProps)
     }
     render() {
         return (
             <View style={{flex:1, alignItems:'center'}}>
-                < SuperCard totalValue = {this.props.cartValue} />
+                < SuperCard totalValue = {this.props.cartValue} screenProps={this.props.screenProps}/>
             </View>
         )
     }

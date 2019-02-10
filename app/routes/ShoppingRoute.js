@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import ListaProduto from '../pages/ListaProduto';
-import Carrinho from '../pages/Carrinho';
+import Compra from '../pages/Compra';
 import Supermercado from '../pages/Supermercado';
 import Pagamento from '../pages/Pagamento';
+import BuyNavigator from './BuyNavigator';
 
 const ShoppingRoute = createStackNavigator(
     /** 
@@ -17,30 +18,27 @@ const ShoppingRoute = createStackNavigator(
                     header: null,
                 })
         },
-
-        Carrinho: {
-            screen: Carrinho,
-            navigationOptions:() => ({
-                header: null,
+        NavegadorCompra:{
+            screen: BuyNavigator,
+            navigationOptions: () => ({
+                
             })
         },
-        
-        Supermercado: {
-            screen: Supermercado,
+        Compra:{
+            screen: Compra,
             navigationOptions: () => ({
                 header: null,
             })
         },
-
         Pagamento: {
             screen: Pagamento,
             navigationOptions: () => ({
-                header: null,
+                
             })
         },
     },
     {
-        initialRouteName: 'Carrinho'
+        initialRouteName: 'Compra'
     }
 );
 

@@ -6,7 +6,7 @@ import axios from 'axios';
 import ItemCard from './ItemCard';
 import data from '../assets/data/products.json'
 import { connect } from 'react-redux'
-import CartScreen from '../pages/CartScreen'
+import CartScreen from '../pages/Carrinho'
 import * as actions from "../redux/actions/action";
 class ItemList extends Component {
     constructor(props) {
