@@ -11,9 +11,12 @@ import * as actions from "../redux/actions/action";
 class ItemList extends Component {
     constructor(props) {
         super(props);
+        console.log("item", this.props.navigation.state)
         this.state = {
-            isLoading: false,
-            food: data,
+            isLoading: true,
+            fullData: data,
+            routeName: this.props.navigation.state.routeName,
+            data: null
         }
     }
     /*
@@ -21,12 +24,27 @@ class ItemList extends Component {
         axios.get('http://rallycoding.herokuapp.com/api/music_albums')
             .then(response => 
                 this.setState({ 
-                    food: data,
+                    fullData: data,
                     isLoading: false
                 })
             );
     }
     */
+   componentWillMount() {
+       //Verifica qual produto é de cada tela
+        const data = []
+        const originalArray = this.state.fullData
+        for (var index in originalArray) {
+            if (originalArray[index].type == this.state.routeName) {
+                data.push(originalArray[index])
+            }
+        }
+        // Coloca no estado
+        this.setState({
+            data: data,
+            isLoading: false
+        })
+   }
     render() {
         if (this.state.isLoading){
             return(
@@ -35,10 +53,9 @@ class ItemList extends Component {
                 </View>
             )
         }
-        console.log(this.props.add_to_cart)
         return (
             <FlatList
-                data={this.state.food}
+                data={this.state.data}
                 style={style.flatStyle}
                 numColumns={2}
                 keyExtractor={item => item.title}

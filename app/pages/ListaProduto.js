@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text, TextInput,Image, TouchableHighlight } from 'react-native';
+import { View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
 import ListaProdutoTabNav from '../routes/ListaProdutoNav'
 import ReuseIcon from "../components/ReuseIcon";
 
@@ -8,13 +8,13 @@ class ListaProduto extends Component {
         return (
             <View style={style.viewStyle}>
                 < View style = {style.headerStyle} >
-                    < TouchableHighlight style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate("Compra")}>
+                    < TouchableOpacity style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate("Compra")}>
                         <ReuseIcon
                             name="arrow-back"
                             color='white'
                             size={30}
                         />
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                     <View style={style.inputStyle}>
                         <TextInput style={style.textStyle}
                             placeholder="Buscar item"
