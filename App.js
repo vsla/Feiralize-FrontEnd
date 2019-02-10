@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       // The app start calling InitialRoute in routes
       <Provider store={store}>
-        <InitialRoute/>
+        <InitialRoute />
       </Provider>
     );
   

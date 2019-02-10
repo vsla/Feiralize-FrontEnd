@@ -33,7 +33,7 @@ const ShoppingRoute = createStackNavigator(
         Pagamento: {
             screen: Pagamento,
             navigationOptions: () => ({
-                
+                header: null,
             })
         },
     },
