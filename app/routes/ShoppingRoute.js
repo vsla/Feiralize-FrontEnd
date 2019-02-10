@@ -18,12 +18,6 @@ const ShoppingRoute = createStackNavigator(
                     header: null,
                 })
         },
-        NavegadorCompra:{
-            screen: BuyNavigator,
-            navigationOptions: () => ({
-                
-            })
-        },
         Compra:{
             screen: Compra,
             navigationOptions: () => ({

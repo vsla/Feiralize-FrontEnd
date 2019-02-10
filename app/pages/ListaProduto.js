@@ -8,7 +8,7 @@ class ListaProduto extends Component {
         return (
             <View style={style.viewStyle}>
                 < View style = {style.headerStyle} >
-                    < TouchableHighlight style={{marginLeft: 20}} onPress={() => this.props.navigation.pop}>
+                    < TouchableHighlight style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate("Compra")}>
                         <ReuseIcon
                             name="arrow-back"
                             color='white'

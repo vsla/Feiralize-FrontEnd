@@ -21,10 +21,9 @@ class Pagamento extends Component {
     render() {
         return (
             <View style={style.screenContainer}>
-                <View style={{flex:1.3, justifyContent:'center', alignItems: "stretch", marginHorizontal: 30,}}>
+                <View style={{flex:1.3, flexDirection: "row", justifyContent:'space-evenly', alignItems: 'center'}}>
                     <TouchableOpacity
                         onPress={() => this.props.navigation.pop()}
-                        style={{position:'absolute', left:-20}}   
                      >
                             <ReuseIcon
                                 name={"arrow-back"}
@@ -33,7 +32,9 @@ class Pagamento extends Component {
                             />
                     </TouchableOpacity>
                     < Text style={style.pagamentoText}> Pagamento </Text>
-                    <Text>Valor: {this.props.cartValue}</Text>
+                    <Text style={{alignSelf:"flex-end", marginRight: 40, fontSize:16}}>
+                        Valor: R${this.props.cartValue}
+                    </Text>
                 </View>
                 <MetodoPagamento parentState={this}/>
                 <View style={{flex:1, marginHorizontal: 30}}>
@@ -121,7 +122,8 @@ class MetodoPagamento extends Component{
 const style = StyleSheet.create({
     screenContainer:{
         flex: 1, 
-        backgroundColor:"#ffffff"
+        backgroundColor:"#ffffff",
+        alignItems:'stretch',
     },
     pagamentoText:{
         color:"#ec7416",

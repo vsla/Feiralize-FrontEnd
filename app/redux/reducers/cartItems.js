@@ -10,7 +10,7 @@ const cartItems = (state = initialState, action) => {
         case 'ADD_TO_CART':
             return {
                 cart: [action.payload, ...state.cart ],
-                cartValue: state.cartValue + action.payload.price,
+                cartValue: parseFloat(state.cartValue + action.payload.price).toFixed(2),
                 payment_method: state.payment_method
             }
             break;

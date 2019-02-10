@@ -1,6 +1,6 @@
 //ESSE É O APP
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, StyleSheet, SafeAreaView } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation' 
 import {Provider} from 'react-redux'
 import store from '../redux'
@@ -14,7 +14,7 @@ import BuyNavigator from "../routes/BuyNavigator";
 class Compra extends Component {
     render() {
         return (
-            <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={style.produtosContainer}>
                     <View style={{
                         justifyContent: "center",
@@ -33,7 +33,7 @@ class Compra extends Component {
                     </View>
                 </View>
                 <BuyNavigator screenProps={this.props.navigation}/>
-            </SafeAreaView>
+            </View>
         );
     }
 }
@@ -45,7 +45,7 @@ const style = {
 
     produtosContainer: {
         justifyContent: 'center',
-        flex: 0.3,
+        flex: 0.18,
         alignItems: 'stretch',
         backgroundColor: 'darkorange',
     },
