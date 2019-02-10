@@ -1,11 +1,22 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import ReuseIcon from '../components/ReuseIcon';
 import { connect } from 'react-redux';
-
+import * as actions from "../redux/actions/action";
 class Pagamento extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            isPressed: null,
+            selected: null
+        }
+    }
+    confirmarCompra = () =>{
+        if (this.state.selected){
+         this.props.add_payment_method(this.state.selected)
+        }else{
+            Alert.alert("Selecione um método de pagamento!")
+        }
     }
     render() {
         return (
@@ -24,9 +35,11 @@ class Pagamento extends Component {
                     < Text style={style.pagamentoText}> Pagamento </Text>
                     <Text>Valor: {this.props.cartValue}</Text>
                 </View>
-                <MetodoPagamento/>
+                <MetodoPagamento parentState={this}/>
                 <View style={{flex:1, marginHorizontal: 30}}>
-                    <TouchableOpacity style={style.confirmarBut}>
+                    <TouchableOpacity 
+                    style={style.confirmarBut} onPress={() =>this.confirmarCompra()}
+                    >
                             <Text style={{color:'white', fontSize:18}}>CONFIRMAR COMPRA</Text>
                     </TouchableOpacity>
                 </View>
@@ -39,20 +52,10 @@ const mapStateToProps = (state) => {
         cartValue: state.cartValue
     }
 }
-export default connect(mapStateToProps)(Pagamento);
+export default connect(mapStateToProps, actions)(Pagamento);
 class MetodoPagamento extends Component{
-    constructor(props){
-        super(props);
-        this.state={
-            isPressed1:false,
-            isPressed2:false,
-            isPressed3:false,
-        }
-    }
     showIcon = (id) => {
-        if (
-            (id === 1 && this.state.isPressed1) || (id === 2 && this.state.isPressed2) || (id === 3 && this.state.isPressed3)
-            ) {
+        if (id === this.props.parentState.state.isPressed) {
             return(
                 <View 
                 style={style.iconContainer}>
@@ -69,24 +72,21 @@ class MetodoPagamento extends Component{
         // Faz a verificação de qual botão está sendo pressionado e coloca no state
         switch (id) {
             case 1:
-                this.setState({
-                    isPressed1: true,
-                    isPressed2: false,
-                    isPressed3: false,
+                this.props.parentState.setState({
+                    isPressed: 1,
+                    selected: 'Online com cartão de crédito'
                 })
                 break;
             case 2:
-                this.setState({
-                    isPressed1: false,
-                    isPressed2: true,
-                    isPressed3: false,
+                this.props.parentState.setState({
+                    isPressed: 2,
+                    selected: 'Crédito/Débito no ato da entrega'
                 })
                 break;
             case 3:
-                this.setState({
-                    isPressed1: false,
-                    isPressed2: false,
-                    isPressed3: true,
+                this.props.parentState.setState({
+                    isPressed: 3,
+                    selected: 'Dinheiro no ato da entrega'
                 })
                 break;
         }
