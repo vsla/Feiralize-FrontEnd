@@ -14,7 +14,7 @@ class FlatListItem extends Component {
   }
   buttonPressed = () =>{
     console.log(this.state)
-    //this.props.onPress(this.props.data);
+    this.props.onPress(this.props.data);
     this.setState({
         pressed: true,
         buttonStyle: {backgroundColor:'#31ff26'}
@@ -126,7 +126,7 @@ export default class App extends Component {
           data={this.state.data}
           numColumns={2}
           renderItem={({ item, index }) => (
-            <FlatListItem item={item} index={index}></FlatListItem>)}
+            <FlatListItem item={item} index={index} ></FlatListItem>)}
           keyExtractor={item => item.title}
           ListHeaderComponent={this.renderHeader}
         />             

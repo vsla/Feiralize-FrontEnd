@@ -1,5 +1,3 @@
-//BOOKsSCREEN
-
 import React, { Component } from 'react';
 import { ScrollView, Text, View, FlatList, ActivityIndicator, Alert } from 'react-native';
 import axios from 'axios';
