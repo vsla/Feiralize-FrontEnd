@@ -5,22 +5,21 @@ export const contains = ({ title }, query) => {
   if (title.includes(query)) {
     return true;
   }
-
   return false;
 };
 
-export const getUsers = (limit = 20, query = "") => {
+export const getFood = (limit = 20, query = "") => {
   return new Promise((resolve, reject) => {
     if (query.length === 0) {
       resolve(_.take(data, limit));
     } else {
       const formattedQuery = query.toLowerCase();
-      const results = _.filter(data, user => {
-        return contains(user, formattedQuery);
+      const results = _.filter(data, produto => {
+        return contains(produto, formattedQuery);
       });
       resolve(_.take(results, limit));
     }
   });
 };
 
-export default getUsers;
+export default getFood;
