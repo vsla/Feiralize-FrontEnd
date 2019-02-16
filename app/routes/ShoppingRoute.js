@@ -5,6 +5,8 @@ import Compra from '../pages/Compra';
 import Supermercado from '../pages/Supermercado';
 import Pagamento from '../pages/Pagamento';
 import BuyNavigator from './BuyNavigator';
+import ItemSearching from '../pages/ItemSearching'
+
 
 const ShoppingRoute = createStackNavigator(
     /** 
@@ -14,6 +16,12 @@ const ShoppingRoute = createStackNavigator(
   {
         ListaProduto: {
             screen: ListaProduto,
+                navigationOptions: () => ({
+                    header: null,
+                })
+        },
+        ItemSearching: {
+            screen: ItemSearching,
                 navigationOptions: () => ({
                     header: null,
                 })

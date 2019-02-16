@@ -18,7 +18,7 @@ class ListaProduto extends Component {
                     <View style={style.inputStyle}>
                         < TouchableOpacity 
                             style={{marginLeft: 20}} 
-                            onPress={() => this.props.navigation.navigate('Historico')}>
+                            onPress={() => this.props.navigation.navigate('ItemSearching')}>
                             <View style={{flexDirection:'row'}}>
                                 <Text style={style.textStyle}>
                                     Buscar item

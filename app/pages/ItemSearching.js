@@ -99,11 +99,11 @@ export default class App extends Component {
     this.setState({ loading: true });
 
     getFood(20, this.state.query)
-      .then(produtos => {
+      .then(products => {
         this.setState({
           loading: false,
-          data: produtos,
-          fullData: produtos,
+          data: products,
+          fullData: products,
         });
       })
       .catch(error => {
@@ -113,8 +113,8 @@ export default class App extends Component {
 
   handleSearch = text => {
       const formatQuery = text.toLowerCase();
-      const data = _.filter(this.state.fullData, produto => {
-          return contains(produto, formatQuery);
+      const data = _.filter(this.state.fullData, product => {
+          return contains(product, formatQuery);
       });
       this.setState({ query: formatQuery, data }, () => this.makeRemoteRequest());
   }

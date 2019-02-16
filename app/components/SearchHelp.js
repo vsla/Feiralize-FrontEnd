@@ -14,8 +14,8 @@ export const getFood = (limit = 20, query = "") => {
       resolve(_.take(data, limit));
     } else {
       const formattedQuery = query.toLowerCase();
-      const results = _.filter(data, produto => {
-        return contains(produto, formattedQuery);
+      const results = _.filter(data, product => {
+        return contains(product, formattedQuery);
       });
       resolve(_.take(results, limit));
     }
