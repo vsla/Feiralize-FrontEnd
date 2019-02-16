@@ -8,7 +8,7 @@ class ListaProduto extends Component {
         return (
             <View style={style.viewStyle}>
                 < View style = {style.headerStyle} >
-                    < TouchableOpacity style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate("Compra")}>
+                    < TouchableOpacity style={{marginLeft: 20, flexDirection: 'row'}} onPress={() => this.props.navigation.navigate("Compra")}>
                         <ReuseIcon
                             name="arrow-back"
                             color='white'
@@ -16,15 +16,20 @@ class ListaProduto extends Component {
                         />
                     </TouchableOpacity>
                     <View style={style.inputStyle}>
-                        <TextInput style={style.textStyle}
-                            placeholder="Buscar item"
-                            placeholderTextColor='white'
-                        />
-                        < ReuseIcon
-                        name = "search"
-                        color = 'white'
-                        size = {30}
-                        />
+                        < TouchableOpacity 
+                            style={{marginLeft: 20}} 
+                            onPress={() => this.props.navigation.navigate('Historico')}>
+                            <View style={{flexDirection:'row'}}>
+                                <Text style={style.textStyle}>
+                                    Buscar item
+                                </Text>
+                                < ReuseIcon
+                                name = "search"
+                                color = 'white'
+                                size = {30}
+                                />
+                            </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <ListaProdutoTabNav/>
