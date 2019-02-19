@@ -1,179 +1,73 @@
-import React, { Component } from "react";
-import { View, Text, FlatList,  ActivityIndicator, SafeAreaView, TextInput, ImageBackground, TouchableHighlight, TouchableOpacity,StyleSheet } from "react-native";
-import _ from 'lodash'
-import { getFood, contains } from "../components/SearchHelp";
-import ReuseIcon from "../components/ReuseIcon";
+import React from 'react';
+import { StyleSheet, Text, View, Picker, Button, Modal, TouchableHighlight } from 'react-native';
 
-class FlatListItem extends Component {
-  constructor(props){
-    super(props),
-    this.state = {
-        pressed: false,
-        buttonStyle: {backgroundColor:'white'},
-    }
-  }
-  buttonPressed = () =>{
-    console.log(this.state)
-    //this.props.onPress(this.props.data);
-    this.setState({
-        pressed: true,
-        buttonStyle: {backgroundColor:'#31ff26'}
-    });
-    console.log(this.state)
-  }
-
-  render() {
-    return (
-      <View style={style.containerStyle}>
-        <TouchableOpacity
-          onPress={() => this.buttonPressed()}
-          disabled={this.state.pressed}
-          style={{flex:1}}>
-          <View style={this.state.buttonStyle}>
-            <ImageBackground
-              source={{uri: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.item.filename}}
-              style={{height: 100, width: '100%', opacity: 0.6, flex: 1}}
-            >
-              <View style={{backgroundColor:"orange", opacity:1, borderRadius:100, position:'absolute', padding:10}}>
-                <ReuseIcon
-                  name={'add'}
-                  color={'white'}
-                  size={20}
-                />
-              </View>
-            </ImageBackground>
-          </View>
-        </TouchableOpacity>
-        <View style={style.textContainer}>
-          <Text>{this.props.item.title}</Text>
-        </View>
-      </View>
-    );
-  }
-}
-export default class App extends Component {
-  renderHeader = () => {
-    return (
-      <View style={style.viewStyle}>
-                < View style = {style.headerStyle} >
-                    < TouchableHighlight style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate("Compra")}>
-                        <ReuseIcon
-                            name="arrow-back"
-                            color='white'
-                            size={30}
-                        />
-                    </TouchableHighlight>
-                    <View style={style.inputStyle}>
-                        <TextInput style={style.textStyle}
-                            placeholder="Buscar item" onChangeText={this.handleSearch}
-                            placeholderTextColor='white'
-                        />
-                        < ReuseIcon
-                        name = "search"
-                        color = 'white'
-                        size = {30}
-                        />
-                    </View>
-                </View>
-            </View>
-    )
-  };
-
+export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      loading: false,
-      data: [],
-      error: null,
-      query: "",
-      fullData: [],
-    };
+      pickerSelection: 'Default value!',
+      items: [
+        {
+          label: 'Red',
+          value: 'red',
+        },
+        {
+          label: 'Orange',
+          value: 'orange',
+        },
+        {
+          label: 'Blue',
+          value: 'blue',
+        },
+      ],
+      favColor: null
+    }
   }
 
-  componentDidMount() {
-    this.makeRemoteRequest();
-  }
-
-  makeRemoteRequest = () => {
-    this.setState({ loading: true });
-
-    getFood(20, this.state.query)
-      .then(products => {
-        this.setState({
-          loading: false,
-          data: products,
-          fullData: products,
-        });
-      })
-      .catch(error => {
-        this.setState({ error, loading: false });
-      });
-  };
-
-  handleSearch = text => {
-      const formatQuery = text.toLowerCase();
-      const data = _.filter(this.state.fullData, product => {
-          return contains(product, formatQuery);
-      });
-      this.setState({ query: formatQuery, data }, () => this.makeRemoteRequest());
-  }
+  renderPickerItems() {
+    return this.state.items.map((item) => {
+        return (
+            <Picker.Item
+                label={item.label}
+                value={item.value}
+                key={item.key || item.label}
+                color= '#8b8b8b'
+                itemTextStyle={{ fontSize: 18, color: '#8b8b8b' }}
+            />
+        );
+    });
+}
 
   render() {
     return (
-      <SafeAreaView>
-        <FlatList
-          data={this.state.data}
-          numColumns={2}
-          renderItem={({ item, index }) => (
-            <FlatListItem item={item} index={index}></FlatListItem>)}
-          keyExtractor={item => item.title}
-          ListHeaderComponent={this.renderHeader}
-        />             
-      </SafeAreaView>
+      <View style={styles.container}>
+        <Picker
+          style={styles.botao}
+          selectedValue={ this.state.pickerSelection }
+          onValueChange={(itemValue, itemIndex) => this.setState({ pickerSelection: itemValue})}
+          >
+          {this.renderPickerItems()}
+        </Picker>
+      </View>
     );
   }
 }
 
-const style = {
-  containerStyle: {
-    flex: 1,
-    margin: 10,
-    borderRadius: 5,
-    borderColor: 'white',
-    shadowColor: 'gray',
-    shadowOffset: {width: 2,height: 2},
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  viewStyle: {
-      flex: 1,
-      backgroundColor: 'white',
-  },
-  headerStyle:{
-      flex: 0.18, 
-      flexDirection: "row", 
-      backgroundColor: 'darkorange', 
-      justifyContent: "space-between", 
-      alignItems: 'center',
-  },
-  inputStyle: {
-      flex:2,
-      flexDirection: 'row',
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-      marginRight:20
-  },
-  textStyle: {
-      fontSize: 20,
-      color: 'white',
-      marginRight: 10,
-  },
-  textContainer: {
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f5f5f5', 
+    borderRadius: 5.3,
+    height: 40,
+    width: 140,
+    alignItems: 'center',
     justifyContent: 'center',
-    alignItems: 'flex-start',
-    paddingVertical: 10,
-    marginLeft: 10,
+  },
+  botao: {
+    backgroundColor: '#f5f5f5', 
+    height: 30,
+    width: 130,
+    alignItems: 'center',
+    justifyContent: 'center',
   }
-}
+});

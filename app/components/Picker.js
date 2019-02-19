@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { Text, View, Picker} from 'react-native'
-import RNPickerSelect from 'react-native-picker-select'
+import React from 'react';
+import { StyleSheet, Text, View, Picker, Button, Modal, TouchableHighlight } from 'react-native';
 
-
-export default class App extends Component {
-  constructor(props){
+export default class App extends React.Component {
+  constructor(props) {
     super(props);
-    this.state={
+
+    this.state = {
+      pickerSelection: 'Default value!',
       items: [
         {
           label: 'Red',
@@ -24,41 +24,50 @@ export default class App extends Component {
       favColor: null
     }
   }
+
   renderPickerItems() {
-        return this.state.items.map((item) => {
-            return (
-                <Picker.Item
-                    label={item.label}
-                    value={item.value}
-                    key={item.key || item.label}
-                    style={{color:"blue"}}
-                />
-            );
-        });
-    }
+    return this.state.items.map((item) => {
+        return (
+            <Picker.Item
+                label={item.label}
+                value={item.value}
+                key={item.key || item.label}
+                color= '#8b8b8b'
+                itemTextStyle={{ fontSize: 18, color: '#8b8b8b' }}
+            />
+        );
+    });
+}
+
   render() {
     return (
-      <View style={{backgroundColor:'#d4d4d4'}}>
-        <Picker 
-        selectedValue={this.state.favColor}
-        style={{height: 30, width: 100, borderRadius:50, borderWidth:1}}
-        onValueChange={(value) =>
-          this.setState({favColor: value})
-        }
-        mode={'dropdown'}
-        >
-        {this.renderPickerItems()}
+      <View style={styles.container}>
+        <Picker
+          style={styles.botao}
+          selectedValue={ this.state.pickerSelection }
+          onValueChange={(itemValue, itemIndex) => this.setState({ pickerSelection: itemValue})}
+          >
+          {this.renderPickerItems()}
         </Picker>
       </View>
-    )
+    );
   }
 }
- /*
-<RNPickerSelect
-          placeholder={{}}
-          hideIcon={true}
-          items={this.state.items}
-          onValueChange={()=>console.log("oi")}
-          style={{underline:{}}}
-        />
- */
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#f5f5f5', 
+    borderRadius: 5.3,
+    height: 40,
+    width: 140,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  botao: {
+    backgroundColor: '#f5f5f5', 
+    height: 30,
+    width: 130,
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
+});
