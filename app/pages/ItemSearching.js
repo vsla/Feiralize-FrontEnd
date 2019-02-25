@@ -1,8 +1,10 @@
 import React, { Component } from "react";
-import { View, Text, FlatList,  ActivityIndicator, SafeAreaView, TextInput, ImageBackground, TouchableHighlight, TouchableOpacity,StyleSheet } from "react-native";
+import { View, Text, FlatList,  ActivityIndicator, TextInput, ImageBackground, TouchableHighlight, TouchableOpacity,StyleSheet } from "react-native";
 import _ from 'lodash'
 import { getFood, contains } from "../components/SearchHelp";
 import ReuseIcon from "../components/ReuseIcon";
+import data from '../assets/data/products.json'
+import ItemCard from '../components/ItemCard';
 
 class FlatListItem extends Component {
   constructor(props){
@@ -52,36 +54,8 @@ class FlatListItem extends Component {
   }
 }
 export default class App extends Component {
-  renderHeader = () => {
-    return (
-      <View style={style.viewStyle}>
-                < View style = {style.headerStyle} >
-                    < TouchableHighlight style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate("Compra")}>
-                        <ReuseIcon
-                            name="arrow-back"
-                            color='white'
-                            size={30}
-                        />
-                    </TouchableHighlight>
-                    <View style={style.inputStyle}>
-                        <TextInput style={style.textStyle}
-                            placeholder="Buscar item" onChangeText={this.handleSearch}
-                            placeholderTextColor='white'
-                        />
-                        < ReuseIcon
-                        name = "search"
-                        color = 'white'
-                        size = {30}
-                        />
-                    </View>
-                </View>
-            </View>
-    )
-  };
-
   constructor(props) {
     super(props);
-
     this.state = {
       loading: false,
       data: [],
@@ -121,16 +95,36 @@ export default class App extends Component {
 
   render() {
     return (
-      <SafeAreaView>
-        <FlatList
-          data={this.state.data}
-          numColumns={2}
-          renderItem={({ item, index }) => (
-            <FlatListItem item={item} index={index} ></FlatListItem>)}
-          keyExtractor={item => item.title}
-          ListHeaderComponent={this.renderHeader}
-        />             
-      </SafeAreaView>
+        <View style={style.viewStyle}>
+            < View style = {style.headerStyle} >
+                < TouchableHighlight style={{marginLeft: 20}} onPress={() => this.props.navigation.navigate("Compra")}>
+                    <ReuseIcon
+                        name="arrow-back"
+                        color='white'
+                        size={30}
+                    />
+                </TouchableHighlight>
+                <View style={style.inputStyle}>
+                        <TextInput style={style.textStyle}
+                            placeholder="Buscar item" onChangeText={this.handleSearch}
+                            placeholderTextColor='white'
+                        />
+                        < ReuseIcon
+                        name = "search"
+                        color = 'white'
+                        size = {30}
+                        />
+                </ View>
+            </ View>
+            <FlatList
+                data={this.state.data}
+                style={{flex:1}}
+                numColumns={2}
+                keyExtractor={item => item.title}
+                renderItem={({item}) =>
+                    <ItemCard data={item} onPress = {() => {}}/>}
+            />
+        </View>
     );
   }
 }
@@ -152,7 +146,7 @@ const style = {
       backgroundColor: 'white',
   },
   headerStyle:{
-      flex: 0.18, 
+      flex: 0.18,
       flexDirection: "row", 
       backgroundColor: 'darkorange', 
       justifyContent: "space-between", 

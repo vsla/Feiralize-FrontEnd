@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import ReuseIcon from './ReuseIcon';
 
-const Image = require('Image');
 class ItemCard extends Component {
     constructor(props){
         super(props),

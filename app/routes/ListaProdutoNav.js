@@ -9,7 +9,7 @@ const ListaProdutoTabNav = createMaterialTopTabNavigator(
         lazy: true,
         tabBarOptions: {
             activeTintColor: 'white',
-            inactiveTintColor: 'transparent',
+            inactiveTintColor: '#e1e1e1',
             scrollEnabled: true,
             style: {
                 backgroundColor: 'darkorange'

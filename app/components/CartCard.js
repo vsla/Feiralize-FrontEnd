@@ -6,7 +6,7 @@ import Picker from './Picker';
 export default class CartCard extends Component{
     render(){
         return(
-            <View>
+            <View style={{marginVertical:10}}>
                 <View style={style.contentContainer}>
                     <Picker/>
                     <Text style={style.text}>{this.props.title}</Text>
@@ -34,6 +34,7 @@ const style = StyleSheet.create({
     },
     text: {
         marginHorizontal:10,
-        fontSize:12,
+        fontSize:13,
+        paddingHorizontal:10
     },
 })

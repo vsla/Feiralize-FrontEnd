@@ -33,7 +33,7 @@ export default class App extends React.Component {
                 value={item.value}
                 key={item.key || item.label}
                 color= '#8b8b8b'
-                itemTextStyle={{ fontSize: 18, color: '#8b8b8b' }}
+                
             />
         );
     });
@@ -46,6 +46,7 @@ export default class App extends React.Component {
           style={styles.botao}
           selectedValue={ this.state.pickerSelection }
           onValueChange={(itemValue, itemIndex) => this.setState({ pickerSelection: itemValue})}
+          itemTextStyle={{ fontSize: 100, color: '#8b8b8b' }}
           >
           {this.renderPickerItems()}
         </Picker>
@@ -59,15 +60,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5', 
     borderRadius: 5.3,
     height: 40,
-    width: 140,
+    width: 90,
     alignItems: 'center',
     justifyContent: 'center',
   },
   botao: {
     backgroundColor: '#f5f5f5', 
+    backgroundColor:'red',
     height: 30,
-    width: 130,
-    alignItems: 'center',
-    justifyContent: 'center',
+    width: '100%',
   }
 });

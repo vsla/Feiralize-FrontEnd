@@ -16,20 +16,16 @@ class ListaProduto extends Component {
                         />
                     </TouchableOpacity>
                     <View style={style.inputStyle}>
-                        < TouchableOpacity 
-                            style={{marginLeft: 20}} 
-                            onPress={() => this.props.navigation.navigate('ItemSearching')}>
-                            <View style={{flexDirection:'row'}}>
-                                <Text style={style.textStyle}>
-                                    Buscar item
-                                </Text>
-                                < ReuseIcon
-                                name = "search"
-                                color = 'white'
-                                size = {30}
-                                />
-                            </View>
-                        </TouchableOpacity>
+                        <TextInput style={style.textStyle}
+                            placeholder="Buscar item"
+                            placeholderTextColor='white'
+                            onFocus={() => this.props.navigation.navigate('ItemSearching')}
+                        />
+                        < ReuseIcon
+                        name = "search"
+                        color = 'white'
+                        size = {30}
+                        />
                     </View>
                 </View>
                 <ListaProdutoTabNav/>
