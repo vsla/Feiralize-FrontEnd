@@ -1,96 +1,35 @@
 import React, { Component } from "react";
 import { View, Text, FlatList,  ActivityIndicator, TextInput, ImageBackground, TouchableHighlight, TouchableOpacity,StyleSheet } from "react-native";
-import _ from 'lodash'
-import { getFood, contains } from "../components/SearchHelp";
 import ReuseIcon from "../components/ReuseIcon";
 import data from '../assets/data/products.json'
 import ItemCard from '../components/ItemCard';
 
-class FlatListItem extends Component {
-  constructor(props){
-    super(props),
-    this.state = {
-        pressed: false,
-        buttonStyle: {backgroundColor:'white'},
-    }
-  }
-  buttonPressed = () =>{
-    console.log(this.state)
-    this.props.onPress(this.props.data);
-    this.setState({
-        pressed: true,
-        buttonStyle: {backgroundColor:'#31ff26'}
-    });
-    console.log(this.state)
-  }
-
-  render() {
-    return (
-      <View style={style.containerStyle}>
-        <TouchableOpacity
-          onPress={() => this.buttonPressed()}
-          disabled={this.state.pressed}
-          style={{flex:1}}>
-          <View style={this.state.buttonStyle}>
-            <ImageBackground
-              source={{uri: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.item.filename}}
-              style={{height: 100, width: '100%', opacity: 0.6, flex: 1}}
-            >
-              <View style={{backgroundColor:"orange", opacity:1, borderRadius:100, position:'absolute', padding:10}}>
-                <ReuseIcon
-                  name={'add'}
-                  color={'white'}
-                  size={20}
-                />
-              </View>
-            </ImageBackground>
-          </View>
-        </TouchableOpacity>
-        <View style={style.textContainer}>
-          <Text>{this.props.item.title}</Text>
-        </View>
-      </View>
-    );
-  }
-}
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
-      data: [],
+      data: data,
       error: null,
-      query: "",
+      array: "",
       fullData: [],
     };
   }
-
-  componentDidMount() {
-    this.makeRemoteRequest();
-  }
-
-  makeRemoteRequest = () => {
-    this.setState({ loading: true });
-
-    getFood(20, this.state.query)
-      .then(products => {
-        this.setState({
-          loading: false,
-          data: products,
-          fullData: products,
-        });
-      })
-      .catch(error => {
-        this.setState({ error, loading: false });
-      });
-  };
+  
 
   handleSearch = text => {
-      const formatQuery = text.toLowerCase();
-      const data = _.filter(this.state.fullData, product => {
-          return contains(product, formatQuery);
-      });
-      this.setState({ query: formatQuery, data }, () => this.makeRemoteRequest());
+    if (text){
+        const formatedArray = text.toLowerCase();
+        var fullData = this.state.data.map(item =>{
+            const formatedItem = item.title.toLowerCase()
+            if (formatedItem.includes(formatedArray)) {
+                return (item)
+            }
+        })
+        this.setState({fullData: fullData})
+    }else{
+        this.setState({fullData: []})
+    }
   }
 
   render() {
@@ -117,7 +56,7 @@ export default class App extends Component {
                 </ View>
             </ View>
             <FlatList
-                data={this.state.data}
+                data={this.state.fullData}
                 style={{flex:1}}
                 numColumns={2}
                 keyExtractor={item => item.title}
