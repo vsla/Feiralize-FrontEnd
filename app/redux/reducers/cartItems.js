@@ -1,7 +1,8 @@
 const initialState ={
     cart: [],
     cartValue:0,
-    payment_method: ''
+    payment_method: '',
+    
 }
 
 const cartItems = (state = initialState, action) => {

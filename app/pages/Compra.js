@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation' 
 import {Provider} from 'react-redux'
-import store from '../redux'
 
 import Supermercado from './Supermercado'
 import CartScreen from './Carrinho'
 import BuyNavigator from "../routes/BuyNavigator";
-
-
 
 class Compra extends Component {
     render() {
@@ -37,9 +34,6 @@ class Compra extends Component {
     }
 }
 export default Compra;
-
-
-
 const style = {
 
     produtosContainer: {

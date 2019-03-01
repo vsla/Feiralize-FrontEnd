@@ -2,24 +2,24 @@
 import React, { Component } from 'react';
 import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import ReuseIcon from './ReuseIcon';
+import { connect } from "react-redux";
+import * as actions from "../redux/actions/action";
 
 class ItemCard extends Component {
     constructor(props){
         super(props),
         this.state = {
             imageUrl: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.data.filename,
-            pressed: false,
-            buttonStyle: {backgroundColor:'white'},
+            pressed: this.props.cartItems.includes(this.props.data) ? true : false,
+            buttonStyle:  this.props.cartItems.includes(this.props.data) ? {backgroundColor:'#31ff26'} : {backgroundColor:'white'},
         }
     }
     buttonPressed = () =>{
-        console.log(this.state)
         this.props.onPress(this.props.data);
         this.setState({
             pressed: true,
             buttonStyle: {backgroundColor:'#31ff26'}
         });
-        console.log(this.state)
     }
     
      render() {
@@ -54,7 +54,15 @@ class ItemCard extends Component {
         );
     }
 }
-export default ItemCard;
+
+const mapStateToProps = (state) => {
+    return {
+        cartItems: state.cart
+    }
+}
+
+export default connect(mapStateToProps, actions)(ItemCard);
+
 
 const style = {
     containerStyle: {
