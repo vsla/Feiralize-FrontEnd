@@ -4,6 +4,7 @@ import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
 import ReuseIcon from './ReuseIcon';
 import { connect } from "react-redux";
 import * as actions from "../redux/actions/action";
+import theme from '../styles/theme.style';
 
 class ItemCard extends Component {
     constructor(props){
@@ -11,14 +12,14 @@ class ItemCard extends Component {
         this.state = {
             imageUrl: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.data.filename,
             pressed: this.props.cartItems.includes(this.props.data) ? true : false,
-            buttonStyle:  this.props.cartItems.includes(this.props.data) ? {backgroundColor:'#31ff26'} : {backgroundColor:'white'},
+            buttonStyle:  this.props.cartItems.includes(this.props.data) ? {backgroundColor:'#0d7401'} : {backgroundColor:'white'},
         }
     }
     buttonPressed = () =>{
         this.props.onPress(this.props.data);
         this.setState({
             pressed: true,
-            buttonStyle: {backgroundColor:'#31ff26'}
+            buttonStyle: {backgroundColor:'#0d7401'}
         });
     }
     
@@ -31,18 +32,20 @@ class ItemCard extends Component {
                     style={{flex:1}}
                 >
                     <View style={this.state.buttonStyle}>
+                        
                         <ImageBackground
                             style={{height: 100, width: '100%', opacity: 0.6, flex: 1, }}
                             source={{uri: this.state.imageUrl }}
                         >
-                        <View style={{backgroundColor:"orange", opacity:1, borderRadius:100, position:'absolute', padding:10}}>
+                        
+                        </ImageBackground>
+                        <View style={{ backgroundColor: theme.BG_color, opacity: 0.9,borderRadius: 100, position: 'absolute', paddingHorizontal: 20, paddingVertical:10, bottom: 5, right: 5 }}>
                             <ReuseIcon
-                            name={'add'}
-                            color={'white'}
-                            size={20}
+                                name={'add'}
+                                color={'white'}
+                                size={20}
                             />
                         </View>
-                        </ImageBackground>
                     </View>
                 </TouchableOpacity>
                 <View style={style.textContainer}>

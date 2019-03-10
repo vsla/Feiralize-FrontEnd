@@ -57,7 +57,7 @@ export default class App extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f5f5f5', 
+    //backgroundColor: '#f5f5f5', 
     borderRadius: 5.3,
     height: 40,
     width: 90,
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   botao: {
-    backgroundColor: '#f5f5f5', 
+    //backgroundColor: 'blue', 
     height: 30,
     width: '100%',
   }
