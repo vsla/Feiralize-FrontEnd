@@ -13,13 +13,18 @@ class ItemCard extends Component {
             imageUrl: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.data.filename,
             pressed: this.props.cartItems.includes(this.props.data) ? true : false,
             buttonStyle:  this.props.cartItems.includes(this.props.data) ? {backgroundColor:'#0d7401'} : {backgroundColor:'white'},
+            iconStyle:  this.props.cartItems.includes(this.props.data) ? 'checkmark' : 'add',
+            corStyle:  this.props.cartItems.includes(this.props.data) ? 'green' : 'orange',
+
         };
     }
     buttonPressed = () =>{
         this.props.onPress(this.props.data)
         this.setState({
             pressed: true,
-            buttonStyle: {backgroundColor:'#0d7401'}
+            buttonStyle: {backgroundColor:'#0d7401'},
+            iconStyle: 'checkmark',
+            corStyle: 'green',
         })
     }
     
@@ -39,9 +44,17 @@ class ItemCard extends Component {
                         >
                         
                         </ImageBackground>
-                        <View style={style.iconStyle}>
+                        <View style={{backgroundColor: this.state.corStyle,
+                                    opacity: 0.9,
+                                    borderRadius: 100,
+                                    position: 'absolute',
+                                    paddingHorizontal: 12,
+                                    paddingVertical: 8,
+                                    top: 5,
+                                    right: 5
+                                }}>
                             <ReuseIcon
-                                name={'add'}
+                                name={this.state.iconStyle}
                                 color={'white'}
                                 size={20}
                             />
@@ -92,15 +105,5 @@ const style = {
         flex: 1,
         tintColor: "green"
     },
-    iconStyle: {
-        backgroundColor: theme.BG_color,
-        opacity: 0.9,
-        borderRadius: 100,
-        position: 'absolute',
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        top: 5,
-        right: 5
-    }
 }
 
