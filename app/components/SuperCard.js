@@ -40,46 +40,41 @@ class Login extends Component {
                     </View>
                 </View>
 
-                <View style={{
-                    flexDirection: 'row',
-                    marginRight: 36,
-                    marginBottom: 2,
-                    marginLeft: 10
-                    }}>
-                    <Text style={{
-                        color: 'slategray',
-                        fontSize: 12,
-                    }}>Feira R$62,90</Text>
-                    <Text style={{
-                        color: 'slategray',
-                        fontSize: 12,
-                        marginLeft: '55.5%',
-                    }}>Frete R$5,10</Text>                
-                </View>
-
-                <View style={{
-                    flexDirection:'row',
-                    marginLeft: 10,
-                    marginRight: 16.1,
-                    marginBottom: 4.7,
-                    justifyContent: 'space-between'
-                    }}>
-                    <TouchableOpacity
-                        backgroundColor='slategray'
-                        onPress={() => Alert.alert("Não implementado!")}>
-                        <Text style={{
-                            color: 'orange',
-                            fontSize: 13.3,
-                            textDecorationLine: 'underline'
+                <View style={{flexDirection: 'row', justifyContent: 'space-between',}}>
+                    <View style={{
+                        marginLeft: 10,
+                        marginBottom: 4.7,
                         }}>
-                                Detalhar preços
-                        </Text>
-                    </TouchableOpacity>    
-                    <Text style={{
-                        color: 'slategray',
-                        fontSize: 12,
-                    }}>Entrega em 2 dias</Text>            
-                </View>                              
+                        <TouchableOpacity
+                            backgroundColor='slategray'
+                            onPress={() => Alert.alert("Não implementado!")}>
+                            <Text style={{
+                            color: 'slategray',
+                            fontSize: 12,
+                            }}>Feira R$62,90</Text>
+                            <Text style={{
+                                color: 'orange',
+                                fontSize: 13.3,
+                                textDecorationLine: 'underline'
+                            }}>
+                                    Detalhar preços
+                            </Text>
+                        </TouchableOpacity>            
+                    </View>
+                    <View style={{
+                        marginBottom: 2,
+                        marginRight: 10
+                        }}>
+                        <Text style={{
+                            color: 'slategray',
+                            fontSize: 12,
+                        }}>Frete R$5,10</Text>
+                        <Text style={{
+                            color: 'slategray',
+                            fontSize: 12,
+                        }}>Entrega em 2 dias</Text>                
+                    </View>                              
+                </View>
 
                 <View style={style.BuyButton}>
                     <TouchableOpacity
