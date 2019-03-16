@@ -11,3 +11,10 @@ export function add_payment_method(item) {
         payload: item
     }
 }
+
+export function remove_from_cart(item) {
+    return {
+        type: 'REMOVE_FROM_CART',
+        payload: item
+    }
+}
