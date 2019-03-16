@@ -4,13 +4,12 @@ import theme from '../styles/theme.style';
 
 class FeiraButton extends Component{    
     render() {
-        console.log(this.props)
         if (this.props.linkTo != "") {
             return (
                 // Ainda falta colocar o link para a tela desejada
                 <TouchableOpacity
                     style={style.buttonStyle}
-                    onPress={this.props.linkTo("ShoppingRoute")}
+                    onPress={() => {}}
                 >
                     <Text style={style.textButton}>{this.props.text}</Text>
                 </TouchableOpacity> 
@@ -36,7 +35,7 @@ export default class Inicio extends Component {
                 <View style={{ flex: 3, justifyContent: "space-between", alignItems: "stretch", margin: 15, backgroundColor: 'white'}}>
                     <FeiraButton text="Tire uma foto da lista com a câmera" linkTo='' />
                     <FeiraButton text="Escaneie o QR code de nota fiscal" linkTo='' />
-                    <FeiraButton text="Ver categorias de produtos" linkTo={this.props.navigation.navigate} />
+                    <FeiraButton text="Ver categorias de produtos" linkTo='' />
                 </View>
             </View>
         )
