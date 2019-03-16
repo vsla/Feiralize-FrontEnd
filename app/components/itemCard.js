@@ -54,13 +54,6 @@ class ItemCard extends Component {
                             style={{height: 100, width: '100%', opacity: 0.6, flex: 1, }}
                             source={{uri: this.state.imageUrl }}
                         >
-<<<<<<< HEAD
-                        <View style={{backgroundColor:this.state.corStyle, opacity:1, borderRadius:100, position:'absolute', padding:10}}>
-                            <ReuseIcon
-                            name={this.state.iconStyle}
-                            color={'white'}
-                            size={20}
-=======
                         
                         </ImageBackground>
                         <View style={{ backgroundColor: theme.BG_color, opacity: 0.9,borderRadius: 100, position: 'absolute', paddingHorizontal: 20, paddingVertical:10, bottom: 5, right: 5 }}>
@@ -68,7 +61,6 @@ class ItemCard extends Component {
                                 name={'add'}
                                 color={'white'}
                                 size={20}
->>>>>>> 248d36895e722b62dde65fd6640427fe45ded7ac
                             />
                         </View>
                     </View>
