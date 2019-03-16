@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { createMaterialTopTabNavigator } from 'react-navigation'
+import React, { Component } from 'react';
+import { createMaterialTopTabNavigator } from 'react-navigation';
 import ItemList from "../components/ItemList";
-import data from "../assets/data/products.json"
+import data from "../assets/data/products.json";
 
 const ListaProdutoTabNav = createMaterialTopTabNavigator(
-    get_categories(data, ItemList)
-    , {
+    get_categories(data, ItemList),
+    {
         lazy: true,
         tabBarOptions: {
             activeTintColor: 'white',
@@ -20,13 +20,12 @@ const ListaProdutoTabNav = createMaterialTopTabNavigator(
             }
         }
     }
-)
+);
 
 export default ListaProdutoTabNav;
 
 function get_categories(item, itemList) {
     var categories = [... new Set(item.map((item) => item.type))];
-    
     var route = {};
     for (var index in categories){
         route[categories[index]] = {
@@ -34,7 +33,7 @@ function get_categories(item, itemList) {
             navigationOptions: {
                 tabBarLabel: categories[index],
             }
-        }
-    };
+        };
+    }
     return route;
 }

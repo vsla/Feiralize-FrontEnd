@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, {
+    Component
+} from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import Supermercado from '../pages/Supermercado';
 import CartScreen from '../pages/Carrinho';
@@ -28,8 +30,13 @@ const BuyNavigator = createMaterialTopTabNavigator(
         indicatorStyle: {
             height: 3,
             color: 'white',
+            backgroundColor: "white",
+            paddingTop:5
+        },
+        labelStyle:{
+            fontSize:15
         }
     }
 }
-)
+);
 export default BuyNavigator;

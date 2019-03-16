@@ -14,6 +14,7 @@ class Pagamento extends Component {
     confirmarCompra = () =>{
         if (this.state.selected){
          this.props.add_payment_method(this.state.selected)
+         Alert.alert("Pagamento efetuado!")
         }else{
             Alert.alert("Selecione um método de pagamento!")
         }
@@ -33,7 +34,7 @@ class Pagamento extends Component {
                     </TouchableOpacity>
                     < Text style={style.pagamentoText}> Pagamento </Text>
                     <Text style={{alignSelf:"flex-end", marginRight: 40, fontSize:16}}>
-                        Valor: R${this.props.cartValue}
+                        Valor: R$ {this.props.cartValue}
                     </Text>
                 </View>
                 <MetodoPagamento parentState={this}/>
@@ -150,7 +151,7 @@ const style = StyleSheet.create({
         backgroundColor: "#12a931",
         borderRadius: 100,
         position: 'absolute',
-        top: 10,
+        bottom: 20,
         right: 20,
         paddingHorizontal:10,
         paddingVertical:5
