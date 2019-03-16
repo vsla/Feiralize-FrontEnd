@@ -12,22 +12,6 @@ class ItemCard extends Component {
         this.state = {
             imageUrl: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.data.filename,
             pressed: this.props.cartItems.includes(this.props.data) ? true : false,
-<<<<<<< HEAD
-            buttonStyle:  this.props.cartItems.includes(this.props.data) ? {backgroundColor:'#31ff26'} : {backgroundColor:'white'},
-            iconStyle:  this.props.cartItems.includes(this.props.data) ? 'checkmark' : 'add',
-            corStyle: this.props.cartItems.includes(this.props.data) ? 'green' : 'orange'
-        }
-    }
-    buttonPressed = () =>{
-        console.log(this.state)
-        this.props.onPress(this.props.data);
-        this.setState({
-            pressed: true,
-            buttonStyle: {backgroundColor:'#31ff26'},
-            iconStyle: 'checkmark',
-            corStyle: 'green'
-        });
-=======
             buttonStyle:  this.props.cartItems.includes(this.props.data) ? {backgroundColor:'#0d7401'} : {backgroundColor:'white'},
         };
     }
@@ -37,7 +21,6 @@ class ItemCard extends Component {
             pressed: true,
             buttonStyle: {backgroundColor:'#0d7401'}
         })
->>>>>>> 248d36895e722b62dde65fd6640427fe45ded7ac
     }
     
      render(){
