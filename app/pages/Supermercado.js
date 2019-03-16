@@ -7,15 +7,19 @@ class Supermercado extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Supermercados:null
+            Supermercados:[1,2,3]
         };
         console.log(this.props.screenProps)
     }
     render() {
         return (
-            <View style={{flex:1, alignItems:'center'}}>
-                < SuperCard totalValue = {this.props.cartValue} screenProps={this.props.screenProps}/>
-            </View>
+             <FlatList 
+                data={this.state.Supermercados}
+                keyExtractor={item => item.toString()}
+                style={{flex:1}}
+                renderItem={() => 
+                < SuperCard totalValue = {this.props.cartValue} screenProps={this.props.screenProps}/>}
+            />
         )
     }
 }

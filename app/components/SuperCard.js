@@ -53,7 +53,7 @@ class Login extends Component {
                     <Text style={{
                         color: 'slategray',
                         fontSize: 12,
-                        marginLeft: '44.5%',
+                        marginLeft: '55.5%',
                     }}>Frete R$5,10</Text>                
                 </View>
 
@@ -97,6 +97,7 @@ export default Login;
 
 const style = {
     Container: {
+        flex:1,
         backgroundColor: 'whitesmoke',
         width: '87%',
         height: '63%',
@@ -104,9 +105,12 @@ const style = {
         Opacity: '79%',
         shadowColor: 'black',
         shadowRadius: 5,
-        shadowOffset: { width:1, height:1 }
+        shadowOffset: { width:1, height:1 },
+        alignSelf:'center',
+        marginVertical:15,
     },
     Encontrados: {
+        flex:1,
         backgroundColor: 'whitesmoke',
         width: '51.2%',
         height: 8,
@@ -117,6 +121,7 @@ const style = {
         marginBottom: 6.6
     },
     Mercado: {
+        flex: 1,
         alignSelf: 'center',
         backgroundColor: 'white',
         width: '93.8%',
@@ -129,26 +134,25 @@ const style = {
         flexDirection: 'row'
     },
     imageStyle: {
+        flex: 1,
         height: '42.4%',
         width: '39.8%',
         marginLeft: 10.7,
         marginTop: 22
     },
     BuyButton: {
-        alignSelf: 'flex-end',
+        flex:1,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: 'green',
         borderRadius: 5.3,
-        height: '19.8%',
-        width: '93.8%',
-        marginLeft: 6.7,
-        marginRight: 6.7,
-        marginTop: 6
+        marginHorizontal: 30,
+        marginVertical:6
     },
 
     Texto: {
         color: 'white',
-        fontSize: 18
+        fontSize: 18,
+        paddingVertical:10
     }
  }
