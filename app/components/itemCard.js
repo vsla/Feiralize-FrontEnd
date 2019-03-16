@@ -39,7 +39,7 @@ class ItemCard extends Component {
                         >
                         
                         </ImageBackground>
-                        <View style={{ backgroundColor: theme.BG_color, opacity: 0.9,borderRadius: 100, position: 'absolute', paddingHorizontal: 20, paddingVertical:10, bottom: 5, right: 5 }}>
+                        <View style={style.iconStyle}>
                             <ReuseIcon
                                 name={'add'}
                                 color={'white'}
@@ -91,6 +91,16 @@ const style = {
         opacity: 0.6,
         flex: 1,
         tintColor: "green"
+    },
+    iconStyle: {
+        backgroundColor: theme.BG_color,
+        opacity: 0.9,
+        borderRadius: 100,
+        position: 'absolute',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        top: 5,
+        right: 5
     }
 }
 
