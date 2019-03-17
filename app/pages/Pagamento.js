@@ -13,10 +13,22 @@ class Pagamento extends Component {
     }
     confirmarCompra = () =>{
         if (this.state.selected){
-         this.props.add_payment_method(this.state.selected)
-         Alert.alert("Pagamento efetuado!")
-        }else{
-            Alert.alert("Selecione um método de pagamento!")
+            
+            Alert.alert(
+                'Confirmar compra de R$ ' + this.props.cartValue,
+                '',
+                [
+                    {
+                        text: 'Cancelar',
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'OK',
+                        onPress: () => this.props.add_payment_method(this.state.selected)
+                    },
+                ],
+            );
         }
     }
     render() {
