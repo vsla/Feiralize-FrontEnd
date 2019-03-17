@@ -13,7 +13,7 @@ class ItemCard extends Component {
             imageUrl: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.data.filename,
             pressed: this.props.cartItems.includes(this.props.data) ? true : false,
             buttonStyle:  this.props.cartItems.includes(this.props.data) ? {backgroundColor:'#0d7401'} : {backgroundColor:'white'},
-            iconStyle:  this.props.cartItems.includes(this.props.data) ? 'checkmark' : 'add',
+            IconName:  this.props.cartItems.includes(this.props.data) ? 'checkmark' : 'add',
             corStyle:  this.props.cartItems.includes(this.props.data) ? 'green' : 'orange',
 
         };
@@ -23,7 +23,7 @@ class ItemCard extends Component {
         this.setState({
             pressed: true,
             buttonStyle: {backgroundColor:'#0d7401'},
-            iconStyle: 'checkmark',
+            IconName: 'checkmark',
             corStyle: 'green',
         })
     }
@@ -54,7 +54,7 @@ class ItemCard extends Component {
                                     right: 5
                                 }}>
                             <ReuseIcon
-                                name={this.state.iconStyle}
+                                name={this.state.IconName}
                                 color={'white'}
                                 size={20}
                             />
