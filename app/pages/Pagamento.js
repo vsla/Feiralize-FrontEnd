@@ -13,7 +13,6 @@ class Pagamento extends Component {
     }
     confirmarCompra = () =>{
         if (this.state.selected){
-            
             Alert.alert(
                 'Confirmar compra de R$ ' + this.props.cartValue,
                 '',

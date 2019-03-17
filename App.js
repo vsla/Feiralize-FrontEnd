@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { StatusBar } from 'react-native';
 import InitialRoute from './app/routes/InitialRoute';
 import firebase from 'firebase';
 import { Provider } from "react-redux";
@@ -18,6 +19,7 @@ class App extends React.Component {
     return (
       // The app start calling InitialRoute in routes
       <Provider store={store}>
+        <StatusBar backgroundColor="darkorange" barStyle="light-content" />
         <InitialRoute />
       </Provider>
     );
