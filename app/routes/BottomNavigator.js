@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import ShoppingRoute from './ShoppingRoute';
 import Perfil from '../pages/Perfil';
@@ -19,7 +20,7 @@ const BottomNavigator = createBottomTabNavigator(
                 title: "Início",
                 tabBarIcon: () => {
                     return (
-                        <ReuseIcon name={'home'} size={25} color={'black'} />
+                        <ReuseIcon name={'home'} size={29} color={'grey'} />
                     )
                 }     
             }),    
@@ -30,7 +31,7 @@ const BottomNavigator = createBottomTabNavigator(
                 title:"Shopping",
                 tabBarIcon: () => {
                     return (
-                        <ReuseIcon name={'cart'} size={25} color={'black'} />
+                        <ReuseIcon name={'cart'} size={29} color={'grey'} />
                     )
                 }     
             }),           
@@ -41,7 +42,7 @@ const BottomNavigator = createBottomTabNavigator(
                 title: "Histórico",
                 tabBarIcon: () => {
                     return (
-                        <ReuseIcon name={'timer'} size={25} color={'black'} />
+                            <ReuseIcon name={'timer'} size={29} color={'grey'} />
                     )
                 }  
             }),    
@@ -52,7 +53,7 @@ const BottomNavigator = createBottomTabNavigator(
                 title: "Perfil",
                 tabBarIcon: () => {
                     return (
-                        <ReuseIcon name={'person'} size={25} color={'black'} />
+                        <ReuseIcon name={'person'} size={29} color={'grey'} />
                     )
                 }     
             }),    
@@ -60,6 +61,17 @@ const BottomNavigator = createBottomTabNavigator(
     },
     {
         
+        activeTintColor:'darkorange',
+        tabBarOptions:{
+            labelStyle:{
+                fontSize:13,
+                paddingTop:15
+            },
+            tabStyle:{
+                paddingTop:20
+            }
+        }
+         
     }
 )
 export default BottomNavigator;
