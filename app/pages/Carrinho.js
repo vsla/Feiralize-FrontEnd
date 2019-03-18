@@ -12,7 +12,7 @@ class Carrrinho extends Component {
                     data={this.props.cart}
                     keyExtractor={item => item.title}
                     renderItem={( {item} ) =>
-                        <CartCard title={item.title}/>}
+                        <CartCard item={item}/>}
                 />
             </View >
         )

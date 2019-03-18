@@ -47,7 +47,9 @@ const style ={
         backgroundColor:"#efefef",
         flex:2,
         marginTop:15,
-        justifyContent:'center'
+        justifyContent:'center',
+        borderRadius:40,
+        elevation:1
         
     },
     textButton:{

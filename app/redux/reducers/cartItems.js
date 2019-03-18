@@ -1,23 +1,24 @@
 const initialState ={
     cart: [],
-    cartValue:0,
+    cartValue: 0,
     payment_method: '',
     
 }
 
 const cartItems = (state = initialState, action) => {
-    console.log(state, action)
     switch (action.type) {
         case 'ADD_TO_CART':
             return {
                 cart: [action.payload, ...state.cart ],
-                cartValue: parseFloat(state.cartValue + action.payload.price).toFixed(2),
+                cartValue: parseFloat(parseFloat(state.cartValue + action.payload.price).toFixed(2)),
                 payment_method: state.payment_method
             }
             break;
         case "REMOVE_FROM_CART":
             return{
-                state
+                cart: state.cart.filter((value) => {return  value != action.payload}),
+                cartValue: parseFloat(parseFloat(state.cartValue - action.payload.price).toFixed(2)),
+                payment_method: state.payment_method
             }
             break;
         case "ADD_PAYMENT_METHOD":
@@ -29,6 +30,7 @@ const cartItems = (state = initialState, action) => {
         default:
             return state
     }
+    
 }
 
 export default cartItems

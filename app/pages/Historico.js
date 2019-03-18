@@ -11,6 +11,8 @@ export default class App extends React.Component {
         </View>
         <View style={{flex:5}}>
           <FeiraHistoricoCard/>
+          < FeiraHistoricoCard/>
+          <FeiraHistoricoCard/>
         </View>
       </View>
     );
