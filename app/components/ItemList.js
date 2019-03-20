@@ -58,7 +58,7 @@ class ItemList extends Component {
                 numColumns={2}
                 keyExtractor={item => item.title}
                 renderItem={({item}) =>
-                    <ItemCard data={item} onPress = {(item) => this.props.add_to_cart(item)}/>}
+                    <ItemCard data={item}/>}
             />
         );
         

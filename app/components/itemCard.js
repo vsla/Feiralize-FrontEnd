@@ -19,13 +19,24 @@ class ItemCard extends Component {
         };
     }
     buttonPressed = () =>{
-        this.props.onPress(this.props.data)
-        this.setState({
-            pressed: true,
-            buttonStyle: {backgroundColor:'#0d7401'},
-            IconName: 'checkmark',
-            corStyle: 'green',
-        })
+        console.log(this.props)
+        if (this.state.pressed){
+            this.props.remove_from_cart(this.props.data)
+            this.setState({
+                pressed: false,
+                buttonStyle: {backgroundColor:'white'},
+                IconName: 'add',
+                corStyle: 'orange',
+            })
+        }else{
+            this.props.add_to_cart(this.props.data)
+            this.setState({
+                pressed: true,
+                buttonStyle: {backgroundColor:'#0d7401'},
+                IconName: 'checkmark',
+                corStyle: 'green',
+            })
+        }
     }
     
      render(){
@@ -33,7 +44,6 @@ class ItemCard extends Component {
             <View style={style.containerStyle}>
                 <TouchableOpacity 
                     onPress={() => this.buttonPressed()}
-                    disabled={this.state.pressed}
                     style={{flex:1}}
                 >
                     <View style={this.state.buttonStyle}>
