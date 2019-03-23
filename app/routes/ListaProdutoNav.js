@@ -4,7 +4,43 @@ import ItemList from "../components/ItemList";
 import data from "../assets/data/products.json";
 
 const ListaProdutoTabNav = createMaterialTopTabNavigator(
-    get_categories(data, ItemList),
+    {
+        dairy:{
+            screen: ItemList,
+            navigationOptions: {
+                tabBarLabel: 'dairy',
+            }
+        },
+        fruit: {
+            screen: ItemList,
+            navigationOptions: {
+                tabBarLabel: 'fruit',
+            }
+        },
+        vegetable: {
+            screen: ItemList,
+            navigationOptions: {
+                tabBarLabel: 'vegetable',
+            }
+        },
+        bakery: {
+            screen: ItemList,
+            navigationOptions: {
+                tabBarLabel: 'bakery',
+            }
+        },
+        vegan: {
+            screen: ItemList,
+            navigationOptions: {
+                tabBarLabel: 'vegan',
+            }
+        }, meat: {
+            screen: ItemList,
+            navigationOptions: {
+                tabBarLabel: 'meat',
+            }
+        },
+    },
     {
         lazy: true,
         tabBarOptions: {
@@ -23,7 +59,7 @@ const ListaProdutoTabNav = createMaterialTopTabNavigator(
 );
 
 export default ListaProdutoTabNav;
-
+/*
 function get_categories(item, itemList) {
     var categories = [... new Set(item.map((item) => item.type))];
     var route = {};
@@ -37,3 +73,4 @@ function get_categories(item, itemList) {
     }
     return route;
 }
+*/

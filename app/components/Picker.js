@@ -1,26 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Picker, Button, Modal, TouchableHighlight } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       pickerSelection: 'Default value!',
-      items: [
-        {
-          label: 'Red',
-          value: 'red',
-        },
-        {
-          label: 'Orange',
-          value: 'orange',
-        },
-        {
-          label: 'Blue',
-          value: 'blue',
-        },
-      ],
+      items: this.props.data,
       favColor: null
     }
   }
@@ -33,7 +20,6 @@ export default class App extends React.Component {
                 value={item.value}
                 key={item.key || item.label}
                 color= '#8b8b8b'
-                
             />
         );
     });
@@ -41,16 +27,15 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Picker
-          style={styles.botao}
-          selectedValue={ this.state.pickerSelection }
-          onValueChange={(itemValue, itemIndex) => this.setState({ pickerSelection: itemValue})}
-          itemTextStyle={{ fontSize: 100, color: '#8b8b8b' }}
-          >
-          {this.renderPickerItems()}
-        </Picker>
-      </View>
+        <RNPickerSelect
+          items={this.state.items}
+          onValueChange={value => {
+            this.setState({
+              pickerSelection: value,
+            });
+          }}
+        />
+     
     );
   }
 }
@@ -65,8 +50,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   botao: {
-    //backgroundColor: 'blue', 
+    flex:1,
     height: 30,
-    width: '100%',
+    backgroundColor: "#bebebe"
   }
 });

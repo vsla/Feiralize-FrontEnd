@@ -2,47 +2,51 @@ import React, { Component } from 'react';
 import { ScrollView, Text, View, FlatList, ActivityIndicator, Alert } from 'react-native';
 import axios from 'axios';
 import ItemCard from './ItemCard';
-import data from '../assets/data/products.json'
 import { connect } from 'react-redux'
 import CartScreen from '../pages/Carrinho'
 import * as actions from "../redux/actions/action";
 class ItemList extends Component {
     constructor(props) {
         super(props);
-        console.log("item", this.props.navigation.state)
         this.state = {
             isLoading: true,
-            fullData: data,
+            fullData: [],
             routeName: this.props.navigation.state.routeName,
-            data: null
+            data: []
         }
     }
-    /*
+    
     componentWillMount = () => {
-        axios.get('http://rallycoding.herokuapp.com/api/music_albums')
-            .then(response => 
+        axios.get('https://feiralize-api.herokuapp.com/products')
+            .then(response =>{
+                const data = []
+                const originalArray = response.data
+                for (var index in originalArray) {
+                    if (originalArray[index].type == this.state.routeName) {
+                        data.push(originalArray[index])
+                    }
+                }
                 this.setState({ 
-                    fullData: data,
+                    fullData: response.data,
+                    data: data,
                     isLoading: false
                 })
-            );
-    }
-    */
-   componentWillMount() {
-       //Verifica qual produto é de cada tela
-        const data = []
-        const originalArray = this.state.fullData
-        for (var index in originalArray) {
-            if (originalArray[index].type == this.state.routeName) {
-                data.push(originalArray[index])
             }
-        }
-        // Coloca no estado
-        this.setState({
-            data: data,
-            isLoading: false
-        })
+            )
+            .catch(error => {console.log(error)})
+        //Verifica qual produto é de cada tela
+        
    }
+   /*
+   componentDidMount() {
+       
+       // Coloca no estado
+       this.setState({
+           data: data,
+           isLoading: false
+       })
+   }*/
+    
     render() {
         if (this.state.isLoading){
             return(
@@ -50,7 +54,8 @@ class ItemList extends Component {
                     <ActivityIndicator color='black'/>
                 </View>
             )
-        }
+        }else{
+            console.log(this.state)
         return (
             <FlatList
                 data={this.state.data}
@@ -61,7 +66,7 @@ class ItemList extends Component {
                     <ItemCard data={item}/>}
             />
         );
-        
+        }
     }
 }
 

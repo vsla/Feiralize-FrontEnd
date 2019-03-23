@@ -10,9 +10,39 @@ class CartCard extends Component{
         return(
             <View style={{marginVertical:10}}>
                 <View style={style.contentContainer}>
-                    <Picker/>
+                    <View style={style.pickerQuantidade}>
+                        < Picker data = {[{
+                                    label: '8 kg',
+                                    value: '8',
+                                },
+                                {
+                                    label: '8 kg',
+                                    value: '8',
+                                },
+                                {
+                                    label: '8 kg',
+                                    value: '8',
+                                },
+                            ]}
+                        />
+                    </View>
                     <Text style={style.text}>{this.props.item.title}</Text>
-                    < Picker/>
+                    <View style={style.pickerMarca}>
+                        < Picker data = {[{
+                                    label: 'Red',
+                                    value: 'red',
+                                },
+                                {
+                                    label: 'Orange',
+                                    value: 'orange',
+                                },
+                                {
+                                    label: 'Blue',
+                                    value: 'blue',
+                                },
+                            ]}
+                        />
+                    </View>
                     <TouchableOpacity // Carrinho de remover
                         onPress={()=>{this.props.remove_from_cart(this.props.item)}} 
                         style={{justifyContent:'center', marginHorizontal:10}}
@@ -41,6 +71,12 @@ const style = StyleSheet.create({
     text: {
         marginHorizontal:10,
         fontSize:13,
-        paddingHorizontal:10
+        flex:2
     },
+    pickerQuantidade:{
+        flex:1.5
+    },
+    pickerMarca:{
+        flex:2
+    }
 })
