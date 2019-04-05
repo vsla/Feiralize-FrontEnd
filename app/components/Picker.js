@@ -1,8 +1,13 @@
 import React from 'react';
 import { StyleSheet, Text, View, Picker, Button, Modal, TouchableHighlight } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-
+import ReuseIcon from './ReuseIcon'
 export default class App extends React.Component {
+
+	/**
+	 * Picker Component usado desse link
+	 * -- > https: //github.com/lawnstarter/react-native-picker-select
+	 */
   constructor(props) {
     super(props);
     this.state = {
@@ -28,12 +33,42 @@ export default class App extends React.Component {
   render() {
     return (
         <RNPickerSelect
-          items={this.state.items}
-          onValueChange={value => {
-            this.setState({
-              pickerSelection: value,
-            });
-          }}
+            placeholder = {{
+                    label: '1kg',
+                    value: null,
+                }}
+            useNativeAndroidPickerStyle={false}
+            items={this.state.items}
+            onValueChange={value => {
+              this.setState({
+                pickerSelection: value,
+              });
+            }}
+            style={{
+                placeholder:{
+					color:'red',
+				},
+				// style do container, background
+				inputAndroidContainer:{
+					backgroundColor:"#d6d6d6",
+					borderRadius:60,
+					color:'red'
+				},
+				inputAndroid:{
+					marginLeft:10,
+				},
+				iconContainer: {
+					top: 10,
+					right: 12,
+				},
+			}}
+			Icon={() => {
+				return <ReuseIcon
+					color={"red"}
+					name={"trash"}
+					size={10}
+				/>
+			}}
         />
      
     );

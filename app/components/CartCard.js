@@ -8,7 +8,8 @@ import * as actions from '../redux/actions/action'
 class CartCard extends Component{
     render(){
         return(
-            <View style={{marginVertical:10}}>
+            <View style={{marginVertical:1}}>
+            
                 <View style={style.contentContainer}>
                     <View style={style.pickerQuantidade}>
                         < Picker data = {[{
@@ -54,7 +55,9 @@ class CartCard extends Component{
                         />
                     </TouchableOpacity>
                 </View>
+
                 <View style = {{flex:1, borderBottomWidth: 1,borderBottomColor: 'black', marginHorizontal:10}}/>
+
             </View>
         )
     }
@@ -70,7 +73,7 @@ const style = StyleSheet.create({
     },
     text: {
         marginHorizontal:10,
-        fontSize:13,
+        fontSize:15,
         flex:2
     },
     pickerQuantidade:{
