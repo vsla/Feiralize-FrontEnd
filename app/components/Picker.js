@@ -3,7 +3,6 @@ import { StyleSheet, Text, View, Picker, Button, Modal, TouchableHighlight } fro
 import RNPickerSelect from 'react-native-picker-select';
 import ReuseIcon from './ReuseIcon'
 export default class App extends React.Component {
-
 	/**
 	 * Picker Component usado desse link
 	 * -- > https: //github.com/lawnstarter/react-native-picker-select
@@ -11,7 +10,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pickerSelection: 'Default value!',
+      pickerSelection: '',
       items: this.props.data,
       favColor: null
     }
@@ -24,7 +23,7 @@ export default class App extends React.Component {
                 label={item.label}
                 value={item.value}
                 key={item.key || item.label}
-                color= '#8b8b8b'
+                color= '#8d8d8d'
             />
         );
     });
@@ -33,60 +32,33 @@ export default class App extends React.Component {
   render() {
     return (
         <RNPickerSelect
-            placeholder = {{
-                    label: '1kg',
-                    value: null,
-                }}
+            placeholder = {{}}
             useNativeAndroidPickerStyle={false}
             items={this.state.items}
             onValueChange={value => {
               this.setState({
                 pickerSelection: value,
               });
+			}}
+            style = {{
+				//Controla o conteúdo do picker, as opções
+				inputAndroid: {
+					flex:1,
+					fontSize: 13,
+					paddingLeft:0,
+            		paddingRight: 2,
+            		color: '#555555',
+					marginLeft: 10,
+            	},
+            	// style do container, background
+            	inputAndroidContainer: {
+            		backgroundColor: "#f5f5f5",
+					borderRadius: 15,
+				},
             }}
-            style={{
-                placeholder:{
-					color:'red',
-				},
-				// style do container, background
-				inputAndroidContainer:{
-					backgroundColor:"#d6d6d6",
-					borderRadius:60,
-					color:'red'
-				},
-				inputAndroid:{
-					marginLeft:10,
-				},
-				iconContainer: {
-					top: 10,
-					right: 12,
-				},
-			}}
-			Icon={() => {
-				return <ReuseIcon
-					color={"red"}
-					name={"trash"}
-					size={10}
-				/>
-			}}
         />
      
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#d3d3d3", 
-    borderRadius: 5.3,
-    height: 40,
-    width: 110,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  botao: {
-    flex:1,
-    height: 30,
-    backgroundColor: "#bebebe"
-  }
-});

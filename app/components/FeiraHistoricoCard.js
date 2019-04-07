@@ -29,10 +29,6 @@ export default class FeiraHistoricoCard extends Component {
          if (this.state.selected == true){
             return(
                 <View style={{marginBottom:15}}>
-                    <View style={{ marginHorizontal:'20%', marginVertical:15}}>
-                        <ProgressBar progress={this.state.progress}/>
-                        <View style={{backgroundColor:'white', height:12, width:12,borderRadius:100, position:'absolute', top:'33%', left:'48%'}}/>
-                    </View>
                     <TouchableOpacity
                         style={style.verFeiraButton}
                         onPress={() => {this.setState({progress:this.state.progress + 0.25})}}
@@ -43,7 +39,7 @@ export default class FeiraHistoricoCard extends Component {
             )
         }else{
             // Se não for selecionado, não aparece o botão
-            return(<View/>)
+            return <View/>
         }
     }
     
@@ -140,5 +136,13 @@ const style = StyleSheet.create({
     buttonText: {
         fontSize: 18,
         color: 'white'
-      }
+      },
+      verFeiraButton: {
+              backgroundColor: 'gray',
+              justifyContent: 'center',
+              padding: 10,
+              marginHorizontal: '10%',
+              alignItems: 'center',
+              borderRadius: 20
+    }
 })
