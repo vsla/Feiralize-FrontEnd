@@ -14,26 +14,28 @@ const BottomNavigator = createBottomTabNavigator(
      * Renderiza a tabNavigator que fica na parte de baixo.
     **/
     {
+        /*
         Inicio: {
             screen: Inicio,
             navigationOptions: () => ({
                 title: "Início",
                 tabBarIcon: () => {
                     return (
-                        <ReuseIcon name={'home'} size={29} color={'grey'} />
+                        <ReuseIcon name={'home'} size={25} color={'gray'} />
                     )
                 }     
             }),    
         },
+        */
         ShoppingRoute: {
             screen: ShoppingRoute,
             navigationOptions:() => ({
                 title:"Shopping",
                 tabBarIcon: () => {
                     return (
-                        <ReuseIcon name={'cart'} size={29} color={'grey'} />
+                        <ReuseIcon name={'cart'} size={25} color={'gray'} />
                     )
-                }     
+                }
             }),           
         },
         Historico: {
@@ -42,7 +44,7 @@ const BottomNavigator = createBottomTabNavigator(
                 title: "Histórico",
                 tabBarIcon: () => {
                     return (
-                            <ReuseIcon name={'timer'} size={29} color={'grey'} />
+                            <ReuseIcon name={'timer'} size={25} color={'gray'} />
                     )
                 }  
             }),    
@@ -53,7 +55,7 @@ const BottomNavigator = createBottomTabNavigator(
                 title: "Perfil",
                 tabBarIcon: () => {
                     return (
-                        <ReuseIcon name={'person'} size={29} color={'grey'} />
+                        <ReuseIcon name={'person'} size={25} color={'gray'} />
                     )
                 }     
             }),    
@@ -61,15 +63,17 @@ const BottomNavigator = createBottomTabNavigator(
     },
     {
         
-        activeTintColor:'darkorange',
+        
         tabBarOptions:{
             labelStyle:{
                 fontSize:13,
                 paddingTop:15
             },
             tabStyle:{
-                paddingTop:20
-            }
+                paddingTop:25
+            },
+            activeTintColor: 'darkorange',
+            inactiveTintColor:'gray'
         }
          
     }

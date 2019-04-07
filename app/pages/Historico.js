@@ -21,10 +21,11 @@ export default class App extends React.Component {
 
 const style= StyleSheet.create({
   header: {
-    flex: 1.5,
+    flex: 0.8,
     justifyContent: 'flex-end',
     alignItems: 'flex-start',
     backgroundColor:'darkorange',
+    elevation:10
     
 
   },

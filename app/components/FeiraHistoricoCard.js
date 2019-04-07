@@ -52,7 +52,7 @@ export default class FeiraHistoricoCard extends Component {
             <View >
                 <TouchableOpacity 
                     style={{flexDirection:'row', alignItems:'center'}}
-                    //onPress={() => {this.setState({selected:true})}}
+                    onPress={() => {this.pressed()}}
                 >
                     <View style={style.finishedContainerIcon}>
                         <ReuseIcon
@@ -62,7 +62,7 @@ export default class FeiraHistoricoCard extends Component {
                         />
                     </View>
                     <View style={style.textContainer}>
-                        <Text style={{fontSize:16}}>82 Produtos</Text>
+                        <Text style={{fontSize:16}}>81 Produtos</Text>
                         <Text style={{fontSize:14}}>24/01/2018</Text>
                     </View>
                     <View style={style.arrowContainer}>
@@ -73,88 +73,8 @@ export default class FeiraHistoricoCard extends Component {
                         />
                     </View>
                 </TouchableOpacity>
+                {this.showInfo()}
                 <View style = {{flex:1, borderBottomWidth: 1,borderBottomColor: 'gray', marginHorizontal:10}}/>
-
-                <TouchableOpacity 
-                    style={{flexDirection:'row', alignItems:'center'}}
-                    //onPress={() => {this.setState({selected:true})}}
-                >
-                    <View style={style.finishedContainerIcon}>
-                        <ReuseIcon
-                            name={'checkmark'}
-                            color={'white'}
-                            size={25}
-                        />
-                    </View>
-                    <View style={style.textContainer}>
-                        <Text>115 Produtos</Text>
-                        <Text>20/02/2018</Text>
-                    </View>
-                    <View style={style.arrowContainer}>
-                        <ReuseIcon
-                            name={this.state.selected ? 'arrow-up' : 'arrow-down' }
-                            color={'black'}
-                            size={25}
-                        />
-                    </View>
-                </TouchableOpacity>
-                <View style = {{flex:1, borderBottomWidth: 1,borderBottomColor: 'gray', marginHorizontal:10}}/>
-
-                <TouchableOpacity 
-                    style={{flexDirection:'row', alignItems:'center'}}
-                    //onPress={() => {this.setState({selected:true})}}
-                >
-                    <View style={style.finishedContainerIcon}>
-                        <ReuseIcon
-                            name={'checkmark'}
-                            color={'white'}
-                            size={25}
-                        />
-                    </View>
-                    <View style={style.textContainer}>
-                        <Text>150 Produtos</Text>
-                        <Text>10/05/2018</Text>
-                    </View>
-                    <View style={style.arrowContainer}>
-                        <ReuseIcon
-                            name={this.state.selected ? 'arrow-up' : 'arrow-down' }
-                            color={'black'}
-                            size={25}
-                        />
-                    </View>
-                </TouchableOpacity>
-                <View style = {{flex:1, borderBottomWidth: 1,borderBottomColor: 'gray', marginHorizontal:10}}/>
-
-                <TouchableOpacity 
-                    style={{flexDirection:'row', alignItems:'center'}}
-                    //onPress={() => {this.setState({selected:true})}}
-                >
-                    <View style={style.notFinishedContainerIcon}>
-                        <ReuseIcon
-                            name={'close-circle-outline'}
-                            size={25}
-                            color={'white'}
-                        />
-                    </View>
-                    <View style={style.textContainer}>
-                        <Text>25 Produtos</Text>
-                        <Text>15/06/2018</Text>
-                    </View>
-                    <View style={style.arrowContainer}>
-                        <ReuseIcon
-                            //name={this.state.selected ? 'arrow-up' : 'arrow-down' }
-                            name={'arrow-up'}
-                            color={'black'}
-                            size={25}
-                        />
-                    </View>
-                </TouchableOpacity>
-                <View style = {{flex:1, borderBottomWidth: 1,borderBottomColor: 'gray', marginHorizontal:10}}/>
-                <TouchableOpacity onPress={this._onPressButton}>
-                    <View style={style.button}>
-                        <Text style={style.buttonText}>VER FEIRA</Text>
-                    </View>
-                </TouchableOpacity>
             </View>
         )
         

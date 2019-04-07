@@ -8,13 +8,14 @@ import CartScreen from './Carrinho'
 import BuyNavigator from "../routes/BuyNavigator";
 
 class Compra extends Component {
+    //Tela que junta o component de adicionar produto e o navegador de carrinho
+    //Tem o botão de adicionar produto
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={style.produtosContainer}>
                     <View style={{
-                        justifyContent: "center",
-                        alignItems: "stretch"}}>
+                        justifyContent: "center",}}>
                         <TouchableOpacity
                             style={style.ProdutosButton}
                             onPress={() => this.props.navigation.navigate('ListaProduto')}>
@@ -23,7 +24,7 @@ class Compra extends Component {
                                     color: 'white',
                                     fontSize: 20,
                                 }}>
-                                    + Adicionar produtos
+                                   Adicionar produtos
                             </Text>
                         </TouchableOpacity>
                     </View>
@@ -38,13 +39,12 @@ const style = {
 
     produtosContainer: {
         justifyContent: 'center',
-        flex: 0.18,
-        alignItems: 'stretch',
+        alignItems:'center',
+        flex: 0.1,
         backgroundColor: 'darkorange',
     },
     ProdutosButton: {
-        borderLeftWidth: 20,
-        borderLeftColor: 'darkorange',
-        backgroundColor: 'darkorange'
+
+        backgroundColor: 'transparent'
     },
  }
