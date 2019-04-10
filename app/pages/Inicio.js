@@ -12,7 +12,7 @@ export default class Inicio extends Component {
                 </View>
                 <View style={{ flex: 3, justifyContent: "space-between", alignItems: "stretch", marginHorizontal:"5%", marginBottom:15,backgroundColor: 'white'}}>
                     <FeiraButton text="Tire uma foto da lista com a câmera" linkTo='' />
-                    <FeiraButton text="Escaneie o QR code de nota fiscal" linkTo='' />
+                    <FeiraButton text="Bipar no estabelecimento" linkTo='' />
                     <FeiraButton text="Fazer feira" linkTo="ShoppingRoute" navigate={this.props.navigation.navigate} />
                 </View>
             </View>

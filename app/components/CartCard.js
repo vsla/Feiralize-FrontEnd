@@ -8,7 +8,8 @@ import * as actions from '../redux/actions/action'
 class CartCard extends Component{
     render(){
         return(
-            <View style={{marginVertical:10}}>
+            <View style={{marginTop:3}}>
+            
                 <View style={style.contentContainer}>
                     <View style={style.pickerQuantidade}>
                         < Picker data = {[{
@@ -29,16 +30,16 @@ class CartCard extends Component{
                     <Text style={style.text}>{this.props.item.title}</Text>
                     <View style={style.pickerMarca}>
                         < Picker data = {[{
-                                    label: 'Red',
-                                    value: 'red',
+                                    label: 'Marca indefinida',
+                                    value: 'Marca indefinida',
                                 },
                                 {
-                                    label: 'Orange',
-                                    value: 'orange',
+                                    label: 'São josé',
+                                    value: 'São josé',
                                 },
                                 {
-                                    label: 'Blue',
-                                    value: 'blue',
+                                    label: 'Santa clara',
+                                    value: 'Santa clara',
                                 },
                             ]}
                         />
@@ -50,11 +51,13 @@ class CartCard extends Component{
                         <ReuseIcon
                         name='trash'
                         color="darkorange"
-                        size={25}
+                        size={22}
                         />
                     </TouchableOpacity>
                 </View>
-                <View style = {{flex:1, borderBottomWidth: 1,borderBottomColor: 'black', marginHorizontal:10}}/>
+
+                <View style = {{flex:1, borderBottomWidth: 1,borderBottomColor: '#e9e9e9', marginHorizontal:10}}/>
+
             </View>
         )
     }
@@ -70,13 +73,14 @@ const style = StyleSheet.create({
     },
     text: {
         marginHorizontal:10,
-        fontSize:13,
-        flex:2
+        fontSize:15,
+        flex:2,
+        color:'black'
     },
     pickerQuantidade:{
-        flex:1.5
+        flex:1.2,
     },
     pickerMarca:{
-        flex:2
+        flex:2.5
     }
 })

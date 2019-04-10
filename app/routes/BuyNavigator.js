@@ -28,15 +28,13 @@ const BuyNavigator = createMaterialTopTabNavigator(
             backgroundColor: 'darkorange'
         },
         indicatorStyle: {
-            height: 3,
+            height: 5,
             color: 'white',
             backgroundColor: "white",
-            paddingTop:5
         },
         labelStyle:{
             fontSize:15
         }
     }
-}
-);
+});
 export default BuyNavigator;

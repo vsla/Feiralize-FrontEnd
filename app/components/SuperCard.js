@@ -35,7 +35,7 @@ class Login extends Component {
                             marginBottom: 13.6,
                             marginLeft: '48%'
                         }}>
-                            R$ 68,00
+                            R$ {this.props.totalValue + 5.1}
                         </Text>
                     </View>
                 </View>
@@ -51,7 +51,7 @@ class Login extends Component {
                             <Text style={{
                             color: 'slategray',
                             fontSize: 12,
-                            }}>Feira R$62,90</Text>
+                            }}>Valor da feira: {this.props.totalValue}</Text>
                             <Text style={{
                                 color: 'orange',
                                 fontSize: 13.3,
@@ -116,7 +116,7 @@ const style = {
         marginBottom: 6.6
     },
     Mercado: {
-        flex: 1,
+        flex: 0.8,
         alignSelf: 'center',
         backgroundColor: 'white',
         width: '93.8%',

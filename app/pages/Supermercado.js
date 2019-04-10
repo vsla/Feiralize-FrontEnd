@@ -9,7 +9,6 @@ class Supermercado extends Component {
         this.state = {
             Supermercados:[1,2,3]
         };
-        console.log(this.props.screenProps)
     }
     render() {
         return (

@@ -33,7 +33,7 @@ class ItemList extends Component {
                 })
             }
             )
-            .catch(error => {console.log(error)})
+            .catch(error => {})
         //Verifica qual produto é de cada tela
         
    }
