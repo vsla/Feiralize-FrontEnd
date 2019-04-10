@@ -25,7 +25,12 @@ const cartItems = (state = initialState, action) => {
             return{
                 cart: [...state.cart],
                 cartValue: state.cartValue,
-                payment_method: action.payload
+                payment_method: action.payload,
+            }
+            break;
+        case "RESET_CART":
+            return{
+                initialState
             }
         default:
             return state

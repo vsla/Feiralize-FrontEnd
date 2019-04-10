@@ -18,3 +18,10 @@ export function remove_from_cart(item) {
         payload: item
     }
 }
+
+export function reset_cart(item) {
+    return {
+        type: 'RESET_CART',
+        payload: item
+    }
+}

@@ -11,6 +11,7 @@ class Pagamento extends Component {
             selected: null
         }
     }
+    
     confirmarCompra = () =>{
         if (this.state.selected){
             Alert.alert(
@@ -28,6 +29,7 @@ class Pagamento extends Component {
                     },
                 ],
             );
+            //this.props.reset_cart
         }
     }
     render() {
@@ -62,9 +64,11 @@ class Pagamento extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        cartValue: state.cartValue
+        cartValue: state.cartValue,
+        cartItems: state.cart
     }
 }
+
 export default connect(mapStateToProps, actions)(Pagamento);
 class MetodoPagamento extends Component{
     showIcon = (id) => {
