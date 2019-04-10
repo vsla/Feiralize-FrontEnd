@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StatusBar } from 'react-native';
-import InitialRoute from './app/routes/InitialRoute';
+import InitialRoute from './app/Cliente/routes/InitialRoute';
 import firebase from 'firebase';
 import { Provider } from "react-redux";
-import store  from "./app/redux/index";
+import store  from "./app/Cliente/redux/index";
 class App extends React.Component {
   componentWillMount() {
     firebase.initializeApp({
