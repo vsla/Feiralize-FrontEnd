@@ -8,7 +8,7 @@ import * as actions from '../redux/actions/action'
 class CartCard extends Component{
     render(){
         return(
-            <View style={{marginVertical:0}}>
+            <View style={{marginTop:3}}>
             
                 <View style={style.contentContainer}>
                     <View style={style.pickerQuantidade}>
