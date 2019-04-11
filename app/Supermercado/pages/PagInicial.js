@@ -8,16 +8,16 @@ class PagInicial extends Component {
         return (
             <View style={style.viewStyle}>
                 < View style = {style.headerStyle} >
-                    <TouchableOpacity
-                        onPress={() => this.props.navigation.openDrawer()}
-                    >
+                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                         <ReuseIcon
                             name={'menu'}
-                            color={'black'}
+                            color={'gray'}
                             size={25}
-                        />
+                        />    
                     </TouchableOpacity>
-                    <Text style={style.textStyle}>Pedidos</Text>
+                    <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
+                        <Text style={style.textStyle}>Pedidos</Text>    
+                    </TouchableOpacity>
                 </View>
                 <StatusFeiraTabNav/>
             </View>
