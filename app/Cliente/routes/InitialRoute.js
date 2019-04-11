@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { createSwitchNavigator } from 'react-navigation';
 import BottomNavigator from './BottomNavigator';
 import LoginRoute from './LoginRoute';
-import PaginaInicial from '../../Supermercado/pages/PagInicial';
+import DrawerNav from '../../Supermercado/routes/DrawerNavigator';
+
 
 const InitialRoute = createSwitchNavigator(
     /** 
@@ -24,7 +25,7 @@ const InitialRoute = createSwitchNavigator(
             })
     },
     supermarket:{
-        screen: PaginaInicial,
+        screen: DrawerNav,
             navigationOptions: () => ({
                 header: null,
             })

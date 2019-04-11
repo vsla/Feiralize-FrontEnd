@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
-import StatusFeiraTabNav from './StatusFeiraTabNav'
+import StatusFeiraTabNav from '../routes/StatusFeiraTabNav'
+import ReuseIcon from '../components/ReuseIcon';
 
 class PagInicial extends Component {
     render() {
         return (
             <View style={style.viewStyle}>
                 < View style = {style.headerStyle} >
-                    < TouchableOpacity style={{marginLeft: 20, flexDirection: 'row'}}>
-                        <Text style={style.textStyle}>Pedidos</Text>
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.openDrawer()}
+                    >
+                        <ReuseIcon
+                            name={'menu'}
+                            color={'black'}
+                            size={25}
+                        />
                     </TouchableOpacity>
+                    <Text style={style.textStyle}>Pedidos</Text>
                 </View>
                 <StatusFeiraTabNav/>
             </View>
@@ -26,12 +34,14 @@ const style = {
         flex: 0.10, 
         flexDirection: "row", 
         backgroundColor: 'white', 
-        justifyContent: "space-between", 
+        justifyContent: "flex-start", 
         alignItems: 'center',
+        marginLeft: 10
     },
     textStyle: {
         fontSize: 20,
-        color: 'grey',
+        color: 'gray',
         marginRight: 10,
+        marginLeft:10
     }
 }

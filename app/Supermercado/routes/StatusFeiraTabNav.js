@@ -8,7 +8,7 @@ const StatusFeiraTabNav = createMaterialTopTabNavigator(
         dairy:{
             screen: testes,
             navigationOptions: {
-                tabBarLabel: 'TODOS',
+                tabBarLabel: 'todos',
             }
         },
         fruit: {
@@ -39,9 +39,9 @@ const StatusFeiraTabNav = createMaterialTopTabNavigator(
                 backgroundColor: 'white'
             },
             indicatorStyle: {
-                height: 3,
-                backgroundColor: 'green'
-            }
+                height: 4,
+                backgroundColor: 'green',
+            },
         }
     }
 );
