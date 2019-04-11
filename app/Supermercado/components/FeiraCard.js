@@ -12,7 +12,7 @@ export default class FeiraCard extends Component {
           <View style={{flex:1, flexDirection:'row', justifyContent:'space-between'}}>
             <Text>JULIANA MACHADO</Text>
             <Text>#CODIGO08</Text>
-            <Viewx>
+            <View>
                 <Text>Pendente</Text>
             </View>
           </View>
