@@ -8,6 +8,7 @@ export function add_to_cart(item) {
 export function add_payment_method(item) {
     return {
         type: 'ADD_PAYMENT_METHOD',
+        type: 'RESET_CART',
         payload: item
     }
 }
@@ -25,3 +26,4 @@ export function reset_cart(item) {
         payload: item
     }
 }
+//this.props.reset_cart

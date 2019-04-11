@@ -29,7 +29,6 @@ class Pagamento extends Component {
                     },
                 ],
             );
-            //this.props.reset_cart
         }
     }
     render() {
