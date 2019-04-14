@@ -5,7 +5,10 @@ import HeaderLogin from '../components/HeaderLogin';
 import firebase from 'firebase';
 
 class LoginEmail extends Component {
+    
     state = {email: '', password : '', error: ''}
+
+
     loginMethod(){
     const { email, password} = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)

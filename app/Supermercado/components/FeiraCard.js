@@ -2,28 +2,35 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 
 export default class FeiraCard extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      status:'em preparo',
+      colorStatus: ''
+    }
+  }
   render() {
     return (
       <TouchableOpacity
         style={{backgroundColor:'white', marginTop:2, paddingVertical:4}}
         onPress={() => {}}
       >
-        <View style={{marginLeft:5}}>
-          <View style={{flex:1, flexDirection:'row', justifyContent:'space-between'}}>
-            <Text>JULIANA MACHADO</Text>
+        <View style={{marginHorizontal:10}}>
+          <View style={{flex:1, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+            <Text style={{ color:'black', fontWeight:'bold'}}>JULIANA MACHADO</Text>
             <Text>#CODIGO08</Text>
-            <View>
-                <Text>Pendente</Text>
-            </View>
+            <Text style={{
+              backgroundColor:'red', 
+              color:'white',
+              paddingVertical:3,
+              borderRadius:20,
+              paddingHorizontal:5,
+              fontSize:15
+            }}>{this.state.status}</Text>
           </View>
-          <View style={{flex:1}}>
-            <Text>Entrega em domicilio</Text>
-          </View>
-          <View style={{flex:1}}>
-            <Text>Amanhã</Text>
-          </View>
+          <Text style={{flex:1, color:'black'}}>Entrega em domicilio</Text>
+          <Text style={{flex:1, color:'black',}}>Amanhã, 18h30</Text>
         </View>
-        
       </TouchableOpacity>
     )
   }
