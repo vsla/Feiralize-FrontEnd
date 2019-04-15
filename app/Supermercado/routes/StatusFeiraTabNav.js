@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import testes from '../pages/testes'
+import Pedidos from '../pages/Pedidos'
 
 
 const StatusFeiraTabNav = createMaterialTopTabNavigator(
     {
         dairy:{
-            screen: testes,
+            screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'todos',
+                tabBarLabel: 'TODOS',
             }
         },
         fruit: {
-            screen: testes,
+            screen: Pedidos,
             navigationOptions: {
                 tabBarLabel: 'PENDENTES',
             }
         },
         vegetable: {
-            screen: testes,
+            screen: Pedidos,
             navigationOptions: {
                 tabBarLabel: 'EM PREPARO',
             }
         },
         bakery: {
-            screen: testes,
+            screen: Pedidos,
             navigationOptions: {
                 tabBarLabel: 'ENTREGA',
             }
@@ -34,7 +34,7 @@ const StatusFeiraTabNav = createMaterialTopTabNavigator(
         tabBarOptions: {
             activeTintColor: 'green',
             inactiveTintColor: 'grey',
-            scrollEnabled: true,
+            scrollEnabled: false,
             style: {
                 backgroundColor: 'white'
             },
