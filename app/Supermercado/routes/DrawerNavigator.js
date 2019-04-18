@@ -1,26 +1,21 @@
 import React, { Component } from "react";
+import { StatusBar } from 'react-native';
 import {  View,  Text,  StyleSheet,  Image} from "react-native"; 
 import { Container, Content, Header, Body } from 'native-base'
-import { DrawerNavigator, DrawerItems } from 'react-navigation'
+import { createDrawerNavigator, DrawerItems } from 'react-navigation'
 import themeStyle from '../styles/theme.style';
-import PagInicial from '../pages/PagInicial';
 import Pedidos from '../pages/Pedidos';
 import testes1 from '../pages/testes1';
 import testes2 from '../pages/testes2';
 import testes3 from '../pages/testes3';
+import PedidoRoute from "./PedidoRoute";
 
-export default class App extends Component {
 
-  render() {
-    return (
-      <MyApp />
-    )
-  }
-}
 
 const CustomDrawerContentComponent = (props) => (
 
   <Container>
+    <StatusBar backgroundColor="darkorange"  />
     <Header style={styles.drawerHeader}>
       <Body flexDirection='row'>
         <Image
@@ -31,8 +26,8 @@ const CustomDrawerContentComponent = (props) => (
             <Text style= {styles.name2Style}>Rafael Oliveira</Text>
         </View>
       </Body>
-
     </Header>
+    
     <Content>
       <DrawerItems {...props} />
     </Content>
@@ -41,10 +36,10 @@ const CustomDrawerContentComponent = (props) => (
 
 );
 
-const MyApp = DrawerNavigator({
+const MyApp = createDrawerNavigator({
 
   'Pedidos em andamento': {
-    screen: PagInicial,
+    screen: PedidoRoute,
   },
   'Registro de pedidos': {
     screen: testes1
@@ -66,7 +61,7 @@ const MyApp = DrawerNavigator({
     drawerCloseRoute: 'DrawerClose',
     drawerToggleRoute: 'DrawerToggle'
   });
-
+export default MyApp;
 
 const styles = StyleSheet.create({
 

@@ -13,7 +13,7 @@ export default class FeiraCard extends Component {
     return (
       <TouchableOpacity
         style={{backgroundColor:'white', marginTop:2, paddingVertical:4}}
-        onPress={() => {}}
+        onPress={() => {this.props.screenProps.navigate("DetalhesPedido")}}
       >
         <View style={{marginHorizontal:10}}>
           <View style={{flex:1, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>

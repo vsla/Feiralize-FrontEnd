@@ -10,7 +10,7 @@ export default class Pedidos extends Component {
       <View style={{flex:0.01,padding:1}}/>
       <FlatList
         data={[{key: 'a'}, {key: 'b'},{key: 'c'},{key: 'd'},{key: 'e'},]}
-        renderItem={({item}) => <FeiraCard/>}
+        renderItem={({item}) => <FeiraCard screenProps={this.props.screenProps}/>}
         style={{flex:1}}
       />
       </View>

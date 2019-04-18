@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput,Image, TouchableOpacity, StatusBar } from 'react-native';
+import { View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
 import StatusFeiraTabNav from '../routes/StatusFeiraTabNav'
 import ReuseIcon from '../components/ReuseIcon';
 
@@ -7,20 +7,19 @@ class PagInicial extends Component {
     render() {
         return (
             <View style={style.viewStyle}>
-            <StatusBar backgroundColor="darkorange"/>
                 < View style = {style.headerStyle} >
                     <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                         <ReuseIcon
                             name={'menu'}
                             color={'gray'}
                             size={25}
-                        />    
+                        />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => this.props.navigation.openDrawer()}>
                         <Text style={style.textStyle}>Pedidos</Text>    
                     </TouchableOpacity>
                 </View>
-                <StatusFeiraTabNav/>
+                <StatusFeiraTabNav screenProps={this.props.navigation}/>
             </View>
         );
     }
