@@ -5,28 +5,28 @@ import Pedidos from '../pages/Pedidos'
 
 const StatusFeiraTabNav = createMaterialTopTabNavigator(
     {
-        dairy:{
+        Pedidos:{
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'TODOS',
+                tabBarLabel: 'Todos',
             }
         },
-        fruit: {
+        Pendentes: {
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'PENDENTES',
+                tabBarLabel: 'Pendentes',
             }
         },
-        vegetable: {
+        'Em Preparo': {
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'EM PREPARO',
+                tabBarLabel: 'Em Preparo',
             }
         },
-        bakery: {
+        Entrega: {
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'ENTREGA',
+                tabBarLabel: 'Entrega',
             }
         },
     },

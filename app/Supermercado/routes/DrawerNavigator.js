@@ -4,7 +4,7 @@ import { Container, Content, Header, Body } from 'native-base'
 import { DrawerNavigator, DrawerItems } from 'react-navigation'
 import themeStyle from '../styles/theme.style';
 import PagInicial from '../pages/PagInicial';
-import testes from '../pages/testes';
+import Pedidos from '../pages/Pedidos';
 import testes1 from '../pages/testes1';
 import testes2 from '../pages/testes2';
 import testes3 from '../pages/testes3';
@@ -56,11 +56,10 @@ const MyApp = DrawerNavigator({
       screen: testes3
   },
   Contato: {
-      screen: testes
+      screen: Pedidos
   }
   },
   {
-    initialRouteName: 'Pedidos em andamento',
     drawerPosition: 'left',
     contentComponent: CustomDrawerContentComponent,
     drawerOpenRoute: 'DrawerOpen',

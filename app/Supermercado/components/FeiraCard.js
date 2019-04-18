@@ -5,7 +5,7 @@ export default class FeiraCard extends Component {
   constructor(props){
     super(props)
     this.state={
-      status:'em preparo',
+      status:'Pendente',
       colorStatus: ''
     }
   }
