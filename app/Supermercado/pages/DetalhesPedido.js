@@ -28,7 +28,7 @@ export default class DetalhesPedido extends Component {
         )
     }
   }
-  renderStatus = () => {
+  renderStatusColor = () => {
     if(this.state.accepted === false & this.state.ready === false){
       return(
         <View style={{ flexDirection: 'row', height: 6 }}>
@@ -54,8 +54,51 @@ export default class DetalhesPedido extends Component {
         </View>
       )
     }
-    
   }
+    renderSelectionItem = () => {
+      if (this.state.accepted === true && this.state.ready === true){
+        <View>
+          <Text>oi</Text>
+        </View>
+      }else{
+        return(
+          <View style={{flex:1}}>
+            <View style={{flexDirection:'row', alignItems:'center'}}>
+              {this.renderLista()}
+              <View style={{flex:1,flexDirection:'row', justifyContent:'space-between', marginLeft:5}}>
+                <Text style={style.sectionHeader} >Qnt</Text>
+                <Text style={style.sectionHeader} >Produto</Text>
+                <Text style={style.sectionHeader} >Valor</Text>              
+              </View>
+            </View>
+          <FlatList
+              data={[
+                { key: 'a', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
+                { key: 'b', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
+                { key: 'c', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
+                { key: 'd', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
+                { key: 'e', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
+                { key: 'f', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
+                { key: 'g', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
+                { key: 'h', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
+                { key: 'i', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
+                { key: 'j', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
+                { key: 'k', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' },
+                
+              ]}
+              renderItem={({ item }) => <ProdutoComponent data={item} parentState={this.state}/>}
+            />
+          
+            <View>
+              <Text style={style.sectionHeader} >Observações</Text>
+                <Text style={style.sectionContent} >Favor separar os gelados dos de temperatura ambiente</Text>
+                <View style={{ height: 2, backgroundColor: '#ebebeb', marginBottom:2}} />        
+              </View>
+          </View>
+        )
+      }
+    }
+  
   render() {
     //https://www.npmjs.com/package/react-native-table-component
     return (
@@ -63,49 +106,25 @@ export default class DetalhesPedido extends Component {
         <View style={{ flex: 0.2}}>
         </View>
         <View style={style.container}>
-          {this.renderStatus()}
+          {this.renderStatusColor()}
           <View style={style.containerInfo}>
             <View>
-              <Text style={{color:'black', fontSize:16, marginTop:0}}>Juliana Machado</Text>
+              <Text style={{color:'black', fontSize:16}}>Juliana Machado</Text>
               <Text style={style.sectionHeader} >#Código</Text>
-              <View style={{ height: 3, backgroundColor: '#ebebeb', marginTop:5 }} />
+              <View style={{ height: 3, backgroundColor: '#ebebeb', }} />
             </View>
 
-            <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-              {this.renderLista()}
-              <Text style={style.sectionHeader} >QTD</Text>
-              <Text style={style.sectionHeader} >Produto</Text>
-              <Text style={style.sectionHeader} >Valor</Text>              
-            </View>
-            <FlatList
-                data={[
-                  { key: 'a', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
-                  { key: 'b', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
-                  { key: 'c', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                  { key: 'd', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                  { key: 'e', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                  { key: 'f', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                  { key: 'g', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
-                  { key: 'h', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
-                  { key: 'i', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
-                  { key: 'j', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
-                  { key: 'k', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
-                ]}
-                renderItem={({ item }) => <PedidoComponent data={item} parentState={this.state}/>}
-              />
-            
+            {this.renderSelectionItem()}
             <View style={{marginBottom:5}}>
-             <Text style={style.sectionHeader} >Observações</Text>
-              <Text style={style.sectionContent} >Favor separar os gelados dos de temperatura ambiente</Text>
-              <View style={{ height: 2, backgroundColor: '#ebebeb'}} />        
               <Text style={style.sectionHeader} >Forma de pagamento</Text>
               <Text style={style.sectionContent} >Pagamento em dinheiro, troco para R$ 100,00</Text>
-              <View style={{ height: 2, backgroundColor: '#ebebeb'}} />
+              <View style={{ height: 2, backgroundColor: '#ebebeb', marginBottom:2}} />
               <Text style={style.sectionHeader} >Dados de entrega</Text>
               <Text style={style.sectionContent}>Entrega em domicílio</Text>
               <Text style={style.sectionContent}>Avenida Domingos Ferreira, 1034, apt 701</Text>
               <Text style={style.sectionContent}>Amanhã, 18h00</Text>
             </View>
+
             <View style={{flexDirection:'row-reverse', alignItems:'center', marginBottom:10, }}>
               <TouchableOpacity
                 style={{ backgroundColor: 'darkorange', marginHorizontal:5, borderRadius:30}}
@@ -127,7 +146,7 @@ export default class DetalhesPedido extends Component {
   }
 }
 
-class PedidoComponent extends Component{
+class ProdutoComponent extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -148,7 +167,6 @@ class PedidoComponent extends Component{
             }else{
               this.setState({checked:false})
             }
-            
           }}
           size={20}
           containerStyle={{margin:0, padding:0,borderWidth:0, alignSelf:'flex-start'}}
@@ -158,7 +176,15 @@ class PedidoComponent extends Component{
   }
   render(){
     return(
-      <View style={{flexDirection: 'row', marginVertical:2 }}>
+      <TouchableOpacity 
+        onPress={() => {
+          if(this.state.checked == false){
+              this.setState({checked:true})
+            }else{
+              this.setState({checked:false})
+            }}}
+        style={{flexDirection: 'row', marginVertical:2 }}
+      >
         {this.renderCheckBox()}
         <View style={{flex:1,flexDirection: 'row', justifyContent: 'space-between', }}>
           <Text>
@@ -171,7 +197,7 @@ class PedidoComponent extends Component{
           R$ {this.props.data.valor}
           </Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 }
@@ -193,7 +219,7 @@ const style = StyleSheet.create({
   },
   sectionHeader:{
     color: '#7a7a7a',
-    marginTop:5,
+    marginTop:2,
     marginBottom:0,
     fontSize: 13
   },
