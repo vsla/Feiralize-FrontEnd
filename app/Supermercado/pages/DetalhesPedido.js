@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, FlatList } from 'react-native'
 import { CheckBox } from 'react-native-elements';
+import LocationMap from '../components/LocationMap';
 
 export default class DetalhesPedido extends Component {
   constructor(props) {
@@ -57,9 +58,12 @@ export default class DetalhesPedido extends Component {
   }
     renderSelectionItem = () => {
       if (this.state.accepted === true && this.state.ready === true){
-        <View>
-          <Text>oi</Text>
-        </View>
+        return(
+          <View style={{flex:1}}>
+            <Text>oi</Text>
+            < LocationMap/>
+          </View>
+        )
       }else{
         return(
           <View style={{flex:1}}>
