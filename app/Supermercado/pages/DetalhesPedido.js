@@ -60,7 +60,6 @@ export default class DetalhesPedido extends Component {
       if (this.state.accepted === true && this.state.ready === true){
         return(
           <View style={{flex:1}}>
-            <Text>oi</Text>
             < LocationMap/>
           </View>
         )

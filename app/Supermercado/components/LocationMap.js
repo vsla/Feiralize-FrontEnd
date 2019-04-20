@@ -11,10 +11,15 @@ export default class LocationMap extends Component {
           initialRegion={{
             latitude: -27.2106710,
             longitude:-49.63622700,
-            latitudeDelta:0.0042,
-            longitudeDelta:0.0031
+            latitudeDelta: 0.0322,
+            longitudeDelta: 0.0321,
           }}
         style={style.MapView}
+        rotateEnabled={false}
+        scrollEnabled={false}
+        zoomEnabled={false}
+        showsPointsOfInterest={false}
+        showsBuildings={false}
         />
       </View>
     )
