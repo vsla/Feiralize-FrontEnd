@@ -35,6 +35,11 @@ const StatusFeiraTabNav = createMaterialTopTabNavigator(
             activeTintColor: 'green',
             inactiveTintColor: 'grey',
             scrollEnabled: false,
+            labelStyle: {
+                fontSize: 12,
+                fontWeight: 'bold',
+                margin: 0
+              },
             style: {
                 backgroundColor: 'white'
             },
