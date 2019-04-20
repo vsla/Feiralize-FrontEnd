@@ -12,6 +12,16 @@ const PedidoRoute = createStackNavigator(
     },
     DetalhesPedido:{
       screen: DetalhesPedido,
+      navigationOptions: () => ({
+        headerTitle:'Detalhes do pedido',
+        headerStyle:{
+          height:45
+        },
+        headerTitleStyle:{
+          color:'black',
+          fontWeight:'normal'
+        }
+      })
     }
   },
   {

@@ -22,6 +22,21 @@ export default class DetalhesPedido extends Component {
       })
     }
   }
+  renderButtonText = () => {
+    if (this.state.accepted === false & this.state.ready === false) {
+      return(
+        <Text style={{ color: 'white', fontSize:16, padding:5}}>Aceitar Pedido</Text>
+      )
+    } else if (this.state.accepted === true & this.state.ready === false) {
+      return(
+        <Text style={{ color: 'white', fontSize:16, padding:5}}>Pronto para entrega</Text>
+      )
+    }else{
+      return(
+        <Text style={{ color: 'white', fontSize:16, padding:5}}>Finalizar Pedido</Text>
+      )
+    }
+  }
   renderLista = () => {
     if (this.state.accepted === true){
       return ( 
@@ -118,7 +133,7 @@ export default class DetalhesPedido extends Component {
             </View>
 
             {this.renderSelectionItem()}
-            <View style={{marginBottom:5}}>
+            <View style={{marginBottom:5,}}>
               <Text style={style.sectionHeader} >Forma de pagamento</Text>
               <Text style={style.sectionContent} >Pagamento em dinheiro, troco para R$ 100,00</Text>
               <View style={{ height: 2, backgroundColor: '#ebebeb', marginBottom:2}} />
@@ -133,7 +148,7 @@ export default class DetalhesPedido extends Component {
                 style={{ backgroundColor: 'darkorange', marginHorizontal:5, borderRadius:30}}
                 onPress={() => {this.changeStatus()}}
               >
-                <Text style={{ color: 'white', fontSize:16, padding:5}}>Aceitar Pedido</Text>
+                {this.renderButtonText()}
               </TouchableOpacity>
               <TouchableOpacity
                 style={{ backgroundColor: 'white', fontSize: 15, marginHorizontal:15}}
@@ -158,7 +173,7 @@ class ProdutoComponent extends Component{
       checked:false
     }
   }
-  renderCheckBox = () => {
+  renderCheckBoxOrMap = () => {
     if (this.props.parentState.accepted === true & this.props.parentState.ready === false) {
       return(
         <CheckBox
@@ -188,8 +203,8 @@ class ProdutoComponent extends Component{
             }}}
         style={{flexDirection: 'row', marginVertical:2 }}
       >
-        {this.renderCheckBox()}
-        <View style={{flex:1,flexDirection: 'row', justifyContent: 'space-between', }}>
+        {this.renderCheckBoxOrMap()}
+        <View style={{flex:1,flexDirection: 'row', justifyContent: 'space-between',}}>
           <Text>
             {this.props.data.quantidade}
           </Text>
@@ -224,10 +239,11 @@ const style = StyleSheet.create({
     color: '#7a7a7a',
     marginTop:2,
     marginBottom:0,
-    fontSize: 13
+    fontSize: 14
   },
   sectionContent:{
     color: '#252525',
-    fontSize: 12
+    fontSize: 13,
+    
   }
 })
