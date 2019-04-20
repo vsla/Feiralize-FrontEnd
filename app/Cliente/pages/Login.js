@@ -37,9 +37,9 @@ class Login extends Component {
 
                     </View>
                     <View style={{
-                        flex: 1, justifyContent: "center",
+                        flex: 1, justifyContent: 'space-around',
                         flexDirection:'row',
-                        alignItems: "stretch"}}>
+                        alignItems: "center"}}>
                         <TouchableHighlight
                             style={style.loginButton}
                             onPress={() => this.props.navigation.navigate('bottomNavigator')}>
@@ -98,9 +98,6 @@ const style = {
     loginButton: {
         alignItems: 'center',
         justifyContent:'center',
-        margin: 40,
-        marginTop: 15,
-        marginBottom: 20,
         backgroundColor: '#6db969ff',
         padding: 10,
     },

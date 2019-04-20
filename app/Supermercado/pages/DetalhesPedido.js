@@ -202,6 +202,7 @@ class ProdutoComponent extends Component{
               this.setState({checked:false})
             }}}
         style={{flexDirection: 'row', marginVertical:2 }}
+        disabled={(this.props.parentState.accepted === true & this.props.parentState.ready === false)? false : true}
       >
         {this.renderCheckBoxOrMap()}
         <View style={{flex:1,flexDirection: 'row', justifyContent: 'space-between',}}>
