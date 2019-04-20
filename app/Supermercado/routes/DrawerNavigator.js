@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StatusBar } from 'react-native';
-import {  View,  Text,  StyleSheet,  Image} from "react-native"; 
+import {  View,  Text,  StyleSheet,  Image, ToolbarAndroid } from "react-native"; 
 import { Container, Content, Header, Body } from 'native-base'
 import { createDrawerNavigator, DrawerItems } from 'react-navigation'
 import themeStyle from '../styles/theme.style';
@@ -9,6 +9,7 @@ import testes1 from '../pages/testes1';
 import testes2 from '../pages/testes2';
 import testes3 from '../pages/testes3';
 import PedidoRoute from "./PedidoRoute";
+import ThePicker from '../components/ThePicker'
 
 
 
@@ -27,11 +28,13 @@ const CustomDrawerContentComponent = (props) => (
         </View>
       </Body>
     </Header>
+    <View style= {styles.pickerStyle}>
+      <ThePicker/>
+    </View>
     
     <Content>
       <DrawerItems {...props} />
     </Content>
-
   </Container>
 
 );
@@ -59,7 +62,7 @@ const MyApp = createDrawerNavigator({
     contentComponent: CustomDrawerContentComponent,
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
-    drawerToggleRoute: 'DrawerToggle'
+    drawerToggleRoute: 'DrawerToggle',
   });
 export default MyApp;
 
@@ -73,7 +76,8 @@ const styles = StyleSheet.create({
   drawerHeader: {
     backgroundColor: themeStyle.BG_color, 
     justifyContent: 'space-around',
-    height: 170,
+    height: 130,
+    paddingTop: 20
   },
   drawerImage: {
     height:75,
@@ -95,5 +99,8 @@ name2Style:{
     marginLeft: 11,
     marginTop: 3
 },
-
+pickerStyle:{
+  backgroundColor: themeStyle.BG_color,
+  paddingBottom: 5
+},
 })
