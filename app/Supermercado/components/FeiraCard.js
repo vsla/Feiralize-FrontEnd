@@ -5,8 +5,45 @@ export default class FeiraCard extends Component {
   constructor(props){
     super(props)
     this.state={
-      status:'Pendente',
+      status: this.props.fullData.status,
       colorStatus: ''
+    }
+  }
+  renderStatusType = () => {
+    if(this.state.status === 'PENDENTE'){
+      return(
+        <Text style={{
+          backgroundColor: 'red',
+          color: 'white',
+          paddingVertical: 3,
+          borderRadius: 20,
+          paddingHorizontal: 5,
+          fontSize: 13
+        }}>{this.state.status}</Text>
+      )
+    }else if (this.state.status === 'EM PREPARO') {
+      return(
+        <Text style={{
+          backgroundColor: 'yellow',
+          color: 'white',
+          paddingVertical: 3,
+          borderRadius: 20,
+          paddingHorizontal: 5,
+          fontSize: 13
+        }}>{this.state.status}</Text>
+      )
+    }else{
+      return(
+        <Text style={{
+          backgroundColor: 'green',
+          color: 'white',
+          paddingVertical: 3,
+          borderRadius: 20,
+          paddingHorizontal: 5,
+          fontSize: 13
+        }}>{this.state.status}</Text>
+      )
+      
     }
   }
   render() {
@@ -19,14 +56,7 @@ export default class FeiraCard extends Component {
           <View style={{flex:1, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{ color:'black', fontWeight:'bold'}}>JULIANA MACHADO</Text>
             <Text>#CODIGO08</Text>
-            <Text style={{
-              backgroundColor:'red', 
-              color:'white',
-              paddingVertical:3,
-              borderRadius:20,
-              paddingHorizontal:5,
-              fontSize:15
-            }}>{this.state.status}</Text>
+            {this.renderStatusType()}
           </View>
           <Text style={{flex:1, color:'black'}}>Entrega em domicilio</Text>
           <Text style={{flex:1, color:'black',}}>Amanhã, 18h30</Text>

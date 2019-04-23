@@ -9,8 +9,8 @@ export default class Pedidos extends Component {
       <View style={{flex:1,backgroundColor:'#d4d4d4'}}>
       <View style={{flex:0.01,padding:1}}/>
       <FlatList
-        data={[{key: 'a'}, {key: 'b'},{key: 'c'},{key: 'd'},{key: 'e'},{key: 'f'},{key: 'g'},{key: 'h'},{key: 'i'},]}
-        renderItem={({item}) => <FeiraCard screenProps={this.props.screenProps}/>}
+          data={[{ key: 'a', status: 'PENDENTE' }, { key: 'b', status: 'EM PREPARO' }, { key: 'c', status: 'EM ENTREGA' }, { key: 'd', status: 'PENDENTE' }, { key: 'e', status: 'PENDENTE' }, { key: 'f', status: 'PENDENTE'},{key: 'g', status: 'PENDENTE'},{key: 'h', status: 'PENDENTE'},{key: 'i', status: 'PENDENTE'},]}
+        renderItem={({item}) => <FeiraCard screenProps={this.props.screenProps} fullData={item}/>}
         style={{flex:1}}
       />
       </View>

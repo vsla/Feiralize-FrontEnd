@@ -8,21 +8,53 @@ export default class DetalhesPedido extends Component {
     super(props)
     this.state = {
       accepted: false,
-      ready: false
+      ready: false,
     }
   }
-  changeStatus = () => {
+  changeStatus = (id) => {
     if(this.state.accepted === false & this.state.ready === false){
-     this.setState({
-       accepted:true
-     })
+      if (id === 1) {
+        this.setState({
+          accepted: true
+        })
+       }
+     
     } else if (this.state.accepted === true & this.state.ready === false){
-      this.setState({
-        ready: true
-      })
+      if (id === 1) {
+          this.setState({
+            ready: true
+          })
+      }else if ( id === 2 ){
+        this.setState({
+          accepted: false
+        })
+      }
+   }else{
+      if (id === 1) {
+
+      } else if (id === 2) {
+        this.setState({
+          ready: false
+        })
+      }
+   }
+  }
+  cancelOrBack = () => {
+    if (this.state.accepted === false & this.state.ready === false) {
+      return (
+        <Text style={{ color: 'darkorange', }}>Cancelar Pedido</Text>
+      )
+    } else if (this.state.accepted === true & this.state.ready === false) {
+      return(
+        <Text style={{ color: 'darkorange', }}>Cancelar Pedido</Text>
+      )
+    }else{
+      return(
+        <Text style={{ color: 'darkorange', }}>Voltar para seleção</Text>
+      )
     }
   }
-  renderButtonText = () => {
+  renderNextButtonText = () => {
     if (this.state.accepted === false & this.state.ready === false) {
       return(
         <Text style={{ color: 'white', fontSize:16, padding:5}}>Aceitar Pedido</Text>
@@ -91,20 +123,19 @@ export default class DetalhesPedido extends Component {
             </View>
           <FlatList
               data={[
-                { key: 'a', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
-                { key: 'b', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
-                { key: 'c', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                { key: 'd', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                { key: 'e', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                { key: 'f', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5' },
-                { key: 'g', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
-                { key: 'h', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
-                { key: 'i', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' }, 
-                { key: 'j', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5'  },
-                { key: 'k', quantidade:1, produto: 'Arroz cristal tipo 1 1kg', valor:'4,5' },
-                
+                { key: 'a', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'b', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'c', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'd', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'e', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'f', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'g', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'h', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'i', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'j', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'k', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false, }
               ]}
-              renderItem={({ item }) => <ProdutoComponent data={item} parentState={this.state}/>}
+              renderItem={({item} ) => <ProdutoComponent info={item} parentState={this.state}/>}
             />
           
             <View>
@@ -146,15 +177,15 @@ export default class DetalhesPedido extends Component {
             <View style={{flexDirection:'row-reverse', alignItems:'center', marginBottom:10, }}>
               <TouchableOpacity
                 style={{ backgroundColor: 'darkorange', marginHorizontal:5, borderRadius:30}}
-                onPress={() => {this.changeStatus()}}
+                onPress={() => {this.changeStatus(1)}}
               >
-                {this.renderButtonText()}
+                {this.renderNextButtonText()}
               </TouchableOpacity>
               <TouchableOpacity
                 style={{ backgroundColor: 'white', fontSize: 15, marginHorizontal:15}}
-                onPress={() => {}}
+                onPress={() => { this.changeStatus(2) }}
               >
-                <Text style={{color:'darkorange',}}>Cancelar Pedido</Text>
+                {this.cancelOrBack()}
               </TouchableOpacity>
             </View>
           </View>
@@ -167,6 +198,7 @@ export default class DetalhesPedido extends Component {
 class ProdutoComponent extends Component{
   constructor(props){
     super(props)
+    console.log(this.props)
     this.state = {
       accepted: false,
       ready: false,
@@ -207,13 +239,13 @@ class ProdutoComponent extends Component{
         {this.renderCheckBoxOrMap()}
         <View style={{flex:1,flexDirection: 'row', justifyContent: 'space-between',}}>
           <Text>
-            {this.props.data.quantidade}
+            {this.props.info.quantidade}
           </Text>
           <Text>
-          {this.props.data.produto}
+          {this.props.info.produto}
           </Text>
           <Text>
-          R$ {this.props.data.valor}
+          R$ {this.props.info.valor}
           </Text>
         </View>
       </TouchableOpacity>
