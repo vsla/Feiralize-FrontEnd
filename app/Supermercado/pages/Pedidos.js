@@ -1,9 +1,27 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, FlatList} from 'react-native';
 import FeiraCard from '../components/FeiraCard';
+import firebase from 'firebase';
 
 
 export default class Pedidos extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      orders:null
+    }
+  }
+  componentWillMount() {
+    firebase.database().ref('/').once('value', function (snapshot) {
+      console.log(snapshot.val())
+    });
+    
+    firebase.database().ref('users/' + 'testeId').set({
+      username: 'teste',
+      email: 'teste@123',
+    });
+  
+  }
   render() {
     return (
       <View style={{flex:1,backgroundColor:'#d4d4d4'}}>

@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { View, Image, TextInput, TouchableHighlight, Text, Alert } from 'react-native';
+import { View, Image, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
 import theme from '../styles/theme.style';
 import HeaderLogin from '../components/HeaderLogin';
 import firebase from 'firebase';
 
 class LoginEmail extends Component {
-    
     state = {email: '', password : '', error: ''}
 
 
@@ -24,7 +23,7 @@ class LoginEmail extends Component {
     }
     render() {
         return (
-            <View style={{ flex: 2, }}>
+            <View style={{ flex: 2, backgroundColor:'white'}}>
                 <HeaderLogin/>
                 <View style={style.inputContainer}>
                     <TextInput style={style.inputStyle}
@@ -42,7 +41,7 @@ class LoginEmail extends Component {
                         value={this.state.password}
                         onChangeText={password => this.setState({ password: password })} />
 
-                    <TouchableHighlight
+                    <TouchableOpacity
                         style={style.loginButton}
                         onPress={() => this.loginMethod()}>
                         <Text
@@ -51,17 +50,28 @@ class LoginEmail extends Component {
                                 fontSize: 18,
                             }}>
                                 Entrar </Text>
-                    </TouchableHighlight>
-
-                    <TouchableHighlight
-                        style={style.forgotPassButton}
-                        onPress={() => this.onPress}  >
-                        <Text
-                            style={{
-                                color: "orange",
-                            }}>
-                            Esqueceu a senha! </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
+                    <View style={{flex:1, flexDirection:'row', alignItems:'center', justifyContent:'space-around', margin:10 }}>
+                        <TouchableOpacity
+                            style={style.forgotPassButton}
+                            onPress={() => {}}  >
+                            <Text
+                                style={{
+                                    color: "orange",
+                                }}>
+                                Esqueceu a senha! </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={style.forgotPassButton}
+                            onPress={() => {}} >
+                            <Text
+                                style={{
+                                    color: "orange",
+                                }}>
+                                Cadastre-se </Text>
+                        </TouchableOpacity>
+                    </View>
+                    
                 </View>
             </View>
         );
@@ -81,9 +91,9 @@ const style = {
         justifyContent: 'space-around',
         alignItems: 'stretch',
         backgroundColor: 'white',
+        marginHorizontal:40
     },
     inputStyle: {
-        margin: 40,
         marginTop:15,
         marginBottom: 10,
         backgroundColor: '#eeeeee',
@@ -91,7 +101,6 @@ const style = {
 
     loginButton: {
         alignItems: 'center',
-        margin: 40,
         marginTop: 15,
         marginBottom: 20,
         backgroundColor: '#4fbc66',
@@ -99,10 +108,8 @@ const style = {
     },
 
     forgotPassButton: {
-        alignItems: 'flex-start',
-        margin: 10,
-        marginTop: 0,
-        marginBottom: 15,
-        padding: 10
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
     }
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TextInput,Image, TouchableOpacity } from 'react-native';
 import StatusFeiraTabNav from '../routes/StatusFeiraTabNav'
 import ReuseIcon from '../components/ReuseIcon';
+import firebase from 'firebase';
 
 class PagInicial extends Component {
     render() {

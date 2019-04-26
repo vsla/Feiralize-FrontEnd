@@ -13,7 +13,7 @@ export default class FeiraCard extends Component {
     if(this.state.status === 'PENDENTE'){
       return(
         <Text style={{
-          backgroundColor: 'red',
+          backgroundColor: '#dc5a5a',
           color: 'white',
           paddingVertical: 3,
           borderRadius: 20,
@@ -24,7 +24,7 @@ export default class FeiraCard extends Component {
     }else if (this.state.status === 'EM PREPARO') {
       return(
         <Text style={{
-          backgroundColor: 'yellow',
+          backgroundColor: '#eba04b',
           color: 'white',
           paddingVertical: 3,
           borderRadius: 20,
@@ -35,7 +35,7 @@ export default class FeiraCard extends Component {
     }else{
       return(
         <Text style={{
-          backgroundColor: 'green',
+          backgroundColor: '#5aaa5a',
           color: 'white',
           paddingVertical: 3,
           borderRadius: 20,
@@ -55,7 +55,7 @@ export default class FeiraCard extends Component {
         <View style={{marginHorizontal:10}}>
           <View style={{flex:1, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
             <Text style={{ color:'black', fontWeight:'bold'}}>JULIANA MACHADO</Text>
-            <Text>#CODIGO08</Text>
+            
             {this.renderStatusType()}
           </View>
           <Text style={{flex:1, color:'black'}}>Entrega em domicilio</Text>

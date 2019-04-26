@@ -4,6 +4,8 @@ import InitialRoute from './app/Cliente/routes/InitialRoute';
 import firebase from 'firebase';
 import { Provider } from "react-redux";
 import store  from "./app/Cliente/redux/index";
+
+
 class App extends React.Component {
   componentWillMount() {
     firebase.initializeApp({
@@ -14,7 +16,11 @@ class App extends React.Component {
       storageBucket: "feiralizeapp-a4123.appspot.com",
       messagingSenderId: "314943024760"
     })
+
+    
+    
     }
+
   render() {
     return (
       // The app start calling InitialRoute in routes

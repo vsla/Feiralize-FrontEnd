@@ -26,7 +26,7 @@ const StatusFeiraTabNav = createMaterialTopTabNavigator(
         Entrega: {
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'Entrega',
+                tabBarLabel: 'Em Entrega',
             }
         },
     },
