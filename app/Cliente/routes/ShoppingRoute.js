@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import ListaProduto from '../pages/ListaProduto';
-import Compra from '../pages/Compra';
+
 import Supermercado from '../pages/Supermercado';
 import Pagamento from '../pages/Pagamento';
 import BuyNavigator from './BuyNavigator';
@@ -27,7 +27,7 @@ const ShoppingRoute = createStackNavigator(
                 })
         },
         Compra:{
-            screen: Compra,
+            screen: BuyNavigator,
             navigationOptions: () => ({
                 header: null,
             })

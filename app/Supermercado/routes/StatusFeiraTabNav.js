@@ -5,28 +5,28 @@ import Pedidos from '../pages/Pedidos'
 
 const StatusFeiraTabNav = createMaterialTopTabNavigator(
     {
-        Pedidos:{
+        'TODOS':{
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'Todos',
+                tabBarLabel: 'TODOS',
             }
         },
-        Pendentes: {
+        'PENDENTE': {
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'Pendentes',
+                tabBarLabel: 'PENDENTES',
             }
         },
-        'Em Preparo': {
+        'EM PREPARO': {
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'Em Preparo',
+                tabBarLabel: 'EM PREPARO',
             }
         },
-        Entrega: {
+        'EM ENTREGA': {
             screen: Pedidos,
             navigationOptions: {
-                tabBarLabel: 'Em Entrega',
+                tabBarLabel: 'EM ENTREGA',
             }
         },
     },

@@ -23,7 +23,7 @@ const BuyNavigator = createMaterialTopTabNavigator(
 {
     tabBarOptions: {
         activeTintColor: 'white',
-        inactiveTintColor: '#e1e1e1',
+        inactiveTintColor: '#5d5d5d',
         style: {
             backgroundColor: 'darkorange'
         },

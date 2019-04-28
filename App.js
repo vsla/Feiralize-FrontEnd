@@ -7,6 +7,7 @@ import store  from "./app/Cliente/redux/index";
 
 
 class App extends React.Component {
+  // 
   componentWillMount() {
     firebase.initializeApp({
       apiKey: "AIzaSyCaWQJ4RcLMEmCvrQShlOIJ3t7dfiLmW3I",
@@ -16,16 +17,13 @@ class App extends React.Component {
       storageBucket: "feiralizeapp-a4123.appspot.com",
       messagingSenderId: "314943024760"
     })
-
-    
-    
     }
 
   render() {
     return (
       // The app start calling InitialRoute in routes
       <Provider store={store}>
-        <StatusBar backgroundColor="darkorange"  />
+        <StatusBar backgroundColor="darkorange" />
         <InitialRoute />
       </Provider>
     );

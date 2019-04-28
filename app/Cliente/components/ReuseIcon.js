@@ -8,6 +8,6 @@ export default ({ name, color, size}) => (
         color={color}
         size={size}
         type='ionicon'
-        
+        reverse={false}
     />
 );

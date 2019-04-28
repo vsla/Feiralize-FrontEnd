@@ -1,41 +1,78 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList} from 'react-native';
+import {Platform, StyleSheet, Text, View, FlatList, ActivityIndicator} from 'react-native';
 import FeiraCard from '../components/FeiraCard';
 import firebase from 'firebase';
-
 
 export default class Pedidos extends Component {
   constructor(props){
     super(props)
     this.state = {
-      orders:null
+      fullData:null,
+      orders: null,
+      routeName: this.props.navigation.state.routeName,
+      isLoading:true,
     }
   }
-  componentWillMount() {
-    firebase.database().ref('/').once('value', function (snapshot) {
-      console.log(snapshot.val())
-    });
-    
-    firebase.database().ref('users/' + 'testeId').set({
-      username: 'teste',
-      email: 'teste@123',
-    });
   
+  componentWillMount() {
+    /*
+    firebase.database().ref('teste/').set({
+      data:{
+        feirasProntas: 
+        [{ key: 'a', status: 'PENDENTE' },
+        { key: 'b', status: 'EM PREPARO' },
+        { key: 'c', status: 'EM ENTREGA' }]
+      }
+    })
+    */
+    firebase.database().ref('/teste/data/feirasProntas/').once('value', (snapshot) => {
+      const data = []
+      const originalArray = snapshot.val()
+      if(this.state.routeName ==='TODOS' ){
+        this.setState({
+          fullData: originalArray,
+          orders: originalArray,
+          isLoading: false
+        })
+      }else{
+        console.log(this.state)
+        for (var index in originalArray) {
+          if (originalArray[index].status === this.state.routeName) {
+            data.push(originalArray[index])
+          }
+        }
+        console.log(data)
+        this.setState({
+          fullData: originalArray,
+          orders: data,
+          isLoading: false
+        })
+      }
+    });
   }
+
   render() {
+    if (this.state.isLoading) {
+      return (
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <ActivityIndicator color='black' />
+        </View>
+      )
+    } else {
+      console.log(this.state, this.state.routeName)
     return (
       <View style={{flex:1,backgroundColor:'#d4d4d4'}}>
       <View style={{flex:0.01,padding:1}}/>
       <FlatList
-          data={[{ key: 'a', status: 'PENDENTE' }, { key: 'b', status: 'EM PREPARO' }, { key: 'c', status: 'EM ENTREGA' }, { key: 'd', status: 'PENDENTE' }, { key: 'e', status: 'PENDENTE' }, { key: 'f', status: 'PENDENTE'},{key: 'g', status: 'PENDENTE'},{key: 'h', status: 'PENDENTE'},{key: 'i', status: 'PENDENTE'},]}
+        data={this.state.orders}
         renderItem={({item}) => <FeiraCard screenProps={this.props.screenProps} fullData={item}/>}
         style={{flex:1}}
       />
       </View>
     );
+    }
   }
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
