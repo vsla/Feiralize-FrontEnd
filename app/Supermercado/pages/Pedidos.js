@@ -16,7 +16,7 @@ export default class Pedidos extends Component {
   
   componentWillMount() {
     /*
-    firebase.database().ref('teste/').set({
+    firebase.database().ref('/teste').set({
       data:{
         feirasProntas: 
         [{ key: 'a', status: 'PENDENTE' },
@@ -25,25 +25,36 @@ export default class Pedidos extends Component {
       }
     })
     */
+   
     firebase.database().ref('/teste/data/feirasProntas/').once('value', (snapshot) => {
       const data = []
-      const originalArray = snapshot.val()
+      const orders = snapshot.val()
+      
       if(this.state.routeName ==='TODOS' ){
         this.setState({
-          fullData: originalArray,
-          orders: originalArray,
+          fullData: orders,
+          orders: orders,
           isLoading: false
         })
       }else{
-        console.log(this.state)
-        for (var index in originalArray) {
-          if (originalArray[index].status === this.state.routeName) {
-            data.push(originalArray[index])
+        
+        for (var index in orders) {
+          if (orders[index].status === this.state.routeName) {
+            data.push(orders[index])
           }
         }
-        console.log(data)
+        /*
+        data = Object.keys(orders).map((key) => {
+          if(orders[key].status === this.state.routeName){
+            return orders[key]
+          }else{
+            return
+          }
+        })
+         */
+        
         this.setState({
-          fullData: originalArray,
+          fullData: orders,
           orders: data,
           isLoading: false
         })
@@ -59,7 +70,7 @@ export default class Pedidos extends Component {
         </View>
       )
     } else {
-      console.log(this.state, this.state.routeName)
+      
     return (
       <View style={{flex:1,backgroundColor:'#d4d4d4'}}>
       <View style={{flex:0.01,padding:1}}/>

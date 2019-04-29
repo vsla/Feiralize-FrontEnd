@@ -9,7 +9,23 @@ export default class DetalhesPedido extends Component {
     this.state = {
       accepted: false,
       ready: false,
+      amountChecked:1,
+      total:11
     }
+  }
+
+  // Functions that helps the logic 
+  addCheckedOnParentFromChild = (id) =>{
+    if(id === 1){
+      this.setState({
+        amountChecked: this.state.amountChecked + 1
+      })
+    }else{
+      this.setState({
+        amountChecked: this.state.amountChecked - 1
+      })
+    }
+    console.log(this.state)
   }
   changeStatus = (id) => {
     if(this.state.accepted === false & this.state.ready === false){
@@ -46,7 +62,7 @@ export default class DetalhesPedido extends Component {
       )
     } else if (this.state.accepted === true & this.state.ready === false) {
       return(
-        <Text style={{ color: 'darkorange', }}>Cancelar Pedido</Text>
+        <View/>
       )
     }else{
       return(
@@ -60,9 +76,16 @@ export default class DetalhesPedido extends Component {
         <Text style={{ color: 'white', fontSize:16, padding:5}}>Aceitar Pedido</Text>
       )
     } else if (this.state.accepted === true & this.state.ready === false) {
-      return(
-        <Text style={{ color: 'white', fontSize:16, padding:5}}>Pronto para entrega</Text>
-      )
+      if (this.state.amountChecked <= this.state.total){
+        return (
+          <Text style={{ color: '#aeaeae', fontSize: 16, padding: 5 }}>Selecionar Produtos</Text>
+        )
+      }else{
+        return (
+          <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Pronto para entrega</Text>
+        )
+      }
+      
     }else{
       return(
         <Text style={{ color: 'white', fontSize:16, padding:5}}>Finalizar Pedido</Text>
@@ -124,20 +147,29 @@ export default class DetalhesPedido extends Component {
           <FlatList
               data={[
                 { key: 'a', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'b', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'c', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'd', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'e', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'f', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'g', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'h', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'i', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'j', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-                { key: 'k', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false, }
+                { key: 'b', quantidade: 2, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'c', quantidade: 3, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'd', quantidade: 4, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'e', quantidade: 5, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'f', quantidade: 6, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'g', quantidade: 7, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'h', quantidade: 8, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'i', quantidade: 9, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'j', quantidade: 10, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+                { key: 'k', quantidade: 11, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false, }
               ]}
-              renderItem={({item} ) => <ProdutoComponent info={item} parentState={this.state}/>}
+              renderItem={({ item }) => <ProdutoComponent info={item} parentState={this.state} check={this.addCheckedOnParentFromChild}/>}
             />
-          
+          <View style={{flex:1}}>
+            <View style={{flexDirection:'row', flex:0.5, justifyContent:'flex-end', alignItems:'center'}}>
+                <Text style={{}} >Taxas: </Text>
+                <Text style={{}} >R$ 10,0</Text>
+            </View>
+              <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center' }}>
+                <Text style={{}} >Taxas: </Text>
+                <Text style={{}} >R$ 10,0</Text>
+              </View>
+          </View>
             <View>
               <Text style={style.sectionHeader} >Observações</Text>
                 <Text style={style.sectionContent} >Favor separar os gelados dos de temperatura ambiente</Text>
@@ -147,9 +179,9 @@ export default class DetalhesPedido extends Component {
         )
       }
     }
-  
+  // End of functions
+
   render() {
-    //https://www.npmjs.com/package/react-native-table-component
     return (
       <View style={{flex:1,backgroundColor:'#f1f1f1'}}>
         <View style={{ flex: 0.2}}>
@@ -176,8 +208,12 @@ export default class DetalhesPedido extends Component {
 
             <View style={{flexDirection:'row-reverse', alignItems:'center', marginBottom:10, }}>
               <TouchableOpacity
-                style={{ backgroundColor: 'darkorange', marginHorizontal:5, borderRadius:30}}
+                style={(this.state.accepted === true && this.state.ready === false && this.state.amountChecked <= this.state.total)
+                  ? { backgroundColor: '#d3d3d3', marginHorizontal:5, borderRadius:30}
+                  : { backgroundColor: 'darkorange', marginHorizontal: 5, borderRadius: 30 }
+                }
                 onPress={() => {this.changeStatus(1)}}
+                disabled={(this.state.accepted === true && this.state.ready === false && this.state.amountChecked <= this.state.total)?true : false}
               >
                 {this.renderNextButtonText()}
               </TouchableOpacity>
@@ -198,26 +234,31 @@ export default class DetalhesPedido extends Component {
 class ProdutoComponent extends Component{
   constructor(props){
     super(props)
-    console.log(this.props)
+    
     this.state = {
       accepted: false,
       ready: false,
       checked:false
     }
   }
-  renderCheckBoxOrMap = () => {
+  onPress = () => {
+    if (this.state.checked == false) {
+      this.setState({ checked: true })
+      this.props.check(1)
+      console.log(this.props.parentState)
+    } else {
+      this.setState({ checked: false })
+      this.props.check(2)
+      console.log(this.props.parentState)
+    }
+  }
+  renderCheckBox = () => {
     if (this.props.parentState.accepted === true & this.props.parentState.ready === false) {
       return(
         <CheckBox
           center
           checked={this.state.checked}
-          onIconPress={() => {
-            if(this.state.checked == false){
-              this.setState({checked:true})
-            }else{
-              this.setState({checked:false})
-            }
-          }}
+          onIconPress={() => this.onPress()}
           size={20}
           containerStyle={{margin:0, padding:0,borderWidth:0, alignSelf:'flex-start'}}
         />
@@ -227,16 +268,11 @@ class ProdutoComponent extends Component{
   render(){
     return(
       <TouchableOpacity 
-        onPress={() => {
-          if(this.state.checked == false){
-              this.setState({checked:true})
-            }else{
-              this.setState({checked:false})
-            }}}
+        onPress={() =>this.onPress()}
         style={{flexDirection: 'row', marginVertical:2 }}
         disabled={(this.props.parentState.accepted === true & this.props.parentState.ready === false)? false : true}
       >
-        {this.renderCheckBoxOrMap()}
+        {this.renderCheckBox()}
         <View style={{flex:1,flexDirection: 'row', justifyContent: 'space-between',}}>
           <Text>
             {this.props.info.quantidade}

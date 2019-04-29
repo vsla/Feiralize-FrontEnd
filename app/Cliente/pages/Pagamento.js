@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 import ReuseIcon from '../components/ReuseIcon';
 import { connect } from 'react-redux';
 import * as actions from "../redux/actions/action";
+import firebase from 'firebase';
 class Pagamento extends Component {
     constructor(props) {
         super(props);
@@ -25,10 +26,22 @@ class Pagamento extends Component {
                     },
                     {
                         text: 'OK',
-                        onPress: () => this.props.add_payment_method(this.state.selected)
+                        onPress: () => {
+                            /*
+                            var newPostKey = 0
+                            firebase.database().ref('/teste/data/lastCartId').once('value', (snapshot) => {
+                                newPostKey = snapshot.val() + 1
+                            })
+                            
+                            firebase.database().ref('/teste/data/feirasProntas').push({ key: newPostKey,status:'PENDENTE'});
+                            firebase.database().ref('/teste/data/lastCartId').push({ key: newPostKey, status: 'PENDENTE' });
+                            */
+                            this.props.add_payment_method(this.state.selected);
+                        }
                     },
                 ],
             );
+
         }
     }
     render() {
