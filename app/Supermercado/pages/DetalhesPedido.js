@@ -245,11 +245,9 @@ class ProdutoComponent extends Component{
     if (this.state.checked == false) {
       this.setState({ checked: true })
       this.props.check(1)
-      console.log(this.props.parentState)
     } else {
       this.setState({ checked: false })
       this.props.check(2)
-      console.log(this.props.parentState)
     }
   }
   renderCheckBox = () => {

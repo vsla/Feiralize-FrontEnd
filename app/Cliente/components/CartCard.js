@@ -9,7 +9,7 @@ class CartCard extends Component{
     render(){
         return(
             <View style={{marginTop:3}}>
-            
+
                 <View style={style.contentContainer}>
                     <View style={style.pickerQuantidade}>
                         < Picker data = {[{
@@ -45,7 +45,7 @@ class CartCard extends Component{
                         />
                     </View>
                     <TouchableOpacity // Carrinho de remover
-                        onPress={()=>{this.props.remove_from_cart(this.props.item)}} 
+                        onPress={()=>{this.props.remove_from_cart(this.props.item)}}
                         style={{justifyContent:'center', marginHorizontal:10}}
                     >
                         <ReuseIcon
@@ -65,9 +65,9 @@ class CartCard extends Component{
 export default connect(null, actions)(CartCard)
 const style = StyleSheet.create({
     contentContainer:{
-        flexDirection: "row", 
-        justifyContent: "space-around", 
-        alignItems: "center", 
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center",
         marginVertical: 10,
         marginHorizontal: 10,
     },

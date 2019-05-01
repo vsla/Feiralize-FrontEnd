@@ -10,7 +10,7 @@ const BuyNavigator = createMaterialTopTabNavigator(
     Produtos: {
         screen: CartScreen,
         navigationOptions: {
-            tabBarLabel: 'LISTA',
+            tabBarLabel: 'Carrinho',
         }
     },
     Mercados: {
@@ -19,7 +19,7 @@ const BuyNavigator = createMaterialTopTabNavigator(
             tabBarLabel: 'COMPRAR',
         }
     }
-}, 
+},
 {
     tabBarOptions: {
         activeTintColor: 'white',
