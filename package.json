@@ -12,7 +12,7 @@
     "firebase": "^5.7.3",
     "native-base": "^2.12.1",
     "react": "16.6.0-alpha.8af6728",
-    "react-native": "^0.59.2",
+    "react-native": "^0.59.6",
     "react-native-elements": "^1.0.0",
     "react-native-maps": "^0.24.2",
     "react-native-modal-dropdown": "^0.6.2",
