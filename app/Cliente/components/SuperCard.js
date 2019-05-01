@@ -45,13 +45,14 @@ class Login extends Component {
                         marginLeft: 10,
                         marginBottom: 4.7,
                         }}>
+                        <Text style={{
+                            color: 'slategray',
+                            fontSize: 12,
+                            }}>Valor da feira: {this.props.totalValue}
+                        </Text>
                         <TouchableOpacity
                             backgroundColor='slategray'
                             onPress={() => Alert.alert("Não implementado!")}>
-                            <Text style={{
-                            color: 'slategray',
-                            fontSize: 12,
-                            }}>Valor da feira: {this.props.totalValue}</Text>
                             <Text style={{
                                 color: 'orange',
                                 fontSize: 13.3,
