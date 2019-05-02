@@ -9,7 +9,6 @@ import theme from '../styles/theme.style';
 class ItemCard extends Component {
     constructor(props){
         super(props),
-        console.log(this.props)
         this.state = {
             imageUrl: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.data.filename,
             pressed: this.props.cartItems.includes(this.props.data) ? true : false,

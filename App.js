@@ -5,9 +5,7 @@ import firebase from 'firebase';
 import { Provider } from "react-redux";
 import store  from "./app/Cliente/redux/index";
 
-
 class App extends React.Component {
-  // 
   componentWillMount() {
     firebase.initializeApp({
       apiKey: "AIzaSyCaWQJ4RcLMEmCvrQShlOIJ3t7dfiLmW3I",
