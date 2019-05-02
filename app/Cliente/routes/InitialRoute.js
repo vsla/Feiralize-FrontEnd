@@ -3,6 +3,7 @@ import { createSwitchNavigator } from 'react-navigation';
 import BottomNavigator from './BottomNavigator';
 import LoginRoute from './LoginRoute';
 import DrawerNav from '../../Supermercado/routes/DrawerNavigator';
+import PedidoRoute from '../../Supermercado/routes/PedidoRoute';
 
 
 const InitialRoute = createSwitchNavigator(
