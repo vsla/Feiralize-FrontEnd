@@ -88,7 +88,7 @@ export default class DetalhesPedido extends Component {
       
     }else{
       return(
-        <Text style={{ color: 'white', fontSize:16, padding:5}}>Finalizar Pedido</Text>
+        <Text style={{ color: 'white', fontSize:16, padding:5}}>Entregar</Text>
       )
     }
   }

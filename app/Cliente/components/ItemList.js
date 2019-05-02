@@ -15,8 +15,14 @@ class ItemList extends Component {
             data: []
         }
     }
-    
+    //192.168.122.1:5000/category/all
     componentWillMount = () => {
+        /*
+        axios.get('http://25adb2af.ngrok.io/category/all')
+             .then(response => {
+                 console.log(response)
+             })
+        */
         axios.get('https://feiralize-api.herokuapp.com/products')
             .then(response =>{
                 const data = []
@@ -55,7 +61,7 @@ class ItemList extends Component {
                 </View>
             )
         }else{
-            console.log(this.state)
+            
         return (
             <FlatList
                 data={this.state.data}

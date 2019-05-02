@@ -4,6 +4,11 @@ import ListaProdutoTabNav from '../routes/ListaProdutoNav'
 import ReuseIcon from "../components/ReuseIcon";
 
 class ListaProduto extends Component {
+    static navigationOptions = {
+        header:null,
+        title: 'Home',
+        
+    };
     render() {
         return (
             <View style={style.viewStyle}>
