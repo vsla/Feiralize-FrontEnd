@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import PagInicial from '../pages/PagInicial';
 import DetalhesPedido from '../pages/DetalhesPedido';
 
@@ -10,16 +10,16 @@ const PedidoRoute = createStackNavigator(
         header: null,
       })
     },
-    DetalhesPedido:{
+    DetalhesPedido: {
       screen: DetalhesPedido,
       navigationOptions: () => ({
-        headerTitle:'Detalhes do pedido',
-        headerStyle:{
-          height:45
+        headerTitle: 'Detalhes do pedido',
+        headerStyle: {
+          height: 45
         },
-        headerTitleStyle:{
-          color:'black',
-          fontWeight:'normal'
+        headerTitleStyle: {
+          color: 'black',
+          fontWeight: 'normal'
         }
       })
     }

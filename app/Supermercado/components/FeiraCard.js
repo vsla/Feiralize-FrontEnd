@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 
+
 export default class FeiraCard extends Component {
   constructor(props){
     super(props)
+    console.log(this.props)
     this.state={
       status: this.props.fullData.status,
       colorStatus: ''
@@ -50,7 +52,7 @@ export default class FeiraCard extends Component {
     return (
       <TouchableOpacity
         style={{backgroundColor:'white', marginTop:2, paddingVertical:4}}
-        onPress={() => {this.props.screenProps.navigate("DetalhesPedido")}}
+        onPress={() => {this.props.screenProps.navigate("DetalhesPedido",{data:this.props.fullData})}}
       >
         <View style={{marginHorizontal:10}}>
           <View style={{flex:1, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>

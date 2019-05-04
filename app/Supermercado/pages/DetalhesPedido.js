@@ -2,16 +2,27 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native'
 import { CheckBox } from 'react-native-elements';
 import LocationMap from '../components/LocationMap';
-
+import firebase from 'firebase';
 export default class DetalhesPedido extends Component {
   constructor(props) {
     super(props)
+    console.log()
     this.state = {
+      status: null,
       accepted: false,
       ready: false,
+      data: this.props.navigation.getParam('data'),
       amountChecked: 1,
       total: 11
     }
+  }
+
+  componentWillMount() {
+    firebase.database().ref('/teste/data/feirasProntas/'+this.state.data.key).once('value', (snapshot) => {
+      this.setState({
+        status: snapshot.val().status
+      })
+    })
   }
 
   // Functions that helps the logic 
@@ -28,14 +39,15 @@ export default class DetalhesPedido extends Component {
     console.log(this.state)
   }
   changeStatus = (id) => {
-    if (this.state.accepted === false & this.state.ready === false) {
+    if (this.state.status === 'PENDENTE') {
       if (id === 1) {
+        firebase.database().ref('/teste/data/feirasProntas/'+this.state.data.key).update({status:'EM PREPARO'})
         this.setState({
-          accepted: true
+          status: 'EM PREPARO'
         })
       }
 
-    } else if (this.state.accepted === true & this.state.ready === false) {
+    } else if (this.state.status === 'EM PREPARO') {
       if (id === 1) {
         if (this.state.amountChecked < this.state.total) {
           Alert.alert(
@@ -44,8 +56,9 @@ export default class DetalhesPedido extends Component {
             [
               {
                 text: 'Sim', onPress: () => {
+                  firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
                   this.setState({
-                    ready: true
+                    status: 'EM ENTREGA'
                   })
                 }
               },
@@ -57,145 +70,148 @@ export default class DetalhesPedido extends Component {
             ]
           )
         } else {
+          firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
           this.setState({
-            ready: true
+            status: 'EM ENTREGA'
           })
         }
       }
     
   }else if(id === 2 ) {
-  this.setState({
-    accepted: false
-  })
+      firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'PENDENTE' })
+      this.setState({
+        status: 'PENDENTE'
+      })
 
    }else {
   if (id === 1) {
 
   } else if (id === 2) {
+    firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
     this.setState({
-      ready: false
+      status: 'EM ENTREGA'
     })
   }
 }
   }
-cancelOrBack = () => {
-  if (this.state.accepted === false & this.state.ready === false) {
-    return (
-      <Text style={{ color: 'darkorange', }}>Cancelar Pedido</Text>
-    )
-  } else if (this.state.accepted === true & this.state.ready === false) {
-    return (
-      <View />
-    )
-  } else {
-    return (
-      <Text style={{ color: 'darkorange', }}>Voltar para seleção</Text>
-    )
+  cancelOrBack = () => {
+    if (this.state.status === 'PENDENTE') {
+      return (
+        <Text style={{ color: 'darkorange', }}>Cancelar Pedido</Text>
+      )
+    } else if (this.state.status === 'EM PREPARO') {
+      return (
+        <View />
+      )
+    } else {
+      return (
+        <Text style={{ color: 'darkorange', }}>Voltar para seleção</Text>
+      )
+    }
   }
-}
-renderNextButtonText = () => {
-  if (this.state.accepted === false & this.state.ready === false) {
-    return (
-      <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Aceitar Pedido</Text>
-    )
-  } else if (this.state.accepted === true & this.state.ready === false) {
-    return (
-      <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Pronto para entrega</Text>
-    )
-  } else {
-    return (
-      <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Entregar</Text>
-    )
+  renderNextButtonText = () => {
+    if (this.state.status === 'PENDENTE') {
+      return (
+        <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Aceitar Pedido</Text>
+      )
+    } else if (this.state.status === 'EM PREPARO') {
+      return (
+        <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Pronto para entrega</Text>
+      )
+    } else {
+      return (
+        <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Entregar</Text>
+      )
+    }
   }
-}
-renderLista = () => {
-  if (this.state.accepted === true) {
-    return (
-      <Text style={style.sectionHeader} >Lista</Text>
-    )
+  renderLista = () => {
+    if (this.state.status === 'EM PREPARO') {
+      return (
+        <Text style={style.sectionHeader} >Lista</Text>
+      )
+    }
   }
-}
-renderStatusColor = () => {
-  if (this.state.accepted === false & this.state.ready === false) {
-    return (
-      <View style={{ flexDirection: 'row', height: 6 }}>
-        <View style={{ flex: 1, backgroundColor: 'red', marginRight: 5 }} />
-        <View style={{ flex: 1, backgroundColor: '#d4d4d4' }} />
-        <View style={{ flex: 1, backgroundColor: '#d4d4d4', marginLeft: 5 }} />
-      </View>
-    )
-  } else if (this.state.accepted === true & this.state.ready === false) {
-    return (
-      <View style={{ flexDirection: 'row', height: 6 }}>
-        <View style={{ flex: 1, backgroundColor: 'red', marginRight: 5 }} />
-        <View style={{ flex: 1, backgroundColor: '#eba04b' }} />
-        <View style={{ flex: 1, backgroundColor: '#d4d4d4', marginLeft: 5 }} />
-      </View>
-    )
-  } else {
-    return (
-      <View style={{ flexDirection: 'row', height: 6 }}>
-        <View style={{ flex: 1, backgroundColor: 'red', marginRight: 5 }} />
-        <View style={{ flex: 1, backgroundColor: '#eba04b' }} />
-        <View style={{ flex: 1, backgroundColor: '#5dab5d', marginLeft: 5 }} />
-      </View>
-    )
+  renderStatusColor = () => {
+    if (this.state.status === 'PENDENTE') {
+      return (
+        <View style={{ flexDirection: 'row', height: 6 }}>
+          <View style={{ flex: 1, backgroundColor: 'red', marginRight: 5 }} />
+          <View style={{ flex: 1, backgroundColor: '#d4d4d4' }} />
+          <View style={{ flex: 1, backgroundColor: '#d4d4d4', marginLeft: 5 }} />
+        </View>
+      )
+    } else if (this.state.status === 'EM PREPARO') {
+      return (
+        <View style={{ flexDirection: 'row', height: 6 }}>
+          <View style={{ flex: 1, backgroundColor: 'red', marginRight: 5 }} />
+          <View style={{ flex: 1, backgroundColor: '#eba04b' }} />
+          <View style={{ flex: 1, backgroundColor: '#d4d4d4', marginLeft: 5 }} />
+        </View>
+      )
+    } else {
+      return (
+        <View style={{ flexDirection: 'row', height: 6 }}>
+          <View style={{ flex: 1, backgroundColor: 'red', marginRight: 5 }} />
+          <View style={{ flex: 1, backgroundColor: '#eba04b' }} />
+          <View style={{ flex: 1, backgroundColor: '#5dab5d', marginLeft: 5 }} />
+        </View>
+      )
+    }
   }
-}
-renderSelectionItem = () => {
-  if (this.state.accepted === true && this.state.ready === true) {
-    return (
-      <View style={{ flex: 1 }}>
-        < LocationMap />
-      </View>
-    )
-  } else {
-    return (
-      <View style={{ flex: 1 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          {this.renderLista()}
-          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginLeft: 5 }}>
-            <Text style={style.sectionHeader} >Qnt</Text>
-            <Text style={style.sectionHeader} >Produto</Text>
-            <Text style={style.sectionHeader} >Valor</Text>
+  renderSelectionItem = () => {
+    if (this.state.status === 'EM ENTREGA') {
+      return (
+        <View style={{ flex: 1 }}>
+          < LocationMap />
+        </View>
+      )
+    } else {
+      return (
+        <View style={{ flex: 1 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            {this.renderLista()}
+            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginLeft: 5 }}>
+              <Text style={style.sectionHeader} >Qnt</Text>
+              <Text style={style.sectionHeader} >Produto</Text>
+              <Text style={style.sectionHeader} >Valor</Text>
+            </View>
+          </View>
+          <FlatList
+            data={[
+              { key: 'a', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'b', quantidade: 2, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'c', quantidade: 3, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'd', quantidade: 4, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'e', quantidade: 5, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'f', quantidade: 6, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'g', quantidade: 7, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'h', quantidade: 8, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'i', quantidade: 9, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'j', quantidade: 10, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
+              { key: 'k', quantidade: 11, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false, }
+            ]}
+            renderItem={({ item }) => <ProdutoComponent info={item} parentState={this.state} check={this.addCheckedOnParentFromChild} />}
+          />
+          <View style={{ flex: 1, justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+              <Text style={{}} >Taxas: </Text>
+              <Text style={{}} >R$ 10,0</Text>
+            </View>
+            <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', }}>
+              <Text style={{}} >Taxas: </Text>
+              <Text style={{}} >R$ 10,0</Text>
+            </View>
+          </View>
+          <View>
+            <Text style={style.sectionHeader} >Observações</Text>
+            <Text style={style.sectionContent} >Favor separar os gelados dos de temperatura ambiente</Text>
+            <View style={{ height: 2, backgroundColor: '#ebebeb', marginBottom: 2 }} />
           </View>
         </View>
-        <FlatList
-          data={[
-            { key: 'a', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'b', quantidade: 2, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'c', quantidade: 3, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'd', quantidade: 4, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'e', quantidade: 5, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'f', quantidade: 6, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'g', quantidade: 7, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'h', quantidade: 8, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'i', quantidade: 9, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'j', quantidade: 10, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-            { key: 'k', quantidade: 11, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false, }
-          ]}
-          renderItem={({ item }) => <ProdutoComponent info={item} parentState={this.state} check={this.addCheckedOnParentFromChild} />}
-        />
-        <View style={{ flex: 1, justifyContent: 'center' }}>
-          <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
-            <Text style={{}} >Taxas: </Text>
-            <Text style={{}} >R$ 10,0</Text>
-          </View>
-          <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', }}>
-            <Text style={{}} >Taxas: </Text>
-            <Text style={{}} >R$ 10,0</Text>
-          </View>
-        </View>
-        <View>
-          <Text style={style.sectionHeader} >Observações</Text>
-          <Text style={style.sectionContent} >Favor separar os gelados dos de temperatura ambiente</Text>
-          <View style={{ height: 2, backgroundColor: '#ebebeb', marginBottom: 2 }} />
-        </View>
-      </View>
-    )
+      )
+    }
   }
-}
-// End of functions
+  // End of functions
 
 render() {
   return (
@@ -262,7 +278,7 @@ class ProdutoComponent extends Component {
     }
   }
   renderCheckBox = () => {
-    if (this.props.parentState.accepted === true & this.props.parentState.ready === false) {
+    if (this.props.parentState.status === 'EM PREPARO') {
       return (
         <CheckBox
           center
@@ -279,7 +295,7 @@ class ProdutoComponent extends Component {
       <TouchableOpacity
         onPress={() => this.onPress()}
         style={{ flexDirection: 'row', marginVertical: 2 }}
-        disabled={(this.props.parentState.accepted === true & this.props.parentState.ready === false) ? false : true}
+        disabled={(this.state.status === 'EM PREPARO') ? false : true}
       >
         {this.renderCheckBox()}
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
