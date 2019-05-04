@@ -3,6 +3,8 @@ import {Platform, StyleSheet, Text, View, FlatList, ActivityIndicator} from 'rea
 import FeiraCard from '../components/FeiraCard';
 import firebase from 'firebase';
 
+
+
 export default class Pedidos extends Component {
   constructor(props){
     super(props)
@@ -12,8 +14,7 @@ export default class Pedidos extends Component {
       routeName: this.props.navigation.state.routeName,
       isLoading:true,
     }
-  }
-  
+  }  
   componentWillMount() {
     /*
     firebase.database().ref('/teste').set({
@@ -27,31 +28,27 @@ export default class Pedidos extends Component {
     */
    
     firebase.database().ref('/teste/data/feirasProntas/').once('value', (snapshot) => {
-      const data = []
+      var data = []
       const orders = snapshot.val()
-      
+      console.log(orders)
       if(this.state.routeName ==='TODOS' ){
+        var indexes = Object.keys(orders)
+        indexes.map((index) => {
+          data.push(orders[index])
+        })
+        console.log(data)
         this.setState({
           fullData: orders,
-          orders: orders,
+          orders: data,
           isLoading: false
         })
       }else{
-        
-        for (var index in orders) {
+        var indexes = Object.keys(orders)
+        indexes.map((index) => {
           if (orders[index].status === this.state.routeName) {
             data.push(orders[index])
           }
-        }
-        /*
-        data = Object.keys(orders).map((key) => {
-          if(orders[key].status === this.state.routeName){
-            return orders[key]
-          }else{
-            return
-          }
         })
-         */
         
         this.setState({
           fullData: orders,

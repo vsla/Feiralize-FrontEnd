@@ -27,6 +27,9 @@ class Pagamento extends Component {
                     {
                         text: 'OK',
                         onPress: () => {
+                            var newPostKey = firebase.database().ref('/teste/data').child('/feirasProntas').push().key
+                            console.log(newPostKey)
+                            firebase.database().ref('/teste/data/feirasProntas').push({ key: newPostKey, status: 'PENDENTE' });
                             /*
                             var newPostKey = 0
                             firebase.database().ref('/teste/data/lastCartId').once('value', (snapshot) => {
