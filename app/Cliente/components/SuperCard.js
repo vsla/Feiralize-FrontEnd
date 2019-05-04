@@ -52,7 +52,7 @@ class Login extends Component {
                         </Text>
                         <TouchableOpacity
                             backgroundColor='slategray'
-                            onPress={() => Alert.alert("Não implementado!")}>
+                            onPress={() =>this.props.screenProps.navigate("Details")}>
                             <Text style={{
                                 color: 'orange',
                                 fontSize: 13.3,

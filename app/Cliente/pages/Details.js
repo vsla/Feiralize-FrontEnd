@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Image, TouchableOpacity, Text, Alert, FlatList } from 'react-native';
+import { View, TouchableOpacity, Text, FlatList } from 'react-native';
 import ReuseIcon from "../components/ReuseIcon";
 import { connect } from 'react-redux';
 import DetailsCard from '../components/DetailsCard';
@@ -17,11 +17,11 @@ class Login extends Component {
         return (
             <View style={style.Container}>
                 < View>
-                    < TouchableOpacity style={{marginTop: 20, marginLeft: 20, flexDirection: 'row'}} onPress={() => Alert.alert("Não implementado!")}>
+                    < TouchableOpacity style={{marginTop: 20, marginLeft: 20, flexDirection: 'row'}} onPress={() => this.props.navigation.pop()}>
                         <ReuseIcon
                             name="arrow-back"
                             color='orange'
-                            size={20}
+                            size={25}
                         />
                     </TouchableOpacity>
                     <Text style={{

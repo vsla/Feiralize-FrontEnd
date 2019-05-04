@@ -4,6 +4,7 @@ import ListaProduto from '../pages/ListaProduto';
 
 import Supermercado from '../pages/Supermercado';
 import Pagamento from '../pages/Pagamento';
+import Details from '../pages/Details';
 import BuyNavigator from './BuyNavigator';
 import ItemSearching from '../pages/ItemSearching'
 
@@ -32,6 +33,12 @@ const ShoppingRoute = createStackNavigator(
         },
         Pagamento: {
             screen: Pagamento,
+            navigationOptions: () => ({
+                header: null,
+            })
+        },
+        Details: {
+            screen: Details,
             navigationOptions: () => ({
                 header: null,
             })

@@ -53,7 +53,7 @@ class Pagamento extends Component {
                      >
                             <ReuseIcon
                                 name={"arrow-back"}
-                                size={25}
+                                size={30}
                                 color={"#ec7416"}
                             />
                     </TouchableOpacity>
