@@ -6,19 +6,17 @@ import firebase from 'firebase';
 export default class DetalhesPedido extends Component {
   constructor(props) {
     super(props)
-    console.log()
+    const receivedData = this.props.navigation.getParam('data')
     this.state = {
       status: null,
-      accepted: false,
-      ready: false,
-      data: this.props.navigation.getParam('data'),
+      data: receivedData,
       amountChecked: 1,
-      total: 11
+      total: receivedData.items.length
     }
   }
 
   componentWillMount() {
-    firebase.database().ref('/teste/data/feirasProntas/'+this.state.data.key).once('value', (snapshot) => {
+    firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).once('value', (snapshot) => {
       this.setState({
         status: snapshot.val().status
       })
@@ -36,7 +34,6 @@ export default class DetalhesPedido extends Component {
         amountChecked: this.state.amountChecked - 1
       })
     }
-    console.log(this.state)
   }
   changeStatus = (id) => {
     if (this.state.status === 'PENDENTE') {
@@ -159,6 +156,19 @@ export default class DetalhesPedido extends Component {
     }
   }
   renderSelectionItem = () => {
+    var data = [
+      { key: 'a', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'b', quantidade: 2, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'c', quantidade: 3, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'd', quantidade: 4, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'e', quantidade: 5, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'f', quantidade: 6, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'g', quantidade: 7, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'h', quantidade: 8, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'i', quantidade: 9, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'j', quantidade: 10, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
+      { key: 'k', quantidade: 11, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', }
+    ]
     if (this.state.status === 'EM ENTREGA') {
       return (
         <View style={{ flex: 1 }}>
@@ -166,6 +176,7 @@ export default class DetalhesPedido extends Component {
         </View>
       )
     } else {
+      var data = this.state.data.items
       return (
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -177,34 +188,22 @@ export default class DetalhesPedido extends Component {
             </View>
           </View>
           <FlatList
-            data={[
-              { key: 'a', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'b', quantidade: 2, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'c', quantidade: 3, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'd', quantidade: 4, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'e', quantidade: 5, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'f', quantidade: 6, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'g', quantidade: 7, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'h', quantidade: 8, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'i', quantidade: 9, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'j', quantidade: 10, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false },
-              { key: 'k', quantidade: 11, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', selected: false, }
-            ]}
+            data={data}
             renderItem={({ item }) => <ProdutoComponent info={item} parentState={this.state} check={this.addCheckedOnParentFromChild} />}
           />
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
               <Text style={{}} >Taxas: </Text>
-              <Text style={{}} >R$ 10,0</Text>
+              <Text style={{}} >{this.state.data.price}</Text>
             </View>
             <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', }}>
-              <Text style={{}} >Taxas: </Text>
-              <Text style={{}} >R$ 10,0</Text>
+              <Text style={{}} >Total: </Text>
+              <Text style={{}} >{this.state.data.price}</Text>
             </View>
           </View>
           <View>
             <Text style={style.sectionHeader} >Observações</Text>
-            <Text style={style.sectionContent} >Favor separar os gelados dos de temperatura ambiente</Text>
+            <Text style={style.sectionContent} >{this.state.data.notes}</Text>
             <View style={{ height: 2, backgroundColor: '#ebebeb', marginBottom: 2 }} />
           </View>
         </View>
@@ -230,12 +229,12 @@ render() {
           {this.renderSelectionItem()}
           <View style={{ marginBottom: 5, }}>
             <Text style={style.sectionHeader} >Forma de pagamento</Text>
-            <Text style={style.sectionContent} >Pagamento em dinheiro, troco para R$ 100,00</Text>
+            <Text style={style.sectionContent} >{this.state.data.payment}</Text>
             <View style={{ height: 2, backgroundColor: '#ebebeb', marginBottom: 2 }} />
             <Text style={style.sectionHeader} >Dados de entrega</Text>
-            <Text style={style.sectionContent}>Entrega em domicílio</Text>
-            <Text style={style.sectionContent}>Avenida Domingos Ferreira, 1034, apt 701</Text>
-            <Text style={style.sectionContent}>Amanhã, 18h00</Text>
+            <Text style={style.sectionContent}>{this.state.data.delivery.type}</Text>
+            <Text style={style.sectionContent}>{this.state.data.delivery.location}</Text>
+            <Text style={style.sectionContent}>{this.state.data.delivery.date}, {this.state.data.delivery.hour}</Text>
           </View>
 
           <View style={{ flexDirection: 'row-reverse', alignItems: 'center', marginBottom: 10, }}>
@@ -262,11 +261,22 @@ render() {
 class ProdutoComponent extends Component {
   constructor(props) {
     super(props)
+    console.log(this.props.parentState)
     this.state = {
       accepted: false,
       ready: false,
-      checked: false
+      checked: false,
+      parentStatus: this.props.parentState.status,
+      status:null
     }
+  }
+  compone
+  componentWillMount() {
+    firebase.database().ref('/teste/data/feirasProntas/' + this.props.parentState.data.key).once('value', (snapshot) => {
+      this.setState({
+        status: snapshot.val().status
+      })
+    })
   }
   onPress = () => {
     if (this.state.checked == false) {
@@ -278,7 +288,7 @@ class ProdutoComponent extends Component {
     }
   }
   renderCheckBox = () => {
-    if (this.props.parentState.status === 'EM PREPARO') {
+    if (this.state.status === 'EM PREPARO') {
       return (
         <CheckBox
           center
@@ -300,13 +310,13 @@ class ProdutoComponent extends Component {
         {this.renderCheckBox()}
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
           <Text>
-            {this.props.info.quantidade}
+            {this.props.info.height}
           </Text>
           <Text>
-            {this.props.info.produto}
+            {this.props.info.title}
           </Text>
           <Text>
-            R$ {this.props.info.valor}
+            R$ {this.props.info.price}
           </Text>
         </View>
       </TouchableOpacity>

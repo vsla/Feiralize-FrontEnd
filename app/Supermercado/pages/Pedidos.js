@@ -3,8 +3,6 @@ import {Platform, StyleSheet, Text, View, FlatList, ActivityIndicator} from 'rea
 import FeiraCard from '../components/FeiraCard';
 import firebase from 'firebase';
 
-
-
 export default class Pedidos extends Component {
   constructor(props){
     super(props)
@@ -27,16 +25,15 @@ export default class Pedidos extends Component {
     })
     */
    
-    firebase.database().ref('/teste/data/feirasProntas/').once('value', (snapshot) => {
+    firebase.database().ref('/teste/data/feirasProntas/').on('value', (snapshot) => {
       var data = []
       const orders = snapshot.val()
-      console.log(orders)
       if(this.state.routeName ==='TODOS' ){
+        
         var indexes = Object.keys(orders)
         indexes.map((index) => {
           data.push(orders[index])
         })
-        console.log(data)
         this.setState({
           fullData: orders,
           orders: data,
@@ -49,7 +46,6 @@ export default class Pedidos extends Component {
             data.push(orders[index])
           }
         })
-        
         this.setState({
           fullData: orders,
           orders: data,

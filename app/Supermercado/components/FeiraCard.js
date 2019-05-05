@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 
-
 export default class FeiraCard extends Component {
   constructor(props){
     super(props)
-    console.log(this.props)
     this.state={
       status: this.props.fullData.status,
       colorStatus: ''
