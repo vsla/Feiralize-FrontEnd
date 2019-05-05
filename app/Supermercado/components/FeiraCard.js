@@ -4,6 +4,7 @@ import { Text, View, TouchableOpacity } from 'react-native'
 export default class FeiraCard extends Component {
   constructor(props){
     super(props)
+    console.log(this.props.fullData)
     this.state={
       status: this.props.fullData.status,
       colorStatus: ''
@@ -54,12 +55,12 @@ export default class FeiraCard extends Component {
       >
         <View style={{marginHorizontal:10}}>
           <View style={{flex:1, flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-            <Text style={{ color:'black', fontWeight:'bold'}}>JULIANA MACHADO</Text>
+            <Text style={{ color:'black', fontWeight:'bold'}}>Chiu young</Text>
             
             {this.renderStatusType()}
           </View>
-          <Text style={{flex:1, color:'black'}}>Entrega em domicilio</Text>
-          <Text style={{flex:1, color:'black',}}>Amanhã, 18h30</Text>
+          <Text style={{flex:1, color:'black'}}>{this.props.fullData.delivery.type}</Text>
+          <Text style={{ flex: 1, color: 'black', }}>{this.props.fullData.delivery.date}, {this.props.fullData.delivery.hour}</Text>
         </View>
       </TouchableOpacity>
     )

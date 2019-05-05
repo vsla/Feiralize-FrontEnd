@@ -27,9 +27,9 @@ export default class Perfil extends Component{
                         </View>
                         <View>
                             <Text style= {style.nameStyle}
-                            >Chiu the China</Text>
+                            >Chiu young chan</Text>
                             <Text style={style.emailStyle}
-                            >ChiuGatinho@gmail.com</Text>
+                            >Chiu@gmail.com</Text>
                         </View>
                     </View>
                     <View style={{marginHorizontal:35,}}>
