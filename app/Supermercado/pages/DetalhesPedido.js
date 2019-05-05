@@ -192,12 +192,12 @@ export default class DetalhesPedido extends Component {
             data={data}
             renderItem={({ item }) => <ProdutoComponent info={item} parentState={this.state} check={this.addCheckedOnParentFromChild} showCheck={this.state.showCheck}/>}
           />
-          <View style={{ flex: 1, justifyContent: 'center' }}>
-            <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
+          <View style={{justifyContent: 'center' }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', marginBottom: 5 }}>
               <Text style={{}} >Taxas: </Text>
               <Text style={{}} >{this.state.data.price}</Text>
             </View>
-            <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', }}>
               <Text style={{}} >Total: </Text>
               <Text style={{}} >{this.state.data.price}</Text>
             </View>
