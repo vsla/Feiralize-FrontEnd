@@ -8,6 +8,7 @@ export default class DetalhesPedido extends Component {
     super(props)
     const receivedData = this.props.navigation.getParam('data')
     this.state = {
+      showCheck:false,
       status: null,
       data: receivedData,
       amountChecked: 1,
@@ -40,56 +41,56 @@ export default class DetalhesPedido extends Component {
       if (id === 1) {
         firebase.database().ref('/teste/data/feirasProntas/'+this.state.data.key).update({status:'EM PREPARO'})
         this.setState({
-          status: 'EM PREPARO'
+          status: 'EM PREPARO',
+          showCheck:true,
         })
       }
 
     } else if (this.state.status === 'EM PREPARO') {
-      if (id === 1) {
-        if (this.state.amountChecked < this.state.total) {
-          Alert.alert(
-            'Nem todos os produtos foram selecionados',
-            'Deseja continuar?',
-            [
-              {
-                text: 'Sim', onPress: () => {
-                  firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
-                  this.setState({
-                    status: 'EM ENTREGA'
-                  })
-                }
-              },
-              {
-                text: 'Voltar',
-                onPress: () => { },
-                style: 'cancel',
-              },
-            ]
-          )
-        } else {
-          firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
-          this.setState({
-            status: 'EM ENTREGA'
-          })
+        if (id === 1) {
+          if (this.state.amountChecked < this.state.total) {
+            Alert.alert(
+              'Nem todos os produtos foram selecionados',
+              'Deseja continuar?',
+              [
+                {
+                  text: 'Sim', onPress: () => {
+                    firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
+                    this.setState({
+                      status: 'EM ENTREGA'
+                    })
+                  }
+                },
+                {
+                  text: 'Voltar',
+                  onPress: () => { },
+                  style: 'cancel',
+                },
+              ]
+            )
+          } else {
+            firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
+            this.setState({
+              status: 'EM ENTREGA'
+            })
+          }
         }
+        else if(id === 2 ) {
+            firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'PENDENTE' })
+            this.setState({
+              status: 'PENDENTE'
+            })
+        }
+    } else {
+      if (id === 1) {
+        this.props.navigation.navigate('PedidosHome')
+      } else if (id === 2) {
+        firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM PREPARO' })
+        this.setState({
+          status: 'EM PREPARO'
+        })
       }
-    
-  }else if(id === 2 ) {
-      firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'PENDENTE' })
-      this.setState({
-        status: 'PENDENTE'
-      })
-
-   }else {
-  if (id === 1) {
-
-  } else if (id === 2) {
-    firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
-    this.setState({
-      status: 'EM ENTREGA'
-    })
-  }
-}
+    }
   }
   cancelOrBack = () => {
     if (this.state.status === 'PENDENTE') {
@@ -189,7 +190,7 @@ export default class DetalhesPedido extends Component {
           </View>
           <FlatList
             data={data}
-            renderItem={({ item }) => <ProdutoComponent info={item} parentState={this.state} check={this.addCheckedOnParentFromChild} />}
+            renderItem={({ item }) => <ProdutoComponent info={item} parentState={this.state} check={this.addCheckedOnParentFromChild} showCheck={this.state.showCheck}/>}
           />
           <View style={{ flex: 1, justifyContent: 'center' }}>
             <View style={{ flexDirection: 'row', flex: 0.5, justifyContent: 'flex-end', alignItems: 'center', marginBottom: 10 }}>
@@ -261,7 +262,7 @@ render() {
 class ProdutoComponent extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props.parentState)
+    console.log(this.props)
     this.state = {
       accepted: false,
       ready: false,
@@ -270,7 +271,7 @@ class ProdutoComponent extends Component {
       status:null
     }
   }
-  compone
+
   componentWillMount() {
     firebase.database().ref('/teste/data/feirasProntas/' + this.props.parentState.data.key).once('value', (snapshot) => {
       this.setState({
@@ -288,7 +289,7 @@ class ProdutoComponent extends Component {
     }
   }
   renderCheckBox = () => {
-    if (this.state.status === 'EM PREPARO') {
+    if (this.state.parentStatus === 'EM PREPARO' || this.props.parentState.status === 'EM PREPARO' || this.state.status === 'EM PREPARO') {
       return (
         <CheckBox
           center

@@ -8,7 +8,7 @@ class Supermercado extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            Supermercados:[1,2,3]
+            Supermercados:[1]
         };
         console.log(this.props)
     }

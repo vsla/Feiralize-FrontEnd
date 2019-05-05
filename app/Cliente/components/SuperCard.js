@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { View, Image, TouchableOpacity, Text, Alert } from 'react-native';
 
 
+
 class Login extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            value: Math.round(this.props.totalValue),
+            frete: 0
+        }
+    }
     render() {
         return (
             <View style={style.Container}>
@@ -35,7 +43,7 @@ class Login extends Component {
                             marginBottom: 13.6,
                             marginLeft: '48%'
                         }}>
-                            R$ {this.props.totalValue + 5.1}
+                            R$ {(Math.round(this.props.totalValue * 100) / 100) + 0}
                         </Text>
                     </View>
                 </View>
@@ -48,7 +56,7 @@ class Login extends Component {
                         <Text style={{
                             color: 'slategray',
                             fontSize: 12,
-                            }}>Valor da feira: {this.props.totalValue}
+                        }}>Valor da feira: {(Math.round(this.props.totalValue * 100) / 100)}
                         </Text>
                         <TouchableOpacity
                             backgroundColor='slategray'
@@ -69,7 +77,7 @@ class Login extends Component {
                         <Text style={{
                             color: 'slategray',
                             fontSize: 12,
-                        }}>Frete R$5,10</Text>
+                        }}>Frete R${this.state.frete}</Text>
                         <Text style={{
                             color: 'slategray',
                             fontSize: 12,

@@ -3,9 +3,11 @@ import {Text, View, Alert, StyleSheet, Image} from 'react-native';
 import PerfilButton from '../components/PerfilButtons';
 import themeStyle from "../styles/theme.style";
 
+
 export default class Perfil extends Component{
 
     render(){
+        console.log(this.props.navigation)
         return(
             <View style={{ flex: 1}}>
                 <View style={style.OrangeContainer}>
@@ -19,7 +21,7 @@ export default class Perfil extends Component{
                                 text='Sair'
                                 name = 'log-out'
                                 color='white'
-                                onPress={() => Alert.alert("Não implementado")}
+                                onPress={() => this.props.navigation.navigate('loginRoute')}
                                 textStyle={{color: 'white',marginLeft: 8,fontSize: 18,}}
                             />
                         </View>

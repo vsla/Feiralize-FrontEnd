@@ -5,7 +5,7 @@
   "filename": "0.jpg",
   "height": 600,
   "width": 400,
-  "price": 28.1,
+  "price": 28,
   "rating": 4
 }, {
   "title": "Sweet fresh stawberry",
@@ -32,7 +32,7 @@
   "filename": "3.jpg",
   "height": 600,
   "width": 399,
-  "price": 17.68,
+  "price": 17.65,
   "rating": 4
 }, {
   "title": "Raw legums",
@@ -41,7 +41,7 @@
   "filename": "4.jpg",
   "height": 450,
   "width": 299,
-  "price": 17.11,
+  "price": 17.10,
   "rating": 2
 }, {
   "title": "Baking cake",
@@ -50,7 +50,7 @@
   "filename": "5.jpg",
   "height": 450,
   "width": 675,
-  "price": 11.14,
+  "price": 11.15,
   "rating": 4
 }, {
   "title": "Pesto with basil",
@@ -59,7 +59,7 @@
   "filename": "6.jpg",
   "height": 450,
   "width": 299,
-  "price": 18.19,
+  "price": 18.20,
   "rating": 2
 }, {
   "title": "Hazelnut in black ceramic bowl",
@@ -68,7 +68,7 @@
   "filename": "7.jpg",
   "height": 450,
   "width": 301,
-  "price": 27.35,
+  "price": 27.30,
   "rating": 0
 }, {
   "title": "Fresh stawberry",
@@ -77,7 +77,7 @@
   "filename": "8.jpg",
   "height": 600,
   "width": 399,
-  "price": 28.59,
+  "price": 28.50,
   "rating": 4
 }, {
   "title": "Lemon and salt",
@@ -86,7 +86,7 @@
   "filename": "9.jpg",
   "height": 450,
   "width": 299,
-  "price": 15.79,
+  "price": 15.70,
   "rating": 5
 }, {
   "title": "Homemade bread",
@@ -95,7 +95,7 @@
   "filename": "10.jpg",
   "height": 450,
   "width": 301,
-  "price": 17.48,
+  "price": 17.40,
   "rating": 3
 }, {
   "title": "Legums",
@@ -104,7 +104,7 @@
   "filename": "11.jpg",
   "height": 600,
   "width": 399,
-  "price": 14.77,
+  "price": 14.70,
   "rating": 0
 }, {
   "title": "Fresh tomato",
@@ -113,7 +113,7 @@
   "filename": "12.jpg",
   "height": 600,
   "width": 903,
-  "price": 16.3,
+  "price": 16.30,
   "rating": 2
 }, {
   "title": "Healthy breakfast",
@@ -122,7 +122,7 @@
   "filename": "13.jpg",
   "height": 450,
   "width": 350,
-  "price": 13.02,
+  "price": 13.10,
   "rating": 2
 }, {
   "title": "Green beans",
@@ -131,7 +131,7 @@
   "filename": "14.jpg",
   "height": 450,
   "width": 300,
-  "price": 28.79,
+  "price": 28.80,
   "rating": 1
 }, {
   "title": "Baked stuffed portabello mushrooms",
@@ -140,7 +140,7 @@
   "filename": "15.jpg",
   "height": 600,
   "width": 400,
-  "price": 20.31,
+  "price": 20.30,
   "rating": 1
 }, {
   "title": "Strawberry jelly",
@@ -149,7 +149,7 @@
   "filename": "16.jpg",
   "height": 400,
   "width": 600,
-  "price": 14.18,
+  "price": 14.20,
   "rating": 1
 }, {
   "title": "Pears juice",
@@ -158,7 +158,7 @@
   "filename": "17.jpg",
   "height": 600,
   "width": 398,
-  "price": 19.49,
+  "price": 19.40,
   "rating": 4
 }, {
   "title": "Fresh pears",
@@ -167,7 +167,7 @@
   "filename": "18.jpg",
   "height": 600,
   "width": 398,
-  "price": 15.12,
+  "price": 15.10,
   "rating": 5
 }, {
   "title": "Caprese salad",

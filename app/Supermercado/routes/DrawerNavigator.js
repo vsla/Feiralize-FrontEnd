@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StatusBar } from 'react-native';
+import { StatusBar, TouchableOpacity } from 'react-native';
 import {  View,  Text,  StyleSheet,  Image, ToolbarAndroid } from "react-native"; 
 import { Container, Content, Header, Body } from 'native-base'
 import { createDrawerNavigator, DrawerItems } from 'react-navigation'
@@ -35,6 +35,13 @@ const CustomDrawerContentComponent = (props) => (
     <Content>
       <DrawerItems {...props} />
     </Content>
+    <View>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('loginRoute')}
+      >
+        <Text>Sair</Text>
+      </TouchableOpacity>
+    </View>
   </Container>
 
 );

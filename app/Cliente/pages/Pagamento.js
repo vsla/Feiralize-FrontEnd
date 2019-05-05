@@ -17,7 +17,7 @@ class Pagamento extends Component {
  confirmarCompra = () => {
   if (this.state.selected) {
    Alert.alert(
-    'Confirmar compra de R$ ' + this.props.cartValue,
+     'Confirmar compra de R$ ' + (Math.round(this.props.cartValue * 100) / 100),
     '',
     [
      {
@@ -33,7 +33,7 @@ class Pagamento extends Component {
           key: newPostKey,
           status: 'PENDENTE',
           items: this.props.cartItems,
-          price: this.props.cartValue,
+          price: (Math.round(this.props.cartValue * 100) / 100),
           delivery: {
             type: 'Entrega em domicílio',
             date: "Segunda",
@@ -66,7 +66,7 @@ class Pagamento extends Component {
      </TouchableOpacity>
      < Text style={style.pagamentoText}> Pagamento </Text>
      <Text style={{ alignSelf: "flex-end", marginRight: 40, fontSize: 16 }}>
-      Valor: R$ {this.props.cartValue}
+          Valor: R$ {(Math.round(this.props.cartValue * 100) / 100)}
      </Text>
     </View>
     <MetodoPagamento parentState={this} />
