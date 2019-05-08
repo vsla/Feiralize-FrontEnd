@@ -14,7 +14,6 @@ import ThePicker from '../components/ThePicker'
 
 
 const CustomDrawerContentComponent = (props) => (
-
   <Container>
     <StatusBar backgroundColor="darkorange"  />
     <Header style={styles.drawerHeader}>
@@ -61,7 +60,7 @@ const MyApp = createDrawerNavigator({
       screen: testes3
   },
   Contato: {
-      screen: Pedidos
+    screen: Pedidos
   }
   },
   {

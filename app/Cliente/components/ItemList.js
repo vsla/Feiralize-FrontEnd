@@ -18,12 +18,12 @@ class ItemList extends Component {
     }
   }
   componentWillMount = () => {
-    /*
-    axios.get('http://25adb2af.ngrok.io/category/all')
+    axios.get('https://feiralize-server.herokuapp.com/category/all')
          .then(response => {
              console.log(response)
          })
-    */
+    // get cate --> https://feiralize-server.herokuapp.com/category/all
+    // sub --> https://feiralize-server.herokuapp.com/category/all/sub/id
     axios.get('https://feiralize-api.herokuapp.com/products')
       .then(response => {
         const data = []
@@ -33,6 +33,7 @@ class ItemList extends Component {
             data.push(originalArray[index])
           }
         }
+        console.log(data)
         this.setState({
           fullData: response.data,
           data: data,

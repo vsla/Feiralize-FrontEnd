@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import ListaProduto from '../pages/ListaProduto';
-
 import Supermercado from '../pages/Supermercado';
 import Pagamento from '../pages/Pagamento';
 import Details from '../pages/Details';
