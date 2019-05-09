@@ -13,23 +13,12 @@ class ListaProduto extends Component {
     return (
       <View style={style.viewStyle}>
         < View style={style.headerStyle} >
-          < TouchableOpacity style={{ marginLeft: 20, flexDirection: 'row' }} onPress={() => this.props.navigation.navigate("Compra")}>
-            <ReuseIcon
-              name="arrow-back"
-              color='white'
-              size={30}
-            />
-          </TouchableOpacity>
+
           <View style={style.inputStyle}>
             <TextInput style={style.textStyle}
               placeholder="Buscar item"
               placeholderTextColor='white'
               onFocus={() => this.props.navigation.navigate('ItemSearching')}
-            />
-            < ReuseIcon
-              name="search"
-              color='white'
-              size={30}
             />
           </View>
         </View>
@@ -45,7 +34,7 @@ const style = {
     backgroundColor: 'white',
   },
   headerStyle: {
-    flex: 0.18,
+    flex: 0.10,
     flexDirection: "row",
     backgroundColor: 'darkorange',
     justifyContent: "space-between",
