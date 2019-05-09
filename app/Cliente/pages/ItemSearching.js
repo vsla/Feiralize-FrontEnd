@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, FlatList, ActivityIndicator, TextInput, ImageBackground, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, FlatList, TextInput, TouchableOpacity } from "react-native";
+import { Overlay } from 'react-native-elements';
 import ReuseIcon from "../components/ReuseIcon";
 import data from '../assets/data/products.json'
 import ItemCard from '../components/ItemCard';
@@ -13,9 +14,12 @@ export default class App extends Component {
       error: null,
       array: "",
       fullData: [],
+      showModal: false
     };
   }
-
+  showModal = () => {
+    this.setState({ showModal: true })
+  }
 
   handleSearch = text => {
     if (text) {
@@ -55,14 +59,29 @@ export default class App extends Component {
             />
           </ View>
         </ View>
-        <FlatList
-          data={this.state.fullData}
-          style={{ flex: 1 }}
-          numColumns={2}
-          keyExtractor={item => item.title}
-          renderItem={({ item }) =>
-            <ItemCard data={item} onPress={() => { }} />}
-        />
+        <View style={{ flex: 1 }}>
+          <FlatList
+            data={this.state.fullData}
+            style={style.flatStyle}
+            numColumns={2}
+            keyExtractor={item => item.title}
+            renderItem={({ item }) =>
+              <ItemCard data={item} showModal={this.showModal} />}
+          />
+          <Overlay
+            isVisible={this.state.showModal}
+          >
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.setState({ showModal: false })
+                }}
+              >
+                <Text>Voltar</Text>
+              </TouchableOpacity>
+            </View>
+          </Overlay>
+        </View>
       </View>
     );
   }
