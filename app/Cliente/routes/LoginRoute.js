@@ -11,12 +11,6 @@ const LoginRoute = createStackNavigator(
    * E troca para o bottomNavigator
    **/
   {
-    login: {
-      screen: Login,
-      navigationOptions: () => ({
-        header: null,
-      })
-    },
     loginEmail: {
       screen: LoginEmail,
       navigationOptions: () => ({
@@ -25,7 +19,7 @@ const LoginRoute = createStackNavigator(
     },
   },
   {
-    initialRouteName: "login",
+    
   }
 )
 export default LoginRoute;
