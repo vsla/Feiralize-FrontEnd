@@ -8,6 +8,7 @@
     "android-linux": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && react-native run-android"
   },
   "dependencies": {
+    "@react-native-community/geolocation": "^1.4.0",
     "axios": "^0.18.0",
     "firebase": "^5.7.3",
     "native-base": "^2.12.1",

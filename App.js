@@ -6,6 +6,13 @@ import { Provider } from "react-redux";
 import store  from "./app/Cliente/redux/index";
 
 class App extends React.Component {
+  constructor(props){
+    super(props)
+    navigator.geolocation.getCurrentPosition((location) => {
+      console.log(location)
+    },(error) => {console.log(error)})
+  }
+
   componentWillMount() {
     firebase.initializeApp({
       apiKey: "AIzaSyCaWQJ4RcLMEmCvrQShlOIJ3t7dfiLmW3I",

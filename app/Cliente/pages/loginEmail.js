@@ -51,6 +51,28 @@ class LoginEmail extends Component {
               }}>
               Entrar </Text>
           </TouchableOpacity>
+
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', margin: 10 }}>
+            <TouchableOpacity
+              style={style.forgotPassButton}
+              onPress={() => { }}  >
+              <Text
+                style={{
+                  color: "orange",
+                }}>
+                Esqueceu a senha! </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={style.forgotPassButton}
+              onPress={() => { }} >
+              <Text
+                style={{
+                  color: "orange",
+                }}>
+                Cadastre-se </Text>
+            </TouchableOpacity>
+          </View>
+
           <View style={{
             flex: 1, justifyContent: 'space-around',
             flexDirection: 'row',
@@ -79,26 +101,7 @@ class LoginEmail extends Component {
                             </Text>
             </TouchableOpacity>
           </View>
-          <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', margin: 10 }}>
-            <TouchableOpacity
-              style={style.forgotPassButton}
-              onPress={() => { }}  >
-              <Text
-                style={{
-                  color: "orange",
-                }}>
-                Esqueceu a senha! </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={style.forgotPassButton}
-              onPress={() => { }} >
-              <Text
-                style={{
-                  color: "orange",
-                }}>
-                Cadastre-se </Text>
-            </TouchableOpacity>
-          </View>
+
 
         </View>
       </View>
@@ -108,12 +111,6 @@ class LoginEmail extends Component {
 export default LoginEmail;
 
 const style = {
-  logoContainer: {
-    flex: 2.5,
-    backgroundColor: theme.BG_color,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   inputContainer: {
     flex: 2,
     justifyContent: 'space-around',
