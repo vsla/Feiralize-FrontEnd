@@ -4,9 +4,18 @@ import theme from '../styles/theme.style';
 import HeaderLogin from '../components/HeaderLogin';
 import firebase from 'firebase';
 
-class LoginEmail extends Component {
-  state = { email: '', password: '', error: '' }
+class SignUp extends Component {
+  constructor(props){
+    super(props)
+    this.state = { 
+      firstName: '',
+      secondName:'',
+      email: '', 
+      password: '', 
+      error: '',
 
+    }
+  }
 
   loginMethod() {
     const { email, password } = this.state;
@@ -19,14 +28,30 @@ class LoginEmail extends Component {
       })
     Alert.alert("Logado com sucesso!");
     this.props.navigation.navigate('bottomNavigator')
-
   }
+
   render() {
     return (
       <View style={{ flex: 2, backgroundColor: 'white' }}>
         <HeaderLogin />
         <View style={style.inputContainer}>
-          <TextInput style={style.inputStyle}
+          <View style={{flexDirection:'row', justifyContent:'space-around', alignItems:'center'}} >
+            <TextInput style={style.inputStyle1}
+              value={this.state.email}
+              onChangeText={name => this.setState({ firstName: name })}
+              placeholder="Nome"
+              placeholderTextColor='black'
+              keyboardType='default'
+            />    
+            <TextInput style={style.inputStyle1}
+              value={this.state.email}
+              onChangeText={LastName => this.setState({ LastName: LastName })}
+              placeholder="Sobrenome"
+              placeholderTextColor='black'
+              keyboardType='default'
+            />        
+          </View>
+          <TextInput style={style.inputStyle2}
             value={this.state.email}
             onChangeText={email => this.setState({ email: email })}
             placeholder="email@email.com"
@@ -34,7 +59,7 @@ class LoginEmail extends Component {
             keyboardType="email-address"
           />
 
-          <TextInput style={style.inputStyle}
+          <TextInput style={style.inputStyle2}
             placeholder="Senha"
             placeholderTextColor='black'
             secureTextEntry={true}
@@ -49,66 +74,14 @@ class LoginEmail extends Component {
                 color: 'white',
                 fontSize: 18,
               }}>
-              Entrar </Text>
+              Cadastrar </Text>
           </TouchableOpacity>
-
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', margin: 10 }}>
-            <TouchableOpacity
-              style={style.forgotPassButton}
-              onPress={() => { }}  >
-              <Text
-                style={{
-                  color: "orange",
-                }}>
-                Esqueceu a senha! </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={style.forgotPassButton}
-              onPress={() => this.props.navigation.navigate("SignUp")} >
-              <Text
-                style={{
-                  color: "orange",
-                }}>
-                Cadastre-se </Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={{
-            flex: 1, justifyContent: 'space-around',
-            flexDirection: 'row',
-            alignItems: "center"
-          }}>
-            <TouchableOpacity
-              style={style.loginButton}
-              onPress={() => this.props.navigation.navigate('bottomNavigator')}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 18,
-                }}>
-                Entrar sem login
-                            </Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={style.loginButton}
-              onPress={() => this.props.navigation.navigate('supermarket')}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 18,
-                }}>
-                Entrar super
-                            </Text>
-            </TouchableOpacity>
-          </View>
-
-
         </View>
       </View>
     );
   }
 }
-export default LoginEmail;
+export default SignUp;
 
 const style = {
   inputContainer: {
@@ -118,12 +91,20 @@ const style = {
     backgroundColor: 'white',
     marginHorizontal: 40
   },
-  inputStyle: {
+  inputStyle1: {
+    flex: 1,
     marginTop: 15,
     marginBottom: 10,
     backgroundColor: '#eeeeee',
+    marginHorizontal:10,
+    textAlign:'center'
   },
-
+  inputStyle2:{
+    marginTop: 15,
+    marginBottom: 10,
+    backgroundColor: '#eeeeee',
+    textAlign: 'center'
+  },
   loginButton: {
     alignItems: 'center',
     marginTop: 15,
