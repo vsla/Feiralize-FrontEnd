@@ -1,40 +1,53 @@
 import React, {
-    Component
+  Component
 } from 'react';
-import { createMaterialTopTabNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import Supermercado from '../pages/Supermercado';
 import CartScreen from '../pages/Carrinho';
-
-const BuyNavigator = createMaterialTopTabNavigator(
-    {
-    Produtos: {
-        screen: CartScreen,
-        navigationOptions: {
-            tabBarLabel: 'Carrinho',
-        }
+import Pagamento from '../pages/Pagamento';
+import Details from '../pages/Details';
+const BuyNavigator = createStackNavigator(
+  {
+    Cart: {
+      screen: CartScreen,
+      navigationOptions: {
+        headerTitle: 'Carrinho'
+      }
     },
-    Mercados: {
-        screen: Supermercado,
-        navigationOptions: {
-            tabBarLabel: 'COMPRAR',
-        }
-    }
-},
-{
+    Supermarkets: {
+      screen: Supermercado,
+      navigationOptions: {
+        headerTitle: 'Supermercados',
+      }
+    },
+    checkout: {
+      screen: Pagamento,
+      navigationOptions: () => ({
+        header: null,
+      })
+    },
+    Details: {
+      screen: Details,
+      navigationOptions: () => ({
+        header: null,
+      })
+    },
+  },
+  {
     tabBarOptions: {
-        activeTintColor: 'white',
-        inactiveTintColor: '#5d5d5d',
-        style: {
-            backgroundColor: 'darkorange'
-        },
-        indicatorStyle: {
-            height: 5,
-            color: 'white',
-            backgroundColor: "white",
-        },
-        labelStyle:{
-            fontSize:15
-        }
+      activeTintColor: 'white',
+      inactiveTintColor: '#5d5d5d',
+      style: {
+        backgroundColor: 'darkorange'
+      },
+      indicatorStyle: {
+        height: 5,
+        color: 'white',
+        backgroundColor: "white",
+      },
+      labelStyle: {
+        fontSize: 15
+      }
     }
-});
+  });
 export default BuyNavigator;
