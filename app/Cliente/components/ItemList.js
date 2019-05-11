@@ -18,14 +18,21 @@ class ItemList extends Component {
     }
   }
   componentWillMount = () => {
-    axios.get('https://feiralize-server.herokuapp.com/category/all')
+    axios.get('https://feiralize-server.herokuapp.com/category/all/sub/' + this.state.routeName)
          .then(response => {
-             console.log(response)
+           console.log(response.data.subCategories)
+           this.setState({
+             data: response.data.subCategories,
+             isLoading: false
+           })
+         })
+         .catch((error)=>{
+           console.log(error)
          })
     // get cate --> https://feiralize-server.herokuapp.com/category/all
     // sub --> https://feiralize-server.herokuapp.com/category/all/sub/id
     // Só troca o id para um novo
-    
+    /*
     axios.get('https://feiralize-api.herokuapp.com/products')
       .then(response => {
         const data = []
@@ -35,7 +42,7 @@ class ItemList extends Component {
             data.push(originalArray[index])
           }
         }
-        console.log(data)
+        console.log(response.data)
         this.setState({
           fullData: response.data,
           data: data,
@@ -43,6 +50,7 @@ class ItemList extends Component {
         })
       })
       .catch(error => { })
+      */
     //Verifica qual produto é de cada tela
   }
   showModal = () => {

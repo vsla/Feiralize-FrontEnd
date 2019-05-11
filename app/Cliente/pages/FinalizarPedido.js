@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import ReuseIcon from "../components/ReuseIcon";
 
-class ListaProduto extends Component {
+class FinalizarPedido extends Component {
   static navigationOptions = {
     header: null,
     title: 'Home',
@@ -92,7 +92,7 @@ class ListaProduto extends Component {
     );
   }
 }
-export default ListaProduto
+export default FinalizarPedido
 const style = {
   viewStyle: {
     flex: 1,

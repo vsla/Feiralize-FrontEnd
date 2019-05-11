@@ -4,7 +4,7 @@ import ReuseIcon from "../components/ReuseIcon";
 import DataCard from "../components/DataCard";
 import HorarioCard from "../components/HorarioCard"
 
-class ListaProduto extends Component {
+class Agendamento extends Component {
   static navigationOptions = {
     header: null,
     title: 'Home',
@@ -29,7 +29,7 @@ class ListaProduto extends Component {
     );
   }
 }
-export default ListaProduto
+export default Agendamento
 const style = {
   viewStyle: {
     flex: 1,

@@ -10,7 +10,7 @@ class ItemCard extends Component {
   constructor(props) {
     super(props),
       this.state = {
-        imageUrl: 'https://raw.githubusercontent.com/wedeploy-examples/supermarket-web-example/master/ui/assets/images/' + this.props.data.filename,
+        imageUrl: this.props.data.pic ,
         pressed: this.props.cartItems.includes(this.props.data) ? true : false,
         buttonStyle: this.props.cartItems.includes(this.props.data) ? { backgroundColor: '#0d7401' } : { backgroundColor: 'white' },
         IconName: this.props.cartItems.includes(this.props.data) ? 'checkmark' : 'add',
@@ -74,7 +74,7 @@ class ItemCard extends Component {
         </TouchableOpacity>
         <View style={style.textContainer}>
           <Text >
-            {this.props.data.title}
+            {this.props.data.name}
           </Text>
         </View>
       </View>

@@ -5,39 +5,10 @@ import data from "../assets/data/products.json";
 
 const ListaProdutoTabNav = createMaterialTopTabNavigator(
     {
-        dairy:{
+        "8326ef03-3cfb-4693-9c3b-23cdeb6d3011": {
             screen: ItemList,
             navigationOptions: {
-                tabBarLabel: 'dairy',
-            }
-        },
-        fruit: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'fruit',
-            }
-        },
-        vegetable: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'vegetable',
-            }
-        },
-        bakery: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'bakery',
-            }
-        },
-        vegan: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'vegan',
-            }
-        }, meat: {
-            screen: ItemList,
-            navigationOptions: {
-                tabBarLabel: 'meat',
+              tabBarLabel: 'Enlatados',
             }
         },
     },

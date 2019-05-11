@@ -8,6 +8,7 @@ import store  from "./app/Cliente/redux/index";
 class App extends React.Component {
   constructor(props){
     super(props)
+    console.log('oi1')
     navigator.geolocation.getCurrentPosition((location) => {
       console.log(location)
     },(error) => {console.log(error)})
