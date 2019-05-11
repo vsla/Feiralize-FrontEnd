@@ -24,6 +24,8 @@ class ItemList extends Component {
          })
     // get cate --> https://feiralize-server.herokuapp.com/category/all
     // sub --> https://feiralize-server.herokuapp.com/category/all/sub/id
+    // Só troca o id para um novo
+    
     axios.get('https://feiralize-api.herokuapp.com/products')
       .then(response => {
         const data = []
