@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { createStackNavigator} from 'react-navigation';
 import Login from "../pages/Login";
 import LoginEmail from "../pages/loginEmail"
-
+import SignUp from '../pages/SignUp';
 
 const LoginRoute = createStackNavigator(
   /**
@@ -17,9 +17,12 @@ const LoginRoute = createStackNavigator(
         header: null,
       })
     },
-  },
-  {
-    
+    SignUp: {
+      screen: SignUp,
+      navigationOptions: () => ({
+        header: null,
+      })
+    }
   }
 )
 export default LoginRoute;

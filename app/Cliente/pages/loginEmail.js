@@ -64,7 +64,7 @@ class LoginEmail extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={style.forgotPassButton}
-              onPress={() => this.props.navigation.navigate("SignUp")} >
+              onPress={() => {this.props.navigation.navigate("SignUp")}} >
               <Text
                 style={{
                   color: "orange",

@@ -4,8 +4,6 @@ import BottomNavigator from './BottomNavigator';
 import LoginRoute from './LoginRoute';
 import DrawerNav from '../../Supermercado/routes/DrawerNavigator';
 import PedidoRoute from '../../Supermercado/routes/PedidoRoute';
-import LoginEmail from "../pages/loginEmail"
-import SignUp from '../pages/SignUp';
 
 const InitialRoute = createSwitchNavigator(
 	/** 
@@ -15,7 +13,7 @@ const InitialRoute = createSwitchNavigator(
 	**/
 	{
 		loginRoute: {
-			screen: LoginEmail,
+			screen: LoginRoute,
 			navigationOptions: () => ({
 				header: null,
 			})
@@ -32,12 +30,7 @@ const InitialRoute = createSwitchNavigator(
 				header: null,
 			})
 		},
-		SignUp: {
-			screen: SignUp,
-			navigationOptions: () => ({
-				header: null,
-			})
-		}
+		
 	}
 );
 
