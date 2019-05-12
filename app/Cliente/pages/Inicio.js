@@ -8,12 +8,12 @@ export default class Inicio extends Component {
 		return (
 			<View style={{ flex: 1, justifyContent: "center", alignItems: "stretch", backgroundColor: "white" }}>
 				<View style={{ flex: 1, justifyContent: "center", alignItems: "center", marginBottom: 0, backgroundColor: "white" }}>
-					<Text style={style.textStyle}>Crie uma feira!</Text>
+					<Text style={style.textStyle}>Faça sua feira</Text>
 				</View>
-				<View style={{ flex: 3, justifyContent: "space-between", alignItems: "stretch", marginHorizontal: 30, marginBottom: 15, backgroundColor: 'white' }}>
-					<FeiraButton text="Fazer feira" linkTo="ShoppingRoute" navigate={this.props.navigation.navigate} />
-					<FeiraButton text="Tire uma foto da lista com a câmera" linkTo='' />
-					<FeiraButton text="Bipar no estabelecimento" linkTo='' />
+				
+				<View style={{ flex: 3,alignItems:'center', justifyContent: "center",  marginHorizontal: 30, marginBottom: 15 }}>
+					<FeiraButton text="Adicionar produtos ao carrinho" linkTo="ShoppingRoute" navigate={this.props.navigation.navigate} />
+
 				</View>
 			</View>
 		)
@@ -48,8 +48,7 @@ class FeiraButton extends Component {
 const style = {
 	buttonStyle: {
 		backgroundColor: "#efefef",
-		flex: 2,
-		marginTop: 30,
+		padding:30,
 		justifyContent: 'center',
 		borderRadius: 40,
 		elevation: 4
