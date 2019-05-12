@@ -87,7 +87,7 @@ class Login extends Component {
 
         <View style={style.BuyButton}>
           <TouchableOpacity
-            onPress={() => this.props.screenProps.navigate("checkout")}>
+            onPress={() => this.props.screenProps.navigate("scheduling")}>
             <Text style={style.Texto}>
               COMPRAR
                         </Text>

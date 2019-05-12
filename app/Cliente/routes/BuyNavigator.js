@@ -4,8 +4,10 @@ import React, {
 import { createStackNavigator } from 'react-navigation';
 import Supermercado from '../pages/Supermercado';
 import CartScreen from '../pages/Carrinho';
-import Pagamento from '../pages/Pagamento';
+import FinalizarPedido from '../pages/FinalizarPedido';
 import Details from '../pages/Details';
+import Agendamento from '../pages/Agendamento';
+
 const BuyNavigator = createStackNavigator(
   {
     Cart: {
@@ -20,10 +22,14 @@ const BuyNavigator = createStackNavigator(
         headerTitle: 'Supermercados',
       }
     },
-    checkout: {
-      screen: Pagamento,
+    scheduling:{
+      screen: Agendamento,
       navigationOptions: () => ({
-        header: null,
+      })
+    },
+    checkout: {
+      screen: FinalizarPedido,
+      navigationOptions: () => ({
       })
     },
     Details: {

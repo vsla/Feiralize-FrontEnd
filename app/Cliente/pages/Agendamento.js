@@ -6,14 +6,11 @@ import HorarioCard from "../components/HorarioCard"
 
 class Agendamento extends Component {
   static navigationOptions = {
-    header: null,
-    title: 'Home',
+    title: 'Agendamento',
 
   };
-  render() {
-    return (
-      <View style={style.viewStyle}>
-        < View style={style.headerStyle} >
+  /*
+          < View style={style.headerStyle} >
           < TouchableOpacity style={{ marginLeft: 35 }} onPress={() => this.props.navigation.navigate("Compra")}>
             <ReuseIcon
               name="arrow-dropleft"
@@ -23,8 +20,12 @@ class Agendamento extends Component {
           </TouchableOpacity>
           <Text style={style.textStyle}>Agendar entrega</Text>
         </View>
+  */
+  render() {
+    return (
+      <View style={style.viewStyle}>
         <DataCard/>
-        <HorarioCard/>
+        <HorarioCard navigation={this.props.navigation}/>
       </View>
     );
   }

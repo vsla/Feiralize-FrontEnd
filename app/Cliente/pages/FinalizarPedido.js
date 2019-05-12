@@ -4,15 +4,11 @@ import ReuseIcon from "../components/ReuseIcon";
 
 class FinalizarPedido extends Component {
   static navigationOptions = {
-    header: null,
-    title: 'Home',
+    title: 'Finalizar pedido',
 
   };
-  render() {
-    return (
-      <View style={style.viewStyle}>
-        <ScrollView>
-          < View style={style.headerStyle} >
+  /*
+            < View style={style.headerStyle} >
             < TouchableOpacity style={{ marginLeft: 35 }} onPress={() => this.props.navigation.navigate("Compra")}>
               <ReuseIcon
                 name="arrow-dropleft"
@@ -22,7 +18,11 @@ class FinalizarPedido extends Component {
             </TouchableOpacity>
             <Text style={style.textHeaderStyle}>Finalizar pedido</Text>
           </View>
-
+  */
+  render() {
+    return (
+      <View style={style.viewStyle}>
+        <ScrollView>
           <Text style={style.textStyle}>Fornecedor</Text>
           <View style={{backgroundColor: 'white', height: 60, borderTopColor: 'lavender', 
                         borderTopWidth: 0.8, borderBottomColor: 'lavender', borderBottomWidth: 0.8,
@@ -115,6 +115,6 @@ const style = {
     fontWeight: 'bold', 
     fontSize: 15, 
     marginLeft: 15,
-    marginTop: 10
+    marginTop: 5
   }
 }
