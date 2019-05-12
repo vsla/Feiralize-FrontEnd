@@ -69,7 +69,7 @@ class Login extends Component {
         </View>
         <View style={style.BuyButton}>
           <TouchableOpacity
-            onPress={() => this.props.screenProps.navigate("Pagamento")}>
+            onPress={() => this.props.navigation.navigate("scheduling")}>
             <Text style={{
               color: 'white'
             }}>

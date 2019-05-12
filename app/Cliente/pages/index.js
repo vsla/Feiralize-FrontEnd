@@ -9,7 +9,6 @@ import ItemSearching from './ItemSearching';
 import ListaProduto from './ListaProduto';
 import Login from './Login';
 import LoginEmail from './loginEmail';
-import Pagamento from './Pagamento';
 import Perfil from 'Perfil';
 import Supermercado from './Supermercado';
 
@@ -26,6 +25,6 @@ export {
   ListaProduto,
   Login,
   LoginEmail,
-  Pagamento, Perfil, Supermercado
+   Perfil, Supermercado
   }
 
