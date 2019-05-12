@@ -71,7 +71,7 @@ class ItemList extends Component {
             data={this.state.data}
             style={style.flatStyle}
             numColumns={2}
-            keyExtractor={item => item.title}
+            keyExtractor={item => item.name}
             renderItem={({ item }) =>
               <ItemCard data={item} showModal={this.showModal}/>}
           />

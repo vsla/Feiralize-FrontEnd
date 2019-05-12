@@ -1,12 +1,20 @@
 import React, { Component } from "react";
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, Alert } from "react-native";
 import ReuseIcon from "../components/ReuseIcon";
-
+import { connect } from 'react-redux';
+import * as actions from "../redux/actions/action";
+import firebase from 'firebase';
 class FinalizarPedido extends Component {
   static navigationOptions = {
     title: 'Finalizar pedido',
 
   };
+  constructor(props){
+    super(props)
+    this.state = {
+      selected: 'dinheiro'
+    }
+  }
   /*
             < View style={style.headerStyle} >
             < TouchableOpacity style={{ marginLeft: 35 }} onPress={() => this.props.navigation.navigate("Compra")}>
@@ -19,6 +27,43 @@ class FinalizarPedido extends Component {
             <Text style={style.textHeaderStyle}>Finalizar pedido</Text>
           </View>
   */
+
+  confirmarCompra = () => {
+      Alert.alert(
+        'Confirmar compra de R$ ' + (Math.round(this.props.cartValue * 100) / 100),
+        '',
+        [
+          {
+            text: 'Cancelar',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK',
+            onPress: () => {
+              var newPostKey = firebase.database().ref('/teste/data/feirasProntas/').push().key
+              firebase.database().ref('/teste/data/feirasProntas/' + newPostKey).set({
+                key: newPostKey,
+                status: 'PENDENTE',
+                items: this.props.cartItems,
+                price: (Math.round(this.props.cartValue * 100) / 100),
+                delivery: {
+                  type: 'Entrega em domicílio',
+                  date: "Segunda",
+                  hour: "13:00",
+                  location: 'Avenida Domingo Ferreira, 1034, apt 701'
+                },
+                notes: '',
+                payment: this.state.selected
+              });
+              this.props.add_payment_method(this.state.selected);
+            }
+          },
+        ],
+      );
+
+
+  }
   render() {
     return (
       <View style={style.viewStyle}>
@@ -83,16 +128,30 @@ class FinalizarPedido extends Component {
           </View>
       
           <Text style={style.textStyle}>Forma de pagamento</Text>
-          <View style={{backgroundColor: 'white', height: 150, borderTopColor: 'lavender', 
+          <View style={{backgroundColor: 'white', height: 50, borderTopColor: 'lavender', 
                         borderTopWidth: 0.8, borderBottomColor: 'lavender', borderBottomWidth: 0.8,
-                        padding: 15, marginBottom: 30}}>
+                        padding: 15, marginBottom: 10}}>
           </View>
+          <TouchableOpacity
+          style={{alignSelf:'center', backgroundColor:'darkorange', padding:10, borderRadius:50}}
+            onPress={() => { this.confirmarCompra()}}
+          >
+            <Text style={{color:'white', fontSize:18}}>Finalizar Feira</Text>
+          </TouchableOpacity>
         </ScrollView>
       </View>
     );
   }
 }
-export default FinalizarPedido
+const mapStateToProps = (state) => {
+  return {
+    cartValue: state.cartValue,
+    cartItems: state.cart
+  }
+}
+
+export default connect(mapStateToProps, actions)(FinalizarPedido);
+
 const style = {
   viewStyle: {
     flex: 1,

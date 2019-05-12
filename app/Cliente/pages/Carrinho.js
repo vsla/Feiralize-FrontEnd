@@ -7,11 +7,12 @@ import ReuseIcon from "../components/ReuseIcon";
 
 class Carrrinho extends Component {
   render() {
+    console.log(this.props.cart)
     return (
       < View style={{ flex: 1 }}>
         <FlatList
           data={this.props.cart}
-          keyExtractor={item => item.title}
+          keyExtractor={item => item.name}
           renderItem={({ item }) =>
             <CartCard item={item} />}
         />
