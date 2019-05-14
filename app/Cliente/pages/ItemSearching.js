@@ -51,6 +51,7 @@ export default class App extends Component {
             <TextInput style={style.textStyle}
               placeholder="Buscar item" onChangeText={this.handleSearch}
               placeholderTextColor='white'
+              autoFocus={true}
             />
             < ReuseIcon
               name="search"
@@ -109,13 +110,15 @@ const style = {
     backgroundColor: 'darkorange',
     justifyContent: "space-between",
     alignItems: 'center',
+    elevation: 10
   },
   inputStyle: {
     flex: 2,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center',
-    marginRight: 20
+    marginRight: 20,
+    
   },
   textStyle: {
     fontSize: 20,
