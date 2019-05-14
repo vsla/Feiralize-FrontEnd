@@ -5,7 +5,8 @@ import ItemCard from './ItemCard';
 import { connect } from 'react-redux'
 import CartScreen from '../pages/Carrinho'
 import * as actions from "../redux/actions/action";
-import { Overlay } from 'react-native-elements';
+import DefaultOverlay from './Overlay';
+
 class ItemList extends Component {
   constructor(props) {
     super(props);
@@ -56,6 +57,9 @@ class ItemList extends Component {
   showModal = () => {
     this.setState({ showModal: true })
   }
+  closeModal = () => {
+    this.setState({ showModal: false })
+  }
   render() {
     if (this.state.isLoading) {
       return (
@@ -75,19 +79,7 @@ class ItemList extends Component {
             renderItem={({ item }) =>
               <ItemCard data={item} showModal={this.showModal}/>}
           />
-          <Overlay
-            isVisible={this.state.showModal}
-          >
-            <View style={{flex:1,justifyContent:'center', alignItems:'center'}}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.setState({ showModal: false })
-                }}
-              >
-                <Text>Voltar</Text>
-              </TouchableOpacity>
-            </View>
-          </Overlay>
+          <DefaultOverlay parentState={this.state} closeModal = {this.closeModal}/>
         </View>
       );
     }

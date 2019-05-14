@@ -4,11 +4,6 @@ import ListaProdutoTabNav from '../routes/ListaProdutoNav'
 import ReuseIcon from "../components/ReuseIcon";
 
 class ListaProduto extends Component {
-  static navigationOptions = {
-    header: null,
-    title: 'Home',
-
-  };
   render() {
     return (
       <View style={style.viewStyle}>
@@ -19,6 +14,11 @@ class ListaProduto extends Component {
               placeholder="Buscar item"
               placeholderTextColor='white'
               onFocus={() => this.props.navigation.navigate('ItemSearching')}
+            />
+            < ReuseIcon
+              name="search"
+              color='white'
+              size={30}
             />
           </View>
         </View>

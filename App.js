@@ -26,7 +26,7 @@ class App extends React.Component {
     }
 
   render() {
-    console.ignoredYellowBox = ["Warning:"];
+    console.disableYellowBox = true;
     return (
       // The app start calling InitialRoute in routes
       <Provider store={store}>

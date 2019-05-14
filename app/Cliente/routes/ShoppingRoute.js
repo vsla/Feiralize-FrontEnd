@@ -12,6 +12,9 @@ const ShoppingRoute = createStackNavigator(
   {
     ListaProduto: {
       screen: ListaProduto,
+      navigationOptions: () => ({
+        header: null,
+      })
 
     },
     ItemSearching: {

@@ -18,46 +18,46 @@ export default class App extends React.Component {
 
   renderPickerItems() {
     return this.state.items.map((item) => {
-        return (
-            <Picker.Item
-                label={item.label}
-                value={item.value}
-                key={item.key || item.label}
-                color= '#8d8d8d'
-            />
-        );
+      return (
+        <Picker.Item
+          label={item.label}
+          value={item.value}
+          key={item.key || item.label}
+          color='#8d8d8d'
+        />
+      );
     });
-}
+  }
 
   render() {
     return (
-        <RNPickerSelect
-            placeholder = {{}}
-            useNativeAndroidPickerStyle={false}
-            items={this.state.items}
-            onValueChange={value => {
-              this.setState({
-                pickerSelection: value,
-              });
-			}}
-            style = {{
-				//Controla o conteúdo do picker, as opções
-				inputAndroid: {
-					flex:1,
-					fontSize: 13,
-					paddingLeft:0,
-            		paddingRight: 2,
-            		color: '#555555',
-					marginLeft: 10,
-            	},
-            	// style do container, background
-            	inputAndroidContainer: {
-            		backgroundColor: "#f5f5f5",
-					borderRadius: 15,
-				},
-            }}
-        />
-     
+      <RNPickerSelect
+        placeholder={{}}
+        useNativeAndroidPickerStyle={false}
+        items={this.state.items}
+        onValueChange={value => {
+          this.setState({
+            pickerSelection: value,
+          });
+        }}
+        style={{
+          //Controla o conteúdo do picker, as opções
+          inputAndroid: {
+            flex: 1,
+            fontSize: 13,
+            paddingLeft: 0,
+            paddingRight: 2,
+            color: '#555555',
+            marginLeft: 10,
+          },
+          // style do container, background
+          inputAndroidContainer: {
+            backgroundColor: "#f5f5f5",
+            borderRadius: 15,
+          },
+        }}
+      />
+
     );
   }
 }
