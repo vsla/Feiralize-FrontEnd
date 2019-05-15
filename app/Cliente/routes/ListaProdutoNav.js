@@ -8,7 +8,7 @@ const ListaProdutoTabNav = createMaterialTopTabNavigator(
         "8326ef03-3cfb-4693-9c3b-23cdeb6d3011": {
             screen: ItemList,
             navigationOptions: {
-              tabBarLabel: 'Enlatados',
+                tabBarLabel: 'Bebidas',
             }
         },
     },
@@ -38,7 +38,22 @@ function get_categories(categories, ItemList) {
       .then(response => {
           categories = response
           console.log(1,categories.data)
+          return categories.data
       })
+      .then(data => {
+        console.log('oi')
+        var routes = {};
+            for (var index in categories) {
+                route[categories[index]] = {
+                    screen: ItemList,
+                    navigationOptions: {
+                        tabBarLabel: categories[index],
+                    }
+                };
+            }
+        return routes
+      })
+    
   axios.get('http://25adb2af.ngrok.io/category/all/sub/14173240-3818-4585-9387-c667be08a6b5')
     .then(response => {
       //console.log(2,response)

@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import ShoppingRoute from './ShoppingRoute';
 import Perfil from '../pages/Perfil';
+//import PerfilTemp from '../pages/perfilTemp';
 import Inicio from '../pages/Inicio';
 import Historico from '../pages/Historico';
 import ReuseIcon from '../components/ReuseIcon';
@@ -27,8 +28,6 @@ const BottomNavigator = createBottomTabNavigator(
             }     
         }),    
     },
-    
-
     ShoppingRoute: {
       screen: ShoppingRoute,
       navigationOptions: () => ({
@@ -75,8 +74,6 @@ const BottomNavigator = createBottomTabNavigator(
     },
   },
   {
-
-
     tabBarOptions: {
       labelStyle: {
         fontSize: 13,
@@ -88,7 +85,6 @@ const BottomNavigator = createBottomTabNavigator(
       activeTintColor: 'darkorange',
       inactiveTintColor: 'gray'
     }
-
   }
 )
 export default BottomNavigator;

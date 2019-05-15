@@ -3,6 +3,8 @@ import { View, Image, TextInput, TouchableOpacity, Text, Alert } from 'react-nat
 import theme from '../styles/theme.style';
 import HeaderLogin from '../components/HeaderLogin';
 import firebase from 'firebase';
+import axios from 'axios';
+
 
 class SignUp extends Component {
   constructor(props){
@@ -16,36 +18,33 @@ class SignUp extends Component {
 
     }
   }
-
-  loginMethod() {
-    const { email, password } = this.state;
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
-          .catch(() => {
-            Alert.alert("Email existente ou senha muito curta\n Adicione letras e números.")
-          })
-      })
-    Alert.alert("Logado com sucesso!");
+  
+  signUp = () => {
+    axios.post('https://4e8e57a2.ngrok.io/client/register',{
+      name:this.state.firstName + ' ' + this.state.secondName,
+      email:this.state.email,
+      password:this.state.password
+    }).then((response) => {
+      console.log(response.data)
+    })
     this.props.navigation.navigate('bottomNavigator')
   }
-
   render() {
     return (
       <View style={{ flex: 2, backgroundColor: 'white' }}>
         <HeaderLogin />
         <View style={style.inputContainer}>
-          <View style={{flexDirection:'row', justifyContent:'space-around', alignItems:'center'}} >
+          <View style={{flexDirection:'row', justifyContent:'flex-start', alignItems:'center'}} >
             <TextInput style={style.inputStyle1}
-              value={this.state.email}
+              value={this.state.firstName}
               onChangeText={name => this.setState({ firstName: name })}
               placeholder="Nome"
               placeholderTextColor='black'
               keyboardType='default'
             />    
             <TextInput style={style.inputStyle1}
-              value={this.state.email}
-              onChangeText={LastName => this.setState({ LastName: LastName })}
+              value={this.state.secondName}
+              onChangeText={LastName => this.setState({ secondName: LastName })}
               placeholder="Sobrenome"
               placeholderTextColor='black'
               keyboardType='default'
@@ -68,7 +67,7 @@ class SignUp extends Component {
 
           <TouchableOpacity
             style={style.loginButton}
-            onPress={() => this.loginMethod()}>
+            onPress={() => this.signUp()}>
             <Text
               style={{
                 color: 'white',
@@ -86,7 +85,7 @@ export default SignUp;
 const style = {
   inputContainer: {
     flex: 2,
-    justifyContent: 'space-around',
+    justifyContent: 'flex-start',
     alignItems: 'stretch',
     backgroundColor: 'white',
     marginHorizontal: 40

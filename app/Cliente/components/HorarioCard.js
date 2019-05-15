@@ -6,7 +6,9 @@ class FlatListItem extends Component {
   render() {
     return (
       <View style={{backgroundColor: 'white'}}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => { this.props.navigation.navigate('checkout')}}
+        >
           <Text style={styles.textStyle}>{this.props.item.hora}</Text>
         </TouchableOpacity>
         <View style={styles.lineStyle}></View>
@@ -14,7 +16,11 @@ class FlatListItem extends Component {
       );
   }
 }
-export default class HorarioCard extends React.Component {
+export default class HorarioCard extends Component {
+  constructor(props){
+    super(props)
+    
+  }
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -26,8 +32,8 @@ export default class HorarioCard extends React.Component {
           data={flatListData}
           renderItem={({item, index})=>{
             return (
-              <FlatListItem item={item} index={index}>
-              </FlatListItem>);
+              <FlatListItem item={item} index={index} navigation={this.props.navigation}/>
+              );
           }}>
         </FlatList>
  

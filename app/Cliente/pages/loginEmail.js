@@ -3,7 +3,7 @@ import { View, Image, TextInput, TouchableOpacity, Text, Alert } from 'react-nat
 import theme from '../styles/theme.style';
 import HeaderLogin from '../components/HeaderLogin';
 import firebase from 'firebase';
-
+import axios from 'axios';
 class LoginEmail extends Component {
   state = { email: '', password: '', error: '' }
 
@@ -19,7 +19,19 @@ class LoginEmail extends Component {
       })
     Alert.alert("Logado com sucesso!");
     this.props.navigation.navigate('bottomNavigator')
+  }
+  //gaychiu@chiu.gay
+  //gayzinho1234
 
+  login = () => {
+    axios.post('https://4e8e57a2.ngrok.io/client/login', {
+      email: this.state.email,
+      password: this.state.password
+    }).then((response) => {
+      console.log(response.data)
+    })
+
+    this.props.navigation.navigate('bottomNavigator')
   }
   render() {
     return (
@@ -43,7 +55,7 @@ class LoginEmail extends Component {
 
           <TouchableOpacity
             style={style.loginButton}
-            onPress={() => this.loginMethod()}>
+            onPress={() => this.login()}>
             <Text
               style={{
                 color: 'white',

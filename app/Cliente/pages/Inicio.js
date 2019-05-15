@@ -13,7 +13,6 @@ export default class Inicio extends Component {
 				
 				<View style={{ flex: 3,alignItems:'center', justifyContent: "center",  marginHorizontal: 30, marginBottom: 15 }}>
 					<FeiraButton text="Adicionar produtos ao carrinho" linkTo="ShoppingRoute" navigate={this.props.navigation.navigate} />
-
 				</View>
 			</View>
 		)
@@ -51,7 +50,7 @@ const style = {
 		padding:30,
 		justifyContent: 'center',
 		borderRadius: 40,
-		elevation: 4
+		elevation: 4,
 	},
 	textButton: {
 		fontSize: 18,

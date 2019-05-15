@@ -17,7 +17,7 @@ export default class HeaderLogin extends Component {
 
 const style = {
   logoContainer: {
-    flex: 1,
+    flex: 1.5,
     backgroundColor: theme.BG_color,
     justifyContent: 'center',
     alignItems: 'center',
