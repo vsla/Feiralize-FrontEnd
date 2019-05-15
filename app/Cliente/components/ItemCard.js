@@ -1,6 +1,7 @@
 //PRODUCTS
 import React, { Component } from 'react';
-import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { Badge } from 'react-native-elements';
 import ReuseIcon from './ReuseIcon';
 import { connect } from "react-redux";
 import * as actions from "../redux/actions/action";
@@ -12,31 +13,14 @@ class ItemCard extends Component {
       this.state = {
         imageUrl: this.props.data.pic ,
         pressed: this.props.cartItems.includes(this.props.data) ? true : false,
-        buttonStyle: this.props.cartItems.includes(this.props.data) ? { backgroundColor: '#0d7401' } : { backgroundColor: 'white' },
-        IconName: this.props.cartItems.includes(this.props.data) ? 'checkmark' : 'add',
-        corStyle: this.props.cartItems.includes(this.props.data) ? 'green' : 'orange',
+        buttonStyle: { backgroundColor: 'white' },
+        IconName: 'add',
+        corStyle: 'orange',
 
       };
   }
   buttonPressed = () => {
-    if (this.state.pressed) {
-      this.props.remove_from_cart(this.props.data)
-      this.setState({
-        pressed: false,
-        buttonStyle: { backgroundColor: 'white' },
-        IconName: 'add',
-        corStyle: 'orange',
-      })
-    } else {
-      this.props.add_to_cart(this.props.data)
-      this.setState({
-        pressed: true,
-        buttonStyle: { backgroundColor: '#0d7401' },
-        IconName: 'checkmark',
-        corStyle: 'green',
-      })
-      this.props.showModal()
-    }
+    this.props.showModal()
   }
 
   render() {
@@ -76,6 +60,7 @@ class ItemCard extends Component {
           <Text >
             {this.props.data.name}
           </Text>
+          <Badge value="0" status='primary' containerStyle={{marginRight:10}}/>
         </View>
       </View>
     );
@@ -91,7 +76,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, actions)(ItemCard);
 
 
-const style = {
+const style = StyleSheet.create({
   containerStyle: {
     flex: 1,
     margin: 10,
@@ -104,10 +89,11 @@ const style = {
     elevation: 2,
   },
   textContainer: {
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 10,
     marginLeft: 10,
+    flexDirection:'row'
   },
   imageStyle: {
     height: 150,
@@ -116,5 +102,5 @@ const style = {
     flex: 1,
     tintColor: "green"
   },
-}
+})
 
