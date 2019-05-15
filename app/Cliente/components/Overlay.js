@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Dimensions, FlatList } from 'react-native'
 import { Overlay, CheckBox } from 'react-native-elements';
 import ReuseIcon from './ReuseIcon';
-import { Picker } from 'native-base';
+import Picker from './Picker'
 import { connect } from "react-redux";
 import * as actions from "../redux/actions/action";
 
@@ -156,27 +156,33 @@ class BrandComponent extends Component {
 
   render() {
     return (
-      <View style={{ marginVertical: 5, }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          < Picker data={[{
-            label: '8 kg',
-            value: '8',
-          },
-          {
-            label: '8 kg',
-            value: '8',
-          },
-          {
-            label: '8 kg',
-            value: '8',
-          },
-          ]}
-          />
+      <View style={{ marginVertical: 5,}}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{marginLeft:5}}>
+            < Picker data={[{
+              label: '8 kg',
+              value: '8',
+            },
+            {
+              label: '8 kg',
+              value: '8',
+            },
+            {
+              label: '8 kg',
+              value: '8',
+            },
+            ]}
+            type={2}
+            />
+          </View>
           <Text>Quinta do morgado</Text>
+          
           <CheckBox
             checked={this.state.checked}
-            onPress={() => {this.pressCheckBox()}}
+            onPress={() => { this.pressCheckBox() }}
+            containerStyle={{margin:0,padding:0}}
           />
+          
         </View>
       </View>
     )
