@@ -142,7 +142,7 @@ class BrandComponent extends Component {
         checked:true
       })
       var selectedBrand = this.props.greatParentProps.parentState.data[0]
-      selectedBrand['selected-brand'] = 'sao braz'
+      selectedBrand['selected-brand'] = 'Quinta do morgado'
       selectedBrand['amount'] = '1kg'
       console.log(selectedBrand)
       this.props.greatParentProps.add_to_cart(selectedBrand)
