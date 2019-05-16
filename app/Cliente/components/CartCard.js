@@ -25,6 +25,7 @@ class CartCard extends Component {
               value: '8',
             },
             ]}
+            type={1}
             />
           </View>
           <Text style={style.text}>{this.props.item.name}</Text>
@@ -42,6 +43,7 @@ class CartCard extends Component {
               value: 'Santa clara',
             },
             ]}
+            type={1}
             />
           </View>
           <TouchableOpacity // Carrinho de remover

@@ -30,35 +30,66 @@ export default class App extends React.Component {
   }
 
   render() {
-    return (
-      <RNPickerSelect
-        placeholder={{}}
-        useNativeAndroidPickerStyle={false}
-        items={this.state.items}
-        onValueChange={value => {
-          this.setState({
-            pickerSelection: value,
-          });
-        }}
-        style={{
-          //Controla o conteúdo do picker, as opções
-          inputAndroid: {
-            flex: 1,
-            fontSize: 13,
-            paddingLeft: 0,
-            paddingRight: 2,
-            color: '#555555',
-            marginLeft: 10,
-          },
-          // style do container, background
-          inputAndroidContainer: {
-            backgroundColor: "#f5f5f5",
-            borderRadius: 15,
-          },
-        }}
-      />
+    if(this.props.type === 1){
+      return (
+        <RNPickerSelect
+          placeholder={{}}
+          useNativeAndroidPickerStyle={false}
+          items={this.state.items}
+          onValueChange={value => {
+            this.setState({
+              pickerSelection: value,
+            });
+          }}
+          style={{
+            //Controla o conteúdo do picker, as opções
+            inputAndroid: {
+              flex: 1,
+              fontSize: 13,
+              color: '#555555',
+              marginLeft: 10,
+            },
+            // style do container, background
+            inputAndroidContainer: {
+              backgroundColor: "#f5f5f5",
+              borderRadius: 15,
+            },
+          }}
+        />
 
-    );
+      );
+    } else if (this.props.type === 2){
+      return (
+        <RNPickerSelect
+          placeholder={{}}
+          useNativeAndroidPickerStyle={false}
+          items={this.state.items}
+          onValueChange={value => {
+            this.setState({
+              pickerSelection: value,
+            });
+          }}
+          style={{
+            //Controla o conteúdo do picker, as opções
+            inputAndroid: {
+              flex: 1,
+              fontSize: 13,
+              color: '#555555',
+              marginLeft: 5,
+              marginRight:3,
+            },
+            // style do container, background
+            inputAndroidContainer: {
+              backgroundColor: "#f5f5f5",
+              borderRadius: 15,
+              
+            },
+          }}
+        />
+
+      );
+    }
+    
   }
 }
 

@@ -68,7 +68,6 @@ class ItemList extends Component {
         </View>
       )
     } else {
-
       return (
         <View style={{flex:1}}>
           <FlatList
