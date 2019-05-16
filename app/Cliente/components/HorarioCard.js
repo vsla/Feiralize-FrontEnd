@@ -34,8 +34,8 @@ export default class HorarioCard extends Component {
             return (
               <FlatListItem item={item} index={index} navigation={this.props.navigation}/>
               );
-          }}>
-        </FlatList>
+          }}
+          />
  
 
       </View>
@@ -46,7 +46,7 @@ export default class HorarioCard extends Component {
 const styles = StyleSheet.create({
   textStyle: {
     color: 'grey',
-    fontSize: 15,
+    fontSize: 20,
     marginTop: 5,
     marginBottom: 5,
     paddingLeft: 15,
