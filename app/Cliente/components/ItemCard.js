@@ -1,19 +1,19 @@
 //PRODUCTS
 import React, { Component } from 'react';
-import { ImageBackground, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { ImageBackground, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Badge } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/action';
 import ReuseIcon from './ReuseIcon';
-import { connect } from "react-redux";
-import * as actions from "../redux/actions/action";
-import theme from '../styles/theme.style';
+
 
 class ItemCard extends Component {
   constructor(props) {
-    super(props),
-    console.log(this.props)
+    super(props);
+    console.log(this.props);
       this.state = {
-        imageUrl: this.props.data.pic ,
-        pressed: this.props.cartItems.includes(this.props.data) ? true : false,
+        imageUrl: this.props.data.pic,
+        pressed: this.props.cartItems.includes(this.props.data),
         buttonStyle: { backgroundColor: 'white' },
         IconName: 'add',
         corStyle: 'orange',
@@ -21,14 +21,15 @@ class ItemCard extends Component {
       };
   }
 
-  addProduct = () => {
+  addProduct() {
     this.setState({
       selected: this.state.selected + 1
-    })
+    });
   }
-  buttonPressed = () => {
+
+  buttonPressed() {
     //Requisição para saber se tem subcategorias ou apenas produtos
-    this.props.showModal(this.props.data)
+    this.props.showModal(this.props.data);
   }
 
   render() {
@@ -43,10 +44,9 @@ class ItemCard extends Component {
             <ImageBackground
               style={{ height: 100, width: '100%', opacity: 0.6, flex: 1, }}
               source={{ uri: this.state.imageUrl }}
-            >
-
-            </ImageBackground>
-            <View style={{
+            />
+            <View 
+            style={{
               backgroundColor: this.state.corStyle,
               opacity: 0.9,
               borderRadius: 100,
@@ -55,7 +55,8 @@ class ItemCard extends Component {
               paddingVertical: 8,
               top: 5,
               right: 5
-            }}>
+            }}
+            >
               <ReuseIcon
                 name={this.state.IconName}
                 color={'white'}
@@ -68,9 +69,11 @@ class ItemCard extends Component {
           <Text >
             {this.props.data.name}
           </Text>
-          <Badge value={this.props.data.id in this.props.parentState.selected
+          <Badge 
+          value={this.props.data.id in this.props.parentState.selected
             ? this.props.parentState.selected[this.props.data.id].toString()
-            : '0'} status='primary' containerStyle={{marginRight:10}}/>
+            : '0'} status='primary' containerStyle={{ marginRight: 10 }}
+          />
         </View>
       </View>
     );
@@ -80,8 +83,8 @@ class ItemCard extends Component {
 const mapStateToProps = (state) => {
   return {
     cartItems: state.cart
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, actions)(ItemCard);
 
@@ -103,14 +106,14 @@ const style = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 10,
     marginLeft: 10,
-    flexDirection:'row'
+    flexDirection: 'row'
   },
   imageStyle: {
     height: 150,
     width: '100%',
     opacity: 0.6,
     flex: 1,
-    tintColor: "green"
+    tintColor: 'green'
   },
-})
+});
 
