@@ -10,6 +10,7 @@ import theme from '../styles/theme.style';
 class ItemCard extends Component {
   constructor(props) {
     super(props),
+    console.log(this.props)
       this.state = {
         imageUrl: this.props.data.pic ,
         pressed: this.props.cartItems.includes(this.props.data) ? true : false,
@@ -19,8 +20,15 @@ class ItemCard extends Component {
 
       };
   }
+
+  addProduct = () => {
+    this.setState({
+      selected: this.state.selected + 1
+    })
+  }
   buttonPressed = () => {
-    this.props.showModal()
+    //Requisição para saber se tem subcategorias ou apenas produtos
+    this.props.showModal(this.props.data)
   }
 
   render() {
@@ -60,7 +68,9 @@ class ItemCard extends Component {
           <Text >
             {this.props.data.name}
           </Text>
-          <Badge value="0" status='primary' containerStyle={{marginRight:10}}/>
+          <Badge value={this.props.data.id in this.props.parentState.selected
+            ? this.props.parentState.selected[this.props.data.id].toString()
+            : '0'} status='primary' containerStyle={{marginRight:10}}/>
         </View>
       </View>
     );
