@@ -15,7 +15,9 @@ class ItemList extends Component {
       fullData: [],
       routeName: this.props.navigation.state.routeName,
       data: [],
-      showModal:false
+      showModal:false,
+      selected:{},
+      modalData:null
     }
   }
   componentWillMount = () => {
@@ -54,12 +56,24 @@ class ItemList extends Component {
       */
     //Verifica qual produto é de cada tela
   }
-  showModal = () => {
-    this.setState({ showModal: true })
+
+  productSelected = (categoryId) =>{
+    var selected = this.state.selected
+    if(categoryId in selected){
+      selected[categoryId] = selected[categoryId] + 1
+    }else{
+      selected[categoryId] = 1
+    }
+    console.log(this.state.selected)
+  }
+
+  showModal = (categoryData) => {
+    this.setState({ showModal: true, modalData:categoryData })
   }
   closeModal = () => {
-    this.setState({ showModal: false })
+    this.setState({ showModal: false, modalData:null })
   }
+
   render() {
     if (this.state.isLoading) {
       return (
@@ -76,9 +90,17 @@ class ItemList extends Component {
             numColumns={2}
             keyExtractor={item => item.name}
             renderItem={({ item }) =>
-              <ItemCard data={item} showModal={this.showModal}/>}
+              <ItemCard 
+                data={item} 
+                showModal={this.showModal}
+                parentState={this.state}
+              />}
           />
-          <DefaultOverlay parentState={this.state} closeModal = {this.closeModal}/>
+          <DefaultOverlay 
+            parentState={this.state} 
+            closeModal = {this.closeModal} 
+            selectProduct={this.productSelected}
+          />
         </View>
       );
     }

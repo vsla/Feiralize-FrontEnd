@@ -6,6 +6,7 @@ import Picker from './Picker'
 import { connect } from "react-redux";
 import * as actions from "../redux/actions/action";
 
+
 class DefaultOverlay extends Component {
   constructor(props) {
     super(props)
@@ -144,7 +145,7 @@ class BrandComponent extends Component {
       var selectedBrand = this.props.greatParentProps.parentState.data[0]
       selectedBrand['selected-brand'] = 'Quinta do morgado'
       selectedBrand['amount'] = '1kg'
-      console.log(selectedBrand)
+      this.props.greatParentProps.selectProduct(this.props.greatParentProps.parentState.modalData.id)
       this.props.greatParentProps.add_to_cart(selectedBrand)
     }else{
       this.setState({
