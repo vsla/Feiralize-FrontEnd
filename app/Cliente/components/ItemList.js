@@ -56,20 +56,20 @@ class ItemList extends Component {
     //Verifica qual produto é de cada tela
   }
 
-  productSelected(categoryId) {
-    const selected = this.state.selected;
+  productSelected = (categoryId) => {
+    var selected = this.state.selected;
     if (categoryId in selected) {
-      selected[categoryId] += 1;
+      selected[categoryId] = selected[categoryId] + 1;
     } else {
       selected[categoryId] = 1;
     }
     console.log(this.state.selected);
   }
 
-  showModal(categoryData) {
+  showModal = (categoryData) => {
     this.setState({ showModal: true, modalData: categoryData });
   }
-  closeModal() {
+  closeModal = () => {
     this.setState({ showModal: false, modalData: null });
   }
 

@@ -1,15 +1,17 @@
-import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, Dimensions, FlatList } from 'react-native'
+/* eslint-disable no-undef */
+/* eslint-disable react/no-multi-comp */
+import React, { Component } from 'react';
+import { Text, View, TouchableOpacity, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { Overlay, CheckBox } from 'react-native-elements';
 import ReuseIcon from './ReuseIcon';
-import Picker from './Picker'
-import { connect } from "react-redux";
-import * as actions from "../redux/actions/action";
+import Picker from './Picker';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/action';
 
 
 class DefaultOverlay extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
   render() {
     return (
@@ -21,7 +23,7 @@ class DefaultOverlay extends Component {
         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'stretch' }}>
           <View style={style.header}>
             <TouchableOpacity
-              onPress={() => { this.props.closeModal() }}
+              onPress={() => { this.props.closeModal(); }}
               style={{ alignSelf: 'center', marginLeft: 5 }}
 
             >
@@ -32,7 +34,12 @@ class DefaultOverlay extends Component {
               />
             </TouchableOpacity>
 
-            <Text style={{ textAlign: 'center', flex: 1, fontSize: 18, color: 'white', marginVertical: 8 }}>Vinho</Text>
+            <Text
+              style={{ 
+                textAlign: 'center', flex: 1, fontSize: 18, color: 'white', marginVertical: 8 
+              }}
+            >Vinho
+            </Text>
           </View>
 
           <View style={{ flex: 1 }}>
@@ -45,25 +52,36 @@ class DefaultOverlay extends Component {
           </View>
         </View>
       </Overlay>
-    )
+    );
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     cartItems: state.cart
-  }
-}
+  });
 
 export default connect(mapStateToProps, actions)(DefaultOverlay);
 
 class CategoryComponent extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       pressed: false,
+    };
+  }
+  
+  pressed = () => {
+    if (this.state.pressed === false) {
+      this.setState({
+        pressed: true
+      });
+    } else {
+      this.setState({
+        pressed: false
+      });
     }
   }
+
   renderArrowIcon = () => {
     if (this.state.pressed === false) {
       return (
@@ -72,40 +90,33 @@ class CategoryComponent extends Component {
           color='white'
           size={25}
         />
-      )
-    } else {
-      return (
-        < ReuseIcon
-          name={'arrow-up'}
-          color='white'
-          size={25}
-        />
-      )
+      );
     }
+    return (
+      < ReuseIcon
+        name={'arrow-up'}
+        color='white'
+        size={25}
+      />
+    );
   }
-  pressed = () => {
-    if (this.state.pressed === false) {
-      this.setState({
-        pressed: true
-      })
-    } else {
-      this.setState({
-        pressed: false
-      })
-    }
-  }
+
   renderBrands = () => {
     if (this.state.pressed === true) {
       return (
         <FlatList
           style={{ backgroundColor: '#dfdfdf' }}
           data={[0, 1, 2]}
-          renderItem={() => <BrandComponent greatParentProps={this.props.parentProps}/>}
+          renderItem={() => <BrandComponent greatParentProps={this.props.parentProps} />}
           ItemSeparatorComponent={() =>
-            <View style={{ backgroundColor: '#c0c0c0', alignSelf: 'stretch', height: 2, marginHorizontal: 10 }} />
+            <View 
+            style={{ 
+              backgroundColor: '#c0c0c0', alignSelf: 'stretch', height: 2, marginHorizontal: 10 
+            }} 
+            />
           }
         />
-      )
+      );
     }
   }
   render() {
@@ -116,7 +127,11 @@ class CategoryComponent extends Component {
           onPress={() => this.pressed()}
         >
 
-          <Text style={{ textAlign: 'center', flex: 1, fontSize: 15, color: 'white', marginVertical: 3 }}> CategoryName </Text>
+          <Text 
+          style={{ textAlign: 'center', flex: 1, fontSize: 15, color: 'white', marginVertical: 3 }}
+          > 
+            CategoryName 
+          </Text>
           <View style={{ marginRight: 5 }}>
             {this.renderArrowIcon()}
           </View>
@@ -124,43 +139,47 @@ class CategoryComponent extends Component {
         </TouchableOpacity>
         {this.renderBrands()}
       </View>
-    )
+    );
   }
 }
 
 class BrandComponent extends Component {
-  constructor(props){
-    super(props)
-    console.log(this.props)
+  constructor(props) {
+    super(props);
+    console.log(this.props);
     this.state = {
-      checked:false
-    }
+      checked: false
+    };
   }
 
   pressCheckBox = () => {
-    if(this.state.checked === false){
+    if (this.state.checked === false) {
       this.setState({
-        checked:true
-      })
-      var selectedBrand = this.props.greatParentProps.parentState.data[0]
-      selectedBrand['selected-brand'] = 'Quinta do morgado'
-      selectedBrand['amount'] = '1kg'
-      this.props.greatParentProps.selectProduct(this.props.greatParentProps.parentState.modalData.id)
-      this.props.greatParentProps.add_to_cart(selectedBrand)
-    }else{
+        checked: true
+      });
+      const selectedBrand = this.props.greatParentProps.parentState.data[0];
+      selectedBrand['selected-brand'] = 'Quinta do morgado';
+      selectedBrand.amount = '1kg';
+      this.props.greatParentProps.selectProduct(this.props.greatParentProps.parentState.modalData.id);
+      this.props.greatParentProps.add_to_cart(selectedBrand);
+    } else {
+      const selectedBrand = this.props.greatParentProps.parentState.data[0];
+      selectedBrand['selected-brand'] = 'Quinta do morgado';
+      selectedBrand.amount = '1kg';
       this.setState({
         checked: false
-      })
-      this.props.greatParentProps.remove_from_cart(selectedBrand)
+      });
+      this.props.greatParentProps.remove_from_cart(selectedBrand);
     }
   }
 
   render() {
     return (
-      <View style={{ marginVertical: 5,}}>
+      <View style={{ marginVertical: 5, }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <View style={{marginLeft:5}}>
-            < Picker data={[{
+          <View style={{ marginLeft: 5 }}>
+            < Picker
+            data={[{
               label: '8 kg',
               value: '8',
             },
@@ -180,13 +199,13 @@ class BrandComponent extends Component {
           
           <CheckBox
             checked={this.state.checked}
-            onPress={() => { this.pressCheckBox() }}
-            containerStyle={{margin:0,padding:0}}
+            onPress={() => { this.pressCheckBox(); }}
+            containerStyle={{ margin: 0, padding: 0 }}
           />
           
         </View>
       </View>
-    )
+    );
   }
 }
 
@@ -206,4 +225,4 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 5
   }
-})
+});

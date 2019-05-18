@@ -17,17 +17,17 @@ class ItemCard extends Component {
         buttonStyle: { backgroundColor: 'white' },
         IconName: 'add',
         corStyle: 'orange',
-
+        selected: 0
       };
   }
 
-  addProduct() {
+  addProduct = () => {
     this.setState({
       selected: this.state.selected + 1
     });
   }
 
-  buttonPressed() {
+  buttonPressed = () => {
     //Requisição para saber se tem subcategorias ou apenas produtos
     this.props.showModal(this.props.data);
   }
