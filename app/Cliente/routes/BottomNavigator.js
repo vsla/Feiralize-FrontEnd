@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import ShoppingRoute from './ShoppingRoute';
-import Perfil from '../pages/Perfil';
-//import PerfilTemp from '../pages/perfilTemp';
+//import Perfil from '../pages/Perfil';
+import PerfilTemp from '../pages/PerfilTemp';
 import Inicio from '../pages/Inicio';
 import Historico from '../pages/Historico';
 import ReuseIcon from '../components/ReuseIcon';
@@ -62,7 +62,7 @@ const BottomNavigator = createBottomTabNavigator(
       }),
     },
     Perfil: {
-      screen: Perfil,
+      screen: PerfilTemp,
       navigationOptions: () => ({
         title: "Perfil",
         tabBarIcon: () => {
