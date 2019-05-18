@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, View, FlatList, ActivityIndicator, Alert, TouchableOpacity } from 'react-native';
+import { View, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import ItemCard from './ItemCard';
-import { connect } from 'react-redux'
-import CartScreen from '../pages/Carrinho'
-import * as actions from "../redux/actions/action";
+import * as actions from '../redux/actions/action';
 import DefaultOverlay from './Overlay';
 
 class ItemList extends Component {
@@ -15,21 +14,23 @@ class ItemList extends Component {
       fullData: [],
       routeName: this.props.navigation.state.routeName,
       data: [],
-      showModal:false
-    }
+      showModal: false,
+      selected: {},
+      modalData: null
+    };
   }
-  componentWillMount = () => {
-    axios.get('https://feiralize-server.herokuapp.com/category/all/sub/' + this.state.routeName)
+  componentWillMount() {
+    axios.get(`https://feiralize-server.herokuapp.com/category/all/sub/${  this.state.routeName}`)
          .then(response => {
-           console.log(response.data.subCategories)
+           console.log(response.data.subCategories);
            this.setState({
              data: response.data.subCategories,
              isLoading: false
-           })
+           });
          })
-         .catch((error)=>{
-           console.log(error)
-         })
+         .catch((error) => {
+           console.log(error);
+         });
     // get cate --> https://feiralize-server.herokuapp.com/category/all
     // sub --> https://feiralize-server.herokuapp.com/category/all/sub/id
     // Só troca o id para um novo
@@ -54,35 +55,53 @@ class ItemList extends Component {
       */
     //Verifica qual produto é de cada tela
   }
-  showModal = () => {
-    this.setState({ showModal: true })
+
+  productSelected = (categoryId) => {
+    var selected = this.state.selected;
+    if (categoryId in selected) {
+      selected[categoryId] = selected[categoryId] + 1;
+    } else {
+      selected[categoryId] = 1;
+    }
+    console.log(this.state.selected);
+  }
+
+  showModal = (categoryData) => {
+    this.setState({ showModal: true, modalData: categoryData });
   }
   closeModal = () => {
-    this.setState({ showModal: false })
+    this.setState({ showModal: false, modalData: null });
   }
+
   render() {
     if (this.state.isLoading) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <ActivityIndicator color='black' />
         </View>
-      )
-    } else {
-
-      return (
-        <View style={{flex:1}}>
-          <FlatList
-            data={this.state.data}
-            style={style.flatStyle}
-            numColumns={2}
-            keyExtractor={item => item.name}
-            renderItem={({ item }) =>
-              <ItemCard data={item} showModal={this.showModal}/>}
-          />
-          <DefaultOverlay parentState={this.state} closeModal = {this.closeModal}/>
-        </View>
       );
     }
+    return (
+      <View style={{ flex: 1 }}>
+        <FlatList
+          data={this.state.data}
+          style={style.flatStyle}
+          numColumns={2}
+          keyExtractor={item => item.name}
+          renderItem={({ item }) =>
+            <ItemCard 
+              data={item} 
+              showModal={this.showModal}
+              parentState={this.state}
+            />}
+        />
+        <DefaultOverlay 
+          parentState={this.state} 
+          closeModal={this.closeModal} 
+          selectProduct={this.productSelected}
+        />
+      </View>
+    );
   }
 }
 
@@ -91,7 +110,7 @@ export default connect(null, actions)(ItemList);
 const style = {
   textStyle: {
     fontSize: 18,
-    color: "black",
+    color: 'black',
   },
   flatStyle: {
     flex: 1,

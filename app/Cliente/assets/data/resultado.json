@@ -1,4 +1,4 @@
-var flatListData = [
+[
     {
         "key": "1",
         "hora": "10h00 a 11h00"
@@ -31,6 +31,4 @@ var flatListData = [
         "key": "8",
         "hora": "17h00 a 18h00"
     }
-];
-
-module.exports = flatListData;
+]

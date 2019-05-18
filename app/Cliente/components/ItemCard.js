@@ -1,42 +1,35 @@
 //PRODUCTS
 import React, { Component } from 'react';
-import { ImageBackground, Text, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Badge } from 'react-native-elements';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/action';
 import ReuseIcon from './ReuseIcon';
-import { connect } from "react-redux";
-import * as actions from "../redux/actions/action";
-import theme from '../styles/theme.style';
+
 
 class ItemCard extends Component {
   constructor(props) {
-    super(props),
+    super(props);
+    console.log(this.props);
       this.state = {
-        imageUrl: this.props.data.pic ,
-        pressed: this.props.cartItems.includes(this.props.data) ? true : false,
-        buttonStyle: this.props.cartItems.includes(this.props.data) ? { backgroundColor: '#0d7401' } : { backgroundColor: 'white' },
-        IconName: this.props.cartItems.includes(this.props.data) ? 'checkmark' : 'add',
-        corStyle: this.props.cartItems.includes(this.props.data) ? 'green' : 'orange',
-
-      };
-  }
-  buttonPressed = () => {
-    if (this.state.pressed) {
-      this.props.remove_from_cart(this.props.data)
-      this.setState({
-        pressed: false,
+        imageUrl: this.props.data.pic,
+        pressed: this.props.cartItems.includes(this.props.data),
         buttonStyle: { backgroundColor: 'white' },
         IconName: 'add',
         corStyle: 'orange',
-      })
-    } else {
-      this.props.add_to_cart(this.props.data)
-      this.setState({
-        pressed: true,
-        buttonStyle: { backgroundColor: '#0d7401' },
-        IconName: 'checkmark',
-        corStyle: 'green',
-      })
-      this.props.showModal()
-    }
+        selected: 0
+      };
+  }
+
+  addProduct = () => {
+    this.setState({
+      selected: this.state.selected + 1
+    });
+  }
+
+  buttonPressed = () => {
+    //Requisição para saber se tem subcategorias ou apenas produtos
+    this.props.showModal(this.props.data);
   }
 
   render() {
@@ -51,10 +44,9 @@ class ItemCard extends Component {
             <ImageBackground
               style={{ height: 100, width: '100%', opacity: 0.6, flex: 1, }}
               source={{ uri: this.state.imageUrl }}
-            >
-
-            </ImageBackground>
-            <View style={{
+            />
+            <View 
+            style={{
               backgroundColor: this.state.corStyle,
               opacity: 0.9,
               borderRadius: 100,
@@ -63,7 +55,8 @@ class ItemCard extends Component {
               paddingVertical: 8,
               top: 5,
               right: 5
-            }}>
+            }}
+            >
               <ReuseIcon
                 name={this.state.IconName}
                 color={'white'}
@@ -76,6 +69,11 @@ class ItemCard extends Component {
           <Text >
             {this.props.data.name}
           </Text>
+          <Badge 
+          value={this.props.data.id in this.props.parentState.selected
+            ? this.props.parentState.selected[this.props.data.id].toString()
+            : '0'} status='primary' containerStyle={{ marginRight: 10 }}
+          />
         </View>
       </View>
     );
@@ -85,13 +83,13 @@ class ItemCard extends Component {
 const mapStateToProps = (state) => {
   return {
     cartItems: state.cart
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, actions)(ItemCard);
 
 
-const style = {
+const style = StyleSheet.create({
   containerStyle: {
     flex: 1,
     margin: 10,
@@ -104,17 +102,18 @@ const style = {
     elevation: 2,
   },
   textContainer: {
-    justifyContent: 'center',
-    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     paddingVertical: 10,
     marginLeft: 10,
+    flexDirection: 'row'
   },
   imageStyle: {
     height: 150,
     width: '100%',
     opacity: 0.6,
     flex: 1,
-    tintColor: "green"
+    tintColor: 'green'
   },
-}
+});
 
