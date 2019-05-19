@@ -16,7 +16,7 @@ export default class DetalhesPedido extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).once('value', (snapshot) => {
       this.setState({
         status: snapshot.val().status
@@ -177,7 +177,7 @@ export default class DetalhesPedido extends Component {
         </View>
       )
     } else {
-      var data = this.state.data.items
+      //var data = this.props.navigation.getParam('data').items
       return (
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -262,7 +262,7 @@ render() {
 class ProdutoComponent extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
+    console.log(this.props,1)
     this.state = {
       accepted: false,
       ready: false,
@@ -272,13 +272,14 @@ class ProdutoComponent extends Component {
     }
   }
 
-  componentWillMount() {
-    firebase.database().ref('/teste/data/feirasProntas/' + this.props.parentState.data.key).once('value', (snapshot) => {
+  componentDidMount() {
+    firebase.database().ref('/teste/data/feirasProntas/' + this.props.parentState.data.key).on('value', (snapshot) => {
       this.setState({
         status: snapshot.val().status
       })
     })
   }
+
   onPress = () => {
     if (this.state.checked == false) {
       this.setState({ checked: true })
@@ -289,6 +290,7 @@ class ProdutoComponent extends Component {
     }
   }
   renderCheckBox = () => {
+    console.log(this.props)
     if (this.state.parentStatus === 'EM PREPARO' || this.props.parentState.status === 'EM PREPARO' || this.state.status === 'EM PREPARO') {
       return (
         <CheckBox

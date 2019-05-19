@@ -41,7 +41,7 @@ class LoginEmail extends Component {
           <TextInput style={style.inputStyle}
             value={this.state.email}
             onChangeText={email => this.setState({ email: email })}
-            placeholder="email@email.com"
+            placeholder="Email"
             placeholderTextColor='black'
             keyboardType="email-address"
           />

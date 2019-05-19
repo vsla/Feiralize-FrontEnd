@@ -8,12 +8,12 @@ export default class Pedidos extends Component {
     super(props)
     this.state = {
       fullData:null,
-      orders: null,
+      orders: [],
       routeName: this.props.navigation.state.routeName,
       isLoading:true,
     }
   }  
-  componentWillMount() {
+  componentDidMount() {
     /*
     firebase.database().ref('/teste').set({
       data:{

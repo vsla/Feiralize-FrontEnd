@@ -56,6 +56,7 @@ class ItemList extends Component {
     //Verifica qual produto é de cada tela
   }
 
+  //Função para adicionar produto na badge
   productSelected = (categoryId) => {
     var selected = this.state.selected;
     if (categoryId in selected) {

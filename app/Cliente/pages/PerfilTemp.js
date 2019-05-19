@@ -32,8 +32,7 @@ export default class PerfilTemp extends Component{
                     <View>
                     <TouchableOpacity
 					    style={style.buttonStyle}
-                        onPress={() => this.props.navigation.navigate('Inicio') }
- 
+                        onPress={() => this.props.navigation.navigate('loginRoute') }
 				    >
 					<Text style={{color: 'white'}}>Voltar</Text>
 				</TouchableOpacity>
