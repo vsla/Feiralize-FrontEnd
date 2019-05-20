@@ -13,14 +13,13 @@ export default class PerfilTemp extends Component{
             <View style = {{flex:1}}>
                 <View style={style.OrangeContainer}>
                     <View>
-                       
                     <Image
                            source={{ uri: 'https://dummyimage.com/200x200/b7d46f/fff'}}
                             style={style.perfilImage}
                          />
 
-                    </View> 
-                    <View style={style.containerNameStyle}>
+                     </View> 
+                   <View style={style.containerNameStyle}>
                     <ReuseIcon name={'person'} size={25} color={'white'} />
                         <Text style={style.nameStyle}> Daniela Lima </Text>
                     </View>
@@ -34,7 +33,7 @@ export default class PerfilTemp extends Component{
 					    style={style.buttonStyle}
                         onPress={() => this.props.navigation.navigate('loginRoute') }
 				    >
-					<Text style={{color: 'white'}}>Voltar</Text>
+					<Text style={{color: 'white'}}>Sair</Text>
 				</TouchableOpacity>
                         
                         
