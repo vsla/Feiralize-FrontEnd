@@ -1,4 +1,28 @@
 import React, { Component } from "react";
+import { View, Text } from "react-native";
+import DataTabNav from '../routes/DataNav'
+
+class Agendamento extends Component {
+  static navigationOptions = {
+    title: 'Agendamento',
+
+  };
+  render() {
+    return (
+      <View style={style.viewStyle}>
+        <DataTabNav/>
+      </View>
+    );
+  }
+}
+export default Agendamento
+const style = {
+  viewStyle: {
+    flex: 1,
+  }
+}
+
+/*import React, { Component } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import ReuseIcon from "../components/ReuseIcon";
 import DataCard from "../components/DataCard";
@@ -9,7 +33,7 @@ class Agendamento extends Component {
     title: 'Agendamento',
 
   };
-  /*
+  ***
           < View style={style.headerStyle} >
           < TouchableOpacity style={{ marginLeft: 35 }} onPress={() => this.props.navigation.navigate("Compra")}>
             <ReuseIcon
@@ -20,7 +44,7 @@ class Agendamento extends Component {
           </TouchableOpacity>
           <Text style={style.textStyle}>Agendar entrega</Text>
         </View>
-  */
+  ***
   render() {
     return (
       <View style={style.viewStyle}>
@@ -50,3 +74,4 @@ const style = {
     fontWeight: 'bold'
   }
 }
+*/
