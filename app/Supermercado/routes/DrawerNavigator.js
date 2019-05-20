@@ -36,7 +36,7 @@ const CustomDrawerContentComponent = (props) => (
     </Content>
     <View>
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('loginRoute')}
+        onPress={() => props.navigation.navigate('loginRoute')}
       >
         <Text>Sair</Text>
       </TouchableOpacity>
