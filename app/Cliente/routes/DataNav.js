@@ -1,45 +1,21 @@
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import HorarioCard from '../components/HorarioCard'
+import HorarioCard from '../components/HorarioCard';
 
 const DataTabNav = createMaterialTopTabNavigator(
     {
         "D1": {
             screen: HorarioCard,
             navigationOptions: {
-                tabBarLabel: 'Hoje',
+                tabBarLabel: 'hoje',
             }
         },
         "D2": {
             screen: HorarioCard,
             navigationOptions: {
-                tabBarLabel: 'Hoje',
+                tabBarLabel: 'segunda',
             }
         },
         "D3": {
-            screen: HorarioCard,
-            navigationOptions: {
-                tabBarLabel: 'Hoje',
-            }
-        },
-        "D4": {
-            screen: HorarioCard,
-            navigationOptions: {
-                tabBarLabel: 'Hoje',
-            }
-        },
-        "D5": {
-            screen: HorarioCard,
-            navigationOptions: {
-                tabBarLabel: 'Hoje',
-            }
-        },
-        "D6": {
-            screen: HorarioCard,
-            navigationOptions: {
-                tabBarLabel: 'Hoje',
-            }
-        },
-        "D7": {
             screen: HorarioCard,
             navigationOptions: {
                 tabBarLabel: 'Hoje',
