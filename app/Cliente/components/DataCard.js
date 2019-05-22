@@ -5,28 +5,33 @@ export default class DataCard extends React.Component {
   render() {
     return (
       <View>
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           <View style={styles.containerStyle}>
-            <TouchableOpacity style={{
+            <TouchableOpacity
+                style={{
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor: 'orange',
               height: '100%',
               width: 90,
               marginHorizontal: 1
-            }}
+              }}
             onPress={() => {}}
             >
-              <Text style={{
+              <Text
+                style={{
                 color: 'white',
                 fontSize: 40,
                 fontWeight: 'bold'
-              }}>6</Text>
-              <Text style={{
+                }}
+              >6</Text>
+              <Text
+                style={{
                 color: 'white',
                 fontSize: 20,
                 fontWeight: 'bold'
-              }}>Hoje</Text>
+               }}
+              >Hoje</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.DateStyle} onPress={() => { }}>
               <Text style={styles.numStyle}>7</Text>
@@ -82,5 +87,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold'
   },
-})
+});
 

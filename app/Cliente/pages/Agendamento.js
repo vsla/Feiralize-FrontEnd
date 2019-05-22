@@ -6,13 +6,10 @@ import HorarioCard from '../components/HorarioCard';
 
 
 class Agendamento extends Component {
-  // eslint-disable-next-line no-undef
-  static navigationOptions = {
-    title: 'Agendamento',
-
-  };
+  
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       route: {}
     };
@@ -84,7 +81,7 @@ class Agendamento extends Component {
   render() {
     return (
       <View style={style.viewStyle}>
-        <this.state.navigator />
+        <this.state.navigator screenProps={this.props}/>
       </View>
     );
   }

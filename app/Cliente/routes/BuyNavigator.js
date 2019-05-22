@@ -22,7 +22,7 @@ const BuyNavigator = createStackNavigator(
         headerTitle: 'Supermercados',
       }
     },
-    scheduling:{
+    scheduling: {
       screen: Agendamento,
       navigationOptions: () => ({
       })
