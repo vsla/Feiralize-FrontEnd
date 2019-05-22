@@ -1,35 +1,59 @@
 import React, { Component } from 'react';
+import { View } from 'react-native';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import ItemList from "../components/ItemList";
-import data from "../assets/data/products.json";
+import ItemList from '../components/ItemList';
 
-const ListaProdutoTabNav = createMaterialTopTabNavigator(
-    {
-        "8326ef03-3cfb-4693-9c3b-23cdeb6d3011": {
+export default class ListaProdutoNav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      route: {}
+    };
+  }
+  componentWillMount() {
+    this.setState({
+      navigator: createMaterialTopTabNavigator(
+        {
+          '8326ef03-3cfb-4693-9c3b-23cdeb6d3011': {
             screen: ItemList,
             navigationOptions: {
-                tabBarLabel: 'Bebidas',
+              tabBarLabel: 'Bebidas',
             }
+          },
         },
-    },
-    {
-        lazy: true,
-        tabBarOptions: {
+        {
+          lazy: true,
+          tabBarOptions: {
             activeTintColor: 'white',
             inactiveTintColor: '#e1e1e1',
             scrollEnabled: true,
             style: {
-                backgroundColor: 'darkorange'
+              backgroundColor: 'darkorange'
             },
             indicatorStyle: {
-                height: 3,
-                color: 'white',
+              height: 3,
+              color: 'white',
             }
+          }
         }
-    }
-);
+      )
+    });
+  }
 
-export default ListaProdutoTabNav;
+  render() {
+    return (
+      <View style={style.viewStyle}>
+        <this.state.navigator />
+      </View>
+    );
+  }
+}
+
+const style = {
+  viewStyle: {
+    flex: 1,
+  }
+};
 /*
 function get_categories(categories, ItemList) {
 
@@ -53,7 +77,7 @@ function get_categories(categories, ItemList) {
             }
         return routes
       })
-    
+
   axios.get('http://25adb2af.ngrok.io/category/all/sub/14173240-3818-4585-9387-c667be08a6b5')
     .then(response => {
       //console.log(2,response)
