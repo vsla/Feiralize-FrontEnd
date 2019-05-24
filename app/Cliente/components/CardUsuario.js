@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
+import call from 'react-native-phone-call';
 import ReuseIcon from '../components/ReuseIcon';
 
 class CardUsuario extends Component {
+    call = () => {
+        const args = {
+          number: '0000000000',
+          prompt: false,
+        };
+        call(args).catch(console.error);
+    };
     render() {
         return (
              <View style={{ flex: 1 }}>
@@ -10,7 +18,7 @@ class CardUsuario extends Component {
                    <ReuseIcon name='radio-button-off' size={40} color='lightgrey' />
                    <Text style={styles.textStyle}>
                        MERCANDELLI</Text>
-                   <TouchableOpacity style={{ flexDirection: 'row', marginRight: 10 }}>
+                   <TouchableOpacity style={{ flexDirection: 'row', marginRight: 10 }} onPress={this.call}>
                     <Text style={styles.textoStyleTres}>
                         Ligar</Text>
                     <ReuseIcon name='call' color="orange" size={40} />
