@@ -1,9 +1,9 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { View, TouchableOpacity, Text, FlatList } from 'react-native';
-import ReuseIcon from "../components/ReuseIcon";
+import ReuseIcon from '../components/ReuseIcon';
 import { connect } from 'react-redux';
 import DetailsCard from '../components/DetailsCard';
-import DetailsMercado from '../components/DetailsMercado'
+import DetailsMercado from '../components/DetailsMercado';
 
 class Login extends Component {
   constructor(props) {
@@ -11,7 +11,7 @@ class Login extends Component {
     this.state = {
       Supermercados: [1, 2, 3]
     };
-    console.log(this.props)
+    console.log(this.props);
   }
   render() {
     return (
@@ -24,11 +24,13 @@ class Login extends Component {
               size={25}
             />
           </TouchableOpacity>
-          <Text style={{
+          <Text
+style={{
             color: 'orange',
             fontSize: 30,
             marginLeft: 20
-          }}>Detalhes</Text>
+          }}
+          >Detalhes</Text>
         </View>
         <View style={style.Mercado}>
           < DetailsMercado totalValue={this.props.cartValue} screenProps={this.props.navigation} />
@@ -42,39 +44,39 @@ class Login extends Component {
           />
         </View >
         <View>
-          <Text style={{
+          <Text
+style={{
             marginLeft: 20
-          }}>
+          }}
+          >
             Frete R$ 5,10 chegará em 2 dias
                     </Text>
         </View>
-        <View style={{ height: 1, width: 330, backgroundColor: 'orange', marginTop: 5, marginBottom: 5, alignSelf: 'center' }}></View>
-        <View style={{
+        <View style={{ height: 1, width: 330, backgroundColor: 'orange', marginTop: 5, marginBottom: 5, alignSelf: 'center' }} />
+        <View 
+          style={{
           alignItems: 'flex-end',
           marginRight: 25
-        }}>
-          <Text style={{
-            color: 'slategray',
-            fontSize: 10,
-          }}>
+        }}
+        >
+          <Text style={{ color: 'slategray', fontSize: 10 }}>
             Valor total
-                        </Text>
-          <Text style={{
+          </Text>
+          <Text 
+            style={{
             color: 'slategray',
             fontSize: 16,
             marginBottom: 13
-          }}>
+            }}
+          >
             R$ {this.props.cartValue + 5.1}
           </Text>
         </View>
         <View style={style.BuyButton}>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("scheduling")}>
-            <Text style={{
-              color: 'white'
-            }}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('scheduling')}>
+            <Text style={{ color: 'white' }} >
               COMPRAR
-                        </Text>
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -82,12 +84,10 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
+const mapStateToProps = (state) => ({
     cart: state.cart,
     cartValue: state.cartValue
-  }
-}
+  });
 
 export default connect(mapStateToProps)(Login);
 
@@ -126,4 +126,4 @@ const style = {
     marginRight: 6.8,
     marginBottom: 8.4,
   }
-}
+};

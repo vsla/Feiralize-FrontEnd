@@ -1,11 +1,14 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import firebase from 'firebase';
 import { createMaterialTopTabNavigator } from 'react-navigation';
 import ItemList from '../components/ItemList';
 
 export default class ListaProdutoNav extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
+    this.getSectors();
     this.state = {
       route: {}
     };
@@ -39,7 +42,26 @@ export default class ListaProdutoNav extends Component {
       )
     });
   }
-
+  getSectors = () => {
+    var x - 0
+    firebase.database().ref('/ArrayOfSectors').on('value', (snapshot) => {
+      const arrayOfSectors = snapshot.val();
+      const route = {};
+      for (let index = 0; index < arrayOfSectors.length; index++) {
+        route[arrayOfSectors[index].id] = {
+          screen: ItemList,
+          navigationOptions: {
+            tabBarLabel: arrayOfSectors[index].name,
+          }
+        };
+      }
+      x = 1
+      this.setState({
+        route
+      });
+    });
+    console.log(x)
+  }
   render() {
     return (
       <View style={style.viewStyle}>

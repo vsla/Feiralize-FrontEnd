@@ -8,6 +8,7 @@ import Inicio from '../pages/Inicio';
 import Historico from '../pages/Historico';
 import ReuseIcon from '../components/ReuseIcon';
 import BuyNavigator from './BuyNavigator';
+import Acompanhe from '../pages/Acompanhe';
 
 
 const BottomNavigator = createBottomTabNavigator(
@@ -45,7 +46,7 @@ const BottomNavigator = createBottomTabNavigator(
       }),
     },
     Historico: {
-      screen: Historico,
+      screen: Acompanhe,
       navigationOptions: () => ({
         title: 'Histórico',
         tabBarIcon: () => (
