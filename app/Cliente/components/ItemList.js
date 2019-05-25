@@ -20,7 +20,7 @@ class ItemList extends Component {
       modalData: null
     };
   }
-  /*
+  
   componentWillMount() {
     axios.get(`https://feiralize-server.herokuapp.com/category/all/sub/${  this.state.routeName}`)
          .then(response => {
@@ -56,8 +56,9 @@ class ItemList extends Component {
       .catch(error => { })
       
     //Verifica qual produto é de cada tela
+    */
   }
-  */
+  
   //Função para adicionar produto na badge
   productSelected = (categoryId) => {
     var selected = this.state.selected;

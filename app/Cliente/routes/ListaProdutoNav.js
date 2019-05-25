@@ -43,7 +43,7 @@ export default class ListaProdutoNav extends Component {
     });
   }
   getSectors = () => {
-    var x - 0
+    let x = 0;
     firebase.database().ref('/ArrayOfSectors').on('value', (snapshot) => {
       const arrayOfSectors = snapshot.val();
       const route = {};
@@ -55,7 +55,7 @@ export default class ListaProdutoNav extends Component {
           }
         };
       }
-      x = 1
+      x = 1;
       this.setState({
         route
       });

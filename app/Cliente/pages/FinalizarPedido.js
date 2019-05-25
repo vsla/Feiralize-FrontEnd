@@ -11,12 +11,14 @@ class FinalizarPedido extends Component {
   };
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
       selected: 'Dinheiro'
     };
   }
 
   confirmarCompra = () => {
+    
     Alert.alert(
       `Confirmar compra de R$ ${Math.round(this.props.cartValue * 100) / 100}`,
       '',
@@ -45,6 +47,8 @@ class FinalizarPedido extends Component {
               payment: this.state.selected
             });
             this.props.add_payment_method(this.state.selected);
+            this.props.navigation.navigate('Cart');
+            console.log('oi');
           }
         },
       ],
