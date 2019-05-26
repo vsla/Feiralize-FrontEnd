@@ -22,13 +22,15 @@ const BuyNavigator = createStackNavigator(
     },
     scheduling:{
       screen: Agendamento,
-      navigationOptions: () => ({
-      })
+      navigationOptions: {
+        headerTitle: 'Agendamento'
+      }
     },
     checkout: {
       screen: FinalizarPedido,
-      navigationOptions: () => ({
-      })
+      navigationOptions: {
+        headerTitle: 'Finalizar pedido'
+      }
     },
     Details: {
       screen: Details,

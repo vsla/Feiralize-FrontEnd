@@ -1,24 +1,23 @@
+/* eslint-disable no-undef */
+/* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/action';
+import ReuseIcon from '../components/ReuseIcon';
 
 class FinalizarPedido extends Component {
-  static navigationOptions = {
-    title: 'Finalizar pedido',
-
-  };
   constructor(props) {
     super(props);
     console.log(this.props);
     this.state = {
-      selected: 'Dinheiro'
+      selected: 'Dinheiro',
+      showPaymentMethod: true
     };
   }
 
   confirmarCompra = () => {
-    
     Alert.alert(
       `Confirmar compra de R$ ${Math.round(this.props.cartValue * 100) / 100}`,
       '',
@@ -48,11 +47,24 @@ class FinalizarPedido extends Component {
             });
             this.props.add_payment_method(this.state.selected);
             this.props.navigation.navigate('Cart');
-            console.log('oi');
           }
         },
       ],
     );
+  }
+
+
+  renderPaymentMethod = () => {
+    if (this.state.showPaymentMethod === true) {
+      return (
+        <View style={{flex:1}}>
+          <View style={{ flex: 1, flexDirection:'row', justifyContent:'flex-start' }}>
+            <ReuseIcon name={'cash'} color={'black'} size={20} />
+            <Text style={{fontSize:16}}>Dinheiro</Text>
+          </View>
+        </View>
+      )
+    }
   }
   render() {
     return (
@@ -112,7 +124,7 @@ class FinalizarPedido extends Component {
           <View
             style={{
               backgroundColor: 'white',
-              height: 50,
+              
               borderTopColor: 'lavender',
               borderTopWidth: 0.8,
               borderBottomColor: 'lavender',
@@ -120,7 +132,9 @@ class FinalizarPedido extends Component {
               padding: 15,
               marginBottom: 10
             }}
-          />
+          >
+            {this.renderPaymentMethod()}
+          </View>
           <Text style={style.textStyle}>Carrinho</Text>
           <View
             style={{
