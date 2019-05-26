@@ -2,10 +2,12 @@
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { RadioButton } from 'react-native-paper';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/action';
 import ReuseIcon from '../components/ReuseIcon';
+
 
 class FinalizarPedido extends Component {
   constructor(props) {
@@ -13,7 +15,9 @@ class FinalizarPedido extends Component {
     console.log(this.props);
     this.state = {
       selected: 'Dinheiro',
-      showPaymentMethod: true
+      showPaymentMethod: false,
+      checked: null,
+      arrow: 'arrow-up'
     };
   }
 
@@ -53,15 +57,57 @@ class FinalizarPedido extends Component {
     );
   }
 
+  openPaymentMethod = () => {
+    if (this.state.showPaymentMethod) {
+      this.setState({ showPaymentMethod: false, arrow: 'arrow-up' })
+    } else {
+      this.setState({ showPaymentMethod: true, arrow: 'arrow-down' })
+    }
+  }
 
   renderPaymentMethod = () => {
     if (this.state.showPaymentMethod === true) {
       return (
-        <View style={{flex:1}}>
-          <View style={{ flex: 1, flexDirection:'row', justifyContent:'flex-start' }}>
-            <ReuseIcon name={'cash'} color={'black'} size={20} />
-            <Text style={{fontSize:16}}>Dinheiro</Text>
+        <View style={{ flex: 1, paddingHorizontal: 15,}}>
+          <View style={{ flex: 1, flexDirection:'row', justifyContent:'space-between', alignItems:'center' }}>
+            <View style={{ flexDirection: 'row'}}>
+              <ReuseIcon name={'cash'} color={'black'} size={20} />
+              <Text style={{fontSize:16, marginLeft:5}}>Dinheiro</Text>
+            </View>
+            <View style={{ }}>
+              <RadioButton
+                value="first"
+                status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
+                onPress={() => { this.setState({ checked: 'first' }); }}
+              />
+            </View>            
           </View>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row' }}>
+              <ReuseIcon name={'cash'} color={'black'} size={20} />
+              <Text style={{ fontSize: 16, marginLeft: 5 }}>Débito na entrega</Text>
+            </View>
+            <View style={{}}>
+              <RadioButton
+                value="first"
+                status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
+                onPress={() => { this.setState({ checked: 'first' }); }}
+              />
+            </View>
+          </View>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row' }}>
+              <ReuseIcon name={'cash'} color={'black'} size={20} />
+              <Text style={{ fontSize: 16, marginLeft: 5 }}>Crédito na entrega</Text>
+            </View>
+            <View style={{}}>
+              <RadioButton
+                value="first"
+                status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
+                onPress={() => { this.setState({ checked: 'first' }); }}
+              />
+            </View>
+          </View>          
         </View>
       )
     }
@@ -120,19 +166,31 @@ class FinalizarPedido extends Component {
             <Text style={{ fontWeight: 'bold', fontSize: 12 }}>DATA E HORA</Text>
             <Text style={{ fontSize: 12 }}>Hoje, 6 de maio, 18h30 as 19h00</Text>
           </View>
-          <Text style={style.textStyle}>Forma de pagamento</Text>
+          
           <View
             style={{
               backgroundColor: 'white',
-              
               borderTopColor: 'lavender',
               borderTopWidth: 0.8,
               borderBottomColor: 'lavender',
               borderBottomWidth: 0.8,
-              padding: 15,
               marginBottom: 10
             }}
           >
+            <TouchableOpacity
+              onPress={() => {this.openPaymentMethod()}}
+              style={{
+                flexDirection: 'row', justifyContent: 'space-between', marginRight: 15, paddingTop: 10, paddingBottom: 5,}}
+            >
+              <Text style={style.paymentMethod}>Forma de pagamento</Text>
+              <ReuseIcon
+                name={this.state.arrow}
+                size={20}
+                color={'black'}
+              />
+            </TouchableOpacity>
+            
+            <View style={{ flex:1, height:1, backgroundColor:'grey' }} />
             {this.renderPaymentMethod()}
           </View>
           <Text style={style.textStyle}>Carrinho</Text>
@@ -246,5 +304,12 @@ const style = {
     fontSize: 15,
     marginLeft: 15,
     marginTop: 5
+  },
+  paymentMethod:{
+    color: 'grey',
+    fontWeight: 'bold',
+    fontSize: 15,
+    paddingHorizontal: 15,
+    
   }
 };
