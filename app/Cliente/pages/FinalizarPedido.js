@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Alert, FlatList } from 'react-native';
 import { RadioButton } from 'react-native-paper';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
@@ -59,20 +59,20 @@ class FinalizarPedido extends Component {
 
   openPaymentMethod = () => {
     if (this.state.showPaymentMethod) {
-      this.setState({ showPaymentMethod: false, arrow: 'arrow-up' })
+      this.setState({ showPaymentMethod: false, arrow: 'arrow-up' });
     } else {
-      this.setState({ showPaymentMethod: true, arrow: 'arrow-down' })
+      this.setState({ showPaymentMethod: true, arrow: 'arrow-down' });
     }
   }
 
   renderPaymentMethod = () => {
     if (this.state.showPaymentMethod === true) {
       return (
-        <View style={{ flex: 1, paddingHorizontal: 15,}}>
-          <View style={{ flex: 1, flexDirection:'row', justifyContent:'space-between', alignItems:'center' }}>
-            <View style={{ flexDirection: 'row'}}>
+        <View style={{ flex: 1, paddingHorizontal: 15,  }}>
+          <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+            <View style={{ flexDirection: 'row' }}>
               <ReuseIcon name={'cash'} color={'black'} size={20} />
-              <Text style={{fontSize:16, marginLeft:5}}>Dinheiro</Text>
+              <Text style={{ fontSize: 16, marginLeft: 5 }}>Dinheiro</Text>
             </View>
             <View style={{ }}>
               <RadioButton
@@ -109,7 +109,7 @@ class FinalizarPedido extends Component {
             </View>
           </View>          
         </View>
-      )
+      );
     }
   }
   render() {
@@ -178,9 +178,9 @@ class FinalizarPedido extends Component {
             }}
           >
             <TouchableOpacity
-              onPress={() => {this.openPaymentMethod()}}
+              onPress={() => { this.openPaymentMethod() ;}}
               style={{
-                flexDirection: 'row', justifyContent: 'space-between', marginRight: 15, paddingTop: 10, paddingBottom: 5,}}
+                flexDirection: 'row', justifyContent: 'space-between', marginRight: 15, paddingTop: 10, paddingBottom: 5,  }}
             >
               <Text style={style.paymentMethod}>Forma de pagamento</Text>
               <ReuseIcon
@@ -190,7 +190,7 @@ class FinalizarPedido extends Component {
               />
             </TouchableOpacity>
             
-            <View style={{ flex:1, height:1, backgroundColor:'grey' }} />
+            <View style={{ flex: 1, height: 1, backgroundColor: 'grey' }} />
             {this.renderPaymentMethod()}
           </View>
           <Text style={style.textStyle}>Carrinho</Text>
@@ -207,45 +207,19 @@ class FinalizarPedido extends Component {
               elevation: 2
             }}
           >
-
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 5, paddingBottom: 5 }}>
-              <View>
-                <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Qtd</Text>
-                <Text style={{ fontSize: 15 }}>01</Text>
-                <Text style={{ fontSize: 15 }}>01</Text>
-                <Text style={{ fontSize: 15 }}>01</Text>
-                <Text style={{ fontSize: 15 }}>01</Text>
-
-              </View>
-              <View>
-                <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Descrição</Text>
-                <Text style={{ fontSize: 15 }}>Produto</Text>
-                <Text style={{ fontSize: 15 }}>Produto com desc longa...</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Feijão Santana 1kg</Text>
-                <Text style={{ fontSize: 15 }}>Taxa de entrega</Text>
-              </View>
-              <View>
-                <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Preço</Text>
-                <Text style={{ fontSize: 15 }}>R$ 0,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 0,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 6,00</Text>
-                <Text style={{ fontSize: 15 }}>R$ 8,00</Text>
-              </View>
+              <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Qtd</Text>
+              <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Descrição</Text>
+              <Text style={{ fontWeight: 'bold', fontSize: 12 }}>Preço</Text>
             </View>
+            <FlatList
+              data={this.props.cartItems}
+              renderItem={() => {
+                <View>
+                  <Text>oi</Text>
+                </View>;
+              }}
+            />
             <View style={{ height: 1, backgroundColor: 'lightgrey', marginTop: 5 }} />
             <View
               style={{
@@ -305,7 +279,7 @@ const style = {
     marginLeft: 15,
     marginTop: 5
   },
-  paymentMethod:{
+  paymentMethod: {
     color: 'grey',
     fontWeight: 'bold',
     fontSize: 15,
