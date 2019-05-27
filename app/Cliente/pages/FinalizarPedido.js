@@ -68,13 +68,13 @@ class FinalizarPedido extends Component {
   renderPaymentMethod = () => {
     if (this.state.showPaymentMethod === true) {
       return (
-        <View style={{ flex: 1, paddingHorizontal: 15,  }}>
+        <View style={{ flex: 1, paddingHorizontal: 15 }}>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row' }}>
               <ReuseIcon name={'cash'} color={'black'} size={20} />
               <Text style={{ fontSize: 16, marginLeft: 5 }}>Dinheiro</Text>
             </View>
-            <View style={{ }}>
+            <View>
               <RadioButton
                 value="first"
                 status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
@@ -84,7 +84,7 @@ class FinalizarPedido extends Component {
           </View>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row' }}>
-              <ReuseIcon name={'cash'} color={'black'} size={20} />
+              <ReuseIcon name={'card'} color={'black'} size={20} />
               <Text style={{ fontSize: 16, marginLeft: 5 }}>Débito na entrega</Text>
             </View>
             <View style={{}}>
@@ -97,7 +97,7 @@ class FinalizarPedido extends Component {
           </View>
           <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
             <View style={{ flexDirection: 'row' }}>
-              <ReuseIcon name={'cash'} color={'black'} size={20} />
+              <ReuseIcon name={'card'} color={'black'} size={20} />
               <Text style={{ fontSize: 16, marginLeft: 5 }}>Crédito na entrega</Text>
             </View>
             <View style={{}}>
@@ -180,7 +180,7 @@ class FinalizarPedido extends Component {
             <TouchableOpacity
               onPress={() => { this.openPaymentMethod() ;}}
               style={{
-                flexDirection: 'row', justifyContent: 'space-between', marginRight: 15, paddingTop: 10, paddingBottom: 5,  }}
+                flexDirection: 'row', justifyContent: 'space-between', marginRight: 20, paddingTop: 10, paddingBottom: 5,  }}
             >
               <Text style={style.paymentMethod}>Forma de pagamento</Text>
               <ReuseIcon
@@ -214,11 +214,12 @@ class FinalizarPedido extends Component {
             </View>
             <FlatList
               data={this.props.cartItems}
-              renderItem={() => {
-                <View>
-                  <Text>oi</Text>
-                </View>;
-              }}
+              renderItem={({item}) => 
+              <View style={{flex:1, flexDirection:'row', justifyContent:'space-between'}}>
+                <Text>{item.amount}</Text>
+                <Text>{item.name} {item.brand}</Text>
+                <Text>R$ 10,0</Text>
+              </View>}
             />
             <View style={{ height: 1, backgroundColor: 'lightgrey', marginTop: 5 }} />
             <View
@@ -231,7 +232,7 @@ class FinalizarPedido extends Component {
               }}
             >
               <Text style={{ fontWeight: 'bold', fontSize: 12, marginRight: 5 }}>TOTAL</Text>
-              <Text style={{ fontSize: 15 }}>R$ 14,00</Text>
+              <Text style={{ fontSize: 15 }}>R$ {this.props.cartValue}</Text>
             </View>
           </View>
         </ScrollView>
