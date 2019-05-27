@@ -4,7 +4,6 @@ import CartScreen from '../pages/Carrinho';
 import FinalizarPedido from '../pages/FinalizarPedido';
 import Details from '../pages/Details';
 import Agendamento from '../pages/Agendamento';
-import Acompanhe from '../pages/Acompanhe';
 
 const BuyNavigator = createStackNavigator(
   {
@@ -20,7 +19,7 @@ const BuyNavigator = createStackNavigator(
         headerTitle: 'Supermercados',
       }
     },
-    scheduling:{
+    scheduling: {
       screen: Agendamento,
       navigationOptions: {
         headerTitle: 'Agendamento'
@@ -37,13 +36,7 @@ const BuyNavigator = createStackNavigator(
       navigationOptions: () => ({
         header: null,
       })
-    },
-    Acompanhe: {
-      screen: Acompanhe,
-      navigationOptions: {
-        headerTitle: 'Acompanhe seu pedido'
-      }
-    },
+    }
   },
   {
     tabBarOptions: {
@@ -55,7 +48,7 @@ const BuyNavigator = createStackNavigator(
       indicatorStyle: {
         height: 5,
         color: 'white',
-        backgroundColor: "white",
+        backgroundColor: 'white',
       },
       labelStyle: {
         fontSize: 15

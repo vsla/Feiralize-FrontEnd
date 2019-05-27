@@ -46,7 +46,7 @@ const BottomNavigator = createBottomTabNavigator(
       }),
     },
     Historico: {
-      screen: Acompanhe,
+      screen: Historico,
       navigationOptions: () => ({
         title: 'Histórico',
         tabBarIcon: () => (
