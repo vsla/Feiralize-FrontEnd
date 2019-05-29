@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import * as actions from '../redux/actions/action';
 import ReuseIcon from '../components/ReuseIcon';
 
-
 class FinalizarPedido extends Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,7 @@ class FinalizarPedido extends Component {
     this.state = {
       selected: 'Dinheiro',
       showPaymentMethod: false,
-      checked: null,
+      paymentMethod: null,
       arrow: 'arrow-up'
     };
   }
@@ -76,9 +75,9 @@ class FinalizarPedido extends Component {
             </View>
             <View>
               <RadioButton
-                value="first"
-                status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
-                onPress={() => { this.setState({ checked: 'first' }); }}
+                value="Dinheiro"
+                status={this.state.paymentMethod === 'Dinheiro' ? 'checked' : 'unchecked'}
+                onPress={() => { this.setState({ paymentMethod: 'Dinheiro' }); }}
               />
             </View>            
           </View>
@@ -89,9 +88,9 @@ class FinalizarPedido extends Component {
             </View>
             <View style={{}}>
               <RadioButton
-                value="first"
-                status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
-                onPress={() => { this.setState({ checked: 'first' }); }}
+                value="Cartão de débito"
+                status={this.state.paymentMethod === 'Cartão de débito' ? 'checked' : 'unchecked'}
+                onPress={() => { this.setState({ paymentMethod: 'Cartão de débito' }); }}
               />
             </View>
           </View>
@@ -102,9 +101,9 @@ class FinalizarPedido extends Component {
             </View>
             <View style={{}}>
               <RadioButton
-                value="first"
-                status={this.state.checked === 'first' ? 'checked' : 'unchecked'}
-                onPress={() => { this.setState({ checked: 'first' }); }}
+                value="Cartão de crédito"
+                status={this.state.paymentMethod === 'Cartão de crédito' ? 'checked' : 'unchecked'}
+                onPress={() => { this.setState({ paymentMethod: 'Cartão de crédito' }); }}
               />
             </View>
           </View>          
@@ -112,6 +111,7 @@ class FinalizarPedido extends Component {
       );
     }
   }
+
   render() {
     return (
       <View style={style.viewStyle}>
@@ -122,7 +122,6 @@ class FinalizarPedido extends Component {
               backgroundColor: 'white',
               height: 60,
               borderTopColor: 'lavender',
-              borderTopWidth: 0.8,
               borderBottomColor: 'lavender',
               borderBottomWidth: 0.8,
               paddingLeft: 15,
@@ -244,7 +243,6 @@ class FinalizarPedido extends Component {
             <Text style={{ color: 'white', fontSize: 18 }}>Finalizar Feira</Text>
           </TouchableOpacity>
         </View>
-
       </View>
     );
   }
