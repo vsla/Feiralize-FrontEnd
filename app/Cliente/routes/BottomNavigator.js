@@ -5,7 +5,8 @@ import ShoppingRoute from './ShoppingRoute';
 //import Perfil from '../pages/Perfil';
 import PerfilTemp from '../pages/PerfilTemp';
 import Inicio from '../pages/Inicio';
-import Historico from '../pages/Historico';
+//import Historico from '../pages/Historico';
+import HistoricoCliente from '../pages/HistoricoCliente';
 import ReuseIcon from '../components/ReuseIcon';
 import BuyNavigator from './BuyNavigator';
 
@@ -51,7 +52,7 @@ const BottomNavigator = createBottomTabNavigator(
       }),
     },
     Historico: {
-      screen: Historico,
+      screen: HistoricoCliente,
       navigationOptions: () => ({
         title: "Histórico",
         tabBarIcon: () => {
