@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import HeaderLogin from '../../components/HeaderLogin';
+
 export default class getInitialLocation extends Component {
   constructor(props) {
     super(props);
@@ -14,8 +15,14 @@ export default class getInitialLocation extends Component {
       <View style={{ flex: 1 }}>
         <HeaderLogin />
         <View style={{ flex: 3.5 }}>
-          <Text style={{ color: 'green', fontSize: 28, alignSelf: 'center', marginVertical: 15 }}>Sua localização!</Text>
-          <View style={{ flex: 1, backgroundColor: 'transparent', marginHorizontal: 25, marginVertical: 10, justifyContent: 'center' }}>
+          <Text 
+            style={{ color: 'green', fontSize: 28, alignSelf: 'center', marginVertical: 15 }}
+          >
+            Sua localização!
+          </Text>
+          <View 
+            style={{ flex: 1, backgroundColor: 'transparent', marginHorizontal: 25, marginVertical: 10, justifyContent: 'center' }}
+          >
             <GooglePlacesAutocomplete
               placeholder='Digite o seu endereço'
               placeholderTextColor='#ffffff'
@@ -25,7 +32,7 @@ export default class getInitialLocation extends Component {
                 language: 'pt', // language of the results
               }}
               onPress={(data, details) => {
-                console.log(data, details, data.structured_formatting.main_text );
+                console.log(data, details, data.structured_formatting.main_text);
                 this.setState({ selectedLocation: data.structured_formatting.main_text });
               }}
               //listViewDisplayed='auto'
@@ -45,7 +52,7 @@ export default class getInitialLocation extends Component {
               }}
             />
             <TouchableOpacity
-              onPress={() => { this.props.navigation.navigate('bottomNavigator')}}
+              onPress={() => { this.props.navigation.navigate('bottomNavigator'); }}
               style={{ backgroundColor: 'green', alignItems: 'center', marginHorizontal: '20%', borderRadius: 40, marginTop: 20 }}
             >
               <Text style={{ color: 'white', fontSize: 20 }}>Pronto</Text>

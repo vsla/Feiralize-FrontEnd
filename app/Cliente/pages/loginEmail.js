@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { View, Image, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
 import theme from '../styles/theme.style';
@@ -5,24 +6,41 @@ import HeaderLogin from '../components/HeaderLogin';
 import firebase from 'firebase';
 import axios from 'axios';
 class LoginEmail extends Component {
-  state = { email: '', password: '', error: '' }
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '', password: '', error: ''
+    };
+    const user = firebase.auth().currentUser;
+    if (user) {
+      console.log(1, user);
+    } else {
+      console.log(1, 'sem login');
+    }
+  }
 
 
   loginMethod() {
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .catch(() => {
-        firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then((r) => {
+        console.log(r, 1);
+        this.props.navigation.navigate('bottomNavigator');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    //const user = firebase.auth().currentUser;
+    //console.log(user);
+    //Alert.alert('Logado com sucesso!');
+  }
+  /**
+   * firebase.auth().createUserWithEmailAndPassword(email, password)
           .catch(() => {
             Alert.alert('Email existente ou senha muito curta\n Adicione letras e números.');
           });
-      });
-    Alert.alert('Logado com sucesso!');
-    this.props.navigation.navigate('bottomNavigator');
-  }
-  //gaychiu@chiu.gay
-  //gayzinho1234
-
+   */
+  
   login = () => {
     axios.post('https://4e8e57a2.ngrok.io/client/login', {
       email: this.state.email,
@@ -30,8 +48,28 @@ class LoginEmail extends Component {
     }).then((response) => {
       console.log(response.data);
     });
-
     this.props.navigation.navigate('bottomNavigator');
+  }
+
+  anonymousLogin = (local) => {
+    /*
+    firebase.auth().signInAnonymously()
+    .catch((error) => {
+      console.log(error);
+    })
+    const user = firebase.auth().currentUser;
+    if (user) {
+      console.log(user);
+    } else {
+      console.log('sem login');
+    }
+    */
+    if (local === 'supermarket') {
+      this.props.navigation.navigate('supermarket');
+    } else if (local === 'client') {
+      this.props.navigation.navigate('bottomNavigator');
+    }
+    
   }
   render() {
     return (
@@ -51,19 +89,21 @@ class LoginEmail extends Component {
             style={style.inputStyle}
             placeholder="Senha"
             placeholderTextColor='black'
-            secureTextEntry={true}
+            secureTextEntry
             value={this.state.password}
             onChangeText={password => this.setState({ password })} 
           />
 
           <TouchableOpacity
             style={style.loginButton}
-            onPress={() => this.login()}>
+            onPress={() => this.loginMethod()}
+          >
             <Text
               style={{
                 color: 'white',
                 fontSize: 18,
-              }}>
+              }}
+            >
               Entrar </Text>
           </TouchableOpacity>
 
@@ -75,16 +115,19 @@ class LoginEmail extends Component {
               <Text
                 style={{
                   color: 'orange',
-                }}>
+                }}
+              >
                 Esqueceu a senha! </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={style.forgotPassButton}
-              onPress={() => { this.props.navigation.navigate('SignUpRoute');}} >
+              onPress={() => { this.props.navigation.navigate('SignUpRoute'); }}
+            >
               <Text
                 style={{
                   color: 'orange',
-                }}>
+                }}
+              >
                 Cadastre-se </Text>
             </TouchableOpacity>
           </View>
@@ -99,18 +142,21 @@ class LoginEmail extends Component {
           >
             <TouchableOpacity
               style={style.loginButton}
-              onPress={() => this.props.navigation.navigate('bottomNavigator')}>
+              onPress={() => this.anonymousLogin('client')}
+            >
               <Text
                 style={{
                   color: 'white',
                   fontSize: 18,
-                }}>
+                }}
+              >
                 Entrar sem login
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={style.loginButton}
-              onPress={() => this.props.navigation.navigate('supermarket')}>
+              onPress={() => this.anonymousLogin('supermarket')}
+            >
               <Text style={{ color: 'white', fontSize: 18 }} >
                 Entrar super
                 </Text>
