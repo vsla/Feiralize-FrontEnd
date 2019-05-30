@@ -4,6 +4,7 @@ import CartScreen from '../pages/Carrinho';
 import FinalizarPedido from '../pages/FinalizarPedido';
 import Details from '../pages/Details';
 import Agendamento from '../pages/Agendamento';
+import Acompanhe from '../pages/Acompanhe';
 
 const BuyNavigator = createStackNavigator(
   {
@@ -33,6 +34,12 @@ const BuyNavigator = createStackNavigator(
     },
     Details: {
       screen: Details,
+      navigationOptions: () => ({
+        header: null,
+      })
+    },
+    Acompanhe: {
+      screen: Acompanhe,
       navigationOptions: () => ({
         header: null,
       })

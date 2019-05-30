@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
 import { createMaterialTopTabNavigator } from 'react-navigation';
-import Pedidos from '../pages/Pedidos'
+import Pedidos from '../pages/Pedidos';
 
 
 const StatusFeiraTabNav = createMaterialTopTabNavigator(
     {
-        'TODOS':{
+        TODOS: {
             screen: Pedidos,
             navigationOptions: {
                 tabBarLabel: 'TODOS',
             }
         },
-        'PENDENTE': {
+        PENDENTE: {
             screen: Pedidos,
             navigationOptions: {
                 tabBarLabel: 'PENDENTES',
@@ -29,12 +28,18 @@ const StatusFeiraTabNav = createMaterialTopTabNavigator(
                 tabBarLabel: 'EM ENTREGA',
             }
         },
+        FINALIZADO: {
+            screen: Pedidos,
+            navigationOptions: {
+                tabBarLabel: 'FINALIZADO',
+            }
+        },
     },
     {
         tabBarOptions: {
             activeTintColor: 'green',
             inactiveTintColor: 'grey',
-            scrollEnabled: false,
+            scrollEnabled: true,
             labelStyle: {
                 fontSize: 12,
                 fontWeight: 'bold',
