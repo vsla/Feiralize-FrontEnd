@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import { View, Image, TextInput, TouchableOpacity, Text, Alert } from 'react-native';
 import theme from '../styles/theme.style';
 import HeaderLogin from '../components/HeaderLogin';
@@ -14,11 +14,11 @@ class LoginEmail extends Component {
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .catch(() => {
-            Alert.alert("Email existente ou senha muito curta\n Adicione letras e números.")
-          })
-      })
-    Alert.alert("Logado com sucesso!");
-    this.props.navigation.navigate('bottomNavigator')
+            Alert.alert('Email existente ou senha muito curta\n Adicione letras e números.');
+          });
+      });
+    Alert.alert('Logado com sucesso!');
+    this.props.navigation.navigate('bottomNavigator');
   }
   //gaychiu@chiu.gay
   //gayzinho1234
@@ -28,30 +28,33 @@ class LoginEmail extends Component {
       email: this.state.email,
       password: this.state.password
     }).then((response) => {
-      console.log(response.data)
-    })
+      console.log(response.data);
+    });
 
-    this.props.navigation.navigate('bottomNavigator')
+    this.props.navigation.navigate('bottomNavigator');
   }
   render() {
     return (
       <View style={{ flex: 2, backgroundColor: 'white' }}>
         <HeaderLogin />
         <View style={style.inputContainer}>
-          <TextInput style={style.inputStyle}
+          <TextInput 
+            style={style.inputStyle}
             value={this.state.email}
-            onChangeText={email => this.setState({ email: email })}
-            placeholder="email@email.com"
+            onChangeText={email => this.setState({ email })}
+            placeholder="Email"
             placeholderTextColor='black'
             keyboardType="email-address"
           />
 
-          <TextInput style={style.inputStyle}
+          <TextInput 
+            style={style.inputStyle}
             placeholder="Senha"
             placeholderTextColor='black'
             secureTextEntry={true}
             value={this.state.password}
-            onChangeText={password => this.setState({ password: password })} />
+            onChangeText={password => this.setState({ password })} 
+          />
 
           <TouchableOpacity
             style={style.loginButton}
@@ -67,29 +70,33 @@ class LoginEmail extends Component {
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-around', margin: 10 }}>
             <TouchableOpacity
               style={style.forgotPassButton}
-              onPress={() => { }}  >
+              onPress={() => { }} 
+            >
               <Text
                 style={{
-                  color: "orange",
+                  color: 'orange',
                 }}>
                 Esqueceu a senha! </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={style.forgotPassButton}
-              onPress={() => {this.props.navigation.navigate("SignUp")}} >
+              onPress={() => { this.props.navigation.navigate('SignUpRoute');}} >
               <Text
                 style={{
-                  color: "orange",
+                  color: 'orange',
                 }}>
                 Cadastre-se </Text>
             </TouchableOpacity>
           </View>
 
-          <View style={{
-            flex: 1, justifyContent: 'space-around',
+          <View 
+          style={{
+            flex: 1, 
+            justifyContent: 'space-around',
             flexDirection: 'row',
-            alignItems: "center"
-          }}>
+            alignItems: 'center'
+          }}
+          >
             <TouchableOpacity
               style={style.loginButton}
               onPress={() => this.props.navigation.navigate('bottomNavigator')}>
@@ -99,21 +106,16 @@ class LoginEmail extends Component {
                   fontSize: 18,
                 }}>
                 Entrar sem login
-                            </Text>
+              </Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={style.loginButton}
               onPress={() => this.props.navigation.navigate('supermarket')}>
-              <Text
-                style={{
-                  color: 'white',
-                  fontSize: 18,
-                }}>
+              <Text style={{ color: 'white', fontSize: 18 }} >
                 Entrar super
-                            </Text>
+                </Text>
             </TouchableOpacity>
           </View>
-
 
         </View>
       </View>
@@ -149,4 +151,4 @@ const style = {
     justifyContent: 'center',
     alignItems: 'center'
   }
-}
+};

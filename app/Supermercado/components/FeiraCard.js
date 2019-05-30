@@ -4,14 +4,13 @@ import { Text, View, TouchableOpacity } from 'react-native';
 export default class FeiraCard extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.fullData);
     this.state = {
       status: this.props.fullData.status,
       colorStatus: ''
     };
   }
   renderStatusType = () => {
-    if (this.state.status === 'PENDENTE') {
+    if (this.props.fullData.status === 'PENDENTE') {
       return (
         <Text
         style={{
@@ -22,9 +21,9 @@ export default class FeiraCard extends Component {
           paddingHorizontal: 5,
           fontSize: 13
         }}
-        >{this.state.status}</Text>
+        >{this.props.fullData.status}</Text>
       );
-    } else if (this.state.status === 'EM PREPARO') {
+    } else if (this.props.fullData.status === 'EM PREPARO') {
       return (
         <Text
           style={{
@@ -35,7 +34,7 @@ export default class FeiraCard extends Component {
           paddingHorizontal: 5,
           fontSize: 13
         }}
-        >{this.state.status}</Text>
+        >{this.props.fullData.status}</Text>
       );
     }
       return (
@@ -48,7 +47,7 @@ export default class FeiraCard extends Component {
           paddingHorizontal: 5,
           fontSize: 13
         }}
-        >{this.state.status}</Text>
+        >{this.props.fullData.status}</Text>
       );
       
     

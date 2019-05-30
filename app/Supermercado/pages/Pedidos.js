@@ -1,19 +1,19 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, FlatList, ActivityIndicator} from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View, FlatList, ActivityIndicator } from 'react-native';
 import FeiraCard from '../components/FeiraCard';
 import firebase from 'firebase';
 
 export default class Pedidos extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
-      fullData:null,
-      orders: null,
+      fullData: null,
+      orders: [],
       routeName: this.props.navigation.state.routeName,
-      isLoading:true,
-    }
+      isLoading: true,
+    };
   }  
-  componentWillMount() {
+  componentDidMount() {
     /*
     firebase.database().ref('/teste').set({
       data:{
@@ -26,32 +26,34 @@ export default class Pedidos extends Component {
     */
    
     firebase.database().ref('/teste/data/feirasProntas/').on('value', (snapshot) => {
-      var data = []
-      const orders = snapshot.val()
-      if(this.state.routeName ==='TODOS' ){
-        
-        var indexes = Object.keys(orders)
-        indexes.map((index) => {
-          data.push(orders[index])
-        })
-        this.setState({
-          fullData: orders,
-          orders: data,
-          isLoading: false
-        })
-      }else{
-        var indexes = Object.keys(orders)
-        indexes.map((index) => {
-          if (orders[index].status === this.state.routeName) {
-            data.push(orders[index])
-          }
-        })
-        this.setState({
-          fullData: orders,
-          orders: data,
-          isLoading: false
-        })
+      const data = [];
+      const orders = snapshot.val();
+      if (orders != null) {
+        if (this.state.routeName === 'TODOS') {
+          var indexes = Object.keys(orders);
+          indexes.map((index) => {
+            data.push(orders[index]);
+          });
+          this.setState({
+            fullData: orders,
+            orders: data,
+            isLoading: false
+          });
+        } else {
+          var indexes = Object.keys(orders);
+          indexes.map((index) => {
+            if (orders[index].status === this.state.routeName) {
+              data.push(orders[index]);
+            }
+          });
+          this.setState({
+            fullData: orders,
+            orders: data,
+            isLoading: false
+          });
+        }
       }
+      
     });
   }
 
@@ -62,7 +64,7 @@ export default class Pedidos extends Component {
           <ActivityIndicator color='black' />
         </View>
       )
-    } else {
+    } 
       
     return (
       <View style={{flex:1,backgroundColor:'#d4d4d4'}}>
@@ -74,7 +76,7 @@ export default class Pedidos extends Component {
       />
       </View>
     );
-    }
+    
   }
 }
 const styles = StyleSheet.create({

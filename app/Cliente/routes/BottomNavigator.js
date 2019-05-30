@@ -9,6 +9,7 @@ import Inicio from '../pages/Inicio';
 import HistoricoCliente from '../pages/HistoricoCliente';
 import ReuseIcon from '../components/ReuseIcon';
 import BuyNavigator from './BuyNavigator';
+import Acompanhe from '../pages/Acompanhe';
 
 
 const BottomNavigator = createBottomTabNavigator(
@@ -21,56 +22,46 @@ const BottomNavigator = createBottomTabNavigator(
     Inicio: {
         screen: Inicio,
         navigationOptions: () => ({
-            title: "Início",
-            tabBarIcon: () => {
-                return (
+            title: 'Início',
+            tabBarIcon: () => (
                     <ReuseIcon name={'home'} size={25} color={'gray'} />
-                )
-            }     
+                )     
         }),    
     },
     ShoppingRoute: {
       screen: ShoppingRoute,
       navigationOptions: () => ({
-        title: "Produtos",
-        tabBarIcon: () => {
-          return (
+        title: 'Produtos',
+        tabBarIcon: () => (
             <ReuseIcon name={'pizza'} size={25} color={'gray'} />
           )
-        }
       }),
     },
     cart: {
       screen: BuyNavigator,
       navigationOptions: () => ({
-        title: "carrinho",
-        tabBarIcon: () => {
-          return (
+        title: 'carrinho',
+        tabBarIcon: () => (
             <ReuseIcon name={'cart'} size={25} color={'gray'} />
           )
-        }
       }),
     },
     Historico: {
       screen: HistoricoCliente,
       navigationOptions: () => ({
-        title: "Histórico",
-        tabBarIcon: () => {
-          return (
+        title: 'Histórico',
+        tabBarIcon: () => (
             <ReuseIcon name={'timer'} size={25} color={'gray'} />
           )
-        }
       }),
     },
     Perfil: {
       screen: PerfilTemp,
       navigationOptions: () => ({
-        title: "Perfil",
-        tabBarIcon: () => {
-          return (
+        title: 'Perfil',
+        tabBarIcon: () => (
             <ReuseIcon name={'person'} size={25} color={'gray'} />
           )
-        }
       }),
     },
   },
@@ -87,5 +78,5 @@ const BottomNavigator = createBottomTabNavigator(
       inactiveTintColor: 'gray'
     }
   }
-)
+);
 export default BottomNavigator;

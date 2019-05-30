@@ -158,13 +158,13 @@ class BrandComponent extends Component {
         checked: true
       });
       const selectedBrand = this.props.greatParentProps.parentState.data[0];
-      selectedBrand['selected-brand'] = 'Quinta do morgado';
+      selectedBrand['brand'] = 'Quinta do morgado';
       selectedBrand.amount = '1kg';
       this.props.greatParentProps.selectProduct(this.props.greatParentProps.parentState.modalData.id);
       this.props.greatParentProps.add_to_cart(selectedBrand);
     } else {
       const selectedBrand = this.props.greatParentProps.parentState.data[0];
-      selectedBrand['selected-brand'] = 'Quinta do morgado';
+      selectedBrand['brand'] = 'Quinta do morgado';
       selectedBrand.amount = '1kg';
       this.setState({
         checked: false

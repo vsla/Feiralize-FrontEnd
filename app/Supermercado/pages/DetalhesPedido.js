@@ -1,27 +1,28 @@
-import React, { Component } from 'react'
-import { Text, View, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native'
+/* eslint-disable react/no-multi-comp */
+import React, { Component } from 'react';
+import { Text, View, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import LocationMap from '../components/LocationMap';
 import firebase from 'firebase';
 export default class DetalhesPedido extends Component {
   constructor(props) {
-    super(props)
-    const receivedData = this.props.navigation.getParam('data')
+    super(props);
+    const receivedData = this.props.navigation.getParam('data');
     this.state = {
-      showCheck:false,
+      showCheck: false,
       status: null,
       data: receivedData,
       amountChecked: 1,
       total: receivedData.items.length
-    }
+    };
   }
 
-  componentWillMount() {
-    firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).once('value', (snapshot) => {
+  componentDidMount() {
+    firebase.database().ref(`/teste/data/feirasProntas/${  this.state.data.key}`).once('value', (snapshot) => {
       this.setState({
         status: snapshot.val().status
-      })
-    })
+      });
+    });
   }
 
   // Functions that helps the logic 
@@ -29,23 +30,22 @@ export default class DetalhesPedido extends Component {
     if (id === 1) {
       this.setState({
         amountChecked: this.state.amountChecked + 1
-      })
+      });
     } else {
       this.setState({
         amountChecked: this.state.amountChecked - 1
-      })
+      });
     }
   }
   changeStatus = (id) => {
     if (this.state.status === 'PENDENTE') {
       if (id === 1) {
-        firebase.database().ref('/teste/data/feirasProntas/'+this.state.data.key).update({status:'EM PREPARO'})
+        firebase.database().ref(`/teste/data/feirasProntas/${this.state.data.key}`).update({ status: 'EM PREPARO' });
         this.setState({
           status: 'EM PREPARO',
-          showCheck:true,
-        })
+          showCheck: true,
+        });
       }
-
     } else if (this.state.status === 'EM PREPARO') {
         if (id === 1) {
           if (this.state.amountChecked < this.state.total) {
@@ -54,11 +54,12 @@ export default class DetalhesPedido extends Component {
               'Deseja continuar?',
               [
                 {
-                  text: 'Sim', onPress: () => {
-                    firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
+                  text: 'Sim',
+onPress: () => {
+                    firebase.database().ref(`/teste/data/feirasProntas/${  this.state.data.key}`).update({ status: 'EM ENTREGA' });
                     this.setState({
                       status: 'EM ENTREGA'
-                    })
+                    });
                   }
                 },
                 {
@@ -67,22 +68,20 @@ export default class DetalhesPedido extends Component {
                   style: 'cancel',
                 },
               ]
-            )
+            );
           } else {
-            firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM ENTREGA' })
+            firebase.database().ref(`/teste/data/feirasProntas/${  this.state.data.key}`).update({ status: 'EM ENTREGA' });
             this.setState({
               status: 'EM ENTREGA'
-            })
+            });
           }
-        }
-        else if(id === 2 ) {
-            firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'PENDENTE' })
+        } else if (id === 2) {
+            firebase.database().ref(`/teste/data/feirasProntas/${  this.state.data.key}`).update({ status: 'PENDENTE' });
             this.setState({
               status: 'PENDENTE'
-            })
+            });
         }
-    } else {
-      if (id === 1) {
+    } else if (id === 1) {
         this.props.navigation.navigate('PedidosHome')
       } else if (id === 2) {
         firebase.database().ref('/teste/data/feirasProntas/' + this.state.data.key).update({ status: 'EM PREPARO' })
@@ -90,7 +89,6 @@ export default class DetalhesPedido extends Component {
           status: 'EM PREPARO'
         })
       }
-    }
   }
   cancelOrBack = () => {
     if (this.state.status === 'PENDENTE') {
@@ -101,11 +99,11 @@ export default class DetalhesPedido extends Component {
       return (
         <View />
       )
-    } else {
+    } 
       return (
         <Text style={{ color: 'darkorange', }}>Voltar para seleção</Text>
       )
-    }
+    
   }
   renderNextButtonText = () => {
     if (this.state.status === 'PENDENTE') {
@@ -116,17 +114,17 @@ export default class DetalhesPedido extends Component {
       return (
         <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Pronto para entrega</Text>
       )
-    } else {
+    } 
       return (
         <Text style={{ color: 'white', fontSize: 16, padding: 5 }}>Entregar</Text>
       )
-    }
+    
   }
   renderLista = () => {
     if (this.state.status === 'EM PREPARO') {
       return (
         <Text style={style.sectionHeader} >Lista</Text>
-      )
+      );
     }
   }
   renderStatusColor = () => {
@@ -146,7 +144,7 @@ export default class DetalhesPedido extends Component {
           <View style={{ flex: 1, backgroundColor: '#d4d4d4', marginLeft: 5 }} />
         </View>
       )
-    } else {
+    } 
       return (
         <View style={{ flexDirection: 'row', height: 6 }}>
           <View style={{ flex: 1, backgroundColor: 'red', marginRight: 5 }} />
@@ -154,9 +152,10 @@ export default class DetalhesPedido extends Component {
           <View style={{ flex: 1, backgroundColor: '#5dab5d', marginLeft: 5 }} />
         </View>
       )
-    }
+    
   }
   renderSelectionItem = () => {
+    /*
     var data = [
       { key: 'a', quantidade: 1, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
       { key: 'b', quantidade: 2, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
@@ -170,14 +169,16 @@ export default class DetalhesPedido extends Component {
       { key: 'j', quantidade: 10, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', },
       { key: 'k', quantidade: 11, produto: 'Arroz cristal tipo 1 1kg', valor: '4,5', }
     ]
+    */
+    const data = this.props.navigation.getParam('data').items;
     if (this.state.status === 'EM ENTREGA') {
       return (
         <View style={{ flex: 1 }}>
           < LocationMap />
         </View>
       )
-    } else {
-      var data = this.state.data.items
+    } 
+      
       return (
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -209,15 +210,14 @@ export default class DetalhesPedido extends Component {
           </View>
         </View>
       )
-    }
+    
   }
   // End of functions
 
 render() {
   return (
     <View style={{ flex: 1, backgroundColor: '#f1f1f1' }}>
-      <View style={{ flex: 0.2 }}>
-      </View>
+      <View style={{ flex: 0.2 }} />
       <View style={style.container}>
         {this.renderStatusColor()}
         <View style={style.containerInfo}>
@@ -241,13 +241,13 @@ render() {
           <View style={{ flexDirection: 'row-reverse', alignItems: 'center', marginBottom: 10, }}>
             <TouchableOpacity
               style={{ backgroundColor: 'darkorange', marginHorizontal: 5, borderRadius: 30 }}
-              onPress={() => { this.changeStatus(1) }}
+              onPress={() => { this.changeStatus(1); }}
             >
               {this.renderNextButtonText()}
             </TouchableOpacity>
             <TouchableOpacity
               style={{ backgroundColor: 'white', fontSize: 15, marginHorizontal: 15 }}
-              onPress={() => { this.changeStatus(2) }}
+              onPress={() => { this.changeStatus(2); }}
             >
               {this.cancelOrBack()}
             </TouchableOpacity>
@@ -255,40 +255,42 @@ render() {
         </View>
       </View>
     </View>
-  )
+  );
 }
 }
 
 class ProdutoComponent extends Component {
   constructor(props) {
-    super(props)
-    console.log(this.props)
+    super(props);
+    console.log(this.props, 1);
     this.state = {
       accepted: false,
       ready: false,
       checked: false,
       parentStatus: this.props.parentState.status,
-      status:null
-    }
+      status: null
+    };
   }
 
-  componentWillMount() {
-    firebase.database().ref('/teste/data/feirasProntas/' + this.props.parentState.data.key).once('value', (snapshot) => {
+  componentDidMount() {
+    firebase.database().ref(`/teste/data/feirasProntas/${  this.props.parentState.data.key}`).on('value', (snapshot) => {
       this.setState({
         status: snapshot.val().status
-      })
-    })
+      });
+    });
   }
+
   onPress = () => {
     if (this.state.checked == false) {
-      this.setState({ checked: true })
-      this.props.check(1)
+      this.setState({ checked: true });
+      this.props.check(1);
     } else {
-      this.setState({ checked: false })
-      this.props.check(2)
+      this.setState({ checked: false });
+      this.props.check(2);
     }
   }
   renderCheckBox = () => {
+    console.log(this.props);
     if (this.state.parentStatus === 'EM PREPARO' || this.props.parentState.status === 'EM PREPARO' || this.state.status === 'EM PREPARO') {
       return (
         <CheckBox
@@ -298,7 +300,7 @@ class ProdutoComponent extends Component {
           size={20}
           containerStyle={{ margin: 0, padding: 0, borderWidth: 0, alignSelf: 'flex-start' }}
         />
-      )
+      );
     }
   }
   render() {
@@ -306,22 +308,22 @@ class ProdutoComponent extends Component {
       <TouchableOpacity
         onPress={() => this.onPress()}
         style={{ flexDirection: 'row', marginVertical: 2 }}
-        disabled={(this.state.status === 'EM PREPARO') ? false : true}
+        disabled={this.state.status !== 'EM PREPARO'}
       >
         {this.renderCheckBox()}
         <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between', }}>
           <Text>
-            {this.props.info.height}
+            {this.props.info.quantidade}
           </Text>
           <Text>
-            {this.props.info.title}
+            {this.props.info.produto}
           </Text>
           <Text>
             R$ {this.props.info.price}
           </Text>
         </View>
       </TouchableOpacity>
-    )
+    );
   }
 }
 
@@ -351,4 +353,4 @@ const style = StyleSheet.create({
     fontSize: 13,
 
   }
-})
+});

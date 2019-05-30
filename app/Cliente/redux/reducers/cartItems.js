@@ -3,38 +3,37 @@ const initialState = {
   cartValue: 0,
   payment_method: '',
 
-}
-//parseFloat(parseFloat(state.cartValue + action.payload.price).toFixed(2))
+};
+
 const cartItems = (state = initialState, action) => {
-  console.log(state)
+  console.log(state);
   switch (action.type) {
     case 'ADD_TO_CART':
       return {
         cart: [action.payload, ...state.cart],
         cartValue: state.cartValue + 10,
         payment_method: state.payment_method
-      }
+      };
       break;
-    case "REMOVE_FROM_CART":
+    case 'REMOVE_FROM_CART':
       return {
-        cart: state.cart.filter((value) => { return value != action.payload }),
+        cart: state.cart.filter((value) => value != action.payload),
         cartValue: state.cartValue - 10,
         payment_method: state.payment_method
-      }
+      };
       break;
-    case "ADD_PAYMENT_METHOD":
+    case 'ADD_PAYMENT_METHOD':
       return {
         cart: [...state.cart],
         cartValue: state.cartValue,
         payment_method: action.payload,
-      }
+      };
       break;
-    case "RESET_CART":
-      return initialState
+    case 'RESET_CART':
+      return initialState;
     default:
-      return state
+      return state;
   }
+};
 
-}
-
-export default cartItems
+export default cartItems;

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native';
-import ListaProdutoTabNav from '../routes/ListaProdutoNav'
-import ReuseIcon from "../components/ReuseIcon";
+import React, { Component } from 'react';
+import { View, TextInput } from 'react-native';
+import ListaProdutoTabNav from '../routes/ListaProdutoNav';
+import ReuseIcon from '../components/ReuseIcon';
 
 class ListaProduto extends Component {
   render() {
@@ -10,7 +10,8 @@ class ListaProduto extends Component {
         < View style={style.headerStyle} >
 
           <View style={style.inputStyle}>
-            <TextInput style={style.textStyle}
+            <TextInput
+              style={style.textStyle}
               placeholder="Buscar item"
               placeholderTextColor='white'
               onFocus={() => this.props.navigation.navigate('ItemSearching')}
@@ -27,7 +28,7 @@ class ListaProduto extends Component {
     );
   }
 }
-export default ListaProduto
+export default ListaProduto;
 const style = {
   viewStyle: {
     flex: 1,
@@ -35,9 +36,9 @@ const style = {
   },
   headerStyle: {
     flex: 0.10,
-    flexDirection: "row",
+    flexDirection: 'row',
     backgroundColor: 'darkorange',
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   inputStyle: {
@@ -52,4 +53,4 @@ const style = {
     color: 'white',
     marginRight: 10,
   }
-}
+};
