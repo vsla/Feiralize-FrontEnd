@@ -12,6 +12,13 @@ class Acompanhe extends Component {
     static navigationOptions = {
         title: 'Acompanhe',
       };
+    constructor(props) {
+        super(props);
+        this.state = {
+          value: this.props.cartValue,
+          frete: 0
+        };
+      }
     render() {
         return (
             <View style={{ flex: 1 }}>
@@ -55,9 +62,9 @@ class Acompanhe extends Component {
                                     <Text style={styles.textoStyleUm}>TOTAL</Text>
                                 </View>
                                 <View style={{ marginLeft: 30 }}>
-                                    <Text style={styles.textoStyleDois}>R$ 0,00</Text>
-                                    <Text style={styles.textoStyleDois}>R$ 0,00</Text>
-                                    <Text style={styles.textoStyleTres}>R$ 0,00</Text>
+                                    <Text style={styles.textoStyleDois}>R$ {this.props.cartValue}</Text>
+                                    <Text style={styles.textoStyleDois}>R$ {this.state.frete}</Text>
+                                    <Text style={styles.textoStyleTres}>R$ {this.props.cartValue + this.state.frete}</Text>
                                 </View>
                             </View>
                         </View>
@@ -69,7 +76,8 @@ class Acompanhe extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    cart: state.cart
+    cart: state.cart,
+    cartValue: state.cartValue
   });
 
   const styles = {
