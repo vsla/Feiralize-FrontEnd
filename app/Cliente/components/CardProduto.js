@@ -5,15 +5,15 @@ import * as actions from '../redux/actions/action';
 
 class CardProduto extends Component {
     constructor(props) {
-        super(props)
-        console.log(props)
+        super(props);
+        console.log(props);
     }
     render() {
         return (
              <View style={styles.boxStyle}>
                 <Text style={styles.textStyle}>{this.props.item.amount}</Text>
                 <Text style={styles.textStyle}>{this.props.item.name}</Text>
-                <Text style={styles.textStyle}>{this.props.item.price}</Text>
+                <Text style={styles.textStyle}>{this.props.item.amount}</Text>
              </View>
         );
     }
@@ -24,13 +24,13 @@ const styles = {
         backgroundColor: 'white',
         marginHorizontal: 20,
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-evenly',
     },
     textStyle: {
         color: 'grey',
         fontSize: 12,
         fontWeight: 'bold',
-        marginBottom: 3
+        marginBottom: 3,
     }
   };
 
