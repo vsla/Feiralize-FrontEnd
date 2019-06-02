@@ -8,7 +8,6 @@ import Picker from './Picker';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/action';
 
-
 class DefaultOverlay extends Component {
   constructor(props) {
     super(props);

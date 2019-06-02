@@ -4,7 +4,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import ItemCard from './ItemCard';
 import * as actions from '../redux/actions/action';
-import DefaultOverlay from './Overlay';
+import DefaultOverlay from './OverlayListaProduto';
 
 class ItemList extends Component {
   constructor(props) {

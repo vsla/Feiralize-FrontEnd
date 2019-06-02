@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Alert, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Alert, FlatList, Dimensions } from 'react-native';
 import { RadioButton } from 'react-native-paper';
+import { Overlay } from 'react-native-elements';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/action';
@@ -16,44 +17,50 @@ class FinalizarPedido extends Component {
       selected: 'Dinheiro',
       showPaymentMethod: false,
       paymentMethod: null,
-      arrow: 'arrow-up'
+      arrow: 'arrow-up',
+      transshipment: null,
+      openTransshipmentModal: false
     };
   }
 
   confirmarCompra = () => {
-    Alert.alert(
-      `Confirmar compra de R$ ${Math.round(this.props.cartValue * 100) / 100}`,
-      '',
-      [
-        {
-          text: 'Cancelar',
-          onPress: () => console.log('Cancel Pressed'),
-          style: 'cancel',
-        },
-        {
-          text: 'OK',
-          onPress: () => {
-            const newPostKey = firebase.database().ref('/teste/data/feirasProntas/').push().key;
-            firebase.database().ref(`/teste/data/feirasProntas/${newPostKey}`).set({
-              key: newPostKey,
-              status: 'PENDENTE',
-              items: this.props.cartItems,
-              price: (Math.round(this.props.cartValue * 100) / 100),
-              delivery: {
-                type: 'Entrega em domicílio',
-                date: 'Segunda',
-                hour: '13:00',
-                location: 'Avenida Domingo Ferreira, 1034, apt 701'
-              },
-              notes: '',
-              payment: this.state.selected
-            });
-            this.props.add_payment_method(this.state.selected);
-            this.props.navigation.navigate('Cart');
-          }
-        },
-      ],
-    );
+    if (this.state.paymentMethod === 'Dinheiro') {
+      this.setState({ openTransshipmentModal: true })
+    } else {
+      Alert.alert(
+        `Confirmar compra de R$ ${Math.round(this.props.cartValue * 100) / 100}`,
+        '',
+        [
+          {
+            text: 'Cancelar',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK',
+            onPress: () => {
+              const newPostKey = firebase.database().ref('/teste/data/feirasProntas/').push().key;
+              firebase.database().ref(`/teste/data/feirasProntas/${newPostKey}`).set({
+                key: newPostKey,
+                status: 'PENDENTE',
+                items: this.props.cartItems,
+                price: (Math.round(this.props.cartValue * 100) / 100),
+                delivery: {
+                  type: 'Entrega em domicílio',
+                  date: 'Segunda',
+                  hour: '13:00',
+                  location: 'Avenida Domingo Ferreira, 1034, apt 701'
+                },
+                notes: '',
+                payment: this.state.selected
+              });
+              this.props.add_payment_method(this.state.selected);
+              this.props.navigation.navigate('Cart');
+            }
+          },
+        ],
+      );
+    }
   }
 
   openPaymentMethod = () => {
@@ -106,7 +113,8 @@ class FinalizarPedido extends Component {
                 onPress={() => { this.setState({ paymentMethod: 'Cartão de crédito' }); }}
               />
             </View>
-          </View>          
+          </View>
+                    
         </View>
       );
     }
@@ -149,14 +157,10 @@ class FinalizarPedido extends Component {
           <View
             style={{
               backgroundColor: 'white',
-              height: 80,
-              borderTopColor: 'lavender',
-              borderTopWidth: 0.8,
-              borderBottomColor: 'lavender',
-              borderBottomWidth: 0.8,
               paddingLeft: 15,
               paddingRight: 15,
-              paddingTop: 5
+              paddingTop: 5,
+              paddingBottom:5
             }}
           >
             <Text style={{ fontWeight: 'bold', fontSize: 12 }}>ENDEREÇO</Text>
@@ -165,7 +169,6 @@ class FinalizarPedido extends Component {
             <Text style={{ fontWeight: 'bold', fontSize: 12 }}>DATA E HORA</Text>
             <Text style={{ fontSize: 12 }}>Hoje, 6 de maio, 18h30 as 19h00</Text>
           </View>
-          
           <View
             style={{
               backgroundColor: 'white',
@@ -189,9 +192,14 @@ class FinalizarPedido extends Component {
               />
             </TouchableOpacity>
             
-            <View style={{ flex: 1, height: 1, backgroundColor: 'grey' }} />
+            <View style={{ flex: 1, height: 1, backgroundColor: '#d6d6d6' }} />
             {this.renderPaymentMethod()}
           </View>
+          {
+            /**
+             * Colocar aqui observação
+             */
+          }
           <Text style={style.textStyle}>Carrinho</Text>
           <View
             style={{
@@ -243,6 +251,23 @@ class FinalizarPedido extends Component {
             <Text style={{ color: 'white', fontSize: 18 }}>Finalizar Feira</Text>
           </TouchableOpacity>
         </View>
+        {
+          /**
+           * O overlay só é renderizado se a opção selecionada for Dinheiro
+           */
+        }
+        <Overlay
+          isVisible={this.state.openTransshipmentModal}
+          height={Dimensions.get('window').height / 3}
+          width={Dimensions.get('window').width - 60}
+          animationType='slide'
+        >
+          <TouchableOpacity
+            onPress={() => this.setState({ openTransshipmentModal: false })}
+          >
+            <Text>sair</Text>
+          </TouchableOpacity>
+        </Overlay>
       </View>
     );
   }

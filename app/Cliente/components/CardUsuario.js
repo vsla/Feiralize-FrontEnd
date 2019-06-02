@@ -1,9 +1,19 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import call from 'react-native-phone-call';
 import ReuseIcon from '../components/ReuseIcon';
 
 class CardUsuario extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          value: this.props.cartValue,
+          frete: 0
+        };
+      }
+
     call = () => {
         const args = {
           number: '0000000000',
@@ -11,6 +21,7 @@ class CardUsuario extends Component {
         };
         call(args).catch(console.error);
     };
+
     render() {
         return (
              <View style={{ flex: 1 }}>
@@ -33,7 +44,7 @@ class CardUsuario extends Component {
                    </View>
                    <View style={{ marginLeft: 30 }}>
                        <Text style={styles.textoStyleDois}>DINHEIRO</Text>
-                       <Text style={styles.textoStyleDois}>R$ 68,90</Text>
+                       <Text style={styles.textoStyleDois}>R$ {this.props.cartValue + this.state.frete}</Text>
                        <Text style={styles.textoStyleDois}>R$ 12,10</Text>
                        <Text style={styles.textoStyleDois}>Estrada velha de água fria, 102</Text>
                    </View>
@@ -42,6 +53,11 @@ class CardUsuario extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => ({
+    cart: state.cart,
+    cartValue: state.cartValue
+  });
 
 const styles = {
     boxStyle: {
@@ -93,4 +109,4 @@ const styles = {
     }
   };
 
-export default CardUsuario;
+export default connect(mapStateToProps)(CardUsuario);

@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import firebase from 'firebase';
 import themeStyle from '../styles/theme.style';
 import ReuseIcon from '../components/ReuseIcon';
 import { Avatar } from 'react-native-elements';
 
 
 export default class PerfilTemp extends Component {
+
+  logOut = () => {
+    firebase.auth().signOut();
+    this.props.navigation.navigate('loginRoute')
+  }
   render() {
     return (
       <View style={{ flex: 1 }}>
@@ -28,7 +34,7 @@ export default class PerfilTemp extends Component {
           <View>
             <TouchableOpacity
               style={style.buttonStyle}
-              onPress={() => this.props.navigation.navigate('loginRoute')}
+              onPress={() => this.logOut()}
             >
               <Text style={{ color: 'white' }}>Sair</Text>
             </TouchableOpacity>
