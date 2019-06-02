@@ -5,7 +5,8 @@ import firebase from 'firebase';
 import InitialRoute from './app/Cliente/routes/InitialRoute';
 import store from './app/Cliente/redux/index';
 import Authentication from './app/Cliente/pages/Authentication';
-import CadastrarConta from './app/Cliente/pages/CadastrarConta';
+import RegisterAccount from './app/Cliente/pages/RegisterAccount';
+import ForgotPassword from './app/Cliente/pages/ForgotPassword';
 
 class App extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ class App extends Component {
       // The app start calling InitialRoute in routes
       <Provider store={store}>
         <StatusBar backgroundColor="darkorange" />
-        <CadastrarConta />
+        <ForgotPassword />
       </Provider>
     );
    }
