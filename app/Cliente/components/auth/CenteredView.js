@@ -16,7 +16,8 @@ const styles = {
     //backgroundColor: '#fff',
     marginLeft: 50,
     marginRight: 50,
-    marginTop: 50,
+    marginTop: 30,
+    //marginTop: 50
     marginBottom: 50,
     flex: 1
   }

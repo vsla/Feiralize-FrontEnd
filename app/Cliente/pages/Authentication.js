@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 import {
   GradientView,
   CenteredView,
@@ -65,10 +66,41 @@ class Authentication extends Component {
             {this.renderFbButton()}
           </SectionView>
 
+          <SectionView>
+            <Text
+              style={styles.forgotPasswordStyle}
+              onPress={null}
+            >
+              Esqueci Senha
+            </Text>
+
+            <Text 
+              style={styles.createAccountStyle}
+              onPress={null}
+            >
+              Criar nova Conta
+            </Text>
+          </SectionView>
+
         </CenteredView>
       </GradientView>  
     );  
   }
 }
+
+const styles = {
+  createAccountStyle: {
+    flex: 1,
+    fontSize: 18,
+    lineHeight: 23,
+    color: '#FFFFFF'
+  },
+  forgotPasswordStyle: {
+    flex: 1,
+    fontSize: 18,
+    lineHeight: 23,
+    color: '#FFFFFF'
+  }
+};
 
 export default Authentication;

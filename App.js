@@ -37,7 +37,7 @@ class App extends Component {
       // The app start calling InitialRoute in routes
       <Provider store={store}>
         <StatusBar backgroundColor="darkorange" />
-        <ForgotPassword />
+        <Authentication />
       </Provider>
     );
    }

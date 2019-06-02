@@ -20,7 +20,8 @@ const styles = {
     width: null,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 40
+    marginBottom: 20
+    //marginBottom: 40
   }
 };
 
