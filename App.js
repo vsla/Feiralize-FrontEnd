@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import firebase from 'firebase';
 import InitialRoute from './app/Cliente/routes/InitialRoute';
 import store from './app/Cliente/redux/index';
+import Authentication from './app/Cliente/pages/Authentication';
 
 class App extends Component {
   constructor(props) {
@@ -34,9 +35,10 @@ class App extends Component {
       // The app start calling InitialRoute in routes
       <Provider store={store}>
         <StatusBar backgroundColor="darkorange" />
-        <InitialRoute />
+        <Authentication />
       </Provider>
     );
    }
 }
 export default App;
+// <InitialRoute />
