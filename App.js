@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import firebase from 'firebase';
 import InitialRoute from './app/Cliente/routes/InitialRoute';
 import store from './app/Cliente/redux/index';
-
 class App extends Component {
   constructor(props) {
     super(props);
