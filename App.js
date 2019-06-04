@@ -7,13 +7,7 @@ import 'firebase/database';
 import { Provider } from 'react-redux';
 import store from './app/Cliente/redux';
 import InitialRoute from './app/Cliente/routes/InitialRoute';
-<<<<<<< HEAD
-import Authentication from './app/Cliente/pages/Authentication';
-
-
-=======
 import store from './app/Cliente/redux/index';
->>>>>>> 0437c45a47d244c57104348692045cd6fb025548
 class App extends Component {
   constructor(props) {
     super(props);
