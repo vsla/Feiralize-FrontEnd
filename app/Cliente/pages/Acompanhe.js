@@ -24,7 +24,10 @@ class Acompanhe extends Component {
         return (
             <View style={{ flex: 1 }}>
                 <View style={styles.headerStyle}>
-                    <TouchableOpacity style={{ marginLeft: 20 }}>
+                    <TouchableOpacity
+                        onPress={() => { this.props.navigation.navigate('Historico'); }}                     
+                        style={{ marginLeft: 20 }}
+                    >
                         <ReuseIcon
                         name="arrow-back"
                         color='white'

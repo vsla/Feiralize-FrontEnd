@@ -22,7 +22,7 @@ class ItemList extends Component {
   }
   
   componentWillMount() {
-    axios.get(`https://feiralize-server.herokuapp.com/category/all/sub/${  this.state.routeName}`)
+    axios.get(`https://feiralize-server.herokuapp.com/category/all/sub/${this.state.routeName}`)
          .then(response => {
            console.log(response.data.subCategories);
            this.setState({

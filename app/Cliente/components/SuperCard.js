@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { View, Image, TouchableOpacity, Text, Alert } from 'react-native';
 
-
-
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -61,7 +59,8 @@ class Login extends Component {
             <TouchableOpacity
               backgroundColor='slategray'
               onPress={() => this.props.screenProps.navigate("Details")}>
-              <Text style={{
+              <Text 
+              style={{
                 color: 'orange',
                 fontSize: 13.3,
                 textDecorationLine: 'underline'
@@ -70,15 +69,18 @@ class Login extends Component {
                             </Text>
             </TouchableOpacity>
           </View>
-          <View style={{
+          <View 
+          style={{
             marginBottom: 2,
             marginRight: 10
           }}>
-            <Text style={{
+            <Text 
+            style={{
               color: 'slategray',
               fontSize: 12,
             }}>Frete R${this.state.frete}</Text>
-            <Text style={{
+            <Text 
+            style={{
               color: 'slategray',
               fontSize: 12,
             }}>Entrega em 2 dias</Text>

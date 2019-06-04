@@ -11,7 +11,7 @@ const AuthInput = ({ iconName, value, onChangeText, placeholder, secureTextEntry
         <ReuseIcon
           name={iconName} 
           color='#FFFFFF' 
-          size={32} 
+          size={30} 
         />
       </View>    
       <TextInput
@@ -33,9 +33,9 @@ const styles = {
   inputStyle: {
     paddingRight: 5,
     paddingLeft: 10,
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 23,
-    flex: 2,
+    flex: 3.5,
     color: '#FFFFFF'
   },
   iconStyle: {

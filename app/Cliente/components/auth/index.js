@@ -5,3 +5,4 @@ export * from './FeiralizeLogo';
 export * from './AuthInput';
 export * from './AuthButton';
 export * from './FacebookButton';
+export * from './Spinner';

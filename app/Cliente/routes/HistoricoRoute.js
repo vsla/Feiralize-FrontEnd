@@ -7,7 +7,7 @@ const HistoricoRoute = createStackNavigator(
    * Navegação das telas de histórico
    **/
   {
-    Histórico: {
+    Historico: {
       screen: HistoricoCliente,
       navigationOptions: () => ({
         header: null,
@@ -19,6 +19,9 @@ const HistoricoRoute = createStackNavigator(
         header: null,
       })
     }
+  },
+  {
+    initialRouteName: 'Historico'
   }
 )
 export default HistoricoRoute;

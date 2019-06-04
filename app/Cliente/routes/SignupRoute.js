@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
 import getInitialLocation from '../pages/signUp/getInitialLocation';
-import SignUp from '../pages/SignUp';
+import RegisterAccount from '../pages/signUp/RegisterAccount';
 
 
 const SignUpRoute = createStackNavigator(
@@ -9,7 +9,7 @@ const SignUpRoute = createStackNavigator(
    **/
   {
     SignUp: {
-      screen: SignUp,
+      screen: RegisterAccount,
       navigationOptions: () => ({
         header: null,
       })

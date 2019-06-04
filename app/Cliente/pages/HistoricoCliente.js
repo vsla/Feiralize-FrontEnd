@@ -4,13 +4,13 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 export default class HistoricoCliente extends Component {
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <View style={{ flex: 1, backgroundColor: 'white' }}>
                 <View style={style.header}>
                     <Text style={style.textHeader}>
                         Historico 
                     </Text>
                 </View>              
-                <View style={{ flex: 1 }} >            
+                <View style={{ flex: 1, marginTop: 5 }} >            
                     <TouchableOpacity 
                         onPress={() => { this.props.navigation.navigate('Acompanhe'); }}
                         style={style.listaStyle}
