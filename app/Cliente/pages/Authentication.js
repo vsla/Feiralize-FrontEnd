@@ -9,7 +9,7 @@ import {
   FeiralizeLogo,
   AuthInput,
   AuthButton,
-  //FacebookButton,
+  FacebookButton,
   Spinner
 } from '../components/auth';
 
@@ -69,7 +69,7 @@ class Authentication extends Component {
       </AuthButton>
     );
   }
-  /*
+  
   renderFbButton() {
     if (this.props.loading) {
       return <Spinner size='large' />;
@@ -83,7 +83,7 @@ class Authentication extends Component {
         Entrar com Facebook
       </FacebookButton>
     );
-  }*/
+  }
   
   render() {
     return (
@@ -121,6 +121,10 @@ class Authentication extends Component {
     
           <SectionView>
             {this.renderButton()}
+          </SectionView>
+
+          <SectionView>
+            {this.renderFbButton()}
           </SectionView>
 
           <SectionView>
