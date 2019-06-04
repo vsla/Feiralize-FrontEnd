@@ -14,21 +14,20 @@ const cartItems = (state = initialState, action) => {
         cartValue: state.cartValue + 10,
         payment_method: state.payment_method
       };
-      break;
     case 'REMOVE_FROM_CART':
       return {
-        cart: state.cart.filter((value) => value != action.payload),
+        cart: state.cart.filter((value) => value !== action.payload),
         cartValue: state.cartValue - 10,
         payment_method: state.payment_method
       };
-      break;
+      
     case 'ADD_PAYMENT_METHOD':
       return {
         cart: [...state.cart],
         cartValue: state.cartValue,
         payment_method: action.payload,
       };
-      break;
+    
     case 'RESET_CART':
       return initialState;
     default:
