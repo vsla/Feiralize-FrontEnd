@@ -1,6 +1,6 @@
 import { createStackNavigator } from 'react-navigation';
-import LoginEmail from '../pages/loginEmail';
 import SignUpRoute from '../routes/SignupRoute';
+import Authentication from '../pages/Authentication';
 
 const LoginRoute = createStackNavigator(
   /**
@@ -10,7 +10,7 @@ const LoginRoute = createStackNavigator(
    **/
   {
     loginEmail: {
-      screen: LoginEmail,
+      screen: Authentication,
       navigationOptions: () => ({
         header: null,
       })

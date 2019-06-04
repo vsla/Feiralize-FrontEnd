@@ -8,8 +8,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import createStore from './app/Cliente/redux/createStore';
 import { firebaseConfig } from './app/config';
-//import InitialRoute from './app/Cliente/routes/InitialRoute';
-import Authentication from './app/Cliente/pages/Authentication';
+import InitialRoute from './app/Cliente/routes/InitialRoute';
 
 
 class App extends Component {
@@ -33,19 +32,6 @@ class App extends Component {
       firebase.app();
     }
   }
-    /*if (!firebase.apps.length) {
-      firebase.initializeApp({
-        apiKey: 'AIzaSyCaWQJ4RcLMEmCvrQShlOIJ3t7dfiLmW3I',
-        authDomain: 'feiralizeapp-a4123.firebaseapp.com',
-        databaseURL: 'https://feiralizeapp-a4123.firebaseio.com',
-        projectId: 'feiralizeapp-a4123',
-        storageBucket: 'feiralizeapp-a4123.appspot.com',
-        messagingSenderId: '314943024760'
-      });
-    } else {
-        firebase.app();
-    } */
-
   //A proposta de fazer authentication com redux
   //eh para salvar os estados no redux 
   //ao inves de ser no componente (implementando toda a parte logica)
@@ -62,7 +48,7 @@ class App extends Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <StatusBar backgroundColor="darkorange" />
-          <Authentication />
+          <InitialRoute />
         </PersistGate>
       </Provider>
     );

@@ -35,9 +35,14 @@ class Authentication extends Component {
 
   onButtonPress() {
     const { email, password } = this.props;
-    
+
+    // Loga direto no aplicativo, para fins de debug
+    this.props.navigation.navigate('bottomNavigator');
+
+
     //chame o loginUser method
     this.props.loginUser({ email, password });
+    
   }
 
   //Se tiver erro
@@ -77,7 +82,7 @@ class Authentication extends Component {
     return (
       <FacebookButton
         iconName="logo-facebook"
-        onPress={this.onButtonPress.bind(this)}
+        onPress={() => this.props.navigation.navigate('supermarket')}
         auth='facebook'
       >
         Entrar com Facebook
@@ -137,7 +142,7 @@ class Authentication extends Component {
 
             <Text 
               style={styles.createAccountStyle}
-              onPress={null}
+              onPress={() => this.props.navigation.navigate('SignUpRoute')}
             >
               Criar Nova Conta
             </Text>

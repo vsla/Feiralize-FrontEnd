@@ -6,7 +6,7 @@ import {
   FeiralizeLogo,
   AuthInput,
   AuthButton
-} from '../components/auth';
+} from '../../components/auth';
 
 class CadastrarConta extends Component {
   //Button Method
@@ -25,7 +25,7 @@ class CadastrarConta extends Component {
           <SectionView>
             <FeiralizeLogo />
           </SectionView>
-
+          
           <SectionView>
             <AuthInput 
               iconName="mail"
