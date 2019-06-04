@@ -21,6 +21,7 @@ class App extends Component {
       console.log(location);
     }, (error) => { console.log(error); });
   }
+  
 
   componentWillMount() {
     // Initialize firebase instance
