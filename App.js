@@ -11,6 +11,7 @@ class App extends Component {
       console.log(location);
     }, (error) => { console.log(error); });
   }
+  
 
   componentWillMount() {
     if (!firebase.apps.length) {
