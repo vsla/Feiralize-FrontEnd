@@ -34,7 +34,7 @@ class Carrrinho extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cart: state.cart
+    cart: state.cartItems.cart
   }
 }
 

@@ -10,7 +10,6 @@ import ReuseIcon from './ReuseIcon';
 class ItemCard extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
       this.state = {
         imageUrl: this.props.data.pic,
         pressed: this.props.cartItems.includes(this.props.data),
@@ -82,7 +81,7 @@ class ItemCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cart
+    cartItems: state.cartItems.cart
   };
 };
 

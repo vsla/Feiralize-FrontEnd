@@ -2,7 +2,6 @@ const initialState = {
   cart: [],
   cartValue: 0,
   payment_method: '',
-
 };
 
 const cartItems = (state = initialState, action) => {
@@ -15,6 +14,7 @@ const cartItems = (state = initialState, action) => {
         payment_method: state.payment_method
       };
     case 'REMOVE_FROM_CART':
+      console.log(action);
       return {
         cart: state.cart.filter((value) => value !== action.payload),
         cartValue: state.cartValue - 10,
@@ -28,6 +28,14 @@ const cartItems = (state = initialState, action) => {
         payment_method: action.payload,
       };
     
+    case 'ADD_SUBCATEGORY_AMOUNT':
+      return {
+        cart: [...state.cart],
+        cartValue: state.cartValue,
+        payment_method: state.payload,
+
+      };  
+
     case 'RESET_CART':
       return initialState;
     default:
