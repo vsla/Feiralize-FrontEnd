@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 /* eslint-disable no-undef */
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Alert, FlatList, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Alert, FlatList, Dimensions, TextInput } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { Overlay } from 'react-native-elements';
+import { Overlay, withTheme } from 'react-native-elements';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/action';
@@ -25,7 +26,7 @@ class FinalizarPedido extends Component {
 
   confirmarCompra = () => {
     if (this.state.paymentMethod === 'Dinheiro') {
-      this.setState({ openTransshipmentModal: true })
+      this.setState({ openTransshipmentModal: true });
     } else {
       Alert.alert(
         `Confirmar compra de R$ ${Math.round(this.props.cartValue * 100) / 100}`,
@@ -160,7 +161,7 @@ class FinalizarPedido extends Component {
               paddingLeft: 15,
               paddingRight: 15,
               paddingTop: 5,
-              paddingBottom:5
+              paddingBottom: 5
             }}
           >
             <Text style={{ fontWeight: 'bold', fontSize: 12 }}>ENDEREÇO</Text>
@@ -180,9 +181,9 @@ class FinalizarPedido extends Component {
             }}
           >
             <TouchableOpacity
-              onPress={() => { this.openPaymentMethod() ;}}
+              onPress={() => { this.openPaymentMethod(); }}
               style={{
-                flexDirection: 'row', justifyContent: 'space-between', marginRight: 20, paddingTop: 10, paddingBottom: 5,  }}
+                flexDirection: 'row', justifyContent: 'space-between', marginRight: 20, paddingTop: 10, paddingBottom: 5, }}
             >
               <Text style={style.paymentMethod}>Forma de pagamento</Text>
               <ReuseIcon
@@ -221,8 +222,8 @@ class FinalizarPedido extends Component {
             </View>
             <FlatList
               data={this.props.cartItems}
-              renderItem={({item}) => 
-              <View style={{flex:1, flexDirection:'row', justifyContent:'space-between'}}>
+              renderItem={({ item }) => 
+              <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <Text>{item.amount}</Text>
                 <Text>{item.name} {item.brand}</Text>
                 <Text>R$ 10,0</Text>
@@ -258,14 +259,23 @@ class FinalizarPedido extends Component {
         }
         <Overlay
           isVisible={this.state.openTransshipmentModal}
-          height={Dimensions.get('window').height / 3}
-          width={Dimensions.get('window').width - 60}
+          height={Dimensions.get('window').height / 4}
+          width={Dimensions.get('window').width - 80}
           animationType='slide'
         >
+          <View style={style.BoxUm}>
+            <Text style={{ color: 'white', fontWeight: 'bold' }}> Troco </Text>
+          </View>
+          <TextInput
+            style={style.BoxDois}
+            placeholder="Troco para quanto?"
+            placeholderTextColor='darkorange'
+          />
           <TouchableOpacity
             onPress={() => this.setState({ openTransshipmentModal: false })}
+            style={style.BoxTres}
           >
-            <Text>sair</Text>
+            <Text style={{ color: 'white' }}>Pode pedir!</Text>
           </TouchableOpacity>
         </Overlay>
       </View>
@@ -309,5 +319,34 @@ const style = {
     fontSize: 15,
     paddingHorizontal: 15,
     
+  },
+  BoxUm: {
+    backgroundColor: 'darkorange',
+    height: 35,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  BoxDois: {
+    color: 'darkorange', 
+    alignSelf: 'center', 
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10, 
+    borderColor: 'grey', 
+    borderWidth: 1,
+    marginTop: 5,
+    marginBottom: 5,
+    paddingHorizontal: 20,
+    height: 35,
+    width: 180
+  },
+  BoxTres: {
+    backgroundColor: 'darkorange', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    alignSelf: 'center',
+    width: 100,
+    height: 35
   }
 };
