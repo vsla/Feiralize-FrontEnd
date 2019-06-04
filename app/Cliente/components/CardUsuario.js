@@ -26,12 +26,16 @@ class CardUsuario extends Component {
         return (
              <View style={{ flex: 1 }}>
                <View style={styles.boxStyle}>
-                   <ReuseIcon name='radio-button-off' size={40} color='lightgrey' />
-                   <Text style={styles.textStyle}>
-                       MERCANDELLI</Text>
+                   <View style={{flex:1,flexDirection:'row', justifyContent:'flex-start'}}>
+                        <ReuseIcon name='radio-button-off' size={40} color='lightgrey' />
+                        <Text style={styles.textStyle}>
+                            MERCANDELLI
+                        </Text>
+                    </View>
                    <TouchableOpacity style={{ flexDirection: 'row', marginRight: 10 }} onPress={this.call}>
                     <Text style={styles.textoStyleTres}>
-                        Ligar</Text>
+                        Ligar
+                    </Text>
                     <ReuseIcon name='call' color="orange" size={40} />
                    </TouchableOpacity>
                </View>
@@ -85,7 +89,8 @@ const styles = {
         color: 'orange',
         fontSize: 18,
         fontWeight: 'bold',
-        alignSelf: 'center',    
+        alignSelf: 'center',
+        marginLeft: 5  
     },
     textoStyleUm: {
         color: 'black',

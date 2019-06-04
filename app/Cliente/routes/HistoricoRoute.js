@@ -21,7 +21,7 @@ const HistoricoRoute = createStackNavigator(
     }
   },
   {
-    initialRouteName:'Historico'
+    initialRouteName: 'Historico'
   }
 )
 export default HistoricoRoute;

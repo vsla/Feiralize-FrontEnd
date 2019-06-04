@@ -25,7 +25,7 @@ class Acompanhe extends Component {
             <View style={{ flex: 1 }}>
                 <View style={styles.headerStyle}>
                     <TouchableOpacity
-                        onPress={() => { this.props.navigation.popToTop() }}                     
+                        onPress={() => { this.props.navigation.navigate('Historico'); }}                     
                         style={{ marginLeft: 20 }}
                     >
                         <ReuseIcon
