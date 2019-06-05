@@ -37,12 +37,11 @@ class Authentication extends Component {
     const { email, password } = this.props;
 
     // Loga direto no aplicativo, para fins de debug
-    this.props.navigation.navigate('bottomNavigator');
+    //this.props.navigation.navigate('bottomNavigator');
 
 
     //chame o loginUser method
     this.props.loginUser({ email, password });
-    
   }
 
   //Se tiver erro
@@ -196,3 +195,4 @@ export default connect(mapStateToProps,
     passwordChanged,
     loginUser
   })(Authentication);
+

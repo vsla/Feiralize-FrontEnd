@@ -31,6 +31,13 @@ export const passwordChanged = (password) => {
   };
 };
 
+export const resetError = (dispatch) => {
+  dispatch({
+    type: RESET_ERROR,
+    payload: ''
+  });
+};
+
 //Validar Email
 const isValidEmail = (email) => {
   const reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -106,13 +113,6 @@ const resetAuthFields = (dispatch) => {
   });
 };
 
-const resetError = (dispatch) => {
-  dispatch({
-    type: RESET_ERROR,
-    payload: ''
-  });
-};
-
 const loadingUser = (dispatch) => {
   dispatch({
     type: LOADING_USER,
@@ -148,6 +148,7 @@ export const loginUser = ({ email, password }) => {
       })
       .catch(() => {
         verifyCredentials(email, password, dispatch);
+        console.log('erro');
         resetAuthFields(dispatch);
         resetLoading(dispatch);
       });
