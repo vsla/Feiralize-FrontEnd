@@ -1,7 +1,7 @@
 ﻿import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from '../redux/actions';
+import { emailChanged, passwordChanged, loginUser, resetError } from '../redux/actions';
 import {
   GradientView,
   CenteredView,
@@ -153,16 +153,6 @@ class Authentication extends Component {
   }
 }
 
-//retorne o state do AuthReducer através da key 'auth' como props (objeto) para este componente
-const mapStateToProps = state => {
-  return {
-    email: state.auth.email,
-    password: state.auth.password,
-    error: state.auth.error,
-    loading: state.auth.loading
-  };
-};
-
 //css
 const styles = {
   createAccountStyle: {
@@ -185,6 +175,16 @@ const styles = {
   }
 };
 
+//retorne o state do AuthReducer através da key 'auth' como props (objeto) para este componente
+const mapStateToProps = state => {
+  return {
+    email: state.auth.email,
+    password: state.auth.password,
+    error: state.auth.error,
+    loading: state.auth.loading
+  };
+};
+
 //connect to Redux (Actions, reducers e store)
 //Acesse a action emailChanged do Redux pelo LoginForm 
 //LoginForm recebe emailChanged como this.props
@@ -193,6 +193,7 @@ export default connect(mapStateToProps,
   {
     emailChanged, 
     passwordChanged,
-    loginUser
+    loginUser,
+    resetError
   })(Authentication);
 
