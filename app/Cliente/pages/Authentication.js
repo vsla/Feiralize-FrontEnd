@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+﻿import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser } from '../redux/actions';
@@ -37,7 +37,7 @@ class Authentication extends Component {
     const { email, password } = this.props;
 
     // Loga direto no aplicativo, para fins de debug
-    //this.props.navigation.navigate('bottomNavigator');
+    this.props.navigation.navigate('bottomNavigator');
 
 
     //chame o loginUser method
