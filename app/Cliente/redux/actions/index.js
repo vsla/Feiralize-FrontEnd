@@ -3,7 +3,7 @@ import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
   LOGIN_USER_SUCCESS,
-  LOGIN_USER_FAILED,
+  LOGIN_USER_AUTH_FAILED,
   LOGIN_USER_SHORT_PASSWORD,
   LOGIN_USER_EMAIL_INVALID,
   LOGIN_USER_BLANK,
@@ -31,6 +31,7 @@ export const passwordChanged = (password) => {
   };
 };
 
+
 export const resetError = (dispatch) => {
   dispatch({
     type: RESET_ERROR,
@@ -57,7 +58,7 @@ const isShortPassword = (password) => {
 };
 
 //Validar Credenciais
-const verifyCredentials = (email, password, dispatch) => {
+const loginUserFailed = (email, password, dispatch) => {
   if (email === '' || password === '') {
     loginUserBlank(dispatch);
   } else if (!isValidEmail(email)) {
@@ -65,7 +66,7 @@ const verifyCredentials = (email, password, dispatch) => {
   } else if (isShortPassword(password)) {
     loginUserShortPassword(dispatch);
   } else {
-    loginUserFailed(dispatch);
+    loginUserAuthFailed(dispatch);
   }
 };
 
@@ -78,9 +79,9 @@ const loginUserSuccess = (dispatch, user) => {
   });
 };
 
-const loginUserFailed = (dispatch) => {
+const loginUserAuthFailed = (dispatch) => {
   dispatch({
-    type: LOGIN_USER_FAILED,
+    type: LOGIN_USER_AUTH_FAILED,
     payload: 'Falha na autenticação.'
   });
 };
@@ -147,8 +148,7 @@ export const loginUser = ({ email, password }) => {
         resetAuthFields(dispatch);
       })
       .catch(() => {
-        verifyCredentials(email, password, dispatch);
-        console.log('erro');
+        loginUserFailed(email, password, dispatch);
         resetAuthFields(dispatch);
         resetLoading(dispatch);
       });

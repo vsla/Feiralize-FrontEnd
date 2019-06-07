@@ -9,7 +9,7 @@
 export const EMAIL_CHANGED = 'email_changed';
 export const PASSWORD_CHANGED = 'password_changed';
 export const LOGIN_USER_SUCCESS = 'login_user_success';
-export const LOGIN_USER_FAILED = 'login_user_failed';
+export const LOGIN_USER_AUTH_FAILED = 'login_user_auth_failed';
 export const LOGIN_USER_SHORT_PASSWORD = 'login_user_short_password';
 export const LOGIN_USER_EMAIL_INVALID = 'login_email_invalid';
 export const LOGIN_USER_BLANK = 'login_blank';

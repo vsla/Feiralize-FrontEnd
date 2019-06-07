@@ -2,23 +2,22 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 import 'firebase/database';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore } from 'redux-persist';
 //Redux Thunk is a middleware, so we need to import a helper 
 import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
-import reducers from './reducers';
+import rootReducers from './reducers';
 import {
-  persistConfig,
   rrfConfig
 } from '../../config';
 
 //Creating Store and Make it Usable to others
 export default (initialState) => {
-  const persistedReducer = persistReducer(persistConfig, reducers);
+  //const persistedReducer = persistReducer(rootPersistConfig, reducers);
   const store = createStore(
-    persistedReducer,
+    rootReducers,
     initialState,
     compose(
       applyMiddleware(ReduxThunk.withExtraArgument({ getFirebase, getFirestore })),
