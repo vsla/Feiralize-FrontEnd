@@ -3,7 +3,7 @@ import { View, FlatList, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import ItemCard from './ItemCard';
-import * as actions from '../redux/actions/action';
+import * as actions from '../redux/actions/cart';
 import DefaultOverlay from './OverlayListaProduto';
 import firebase from 'firebase';
 

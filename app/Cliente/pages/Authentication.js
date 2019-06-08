@@ -1,7 +1,11 @@
 ﻿import React, { Component } from 'react';
 import { Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser, resetError } from '../redux/actions';
+import { 
+  emailChanged,
+  passwordChanged,
+  loginUser
+} from '../redux/actions';
 import {
   GradientView,
   CenteredView,
@@ -34,8 +38,7 @@ class Authentication extends Component {
   }
 
   onButtonPress() {
-    const { email, password } = this.props;
-
+    //const { email, password } = this.props;
     // Loga direto no aplicativo, para fins de debug
     this.props.navigation.navigate('bottomNavigator');
 
@@ -67,7 +70,6 @@ class Authentication extends Component {
     return (
       <AuthButton 
         onPress={this.onButtonPress.bind(this)}
-        auth='normal'
       >
         Entrar
       </AuthButton>
@@ -82,7 +84,6 @@ class Authentication extends Component {
       <FacebookButton
         iconName="logo-facebook"
         onPress={() => this.props.navigation.navigate('supermarket')}
-        auth='facebook'
       >
         Entrar com Facebook
       </FacebookButton>
@@ -121,7 +122,7 @@ class Authentication extends Component {
             />
           </SectionView>
 
-          {this.renderError()}    
+          {this.renderError()}
     
           <SectionView>
             {this.renderButton()}
@@ -193,7 +194,6 @@ export default connect(mapStateToProps,
   {
     emailChanged, 
     passwordChanged,
-    loginUser,
-    resetError
+    loginUser
   })(Authentication);
 

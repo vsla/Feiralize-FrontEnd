@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { ImageBackground, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
-import * as actions from '../redux/actions/action';
+import * as actions from '../redux/actions/cart';
 import ReuseIcon from './ReuseIcon';
 
 

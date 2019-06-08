@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import ReuseIcon from './ReuseIcon';
 import Picker from './Picker';
-import * as actions from '../redux/actions/action';
+import * as actions from '../redux/actions/cart';
 
 class CartCard extends Component {
   render() {
