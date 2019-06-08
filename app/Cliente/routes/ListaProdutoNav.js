@@ -10,44 +10,31 @@ export default class ListaProdutoNav extends Component {
     super(props); 
     this.getSectors();
     this.state = {
-      route: {}
+      route: {},
+      loading: true
     };
   }
   componentWillMount() {
     this.setState({
-      navigator: createMaterialTopTabNavigator(
-        {
-          '8326ef03-3cfb-4693-9c3b-23cdeb6d3011': {
-            screen: ItemList,
-            navigationOptions: {
-              tabBarLabel: 'Bebidas',
-            }
-          },
-        },
-        {
-          lazy: true,
-          tabBarOptions: {
-            activeTintColor: 'white',
-            inactiveTintColor: '#e1e1e1',
-            scrollEnabled: true,
-            style: {
-              backgroundColor: 'darkorange'
-            },
-            indicatorStyle: {
-              height: 3,
-              color: 'white',
-            }
-          }
-        }
-      )
+      
     });
   }
   getSectors = () => {
     firebase.firestore().collection('sectors').get().then((snapshot) => {
+      const route1 = {
+        '8326ef03-3cfb-4693-9c3b-23cdeb6d3011': {
+          screen: ItemList,
+          navigationOptions: {
+            tabBarLabel: 'Bebidas'
+          }
+        }
+      };
       const route = {};
       console.log(snapshot.docs);
-      snapshot.docs.forEach(doc => {
+      
+      snapshot.forEach((doc) => {
         console.log(doc.data());
+        
         route[doc.id] = {
           screen: ItemList,
           navigationOptions: {
@@ -55,7 +42,30 @@ export default class ListaProdutoNav extends Component {
           }
         };
       });
-      console.log(route)
+      
+      this.setState({
+        loading: false,
+        navigator: createMaterialTopTabNavigator(
+          route,
+          {
+            lazy: true,
+            tabBarOptions: {
+              activeTintColor: 'white',
+              inactiveTintColor: '#e1e1e1',
+              scrollEnabled: true,
+              style: {
+                backgroundColor: 'darkorange'
+              },
+              indicatorStyle: {
+                height: 3,
+                color: 'white'
+              }
+            }
+          }
+        )
+      });
+      console.log(this.state.loading);
+      return route
       /*
       const arrayOfSectors = snapshot.val();
       
@@ -75,11 +85,15 @@ export default class ListaProdutoNav extends Component {
     });
   }
   render() {
-    return (
-      <View style={style.viewStyle}>
-        <this.state.navigator />
-      </View>
-    );
+    if (this.state.loading === true) {
+      return <View />;
+    } else {
+      return (
+        <View style={style.viewStyle}>
+          <this.state.navigator />
+        </View>
+      );
+    }
   }
 }
 
