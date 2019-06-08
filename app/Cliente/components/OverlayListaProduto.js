@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/no-multi-comp */
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { Overlay, CheckBox } from 'react-native-elements';
 import ReuseIcon from './ReuseIcon';
 import Picker from './Picker';
-import { connect } from 'react-redux';
-import * as actions from '../redux/actions/action';
+import * as actions from '../redux/actions/cart';
 
 class DefaultOverlay extends Component {
   constructor(props) {

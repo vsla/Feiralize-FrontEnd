@@ -7,7 +7,7 @@ import { RadioButton } from 'react-native-paper';
 import { Overlay, withTheme } from 'react-native-elements';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
-import * as actions from '../redux/actions/action';
+import * as actions from '../redux/actions/cart';
 import ReuseIcon from '../components/ReuseIcon';
 
 class FinalizarPedido extends Component {

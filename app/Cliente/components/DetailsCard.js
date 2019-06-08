@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import * as actions from '../redux/actions/action'
+import * as actions from '../redux/actions/cart'
 
 class DetailsCard extends Component{
     render(){

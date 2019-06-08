@@ -21,13 +21,14 @@ class App extends Component {
   
 
   componentWillMount() {
+    const settings = { timestampsInSnapshots: true };
     // Initialize Firebase
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
       // Initialize other services on firebase instance
       // firebase.firestore() // <- needed if using firestore
       // firebase.functions() // <- needed if using httpsCallable
-      firebase.firestore();
+      firebase.firestore().settings(settings);
     } else {
       firebase.app();
     }
