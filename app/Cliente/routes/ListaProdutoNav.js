@@ -43,10 +43,22 @@ export default class ListaProdutoNav extends Component {
     });
   }
   getSectors = () => {
-    let x = 0;
-    firebase.database().ref('/ArrayOfSectors').on('value', (snapshot) => {
-      const arrayOfSectors = snapshot.val();
+    firebase.firestore().collection('sectors').get().then((snapshot) => {
       const route = {};
+      console.log(snapshot.docs);
+      snapshot.docs.forEach(doc => {
+        console.log(doc.data());
+        route[doc.id] = {
+          screen: ItemList,
+          navigationOptions: {
+            tabBarLabel: doc.data().name
+          }
+        };
+      });
+      console.log(route)
+      /*
+      const arrayOfSectors = snapshot.val();
+      
       for (let index = 0; index < arrayOfSectors.length; index++) {
         route[arrayOfSectors[index].id] = {
           screen: ItemList,
@@ -59,8 +71,8 @@ export default class ListaProdutoNav extends Component {
       this.setState({
         route
       });
+      */
     });
-    console.log(x)
   }
   render() {
     return (

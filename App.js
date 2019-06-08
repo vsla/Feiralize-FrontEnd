@@ -27,7 +27,7 @@ class App extends Component {
       // Initialize other services on firebase instance
       // firebase.firestore() // <- needed if using firestore
       // firebase.functions() // <- needed if using httpsCallable
-      firebase.firestore();
+      firebase.firestore().settings({ timestampsInSnapshots: true });
     } else {
       firebase.app();
     }

@@ -41,7 +41,7 @@ class Authentication extends Component {
 
 
     //chame o loginUser method
-    this.props.loginUser({ email, password });
+    //this.props.loginUser({ email, password });
   }
 
   //Se tiver erro

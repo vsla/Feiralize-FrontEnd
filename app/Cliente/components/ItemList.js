@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import ItemCard from './ItemCard';
 import * as actions from '../redux/actions/action';
 import DefaultOverlay from './OverlayListaProduto';
+import firebase from 'firebase';
 
 class ItemList extends Component {
   constructor(props) {
@@ -33,6 +34,19 @@ class ItemList extends Component {
          .catch((error) => {
            console.log(error);
          });
+  /*
+    const firestore = firebase.firestore();
+    firestore
+      .collection('categories')
+      .doc(this.state.routeName)
+      .get()
+      .then(querySnapshot => {
+        console.log(querySnapshot.docs[0]);
+        querySnapshot.forEach(oi => {
+          console.log(oi.data());
+        });
+      });
+  */
     // get cate --> https://feiralize-server.herokuapp.com/category/all
     // sub --> https://feiralize-server.herokuapp.com/category/all/sub/id
     // Só troca o id para um novo

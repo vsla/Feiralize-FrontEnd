@@ -14,7 +14,6 @@ const cartItems = (state = initialState, action) => {
         payment_method: state.payment_method
       };
     case 'REMOVE_FROM_CART':
-      console.log(action);
       return {
         cart: state.cart.filter((value) => value !== action.payload),
         cartValue: state.cartValue - 10,
