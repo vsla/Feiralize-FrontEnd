@@ -21,14 +21,7 @@ export default class ListaProdutoNav extends Component {
   }
   getSectors = () => {
     firebase.firestore().collection('sectors').get().then((snapshot) => {
-      const route1 = {
-        '8326ef03-3cfb-4693-9c3b-23cdeb6d3011': {
-          screen: ItemList,
-          navigationOptions: {
-            tabBarLabel: 'Bebidas'
-          }
-        }
-      };
+
       const route = {};
       console.log(snapshot.docs);
       
@@ -42,7 +35,7 @@ export default class ListaProdutoNav extends Component {
           }
         };
       });
-      
+      console.log(route)
       this.setState({
         loading: false,
         navigator: createMaterialTopTabNavigator(

@@ -10,7 +10,7 @@ import firebase from 'firebase';
 class ItemList extends Component {
   constructor(props) {
     super(props);
-    console.log('oi');
+    console.log(this.props.navigation.state.routeName);
     this.state = {
       isLoading: true,
       fullData: [],
@@ -23,6 +23,25 @@ class ItemList extends Component {
   }
   
   componentWillMount() {
+    const firestore = firebase.firestore();
+    firestore
+      .collection('categories')
+      .doc(this.state.routeName)
+      .get()
+      .then(querySnapshot => {
+        const response = querySnapshot.data();
+        console.log(Object.keys(response));
+        const categories = Object.keys(response).map(key => {
+          response[key].id = key;
+          return response[key];
+        });
+        this.setState({
+          data: categories,
+          isLoading: false
+        });
+      });
+    
+  /*
     axios.get(`https://feiralize-server.herokuapp.com/category/all/sub/${this.state.routeName}`)
          .then(response => {
            console.log(response.data.subCategories);
@@ -34,22 +53,7 @@ class ItemList extends Component {
          .catch((error) => {
            console.log(error);
          });
-  /*
-    const firestore = firebase.firestore();
-    firestore
-      .collection('categories')
-      .doc(this.state.routeName)
-      .get()
-      .then(querySnapshot => {
-        console.log(querySnapshot.docs[0]);
-        querySnapshot.forEach(oi => {
-          console.log(oi.data());
-        });
-      });
   */
-    // get cate --> https://feiralize-server.herokuapp.com/category/all
-    // sub --> https://feiralize-server.herokuapp.com/category/all/sub/id
-    // Só troca o id para um novo
     /*
     axios.get('https://feiralize-api.herokuapp.com/products')
       .then(response => {
@@ -75,7 +79,7 @@ class ItemList extends Component {
   
   //Função para adicionar produto na badge
   productSelected = (categoryId) => {
-    var selected = this.state.selected;
+    let selected = this.state.selected;
     if (categoryId in selected) {
       selected[categoryId] = selected[categoryId] + 1;
     } else {
