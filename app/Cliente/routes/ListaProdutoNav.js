@@ -21,13 +21,9 @@ export default class ListaProdutoNav extends Component {
   }
   getSectors = () => {
     firebase.firestore().collection('sectors').get().then((snapshot) => {
-
       const route = {};
-      console.log(snapshot.docs);
-      
       snapshot.forEach((doc) => {
         console.log(doc.data());
-        
         route[doc.id] = {
           screen: ItemList,
           navigationOptions: {
@@ -35,7 +31,6 @@ export default class ListaProdutoNav extends Component {
           }
         };
       });
-      console.log(route)
       this.setState({
         loading: false,
         navigator: createMaterialTopTabNavigator(
@@ -58,7 +53,7 @@ export default class ListaProdutoNav extends Component {
         )
       });
       console.log(this.state.loading);
-      return route
+      return route;
       /*
       const arrayOfSectors = snapshot.val();
       

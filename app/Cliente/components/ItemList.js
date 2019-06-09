@@ -1,16 +1,16 @@
+/* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { View, FlatList, ActivityIndicator } from 'react-native';
-import axios from 'axios';
+import firebase from "firebase";
 import { connect } from 'react-redux';
 import ItemCard from './ItemCard';
 import * as actions from '../redux/actions/cart';
 import DefaultOverlay from './OverlayListaProduto';
-import firebase from 'firebase';
+
 
 class ItemList extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.navigation.state.routeName);
     this.state = {
       isLoading: true,
       fullData: [],
@@ -21,7 +21,7 @@ class ItemList extends Component {
       modalData: null
     };
   }
-  
+
   componentWillMount() {
     const firestore = firebase.firestore();
     firestore
@@ -30,7 +30,6 @@ class ItemList extends Component {
       .get()
       .then(querySnapshot => {
         const response = querySnapshot.data();
-        console.log(Object.keys(response));
         const categories = Object.keys(response).map(key => {
           response[key].id = key;
           return response[key];
@@ -40,8 +39,8 @@ class ItemList extends Component {
           isLoading: false
         });
       });
-    
-  /*
+
+    /*
     axios.get(`https://feiralize-server.herokuapp.com/category/all/sub/${this.state.routeName}`)
          .then(response => {
            console.log(response.data.subCategories);
@@ -76,30 +75,44 @@ class ItemList extends Component {
     //Verifica qual produto é de cada tela
     */
   }
-  
+
   //Função para adicionar produto na badge
-  productSelected = (categoryId) => {
-    let selected = this.state.selected;
+  productSelected = categoryId => {
+    const selected = this.state.selected;
     if (categoryId in selected) {
-      selected[categoryId] = selected[categoryId] + 1;
+      selected[categoryId] += 1;
     } else {
       selected[categoryId] = 1;
     }
-    console.log(this.state.selected);
-  }
+  };
 
-  showModal = (categoryData) => {
+  showModal = categoryData => {
     this.setState({ showModal: true, modalData: categoryData });
-  }
+  };
   closeModal = () => {
     this.setState({ showModal: false, modalData: null });
-  }
-
+  };
+  renderOverlay = () => {
+    if (this.state.showModal === true) {
+      return (
+        <DefaultOverlay
+          parentState={this.state}
+          closeModal={this.closeModal}
+          selectProduct={this.productSelected}
+        />
+      );
+    }
+    return(
+      <View/>
+    )
+  };
   render() {
     if (this.state.isLoading) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <ActivityIndicator color='black' />
+        <View
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
+          <ActivityIndicator color="black" />
         </View>
       );
     }
@@ -110,18 +123,15 @@ class ItemList extends Component {
           style={style.flatStyle}
           numColumns={2}
           keyExtractor={item => item.name}
-          renderItem={({ item }) =>
-            <ItemCard 
-              data={item} 
+          renderItem={({ item }) => (
+            <ItemCard
+              data={item}
               showModal={this.showModal}
               parentState={this.state}
-            />}
+            />
+          )}
         />
-        <DefaultOverlay 
-          parentState={this.state} 
-          closeModal={this.closeModal} 
-          selectProduct={this.productSelected}
-        />
+        {this.renderOverlay()}
       </View>
     );
   }

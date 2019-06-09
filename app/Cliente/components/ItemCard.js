@@ -1,23 +1,23 @@
 //PRODUCTS
 import React, { Component } from 'react';
-import { ImageBackground, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet, Image } from 'react-native';
 import { Badge } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/cart';
 import ReuseIcon from './ReuseIcon';
 
-
 class ItemCard extends Component {
   constructor(props) {
     super(props);
-      this.state = {
-        imageUrl: this.props.data.pic,
-        pressed: this.props.cartItems.includes(this.props.data),
-        buttonStyle: { backgroundColor: 'white' },
-        IconName: 'add',
-        corStyle: 'orange',
-        selected: 0
-      };
+    console.log(this.props);
+    this.state = {
+      imageUrl: this.props.data.photo,
+      //pressed: this.props.cartItems.includes(this.props.data),
+      buttonStyle: { backgroundColor: 'white', flex: 1 },
+      IconName: 'add',
+      corStyle: 'orange',
+      selected: 0
+    };
   }
 
   addProduct = () => {
@@ -39,22 +39,21 @@ class ItemCard extends Component {
           style={{ flex: 1 }}
         >
           <View style={this.state.buttonStyle}>
-
-            <ImageBackground
-              style={{ height: 100, width: '100%', opacity: 0.6, flex: 1, }}
+            <Image
+              style={{ opacity: 0.6, flex: 1, width: '100%', height: 100 }}
               source={{ uri: this.state.imageUrl }}
             />
-            <View 
-            style={{
-              backgroundColor: this.state.corStyle,
-              opacity: 0.9,
-              borderRadius: 100,
-              position: 'absolute',
-              paddingHorizontal: 12,
-              paddingVertical: 8,
-              top: 5,
-              right: 5
-            }}
+            <View
+              style={{
+                backgroundColor: this.state.corStyle,
+                opacity: 0.9,
+                borderRadius: 100,
+                position: 'absolute',
+                paddingHorizontal: 12,
+                paddingVertical: 8,
+                top: 5,
+                right: 5
+              }}
             >
               <ReuseIcon
                 name={this.state.IconName}
@@ -65,18 +64,22 @@ class ItemCard extends Component {
           </View>
         </TouchableOpacity>
         <View style={style.textContainer}>
-          <Text >
-            {this.props.data.name}
-          </Text>
-          <Badge 
-          value={this.props.data.id in this.props.parentState.selected
-            ? this.props.parentState.selected[this.props.data.id].toString()
-            : '0'} status='primary' containerStyle={{ marginRight: 10 }}
+          <Text>{this.props.data.name}</Text>
+          <Badge
+            value={
+              this.props.data.id in this.props.parentState.selected
+                ? this.props.parentState.selected[
+                    this.props.data.id
+                  ].toString()
+                : '0'
+            }
+            status="primary"
+            containerStyle={{ marginRight: 10 }}
           />
         </View>
       </View>
     );
-  };
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -94,10 +97,6 @@ const style = StyleSheet.create({
     margin: 10,
     borderRadius: 5,
     borderColor: 'white',
-    shadowColor: 'gray',
-    shadowOffset: { width: 2, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
     elevation: 2,
   },
   textContainer: {

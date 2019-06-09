@@ -4,50 +4,133 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { Overlay, CheckBox } from 'react-native-elements';
+import firebase from 'firebase';
 import ReuseIcon from './ReuseIcon';
 import Picker from './Picker';
 import * as actions from '../redux/actions/cart';
 
+
 class DefaultOverlay extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      subCategories: [],
+      brands: [],
+      haveSubCategories: this.props.parentState.modalData.haveSubCategories
+    };
   }
+
+  componentWillMount() {
+    if (this.state.haveSubCategories === true) {
+      firebase
+        .firestore()
+        .collection('subcategories')
+        .doc(this.props.parentState.modalData.id)
+        .get()
+        .then(querySnapshot => {
+          const response = querySnapshot.data();
+          const subCategories = [];
+          Object.keys(response).map(key => {
+            if (key !== 'father') {
+              subCategories.push(response[key]);
+            }
+          });
+          this.setState({ subCategories });
+        });
+    } else 
+      if (this.state.haveSubCategories === false) {
+        firebase
+          .firestore()
+          .collection('brands')
+          .doc(this.props.parentState.modalData.id)
+          .get()
+          .then(querySnapshot => {
+            const response = querySnapshot.data().brands;
+            const brands = Object.values(response);
+            this.setState({ brands });
+            console.log(brands);
+          });
+      }
+  }
+
+  renderSubCategoriesOrBrands = () => {
+    if (this.state.haveSubCategories === true) {
+      return (
+        <FlatList
+          data={this.state.subCategories}
+          renderItem={subCategory => (
+            <CategoryComponent
+              parentProps={this.props}
+              subCategory={subCategory.item}
+            />
+          )}
+        />
+      );
+    } else if (this.state.haveSubCategories === false) {
+      return (
+        <FlatList
+          style={{ marginTop: 10 }}
+          data={this.state.brands}
+          renderItem={brand => (
+            <BrandComponent
+              greatParentProps={this.props}
+              brand={brand.item}
+            />
+          )}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{
+                backgroundColor: '#c0c0c0',
+                alignSelf: 'stretch',
+                height: 2,
+                marginHorizontal: 10
+              }}
+            />
+          )}
+        />
+      );
+    }
+  }
+
   render() {
     return (
       <Overlay
         isVisible={this.props.parentState.showModal}
-        height={Dimensions.get('window').height - 90}
-        width={Dimensions.get('window').width - 60}
+        height={Dimensions.get('window').height - 100}
+        width={Dimensions.get('window').width - 40}
       >
-        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'stretch' }}>
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'flex-start',
+            alignItems: 'stretch'
+          }}
+        >
           <View style={style.header}>
             <TouchableOpacity
-              onPress={() => { this.props.closeModal(); }}
+              onPress={() => {
+                this.props.closeModal();
+              }}
               style={{ alignSelf: 'center', marginLeft: 5 }}
-
             >
-              < ReuseIcon
-                name="arrow-back"
-                color='white'
-                size={25}
-              />
+              <ReuseIcon name="arrow-back" color="white" size={25} />
             </TouchableOpacity>
 
             <Text
-              style={{ 
-                textAlign: 'center', flex: 1, fontSize: 18, color: 'white', marginVertical: 8 
+              style={{
+                textAlign: 'center',
+                flex: 1,
+                fontSize: 18,
+                color: 'white',
+                marginVertical: 8
               }}
-            >Vinho
+            >
+              {this.props.parentState.modalData.name}
             </Text>
           </View>
 
           <View style={{ flex: 1 }}>
-            <FlatList
-
-              data={[0, 1, 2]}
-              renderItem={() => <CategoryComponent parentProps={this.props} />}
-
-            />
+            {this.renderSubCategoriesOrBrands()}
           </View>
         </View>
       </Overlay>
@@ -56,7 +139,7 @@ class DefaultOverlay extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    cartItems: state.cart
+    cartItems: state.cartitems
   });
 
 export default connect(mapStateToProps, actions)(DefaultOverlay);
@@ -66,9 +149,23 @@ class CategoryComponent extends Component {
     super(props);
     this.state = {
       pressed: false,
+      brands: []
     };
   }
-  
+
+  componentWillMount() {
+    firebase
+      .firestore()
+      .collection('brands')
+      .doc(this.props.subCategory.id)
+      .get()
+      .then(querySnapshot => {
+        const response = querySnapshot.data().brands;
+        const brands = Object.values(response);
+        this.setState({ brands });
+        console.log(brands);
+      });
+  }
   pressed = () => {
     if (this.state.pressed === false) {
       this.setState({
@@ -79,45 +176,41 @@ class CategoryComponent extends Component {
         pressed: false
       });
     }
-  }
+  };
 
   renderArrowIcon = () => {
     if (this.state.pressed === false) {
-      return (
-        < ReuseIcon
-          name={'arrow-down'}
-          color='white'
-          size={25}
-        />
-      );
+      return <ReuseIcon name={'arrow-down'} color="white" size={25} />;
     }
-    return (
-      < ReuseIcon
-        name={'arrow-up'}
-        color='white'
-        size={25}
-      />
-    );
-  }
+    return <ReuseIcon name={'arrow-up'} color="white" size={25} />;
+  };
 
   renderBrands = () => {
     if (this.state.pressed === true) {
       return (
         <FlatList
           style={{ backgroundColor: '#dfdfdf' }}
-          data={[0, 1, 2]}
-          renderItem={() => <BrandComponent greatParentProps={this.props.parentProps} />}
-          ItemSeparatorComponent={() =>
-            <View 
-            style={{ 
-              backgroundColor: '#c0c0c0', alignSelf: 'stretch', height: 2, marginHorizontal: 10 
-            }} 
+          data={this.state.brands}
+          renderItem={brand => (
+            <BrandComponent
+              greatParentProps={this.props.parentProps}
+              brand={brand.item}
             />
-          }
+          )}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{
+                backgroundColor: '#c0c0c0',
+                alignSelf: 'stretch',
+                height: 2,
+                marginHorizontal: 10
+              }}
+            />
+          )}
         />
       );
     }
-  }
+  };
   render() {
     return (
       <View style={{ alignItems: 'stretch', marginTop: 5 }}>
@@ -125,16 +218,18 @@ class CategoryComponent extends Component {
           style={style.sectionHeader}
           onPress={() => this.pressed()}
         >
-
-          <Text 
-          style={{ textAlign: 'center', flex: 1, fontSize: 15, color: 'white', marginVertical: 3 }}
-          > 
-            CategoryName 
+          <Text
+            style={{
+              textAlign: 'center',
+              flex: 1,
+              fontSize: 15,
+              color: 'white',
+              marginVertical: 3
+            }}
+          >
+            {this.props.subCategory.name}
           </Text>
-          <View style={{ marginRight: 5 }}>
-            {this.renderArrowIcon()}
-          </View>
-
+          <View style={{ marginRight: 5 }}>{this.renderArrowIcon()}</View>
         </TouchableOpacity>
         {this.renderBrands()}
       </View>
@@ -150,20 +245,25 @@ class BrandComponent extends Component {
       checked: false
     };
   }
-
+  getCapacities = () => {
+    return this.props.brand.capacity.map(capacityItem => {
+      return { label: capacityItem, value: capacityItem };
+    });
+  }
   pressCheckBox = () => {
+    console.log(this.props);
     if (this.state.checked === false) {
       this.setState({
         checked: true
       });
       const selectedBrand = this.props.greatParentProps.parentState.data[0];
-      selectedBrand['brand'] = 'Quinta do morgado';
+      selectedBrand.brand = 'Quinta do morgado';
       selectedBrand.amount = '1kg';
       this.props.greatParentProps.selectProduct(this.props.greatParentProps.parentState.modalData.id);
       this.props.greatParentProps.add_to_cart(selectedBrand);
     } else {
       const selectedBrand = this.props.greatParentProps.parentState.data[0];
-      selectedBrand['brand'] = 'Quinta do morgado';
+      selectedBrand.brand = 'Quinta do morgado';
       selectedBrand.amount = '1kg';
       this.setState({
         checked: false
@@ -174,34 +274,50 @@ class BrandComponent extends Component {
 
   render() {
     return (
-      <View style={{ marginVertical: 5, }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-          <View style={{ marginLeft: 5 }}>
-            < Picker
-            data={[{
-              label: '8 kg',
-              value: '8',
-            },
-            {
-              label: '8 kg',
-              value: '8',
-            },
-            {
-              label: '8 kg',
-              value: '8',
-            },
-            ]}
-            type={2}
-            />
+      <View style={{ marginVertical: 5, backgroundColor: '#dfdfdf', paddingVertical: 5, borderRadius:10}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+          }}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center'
+            }}
+          >
+            <View style={{ marginLeft: 5, marginRight: 4 }}>
+              <Picker
+                data={[
+                  {
+                    label: '8 kg',
+                    value: '8'
+                  },
+                  {
+                    label: '8 kg',
+                    value: '8'
+                  },
+                  {
+                    label: '8 kg',
+                    value: '8'
+                  }
+                ]}
+                type={2}
+              />
+            </View>
+            <Picker data={this.getCapacities()} type={2} />
           </View>
-          <Text>Quinta do morgado</Text>
-          
+          <Text style={{fontSize:17}}>{this.props.brand.name}</Text>
+
           <CheckBox
             checked={this.state.checked}
-            onPress={() => { this.pressCheckBox(); }}
+            onPress={() => {
+              this.pressCheckBox();
+            }}
             containerStyle={{ margin: 0, padding: 0 }}
           />
-          
         </View>
       </View>
     );
@@ -223,5 +339,8 @@ const style = StyleSheet.create({
     backgroundColor: 'gray',
     alignItems: 'center',
     marginBottom: 5
+  },
+  renderedAlone: {
+    
   }
 });
