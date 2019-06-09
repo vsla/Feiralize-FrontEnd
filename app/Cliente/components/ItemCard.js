@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 //PRODUCTS
 import React, { Component } from 'react';
 import { Text, TouchableOpacity, View, StyleSheet, Image } from 'react-native';
@@ -12,7 +13,6 @@ class ItemCard extends Component {
     console.log(this.props);
     this.state = {
       imageUrl: this.props.data.photo,
-      //pressed: this.props.cartItems.includes(this.props.data),
       buttonStyle: { backgroundColor: 'white', flex: 1 },
       IconName: 'add',
       corStyle: 'orange',
@@ -31,6 +31,15 @@ class ItemCard extends Component {
     this.props.showModal(this.props.data);
   }
 
+  // Return how many brands are on the cart
+  // Read itemsSelected from redux
+  brandsSelected = () => {
+    if (this.props.data.id in this.props.itemsSelected) {
+      return this.props.itemsSelected[this.props.data.id].amountSelected;
+    } 
+    return 0;
+  };
+  
   render() {
     return (
       <View style={style.containerStyle}>
@@ -66,13 +75,7 @@ class ItemCard extends Component {
         <View style={style.textContainer}>
           <Text>{this.props.data.name}</Text>
           <Badge
-            value={
-              this.props.data.id in this.props.parentState.selected
-                ? this.props.parentState.selected[
-                    this.props.data.id
-                  ].toString()
-                : '0'
-            }
+            value={this.brandsSelected()}
             status="primary"
             containerStyle={{ marginRight: 10 }}
           />
@@ -84,7 +87,8 @@ class ItemCard extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    cartItems: state.cartItems.cart
+    cartItems: state.cartItems.cart,
+    itemsSelected: state.cartItems.itemsSelected
   };
 };
 

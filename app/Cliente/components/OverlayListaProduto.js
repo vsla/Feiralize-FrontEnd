@@ -74,7 +74,7 @@ class DefaultOverlay extends Component {
           renderItem={brand => (
             <BrandComponent
               greatParentProps={this.props}
-              brand={brand.item}
+              brand={brand}
             />
           )}
           ItemSeparatorComponent={() => (
@@ -194,7 +194,7 @@ class CategoryComponent extends Component {
           renderItem={brand => (
             <BrandComponent
               greatParentProps={this.props.parentProps}
-              brand={brand.item}
+              brand={brand}
             />
           )}
           ItemSeparatorComponent={() => (
@@ -246,35 +246,39 @@ class BrandComponent extends Component {
     };
   }
   getCapacities = () => {
-    return this.props.brand.capacity.map(capacityItem => {
+    return this.props.brand.item.capacity.map(capacityItem => {
       return { label: capacityItem, value: capacityItem };
     });
   }
+
   pressCheckBox = () => {
-    console.log(this.props);
+    const categorySelected = this.props.greatParentProps.parentState.modalData;
+    const productSelected = {
+      brandSelected: {
+        id: this.props.brand.item.id,
+        name: this.props.brand.item.name,
+        amountSelected: 1,
+        capacitySelected: '500ml',
+      },
+      fatherCategory: categorySelected
+    };
+
     if (this.state.checked === false) {
       this.setState({
         checked: true
       });
-      const selectedBrand = this.props.greatParentProps.parentState.data[0];
-      selectedBrand.brand = 'Quinta do morgado';
-      selectedBrand.amount = '1kg';
-      this.props.greatParentProps.selectProduct(this.props.greatParentProps.parentState.modalData.id);
-      this.props.greatParentProps.add_to_cart(selectedBrand);
+      this.props.greatParentProps.add_to_cart(productSelected);
     } else {
-      const selectedBrand = this.props.greatParentProps.parentState.data[0];
-      selectedBrand.brand = 'Quinta do morgado';
-      selectedBrand.amount = '1kg';
       this.setState({
         checked: false
       });
-      this.props.greatParentProps.remove_from_cart(selectedBrand);
+      this.props.greatParentProps.remove_from_cart(productSelected);
     }
   }
 
   render() {
     return (
-      <View style={{ marginVertical: 5, backgroundColor: '#dfdfdf', paddingVertical: 5, borderRadius:10}}>
+      <View style={style.modalStyle}>
         <View
           style={{
             flexDirection: 'row',
@@ -292,16 +296,16 @@ class BrandComponent extends Component {
               <Picker
                 data={[
                   {
-                    label: '8 kg',
-                    value: '8'
+                    label: '1',
+                    value: '1'
                   },
                   {
-                    label: '8 kg',
-                    value: '8'
+                    label: '2',
+                    value: '2'
                   },
                   {
-                    label: '8 kg',
-                    value: '8'
+                    label: '3',
+                    value: '3'
                   }
                 ]}
                 type={2}
@@ -309,12 +313,12 @@ class BrandComponent extends Component {
             </View>
             <Picker data={this.getCapacities()} type={2} />
           </View>
-          <Text style={{fontSize:17}}>{this.props.brand.name}</Text>
+          <Text style={{ fontSize: 17 }}>{this.props.brand.item.name}</Text>
 
           <CheckBox
             checked={this.state.checked}
             onPress={() => {
-              this.pressCheckBox();
+              this.pressCheckBox(this.props.brand.index);
             }}
             containerStyle={{ margin: 0, padding: 0 }}
           />
@@ -325,6 +329,12 @@ class BrandComponent extends Component {
 }
 
 const style = StyleSheet.create({
+  modalStyle: { 
+    marginVertical: 5, 
+    backgroundColor: '#dfdfdf', 
+    paddingVertical: 5, 
+    borderRadius: 10 
+  },
   header: {
     justifyContent: 'flex-start',
     flexDirection: 'row',
@@ -340,7 +350,5 @@ const style = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 5
   },
-  renderedAlone: {
-    
-  }
+
 });
