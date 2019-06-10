@@ -57,7 +57,7 @@ class ItemList extends Component {
       );
     }
     return(
-      <View/>
+      <View />
     )
   };
   render() {

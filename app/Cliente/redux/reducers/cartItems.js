@@ -39,11 +39,17 @@ const cartItems = (state = initialState, action) => {
       /**
        * Decrease one brand from the category 
        */
-      state.itemsSelected[action.payload.fatherCategory.id].amountSelected -= 1;
-      state.itemsSelected[action.payload.fatherCategory.id].pop(action.payload.brandSelected.id);
+      state.itemsSelected[action.payload.fatherCategory.id].brands.pop(action.payload.brandSelected.id);
+      if (state.itemsSelected[action.payload.fatherCategory.id].amountSelected.length === 0) {
+        state.itemsSelected[action.payload.fatherCategory.id].amountSelected = 0;
+      } else {
+        state.itemsSelected[action.payload.fatherCategory.id].amountSelected -= 1;
+      }
 
       return {
-        cart: state.cart.filter((value) => value !== action.payload),
+        cart: state.cart.filter(
+          (value) => value.brandSelected.id !== action.payload.brandSelected.id
+        ),
         cartValue: state.cartValue - 10,
         payment_method: state.payment_method,
         itemsSelected: { ...state.itemsSelected }

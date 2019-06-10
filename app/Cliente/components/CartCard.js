@@ -28,7 +28,7 @@ class CartCard extends Component {
               type={1}
             />
           </View>
-          <Text style={style.text}>{this.props.item.name}</Text>
+          <Text style={style.text}>{this.props.item.fatherCategory.name}</Text>
           <View style={style.pickerMarca}>
             < Picker
               data={[{

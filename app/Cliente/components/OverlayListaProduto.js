@@ -8,7 +8,7 @@ import firebase from 'firebase';
 import ReuseIcon from './ReuseIcon';
 import Picker from './Picker';
 import * as actions from '../redux/actions/cart';
-
+import BrandComponent from './OverlayComponents/BrandComponent';
 
 class DefaultOverlay extends Component {
   constructor(props) {
@@ -139,8 +139,9 @@ class DefaultOverlay extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    cartItems: state.cartitems
-  });
+    cartItems: state.cartItems.cart,
+    itemsSelected: state.cartItems.itemsSelected
+});
 
 export default connect(mapStateToProps, actions)(DefaultOverlay);
 
@@ -232,97 +233,6 @@ class CategoryComponent extends Component {
           <View style={{ marginRight: 5 }}>{this.renderArrowIcon()}</View>
         </TouchableOpacity>
         {this.renderBrands()}
-      </View>
-    );
-  }
-}
-
-class BrandComponent extends Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props);
-    this.state = {
-      checked: false
-    };
-  }
-  getCapacities = () => {
-    return this.props.brand.item.capacity.map(capacityItem => {
-      return { label: capacityItem, value: capacityItem };
-    });
-  }
-
-  pressCheckBox = () => {
-    const categorySelected = this.props.greatParentProps.parentState.modalData;
-    const productSelected = {
-      brandSelected: {
-        id: this.props.brand.item.id,
-        name: this.props.brand.item.name,
-        amountSelected: 1,
-        capacitySelected: '500ml',
-      },
-      fatherCategory: categorySelected
-    };
-
-    if (this.state.checked === false) {
-      this.setState({
-        checked: true
-      });
-      this.props.greatParentProps.add_to_cart(productSelected);
-    } else {
-      this.setState({
-        checked: false
-      });
-      this.props.greatParentProps.remove_from_cart(productSelected);
-    }
-  }
-
-  render() {
-    return (
-      <View style={style.modalStyle}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center'
-          }}
-        >
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center'
-            }}
-          >
-            <View style={{ marginLeft: 5, marginRight: 4 }}>
-              <Picker
-                data={[
-                  {
-                    label: '1',
-                    value: '1'
-                  },
-                  {
-                    label: '2',
-                    value: '2'
-                  },
-                  {
-                    label: '3',
-                    value: '3'
-                  }
-                ]}
-                type={2}
-              />
-            </View>
-            <Picker data={this.getCapacities()} type={2} />
-          </View>
-          <Text style={{ fontSize: 17 }}>{this.props.brand.item.name}</Text>
-
-          <CheckBox
-            checked={this.state.checked}
-            onPress={() => {
-              this.pressCheckBox(this.props.brand.index);
-            }}
-            containerStyle={{ margin: 0, padding: 0 }}
-          />
-        </View>
       </View>
     );
   }
