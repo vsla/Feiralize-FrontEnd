@@ -5,6 +5,7 @@ import ItemCard from '../components/ItemCard'
 import CartCard from '../components/CartCard';
 import ReuseIcon from "../components/ReuseIcon";
 
+
 class Carrrinho extends Component {
   render() {
     console.log(this.props.cart)

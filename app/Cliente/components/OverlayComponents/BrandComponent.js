@@ -64,16 +64,18 @@ class BrandComponent extends Component {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
+            flex:1,
           }}
         >
           <View
             style={{
               flexDirection: 'row',
-              alignItems: 'center'
+              alignItems: 'center',
+              flex:1,
             }}
           >
-            <View style={{ marginLeft: 5, marginRight: 4 }}>
+            <View style={{ flex: 0.5 }}>
               <Picker
                 data={[
                   {
@@ -89,20 +91,27 @@ class BrandComponent extends Component {
                     value: '3'
                   }
                 ]}
-                type={2}
               />
             </View>
-            <Picker data={this.getCapacities()} type={2} />
+            <View style={{ flex: 0.5 }}>
+              <Picker data={this.getCapacities()} />
+            </View>
+            
           </View>
-          <Text style={{ fontSize: 17 }}>{this.props.brand.item.name}</Text>
-
-          <CheckBox
-            checked={this.state.checked}
-            onPress={() => {
-              this.pressCheckBox(this.props.brand.index);
-            }}
-            containerStyle={{ margin: 0, padding: 0 }}
-          />
+          <View style={{ flex: 1, alignItems:'center', justifyContent:'center'}}>
+            <Text style={{ flex: 2, textAlignVertical:'center'}}>{this.props.brand.item.name}</Text>
+          </View>
+          
+          <View style={{flex:0.3}}>
+            <CheckBox
+              checked={this.state.checked}
+              onPress={() => {
+                this.pressCheckBox(this.props.brand.index);
+              }}
+              containerStyle={{ margin: 0, padding: 0 }}
+            />
+          </View>
+          
         </View>
       </View>
     );
@@ -121,7 +130,8 @@ const style = StyleSheet.create({
     marginVertical: 5,
     backgroundColor: '#dfdfdf',
     paddingVertical: 5,
-    borderRadius: 10
+    borderRadius: 10,
+    flex:1
   },
   header: {
     justifyContent: 'flex-start',
