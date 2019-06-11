@@ -34,6 +34,7 @@ export default class Deletepicker extends Component {
           onValueChange={(itemValue) => {
             this.setState({ selected: itemValue });
           }}
+          itemStyle={{fontSize:14}}
         >
           {this.renderPickerItems()}
         </Picker>

@@ -5,6 +5,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { CheckBox } from 'react-native-elements';
 import Picker from '../Picker';
 import * as actions from '../../redux/actions/cart';
+import NumericInput from '../NumericInput';
 
 class BrandComponent extends Component {
   constructor(props) {
@@ -75,23 +76,8 @@ class BrandComponent extends Component {
               flex:1,
             }}
           >
-            <View style={{ flex: 0.5 }}>
-              <Picker
-                data={[
-                  {
-                    label: '1',
-                    value: '1'
-                  },
-                  {
-                    label: '2',
-                    value: '2'
-                  },
-                  {
-                    label: '3',
-                    value: '3'
-                  }
-                ]}
-              />
+            <View style={{ flex: 0.5, marginHorizontal:5 }}>
+              <NumericInput />
             </View>
             <View style={{ flex: 0.5 }}>
               <Picker data={this.getCapacities()} />

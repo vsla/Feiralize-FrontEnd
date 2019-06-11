@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import ReuseIcon from './ReuseIcon';
 import Picker from './Picker';
 import * as actions from '../redux/actions/cart';
+import NumericInput from './NumericInput';
+
 
 class CartCard extends Component {
   render() {
@@ -12,20 +14,22 @@ class CartCard extends Component {
 
         <View style={style.contentContainer}>
           <View style={style.pickerQuantidade}>
+            <NumericInput />
+          </View>
+          <View style={style.pickerQuantidade}>
             < Picker
               data={[{
-                  label: '8 kg',
-                  value: '8',
-                },
-                {
-                  label: '8 kg',
-                  value: '8',
-                },
-                {
-                  label: '8 kg',
-                  value: '8',
-                }]}
-              type={1}
+                label: '8 kg',
+                value: '8',
+              },
+              {
+                label: '8 kg',
+                value: '8',
+              },
+              {
+                label: '8 kg',
+                value: '8',
+              }]}
             />
           </View>
           <Text style={style.text}>{this.props.item.fatherCategory.name}</Text>
@@ -44,7 +48,6 @@ class CartCard extends Component {
                 value: 'Santa clara',
               },
               ]}
-              type={1}
             />
           </View>
           <TouchableOpacity // Carrinho de remover
@@ -72,7 +75,7 @@ const style = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
     marginVertical: 10,
-    marginHorizontal: 10,
+    marginRight: 10
   },
   text: {
     marginHorizontal: 10,
@@ -82,6 +85,7 @@ const style = StyleSheet.create({
   },
   pickerQuantidade: {
     flex: 1.2,
+    marginLeft:5
   },
   pickerMarca: {
     flex: 2.5
