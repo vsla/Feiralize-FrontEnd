@@ -5,17 +5,21 @@ import ReuseIcon from './ReuseIcon';
 export default class NumericInput extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props);
     this.state = {
-      value: 0
+      value: this.props.data
     };
   }
+
   addValue = () => {
     this.setState({ value: this.state.value + 1 });
+    this.props.onChange('+');
   }
 
   removeValue = () => {
     if (this.state.value > 0) {
       this.setState({ value: this.state.value - 1 });
+      this.props.onChange('-');
     }
   }
 
@@ -33,7 +37,7 @@ export default class NumericInput extends Component {
           />
         </TouchableOpacity>
         <View style={style.numberInput}>
-          <Text style={{ fontSize: 20, textAlign: 'center',  }}>{this.state.value}</Text>
+          <Text style={{ fontSize: 20, textAlign: 'center'}}>{this.state.value}</Text>
         </View>
         <TouchableOpacity
           style={style.leftButtonContainer}

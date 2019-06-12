@@ -3,10 +3,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, TouchableOpacity, StyleSheet, Dimensions, FlatList } from 'react-native';
-import { Overlay, CheckBox } from 'react-native-elements';
+import { Overlay } from 'react-native-elements';
 import firebase from 'firebase';
 import ReuseIcon from './ReuseIcon';
-import Picker from './Picker';
 import * as actions from '../redux/actions/cart';
 import BrandComponent from './OverlayComponents/BrandComponent';
 

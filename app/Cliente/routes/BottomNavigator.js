@@ -37,7 +37,7 @@ const BottomNavigator = createBottomTabNavigator(
     cart: {
       screen: BuyNavigator,
       navigationOptions: () => ({
-        title: 'carrinho',
+        title: 'Carrinho',
         tabBarIcon: () => (
             <ReuseIcon name={'cart'} size={25} color={'gray'} />
           )

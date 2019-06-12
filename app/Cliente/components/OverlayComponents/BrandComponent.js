@@ -10,9 +10,10 @@ import NumericInput from '../NumericInput';
 class BrandComponent extends Component {
   constructor(props) {
     super(props);
-    const checked = this.isOnCart();
+    console.log(this.props);
+    const amount = this.amountOnCart();
     this.state = {
-      checked
+      amount: 0
     };
   }
 
@@ -22,7 +23,7 @@ class BrandComponent extends Component {
     });
   }
 
-  isOnCart = () => {
+  amountOnCart = () => {
     const categoryId = this.props.greatParentProps.parentState.modalData.id;
     if (categoryId in this.props.itemsSelected) {
       if (this.props.itemsSelected[categoryId].brands.includes(this.props.brand.item.id)) {
@@ -33,28 +34,45 @@ class BrandComponent extends Component {
     return false;
     
   }
-  pressCheckBox = () => {
+  changeRedux = (action) => {
     const categorySelected = this.props.greatParentProps.parentState.modalData;
     const productSelected = {
       brandSelected: {
         id: this.props.brand.item.id,
         name: this.props.brand.item.name,
-        amountSelected: 1,
+        amountSelected: this.state.amount,
         capacitySelected: '500ml',
       },
       fatherCategory: categorySelected
     };
 
-    if (this.state.checked === false) {
-      this.setState({
-        checked: true
-      });
+    if (action === 'create') {
       this.props.greatParentProps.add_to_cart(productSelected);
-    } else {
-      this.setState({
-        checked: false
-      });
+    } else if (action === 'remove') {
       this.props.greatParentProps.remove_from_cart(productSelected);
+    }
+  }
+
+  amountChange = (action) => {
+    // this.pressCheckBox(this.props.brand.index)
+    if (action === '+') {
+      if (this.state.amount === 0) {
+        this.setState({ amount: this.state.amount + 1 });
+        this.changeRedux('create')
+      } else {
+        this.changeRedux('remove')
+        this.setState({ amount: this.state.amount + 1 });
+        this.changeRedux('create')
+      }      
+    } else if (action === '-') {
+      if (this.state.value > 1) {
+        this.changeRedux('remove')
+        this.setState({ amount: this.state.amount - 1 });
+        this.changeRedux('create')
+      } else if (this.state.value === 1) {
+        this.changeRedux('remove')
+        this.setState({ amount: this.state.amount - 1 });
+      }
     }
   }
 
@@ -66,18 +84,18 @@ class BrandComponent extends Component {
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
-            flex:1,
+            flex: 1,
           }}
         >
           <View
             style={{
               flexDirection: 'row',
               alignItems: 'center',
-              flex:1,
+              flex: 1,
             }}
           >
-            <View style={{ flex: 0.5, marginHorizontal:5 }}>
-              <NumericInput />
+            <View style={{ flex: 0.5, marginHorizontal: 5 }}>
+              <NumericInput data={this.state.amount} onChange={this.amountChange}  />
             </View>
             <View style={{ flex: 0.5 }}>
               <Picker data={this.getCapacities()} />
@@ -85,19 +103,8 @@ class BrandComponent extends Component {
             
           </View>
           <View style={{ flex: 1, alignItems:'center', justifyContent:'center'}}>
-            <Text style={{ flex: 2, textAlignVertical:'center'}}>{this.props.brand.item.name}</Text>
+            <Text style={{ flex: 2, textAlignVertical:'center'}}>{this.props.brand.item.name}{this.state.amount}</Text>
           </View>
-          
-          <View style={{flex:0.3}}>
-            <CheckBox
-              checked={this.state.checked}
-              onPress={() => {
-                this.pressCheckBox(this.props.brand.index);
-              }}
-              containerStyle={{ margin: 0, padding: 0 }}
-            />
-          </View>
-          
         </View>
       </View>
     );
