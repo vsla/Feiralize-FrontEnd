@@ -47,7 +47,6 @@ class DefaultOverlay extends Component {
             const response = querySnapshot.data().brands;
             const brands = Object.values(response);
             this.setState({ brands });
-            console.log(brands);
           });
       }
   }
@@ -163,7 +162,6 @@ class CategoryComponent extends Component {
         const response = querySnapshot.data().brands;
         const brands = Object.values(response);
         this.setState({ brands });
-        console.log(brands);
       });
   }
   pressed = () => {

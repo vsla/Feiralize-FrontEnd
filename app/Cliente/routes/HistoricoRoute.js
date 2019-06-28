@@ -13,7 +13,7 @@ const HistoricoRoute = createStackNavigator(
         header: null,
       })
     },
-    Acompanhamento: {
+    Acompanhe: {
       screen: Acompanhe,
       navigationOptions: () => ({
         header: null,

@@ -18,7 +18,12 @@ export function remove_from_cart(item) {
         payload: item
     };
 }
-
+export function UPDATE_AMOUNT_ON_CART(item) {
+    return {
+        type: 'UPDATE_AMOUNT_ON_CART',
+        payload: item,
+    };
+}
 export function reset_cart(item) {
     return {
         type: 'RESET_CART',

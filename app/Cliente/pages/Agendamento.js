@@ -15,6 +15,8 @@ class Agendamento extends Component {
     };
   }
   componentWillMount() {
+    //Requisição para o firebase
+    // 
     this.setState({
       navigator: createMaterialTopTabNavigator(
         this.createRoute(),

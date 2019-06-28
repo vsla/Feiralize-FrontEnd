@@ -62,7 +62,17 @@ const cartItems = (state = initialState, action) => {
         payment_method: action.payload,
         itemsSelected: { ...state.itemsSelected }
       };
-
+    case 'UPDATE_AMOUNT_ON_CART':
+      for (let index = 0; index < state.cart; index++) {
+        if (state.cart[index].brandSelected.id === action.payload.brandSelected.id) {
+          return {
+            cart: [...state.cart],
+            cartValue: state.cartValue,
+            payment_method: action.payload,
+            itemsSelected: { ...state.itemsSelected }
+          };
+        }
+      }
     case 'RESET_CART':
       return initialState;
     default:

@@ -3,7 +3,6 @@ import { combineReducers } from 'redux';
 import authReducer from './AuthReducer';
 import { authPersistConfig } from '../../../config';
 import cI from './cartItems';
-
 //Reducers existentes aglomerado
 export default combineReducers({
   cartItems: cI,

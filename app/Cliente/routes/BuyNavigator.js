@@ -37,12 +37,6 @@ const BuyNavigator = createStackNavigator(
       navigationOptions: () => ({
         header: null,
       })
-    },
-    Acompanhe: {
-      screen: Acompanhe,
-      navigationOptions: () => ({
-        header: null,
-      })
     }
   },
   {

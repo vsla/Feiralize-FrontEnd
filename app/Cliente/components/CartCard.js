@@ -8,13 +8,15 @@ import NumericInput from './NumericInput';
 
 
 class CartCard extends Component {
+  
   render() {
+    console.log(this.props);
     return (
       <View style={{ marginTop: 10, backgroundColor:'#d2d2d2'}}>
 
         <View style={style.contentContainer}>
           <View style={style.pickerQuantidade}>
-            <NumericInput />
+            <NumericInput data={this.props.item.brandSelected.amountSelected}/>
           </View>
           <View style={style.pickerQuantidade}>
             < Picker

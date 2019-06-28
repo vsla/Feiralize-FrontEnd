@@ -32,10 +32,11 @@ class BrandComponent extends Component {
       return false;
     } 
     return false;
-    
   }
-  changeRedux = (action) => {
+
+  changeRedux = (action, type) => {
     const categorySelected = this.props.greatParentProps.parentState.modalData;
+    console.log('amount selected', this.state.amount);
     const productSelected = {
       brandSelected: {
         id: this.props.brand.item.id,
@@ -46,10 +47,19 @@ class BrandComponent extends Component {
       fatherCategory: categorySelected
     };
 
-    if (action === 'create') {
-      this.props.greatParentProps.add_to_cart(productSelected);
-    } else if (action === 'remove') {
-      this.props.greatParentProps.remove_from_cart(productSelected);
+    switch (action) {
+      case 'create':
+        this.props.greatParentProps.add_to_cart(productSelected);
+        break;
+      case 'remove':
+        this.props.greatParentProps.remove_from_cart(productSelected);
+        break;
+      case 'update':
+        productSelected.brandSelected.amountSelected += 1;
+        productSelected.type = type;
+        break;
+      default:
+        break;
     }
   }
 
@@ -58,22 +68,23 @@ class BrandComponent extends Component {
     if (action === '+') {
       if (this.state.amount === 0) {
         this.setState({ amount: this.state.amount + 1 });
-        this.changeRedux('create')
+        this.changeRedux('create', action);
       } else {
-        this.changeRedux('remove')
+        this.changeRedux('remove', action);
         this.setState({ amount: this.state.amount + 1 });
-        this.changeRedux('create')
+        this.changeRedux('create', action);
       }      
     } else if (action === '-') {
       if (this.state.value > 1) {
-        this.changeRedux('remove')
+        this.changeRedux('remove', action);
         this.setState({ amount: this.state.amount - 1 });
-        this.changeRedux('create')
+        this.changeRedux('create', action);
       } else if (this.state.value === 1) {
-        this.changeRedux('remove')
+        this.changeRedux('remove', action);
         this.setState({ amount: this.state.amount - 1 });
       }
     }
+    console.log('amount selected on amount change', this.state.amount);
   }
 
   render() {
@@ -95,15 +106,15 @@ class BrandComponent extends Component {
             }}
           >
             <View style={{ flex: 0.5, marginHorizontal: 5 }}>
-              <NumericInput data={this.state.amount} onChange={this.amountChange}  />
+              <NumericInput data={this.state.amount} onChange={this.amountChange} />
             </View>
             <View style={{ flex: 0.5 }}>
               <Picker data={this.getCapacities()} />
             </View>
             
           </View>
-          <View style={{ flex: 1, alignItems:'center', justifyContent:'center'}}>
-            <Text style={{ flex: 2, textAlignVertical:'center'}}>{this.props.brand.item.name}{this.state.amount}</Text>
+          <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ flex: 2, textAlignVertical: 'center' }}>{this.props.brand.item.name}{this.state.amount}</Text>
           </View>
         </View>
       </View>
@@ -124,7 +135,7 @@ const style = StyleSheet.create({
     backgroundColor: '#dfdfdf',
     paddingVertical: 5,
     borderRadius: 10,
-    flex:1
+    flex: 1
   },
   header: {
     justifyContent: 'flex-start',

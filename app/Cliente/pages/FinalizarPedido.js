@@ -262,6 +262,7 @@ class FinalizarPedido extends Component {
           height={Dimensions.get('window').height / 4}
           width={Dimensions.get('window').width - 80}
           animationType='slide'
+          onBackdropPress={() => this.setState({ openTransshipmentModal: false })}
         >
           <View style={style.BoxUm}>
             <Text style={{ color: 'white', fontWeight: 'bold' }}> Troco </Text>

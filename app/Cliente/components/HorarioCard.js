@@ -3,6 +3,13 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native
 import flatListData from '../assets/data/flatListData';
 
 class FlatListItem extends Component {
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.state = {
+      totalOrdersOnThisTime: 0
+    }
+  }
   render() {
     return (
       <View style={{ backgroundColor: 'white' }}>
