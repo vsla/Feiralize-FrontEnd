@@ -56,6 +56,7 @@ class FinalizarPedido extends Component {
                 payment: this.state.selected
               });
               this.props.add_payment_method(this.state.selected);
+              this.props.reset_cart(this.state.selected);
               this.props.navigation.navigate('Cart');
             }
           },
@@ -255,7 +256,7 @@ class FinalizarPedido extends Component {
             style={{ alignSelf: 'center', backgroundColor: 'darkorange', padding: 10, borderRadius: 50, elevation: 5 }}
             onPress={() => { this.confirmarCompra(); }}
           >
-            <Text style={{ color: 'white', fontSize: 18 }}>Finalizar Feira</Text>
+            <Text style={{ flex: 1, color: 'white', fontSize: 18 }}>Finalizar Feira</Text>
           </TouchableOpacity>
         </View>
         {
