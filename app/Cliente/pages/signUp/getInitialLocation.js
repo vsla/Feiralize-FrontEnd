@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import HeaderLogin from '../../components/HeaderLogin';
 
-export default class getInitialLocation extends Component {
+export default class GetInitialLocation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +52,7 @@ export default class getInitialLocation extends Component {
               }}
             />
             <TouchableOpacity
-              onPress={() => { this.props.navigation.navigate('bottomNavigator'); }}
+              onPress={() => { this.props.navigation.navigate('ListaProduto'); }}
               style={{ backgroundColor: 'green', alignItems: 'center', marginHorizontal: '20%', borderRadius: 40, marginTop: 20 }}
             >
               <Text style={{ color: 'white', fontSize: 20 }}>Pronto</Text>
