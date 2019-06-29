@@ -173,6 +173,7 @@ class FinalizarPedido extends Component {
             <View style={{ height: 1, backgroundColor: 'lightgrey' }} />
             <Text style={{ fontWeight: 'bold', fontSize: 12 }}>OBSERVAÇÃO</Text>
             < TextInput
+              style={style.BoxObs}
               placeholder="Digite uma observação"
               placeholderTextColor='grey'
             />
@@ -250,15 +251,16 @@ class FinalizarPedido extends Component {
               <Text style={{ fontSize: 15 }}>R$ {this.props.cartValue}</Text>
             </View>
           </View>
-        </ScrollView>
-        <View style={{ position: 'absolute', left: 0, right: 0, bottom: 20, justifyContent: 'center', alignItems: 'center', }}>
-          <TouchableOpacity
-            style={{ alignSelf: 'center', backgroundColor: 'darkorange', padding: 10, borderRadius: 50, elevation: 5 }}
-            onPress={() => { this.confirmarCompra(); }}
-          >
-            <Text style={{ flex: 1, color: 'white', fontSize: 18 }}>Finalizar Feira</Text>
-          </TouchableOpacity>
+          <View style={{ position: 'absolute', left: 0, right: 0, bottom: 20, justifyContent: 'center', alignItems: 'center', }}>
+            <TouchableOpacity
+              style={{ alignSelf: 'center', backgroundColor: 'darkorange', padding: 10, borderRadius: 50, elevation: 5 }}
+              onPress={() => { this.confirmarCompra(); }}
+            >
+              <Text style={{ flex: 1, color: 'white', fontSize: 18 }}>Finalizar Feira</Text>
+            </TouchableOpacity>
         </View>
+      </ScrollView>
+        
         {
           /**
            * O overlay só é renderizado se a opção selecionada for Dinheiro
@@ -327,6 +329,16 @@ const style = {
     fontSize: 15,
     paddingHorizontal: 15,
     
+  },
+  BoxObs: {
+    alignSelf: 'center', 
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10, 
+    borderColor: 'lightgrey', 
+    borderWidth: 1,
+    paddingHorizontal: 20,
+    width: '100%'
   },
   BoxUm: {
     backgroundColor: 'darkorange',
