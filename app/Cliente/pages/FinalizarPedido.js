@@ -338,7 +338,8 @@ const style = {
     borderColor: 'lightgrey', 
     borderWidth: 1,
     paddingHorizontal: 20,
-    width: '100%'
+    width: '100%',
+    color: 'grey'
   },
   BoxUm: {
     backgroundColor: 'darkorange',

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
+import ReuseIcon from '../components/ReuseIcon';
 
 export default class HistoricoCliente extends Component {
     render() {
@@ -8,8 +9,20 @@ export default class HistoricoCliente extends Component {
                 <View style={style.header}>
                     <Text style={style.textHeader}>
                         Historico 
-                    </Text>
-                </View>              
+                    </Text>  
+                    <View style={style.inputStyle}>
+                        <TextInput
+                        style={style.textStyle}
+                        placeholder="Buscar feira"
+                        placeholderTextColor='white'
+                        />
+                        < ReuseIcon
+                        name="search"
+                        color='white'
+                        size={30}
+                        />
+                    </View> 
+                </View>         
                 <View style={{ flex: 1, marginTop: 5 }} >            
                     <TouchableOpacity 
                         onPress={() => { this.props.navigation.navigate('Acompanhe'); }}
@@ -81,14 +94,27 @@ const style = StyleSheet.create({
     textHeader: {  
         fontSize: 40,
         color: 'white',
-        marginBottom: 20,
+        marginBottom: 5,
         marginLeft: 20,
+    },
+    inputStyle: {
+        backgroundColor: 'darkorange',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        alignSelf: 'flex-end',
+        marginRight: 20
     },
     listaStyle: {  
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderBottomColor: '#eeeeee',
         padding: 5,        
+    },
+    textStyle: {
+        fontSize: 20,
+        color: 'white',
+        marginRight: 10,
     },
     horaStyle: {  
         fontSize: 12,

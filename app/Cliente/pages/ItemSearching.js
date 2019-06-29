@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { View, Text, FlatList, TextInput, TouchableOpacity } from "react-native";
+import React, { Component } from 'react';
+import { View, Text, FlatList, TextInput, TouchableOpacity } from 'react-native';
 import { Overlay } from 'react-native-elements';
-import ReuseIcon from "../components/ReuseIcon";
-import data from '../assets/data/products.json'
+import ReuseIcon from '../components/ReuseIcon';
+import data from '../assets/data/products.json';
 import ItemCard from '../components/ItemCard';
 
 export default class App extends Component {
@@ -10,29 +10,29 @@ export default class App extends Component {
     super(props);
     this.state = {
       loading: false,
-      data: data,
+      data,
       error: null,
-      array: "",
+      array: '',
       fullData: [],
       showModal: false
     };
   }
   showModal = () => {
-    this.setState({ showModal: true })
+    this.setState({ showModal: true });
   }
 
   handleSearch = text => {
     if (text) {
       const formatedArray = text.toLowerCase();
-      var fullData = this.state.data.map(item => {
-        const formatedItem = item.title.toLowerCase()
+      let fullData = this.state.data.map(item => {
+        const formatedItem = item.title.toLowerCase();
         if (formatedItem.includes(formatedArray)) {
-          return (item)
+          return (item);
         }
-      })
-      this.setState({ fullData: fullData })
+      });
+      this.setState({ fullData });
     } else {
-      this.setState({ fullData: [] })
+      this.setState({ fullData: [] });
     }
   }
 
@@ -40,7 +40,7 @@ export default class App extends Component {
     return (
       <View style={style.viewStyle}>
         < View style={style.headerStyle} >
-          < TouchableOpacity style={{ marginLeft: 20 }} onPress={() => this.props.navigation.navigate("ListaProduto")}>
+          < TouchableOpacity style={{ marginLeft: 20 }} onPress={() => this.props.navigation.navigate('ListaProduto')}>
             <ReuseIcon
               name="arrow-back"
               color='white'
@@ -48,10 +48,11 @@ export default class App extends Component {
             />
           </TouchableOpacity>
           <View style={style.inputStyle}>
-            <TextInput style={style.textStyle}
+            <TextInput
+style={style.textStyle}
               placeholder="Buscar item" onChangeText={this.handleSearch}
               placeholderTextColor='white'
-              autoFocus={true}
+              autoFocus
             />
             < ReuseIcon
               name="search"
@@ -75,7 +76,7 @@ export default class App extends Component {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
               <TouchableOpacity
                 onPress={() => {
-                  this.setState({ showModal: false })
+                  this.setState({ showModal: false });
                 }}
               >
                 <Text>Voltar</Text>
@@ -106,9 +107,9 @@ const style = {
   },
   headerStyle: {
     flex: 0.15,
-    flexDirection: "row",
+    flexDirection: 'row',
     backgroundColor: 'darkorange',
-    justifyContent: "space-between",
+    justifyContent: 'space-between',
     alignItems: 'center',
     elevation: 10
   },
@@ -131,4 +132,4 @@ const style = {
     paddingVertical: 10,
     marginLeft: 10,
   }
-}
+};
