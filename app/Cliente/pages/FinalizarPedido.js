@@ -4,7 +4,7 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Alert, FlatList, Dimensions, TextInput } from 'react-native';
 import { RadioButton } from 'react-native-paper';
-import { Overlay, withTheme } from 'react-native-elements';
+import { Overlay } from 'react-native-elements';
 import firebase from 'firebase';
 import { connect } from 'react-redux';
 import * as actions from '../redux/actions/cart';
@@ -169,6 +169,12 @@ class FinalizarPedido extends Component {
             <View style={{ height: 1, backgroundColor: 'lightgrey' }} />
             <Text style={{ fontWeight: 'bold', fontSize: 12 }}>DATA E HORA</Text>
             <Text style={{ fontSize: 12 }}>Hoje, 6 de maio, 18h30 as 19h00</Text>
+            <View style={{ height: 1, backgroundColor: 'lightgrey' }} />
+            <Text style={{ fontWeight: 'bold', fontSize: 12 }}>OBSERVAÇÃO</Text>
+            < TextInput
+              placeholder="Digite uma observação"
+              placeholderTextColor='grey'
+            />
           </View>
           <View
             style={{

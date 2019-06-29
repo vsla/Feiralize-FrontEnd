@@ -1,40 +1,40 @@
-import React, { Component } from "react";
-import { StatusBar, TouchableOpacity } from 'react-native';
-import {  View,  Text,  StyleSheet,  Image, ToolbarAndroid } from "react-native"; 
-import { Container, Content, Header, Body } from 'native-base'
-import { createDrawerNavigator, DrawerItems } from 'react-navigation'
+/* eslint-disable global-require */
+import React from 'react';
+import { View, Text, StyleSheet, Image, StatusBar, TouchableOpacity } from 'react-native';
+import { Container, Content, Header, Body } from 'native-base';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation';
 import themeStyle from '../styles/theme.style';
 import Pedidos from '../pages/Pedidos';
 import testes1 from '../pages/testes1';
 import testes2 from '../pages/testes2';
 import testes3 from '../pages/testes3';
-import PedidoRoute from "./PedidoRoute";
-import ThePicker from '../components/ThePicker'
-
+import PedidoRoute from './PedidoRoute';
+import ThePicker from '../components/ThePicker';
 
 
 const CustomDrawerContentComponent = (props) => (
   <Container>
-    <StatusBar backgroundColor="darkorange"  />
+    <StatusBar backgroundColor="darkorange" />
     <Header style={styles.drawerHeader}>
       <Body flexDirection='row'>
         <Image
           style={styles.drawerImage}
-          source={require('../assets/data/images/0.jpg')} />
+          source={require('../assets/data/images/0.jpg')}
+        />
         <View>
-            <Text style= {styles.nameStyle}>Mercado do Bairro</Text>
-            <Text style= {styles.name2Style}>Rafael Oliveira</Text>
+            <Text style={styles.nameStyle}>Mercado do Bairro</Text>
+            <Text style={styles.name2Style}>Rafael Oliveira</Text>
         </View>
       </Body>
     </Header>
-    <View style= {styles.pickerStyle}>
-      <ThePicker/>
+    <View style={styles.pickerStyle}>
+      < ThePicker />
     </View>
     
     <Content>
       <DrawerItems {...props} />
     </Content>
-    <View>
+    <View style={{ flex: 1, paddingTop: 5, marginRight: 20, alignSelf: 'flex-start' }}>
       <TouchableOpacity
         onPress={() => props.navigation.navigate('loginRoute')}
       >
@@ -86,27 +86,27 @@ const styles = StyleSheet.create({
     paddingTop: 20
   },
   drawerImage: {
-    height:75,
-    width:75,
+    height: 75,
+    width: 75,
     borderRadius: 100,
     borderWidth: 1,
-    marginBottom:10
+    marginBottom: 10
   },
-  nameStyle:{
-    color:'white',
-    fontWeight:'bold',
-    fontSize:20,
+  nameStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 20,
     marginLeft: 11,
     marginTop: 7
 },
-name2Style:{
-    color:'white',
+name2Style: {
+    color: 'white',
     fontSize: 13,
     marginLeft: 11,
     marginTop: 3
 },
-pickerStyle:{
+pickerStyle: {
   backgroundColor: themeStyle.BG_color,
   paddingBottom: 5
 },
-})
+});
