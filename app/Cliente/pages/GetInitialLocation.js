@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import HeaderLogin from '../../components/HeaderLogin';
+import HeaderLogin from '../components/HeaderLogin';
 
-export default class getInitialLocation extends Component {
+export default class GetInitialLocation extends Component {
   constructor(props) {
     super(props);
     this.state = {

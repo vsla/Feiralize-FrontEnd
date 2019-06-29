@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import getInitialLocation from '../pages/signUp/getInitialLocation';
+import getInitialLocation from '../pages/GetInitialLocation';
 import RegisterAccount from '../pages/signUp/RegisterAccount';
 
 
