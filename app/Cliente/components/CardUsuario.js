@@ -45,12 +45,14 @@ class CardUsuario extends Component {
                        <Text style={styles.textoStyleUm}>TOTAL</Text>
                        <Text style={styles.textoStyleUm}>TROCO</Text>
                        <Text style={styles.textoStyleUm}>ENTREGA</Text>
+                       <Text style={styles.textoStyleUm}>OBSERVAÇÃO</Text>
                    </View>
                    <View style={{ marginLeft: 30 }}>
                        <Text style={styles.textoStyleDois}>DINHEIRO</Text>
                        <Text style={styles.textoStyleDois}>R$ {this.props.cartValue + this.state.frete}</Text>
                        <Text style={styles.textoStyleDois}>R$ 12,10</Text>
                        <Text style={styles.textoStyleDois}>Estrada velha de água fria, 102</Text>
+                       <Text style={styles.textoStyleDois}>Tem que tirar do firebase</Text>
                    </View>
                </View>
              </View>
