@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import getInitialLocation from '../pages/GetInitialLocation';
+import GetInitialLocation from '../pages/GetInitialLocation';
 import RegisterAccount from '../pages/signUp/RegisterAccount';
 
 
@@ -15,7 +15,7 @@ const SignUpRoute = createStackNavigator(
       })
     },
     getLocation: {
-      screen: getInitialLocation,
+      screen: GetInitialLocation,
       navigationOptions: () => ({
         header: null,
       })

@@ -1,3 +1,6 @@
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable eqeqeq */
+/* eslint-disable max-len */
 /* eslint-disable quotes */
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
@@ -18,13 +21,17 @@ export default class Inicio extends Component {
 
 	render() {
 		return (
-			<View style={{ flex: 1, justifyContent: 'center', alignItems: 'stretch', backgroundColor: 'white' }}>
-				<View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginBottom: 0, backgroundColor: 'white' }}>
-					<Text style={style.textStyle}>Faça sua feira</Text>
+			<View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'white' }}>
+				<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginHorizontal: 30 }}>
+					<TouchableOpacity
+						style={style.buttonStyle}
+						onPress={() => { this.props.navigation.navigate('getLocation'); }}
+					>
+						<Text style={style.textButton}>Endereço de entrega</Text>
+					</TouchableOpacity>
 				</View>
-				
-				<View style={{ flex: 3, alignItems: 'center', justifyContent: 'center', marginHorizontal: 30, marginBottom: 15 }}>
-					<FeiraButton text="Adicionar produtos ao carrinho" linkTo="ShoppingRoute" navigate={this.props.navigation.navigate} />
+				<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginHorizontal: 30 }}>
+					<FeiraButton text="Pegar no Supermercado" linkTo="ShoppingRoute" navigate={this.props.navigation.navigate} />
 				</View>
 			</View>
 		);
