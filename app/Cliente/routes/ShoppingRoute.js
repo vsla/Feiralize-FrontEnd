@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import ListaProduto from '../pages/ListaProduto';
-import ItemSearching from '../pages/ItemSearching'
+import ItemSearching from '../pages/ItemSearching';
 
 
 const ShoppingRoute = createStackNavigator(
