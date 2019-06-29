@@ -33,14 +33,13 @@ const CustomDrawerContentComponent = (props) => (
     
     <Content>
       <DrawerItems {...props} />
-    </Content>
-    <View style={{ flex: 1, paddingTop: '2%', marginLeft: '5.5%', alignSelf: 'flex-start' }}>
       <TouchableOpacity
+        style={{ marginLeft: '5.5%' }}
         onPress={() => props.navigation.navigate('loginRoute')}
       >
         <Text>Sair</Text>
       </TouchableOpacity>
-    </View>
+    </Content>
   </Container>
 
 );
