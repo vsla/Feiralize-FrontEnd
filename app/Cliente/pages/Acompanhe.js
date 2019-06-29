@@ -80,8 +80,8 @@ class Acompanhe extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    cart: state.cart,
-    cartValue: state.cartValue
+    cart: state.cartItems.cart,
+    cartValue: state.cartItems.cartValue
   });
 
   const styles = {

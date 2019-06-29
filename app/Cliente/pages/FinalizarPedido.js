@@ -284,8 +284,8 @@ class FinalizarPedido extends Component {
   }
 }
 const mapStateToProps = (state) => ({
-  cartValue: state.cartValue,
-  cartItems: state.cart
+  cartValue: state.cartItems.cartValue,
+  cartItems: state.cartItems.cart
 });
 
 export default connect(mapStateToProps, actions)(FinalizarPedido);

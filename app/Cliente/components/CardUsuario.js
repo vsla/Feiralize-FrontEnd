@@ -60,7 +60,7 @@ class CardUsuario extends Component {
 
 const mapStateToProps = (state) => ({
     cart: state.cart,
-    cartValue: state.cartValue
+    cartValue: state.cartItems.cartValue
   });
 
 const styles = {
