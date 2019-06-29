@@ -24,6 +24,7 @@ class BrandComponent extends Component {
   }
 
   amountOnCart = () => {
+    
     const categoryId = this.props.greatParentProps.parentState.modalData.id;
     if (categoryId in this.props.itemsSelected) {
       if (this.props.itemsSelected[categoryId].brands.includes(this.props.brand.item.id)) {
