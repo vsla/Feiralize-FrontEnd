@@ -5,7 +5,6 @@ import flatListData from '../assets/data/flatListData';
 class FlatListItem extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       totalOrdersOnThisTime: 0
     }
@@ -27,7 +26,6 @@ class FlatListItem extends Component {
 export default class HorarioCard extends Component {
   constructor(props) {
     super(props);
-    console.log(props)
   }
   render() {
     return (

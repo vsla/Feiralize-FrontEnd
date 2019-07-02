@@ -1,8 +1,9 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View, StyleSheet } from 'react-native';
-import { CheckBox } from 'react-native-elements';
 import Picker from '../Picker';
 import * as actions from '../../redux/actions/cart';
 import NumericInput from '../NumericInput';
@@ -10,29 +11,32 @@ import NumericInput from '../NumericInput';
 class BrandComponent extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     const amount = this.amountOnCart();
     this.state = {
-      amount: 0
+      amount: 0,
+      capacitySelected: ''
     };
   }
-
+  
   getCapacities = () => {
     return this.props.brand.item.capacity.map(capacityItem => {
       return { label: capacityItem, value: capacityItem };
     });
   }
+  capacitySelected = (brand) => {
+    this.setState({ capacitySelected: brand });
+  }
 
   amountOnCart = () => {
-    
-    const categoryId = this.props.greatParentProps.parentState.modalData.id;
-    if (categoryId in this.props.itemsSelected) {
-      if (this.props.itemsSelected[categoryId].brands.includes(this.props.brand.item.id)) {
-        return true;
+    console.log('props no brandComponent', this.props);
+    this.props.cartItems.forEach(element => {
+      console.log(element)
+      if (element.brandSelected.id === this.props.brand.id) {
+        if (element.brandSelected.capacitySelected === this.state.capacitySelected) {
+          console.log('a',element.brandSelected.amountSelected)
+        }
       }
-      return false;
-    } 
-    return false;
+    });
   }
 
   changeRedux = (action, type) => {
@@ -43,7 +47,7 @@ class BrandComponent extends Component {
         id: this.props.brand.item.id,
         name: this.props.brand.item.name,
         amountSelected: this.state.amount,
-        capacitySelected: '500ml',
+        capacitySelected: this.state.brandSelected,
       },
       fatherCategory: categorySelected
     };
@@ -69,6 +73,7 @@ class BrandComponent extends Component {
     if (action === '+') {
       if (this.state.amount === 0) {
         this.setState({ amount: this.state.amount + 1 });
+        console.log('amount selected on amount change', this.state);
         this.changeRedux('create', action);
       } else {
         this.changeRedux('remove', action);
@@ -85,7 +90,6 @@ class BrandComponent extends Component {
         this.setState({ amount: this.state.amount - 1 });
       }
     }
-    console.log('amount selected on amount change', this.state.amount);
   }
 
   render() {
@@ -107,10 +111,18 @@ class BrandComponent extends Component {
             }}
           >
             <View style={{ flex: 0.5, marginHorizontal: 5 }}>
-              <NumericInput data={this.state.amount} onChange={this.amountChange} />
+              <NumericInput 
+                data={this.state.amount} 
+                brandSelected={this.props.brand} 
+                capacitySelected={this.state.capacitySelected}
+              />
             </View>
             <View style={{ flex: 0.5 }}>
-              <Picker data={this.getCapacities()} />
+              <Picker 
+                data={this.getCapacities()} 
+                selectedValue={this.state.capacitySelected}
+                onValueChange={this.capacitySelected}
+              />
             </View>
             
           </View>

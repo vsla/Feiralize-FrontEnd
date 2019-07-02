@@ -1,26 +1,32 @@
 /* eslint-disable no-undef */
 import React, { Component } from 'react';
 import { Text, View, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import * as actions from '../redux/actions/cart';
 import ReuseIcon from './ReuseIcon';
+import { thisExpression } from '@babel/types';
 
-export default class NumericInput extends Component {
+class NumericInput extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
+    console.log('numeric', this.props);
     this.state = {
       value: this.props.data
     };
   }
 
+  showValue = () => {
+    this.props.cartItems.forEach(element => {
+      
+    });
+  }
   addValue = () => {
     this.setState({ value: this.state.value + 1 });
-    this.props.onChange('+');
   }
 
   removeValue = () => {
     if (this.state.value > 0) {
       this.setState({ value: this.state.value - 1 });
-      this.props.onChange('-');
     }
   }
 
@@ -38,7 +44,7 @@ export default class NumericInput extends Component {
           />
         </TouchableOpacity>
         <View style={style.numberInput}>
-          <Text style={{ fontSize: 20, textAlign: 'center'}}>{this.state.value}</Text>
+          <Text style={{ fontSize: 18, textAlign: 'center' }}>{this.state.value}</Text>
         </View>
         <TouchableOpacity
           style={style.leftButtonContainer}
@@ -54,6 +60,13 @@ export default class NumericInput extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cartItems.cart
+  };
+};
+export default connect(mapStateToProps, actions)(NumericInput);
+
 const style = StyleSheet.create({
   container: { 
     flex: 1, 

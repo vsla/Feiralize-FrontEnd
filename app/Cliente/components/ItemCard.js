@@ -10,7 +10,6 @@ import ReuseIcon from './ReuseIcon';
 class ItemCard extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
     this.state = {
       imageUrl: this.props.data.photo,
       buttonStyle: { backgroundColor: 'white', flex: 1 },

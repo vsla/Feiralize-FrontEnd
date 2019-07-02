@@ -6,7 +6,6 @@ import * as actions from '../redux/actions/cart';
 class CardProduto extends Component {
     constructor(props) {
         super(props);
-        console.log(props);
     }
     render() {
         return (

@@ -14,7 +14,6 @@ class Acompanhe extends Component {
       };
     constructor(props) {
         super(props);
-        console.log(this.props);
         this.state = {
           value: this.props.cartValue,
           frete: 0

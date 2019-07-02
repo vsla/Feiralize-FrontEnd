@@ -10,7 +10,6 @@ import NumericInput from './NumericInput';
 class CartCard extends Component {
   
   render() {
-    console.log(this.props);
     return (
       <View style={{ marginTop: 10, backgroundColor:'#d2d2d2'}}>
 

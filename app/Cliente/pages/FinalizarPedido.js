@@ -40,7 +40,41 @@ class FinalizarPedido extends Component {
           {
             text: 'OK',
             onPress: () => {
+              firebase.firestore().collection('purchasesDone').get().then((response) => {
+                console.log(response)
+              })
+
               const newPostKey = firebase.database().ref('/teste/data/feirasProntas/').push().key;
+              const supermarketId = 'JFMNLgNAz3eR3vJ5sDGJ';
+              const newOrder = {};
+              newOrder[newPostKey] = {
+                clientID: '5EiURoXGGT3ybPRH5nEH',
+                OrderId: newPostKey,
+                createdDate: {
+                  date: '05/05/2019',
+                  hour: '11:10:00 AM'
+                },
+                delivery: {
+                  date: '06/05/2019',
+                  hour: '11:00:00 AM',
+                  location: {
+                    cep: '51020-231',
+                    neighborhood: 'Agua fria',
+                    number: '1024',
+                    state: 'Pernambuco',
+                    street: 'estrada velha de água fria'
+                  }
+                },
+                exchange: 50,
+                paymentID: 'ErrdYOwD8VaPBBzGDkX0',
+                price: (Math.round(this.props.cartValue * 100) / 100),
+                products: this.props.cartItems,
+                status: 'Pendente',
+                supermarketID: 'JFMNLgNAz3eR3vJ5sDGJ'
+              }
+              firebase.firestore().collection('purchasesDone').doc(supermarketId).update(newOrder);
+            },
+              /*
               firebase.database().ref(`/teste/data/feirasProntas/${newPostKey}`).set({
                 key: newPostKey,
                 status: 'PENDENTE',
@@ -58,12 +92,12 @@ class FinalizarPedido extends Component {
               this.props.add_payment_method(this.state.selected);
               this.props.reset_cart(this.state.selected);
               this.props.navigation.navigate('Cart');
-            }
-          },
-        ],
-      );
+              */
+          }
+        ]);
     }
   }
+  
 
   openPaymentMethod = () => {
     if (this.state.showPaymentMethod) {
@@ -116,7 +150,6 @@ class FinalizarPedido extends Component {
               />
             </View>
           </View>
-                    
         </View>
       );
     }

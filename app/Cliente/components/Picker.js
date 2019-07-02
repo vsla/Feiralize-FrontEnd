@@ -6,7 +6,7 @@ export default class Deletepicker extends Component {
     super(props);
     this.state = {
       items: this.props.data,
-      selected: 'oi'
+      selected: ''
     };
   }
 
@@ -27,14 +27,12 @@ export default class Deletepicker extends Component {
     return (
       <View style={{ flex: 1, borderRadius: 20, backgroundColor: 'white' }}>
         <Picker
-          selectedValue={this.state.selected}
+          selectedValue={this.props.selectedValue}
           style={{
             flex: 1, marginRight: -50, backgroundColor: 'transparent'
           }}
-          onValueChange={(itemValue) => {
-            this.setState({ selected: itemValue });
-          }}
-          itemStyle={{fontSize:14}}
+          onValueChange={(itemValue) => this.props.onValueChange(itemValue)}
+          itemStyle={{ fontSize: 14 }}
         >
           {this.renderPickerItems()}
         </Picker>

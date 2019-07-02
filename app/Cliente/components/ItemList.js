@@ -30,7 +30,6 @@ class ItemList extends Component {
       .get()
       .then(querySnapshot => {
         const response = querySnapshot.data();
-        console.log(response);
         const categories = Object.keys(response).map(key => {
           response[key].id = key;
           return response[key];
